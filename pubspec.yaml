@@ -1,0 +1,36 @@
+name: der_die_das
+description: A fun German articles quiz game
+publish_to: 'none'
+version: 0.2.0+1
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+  flutter: ">=2.8.0 < 3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter 
+  cupertino_icons:
+  intl:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints:
+  arb_generator:
+
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+arb_generator:
+  input_filepath: "assets_dev/loca/loca.csv"
+  output_directory: "assets_dev/l10n"
+  filename_prepend: "l10n_"
+  csv_settings:
+    delimiter: ";"
+    description_index: 1
+    base_index: 2
