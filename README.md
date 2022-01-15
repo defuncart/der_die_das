@@ -17,6 +17,10 @@ Der Die Das is a fun German article quiz game in which the player tries to guess
 
 The application is presently in development and is a re-write of [https://defuncart.com/games/derdiedas/](https://defuncart.com/games/derdiedas/) in Flutter. Once this project has feature parity with the original version, an open beta phase will commence.
 
+## Credits
+
+Lovelo Black foont is a trademark of Renzler Design. Lato Font is a trademark of Łukasz Dziedzic.
+
 ## Raising Issues and Contributing
 
 Please report bugs and issues, and raise feature requests [here](https://github.com/defuncart/der_die_das/issues).
