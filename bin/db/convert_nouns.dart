@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:der_die_das/services/nouns_database/enums/level.dart';
 import 'package:der_die_das/services/nouns_database/services/nouns_database.dart' show Noun;
+import 'package:der_die_das/services/nouns_database/utils/equal_list.dart';
 
 Future<List<Noun>> convertNouns() async {
   const filepath = 'assets_dev/db/nouns_a1.csv';
@@ -32,6 +33,8 @@ Future<List<Noun>> _convertLevel(Level level, startId) async {
       withArticle: components[_NounIndex.withArticle],
       withoutArticle: components[_NounIndex.withoutArticle],
       level: level,
+      articleIndeces:
+          EqualList(components[_NounIndex.articleIndeces].split('|').map((article) => int.parse(article)).toList()),
       isAmbiguous: components[_NounIndex.isAmbiguous] == '1',
       attemps: 0,
       timesCorrect: 0,
@@ -47,6 +50,6 @@ class _NounIndex {
   static const key = 1;
   static const withArticle = 2;
   static const withoutArticle = 5;
-  // static const articleIndeces = 6;
+  static const articleIndeces = 6;
   static const isAmbiguous = 8;
 }
