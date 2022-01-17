@@ -14,13 +14,17 @@ class Noun extends DataClass implements Insertable<Noun> {
   final String withoutArticle;
   final Level level;
   final bool isAmbiguous;
+  final int attemps;
+  final int timesCorrect;
   Noun(
       {required this.id,
       required this.key,
       required this.withArticle,
       required this.withoutArticle,
       required this.level,
-      required this.isAmbiguous});
+      required this.isAmbiguous,
+      required this.attemps,
+      required this.timesCorrect});
   factory Noun.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return Noun(
@@ -36,6 +40,10 @@ class Noun extends DataClass implements Insertable<Noun> {
           .mapFromDatabaseResponse(data['${effectivePrefix}level']))!,
       isAmbiguous: const BoolType()
           .mapFromDatabaseResponse(data['${effectivePrefix}is_ambiguous'])!,
+      attemps: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}attemps'])!,
+      timesCorrect: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}times_correct'])!,
     );
   }
   @override
@@ -50,6 +58,8 @@ class Noun extends DataClass implements Insertable<Noun> {
       map['level'] = Variable<int>(converter.mapToSql(level)!);
     }
     map['is_ambiguous'] = Variable<bool>(isAmbiguous);
+    map['attemps'] = Variable<int>(attemps);
+    map['times_correct'] = Variable<int>(timesCorrect);
     return map;
   }
 
@@ -61,6 +71,8 @@ class Noun extends DataClass implements Insertable<Noun> {
       withoutArticle: Value(withoutArticle),
       level: Value(level),
       isAmbiguous: Value(isAmbiguous),
+      attemps: Value(attemps),
+      timesCorrect: Value(timesCorrect),
     );
   }
 
@@ -74,6 +86,8 @@ class Noun extends DataClass implements Insertable<Noun> {
       withoutArticle: serializer.fromJson<String>(json['withoutArticle']),
       level: serializer.fromJson<Level>(json['level']),
       isAmbiguous: serializer.fromJson<bool>(json['isAmbiguous']),
+      attemps: serializer.fromJson<int>(json['attemps']),
+      timesCorrect: serializer.fromJson<int>(json['timesCorrect']),
     );
   }
   @override
@@ -86,6 +100,8 @@ class Noun extends DataClass implements Insertable<Noun> {
       'withoutArticle': serializer.toJson<String>(withoutArticle),
       'level': serializer.toJson<Level>(level),
       'isAmbiguous': serializer.toJson<bool>(isAmbiguous),
+      'attemps': serializer.toJson<int>(attemps),
+      'timesCorrect': serializer.toJson<int>(timesCorrect),
     };
   }
 
@@ -95,7 +111,9 @@ class Noun extends DataClass implements Insertable<Noun> {
           String? withArticle,
           String? withoutArticle,
           Level? level,
-          bool? isAmbiguous}) =>
+          bool? isAmbiguous,
+          int? attemps,
+          int? timesCorrect}) =>
       Noun(
         id: id ?? this.id,
         key: key ?? this.key,
@@ -103,6 +121,8 @@ class Noun extends DataClass implements Insertable<Noun> {
         withoutArticle: withoutArticle ?? this.withoutArticle,
         level: level ?? this.level,
         isAmbiguous: isAmbiguous ?? this.isAmbiguous,
+        attemps: attemps ?? this.attemps,
+        timesCorrect: timesCorrect ?? this.timesCorrect,
       );
   @override
   String toString() {
@@ -112,14 +132,16 @@ class Noun extends DataClass implements Insertable<Noun> {
           ..write('withArticle: $withArticle, ')
           ..write('withoutArticle: $withoutArticle, ')
           ..write('level: $level, ')
-          ..write('isAmbiguous: $isAmbiguous')
+          ..write('isAmbiguous: $isAmbiguous, ')
+          ..write('attemps: $attemps, ')
+          ..write('timesCorrect: $timesCorrect')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, key, withArticle, withoutArticle, level, isAmbiguous);
+  int get hashCode => Object.hash(id, key, withArticle, withoutArticle, level,
+      isAmbiguous, attemps, timesCorrect);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -129,7 +151,9 @@ class Noun extends DataClass implements Insertable<Noun> {
           other.withArticle == this.withArticle &&
           other.withoutArticle == this.withoutArticle &&
           other.level == this.level &&
-          other.isAmbiguous == this.isAmbiguous);
+          other.isAmbiguous == this.isAmbiguous &&
+          other.attemps == this.attemps &&
+          other.timesCorrect == this.timesCorrect);
 }
 
 class NounsCompanion extends UpdateCompanion<Noun> {
@@ -139,6 +163,8 @@ class NounsCompanion extends UpdateCompanion<Noun> {
   final Value<String> withoutArticle;
   final Value<Level> level;
   final Value<bool> isAmbiguous;
+  final Value<int> attemps;
+  final Value<int> timesCorrect;
   const NounsCompanion({
     this.id = const Value.absent(),
     this.key = const Value.absent(),
@@ -146,6 +172,8 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     this.withoutArticle = const Value.absent(),
     this.level = const Value.absent(),
     this.isAmbiguous = const Value.absent(),
+    this.attemps = const Value.absent(),
+    this.timesCorrect = const Value.absent(),
   });
   NounsCompanion.insert({
     this.id = const Value.absent(),
@@ -154,6 +182,8 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     required String withoutArticle,
     required Level level,
     required bool isAmbiguous,
+    this.attemps = const Value.absent(),
+    this.timesCorrect = const Value.absent(),
   })  : key = Value(key),
         withArticle = Value(withArticle),
         withoutArticle = Value(withoutArticle),
@@ -166,6 +196,8 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     Expression<String>? withoutArticle,
     Expression<Level>? level,
     Expression<bool>? isAmbiguous,
+    Expression<int>? attemps,
+    Expression<int>? timesCorrect,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -174,6 +206,8 @@ class NounsCompanion extends UpdateCompanion<Noun> {
       if (withoutArticle != null) 'without_article': withoutArticle,
       if (level != null) 'level': level,
       if (isAmbiguous != null) 'is_ambiguous': isAmbiguous,
+      if (attemps != null) 'attemps': attemps,
+      if (timesCorrect != null) 'times_correct': timesCorrect,
     });
   }
 
@@ -183,7 +217,9 @@ class NounsCompanion extends UpdateCompanion<Noun> {
       Value<String>? withArticle,
       Value<String>? withoutArticle,
       Value<Level>? level,
-      Value<bool>? isAmbiguous}) {
+      Value<bool>? isAmbiguous,
+      Value<int>? attemps,
+      Value<int>? timesCorrect}) {
     return NounsCompanion(
       id: id ?? this.id,
       key: key ?? this.key,
@@ -191,6 +227,8 @@ class NounsCompanion extends UpdateCompanion<Noun> {
       withoutArticle: withoutArticle ?? this.withoutArticle,
       level: level ?? this.level,
       isAmbiguous: isAmbiguous ?? this.isAmbiguous,
+      attemps: attemps ?? this.attemps,
+      timesCorrect: timesCorrect ?? this.timesCorrect,
     );
   }
 
@@ -216,6 +254,12 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     if (isAmbiguous.present) {
       map['is_ambiguous'] = Variable<bool>(isAmbiguous.value);
     }
+    if (attemps.present) {
+      map['attemps'] = Variable<int>(attemps.value);
+    }
+    if (timesCorrect.present) {
+      map['times_correct'] = Variable<int>(timesCorrect.value);
+    }
     return map;
   }
 
@@ -227,7 +271,9 @@ class NounsCompanion extends UpdateCompanion<Noun> {
           ..write('withArticle: $withArticle, ')
           ..write('withoutArticle: $withoutArticle, ')
           ..write('level: $level, ')
-          ..write('isAmbiguous: $isAmbiguous')
+          ..write('isAmbiguous: $isAmbiguous, ')
+          ..write('attemps: $attemps, ')
+          ..write('timesCorrect: $timesCorrect')
           ..write(')'))
         .toString();
   }
@@ -275,9 +321,32 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
       type: const BoolType(),
       requiredDuringInsert: true,
       defaultConstraints: 'CHECK (is_ambiguous IN (0, 1))');
+  final VerificationMeta _attempsMeta = const VerificationMeta('attemps');
   @override
-  List<GeneratedColumn> get $columns =>
-      [id, key, withArticle, withoutArticle, level, isAmbiguous];
+  late final GeneratedColumn<int?> attemps = GeneratedColumn<int?>(
+      'attemps', aliasedName, false,
+      type: const IntType(),
+      requiredDuringInsert: false,
+      defaultValue: const Constant(0));
+  final VerificationMeta _timesCorrectMeta =
+      const VerificationMeta('timesCorrect');
+  @override
+  late final GeneratedColumn<int?> timesCorrect = GeneratedColumn<int?>(
+      'times_correct', aliasedName, false,
+      type: const IntType(),
+      requiredDuringInsert: false,
+      defaultValue: const Constant(0));
+  @override
+  List<GeneratedColumn> get $columns => [
+        id,
+        key,
+        withArticle,
+        withoutArticle,
+        level,
+        isAmbiguous,
+        attemps,
+        timesCorrect
+      ];
   @override
   String get aliasedName => _alias ?? 'nouns';
   @override
@@ -320,6 +389,16 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
               data['is_ambiguous']!, _isAmbiguousMeta));
     } else if (isInserting) {
       context.missing(_isAmbiguousMeta);
+    }
+    if (data.containsKey('attemps')) {
+      context.handle(_attempsMeta,
+          attemps.isAcceptableOrUnknown(data['attemps']!, _attempsMeta));
+    }
+    if (data.containsKey('times_correct')) {
+      context.handle(
+          _timesCorrectMeta,
+          timesCorrect.isAcceptableOrUnknown(
+              data['times_correct']!, _timesCorrectMeta));
     }
     return context;
   }

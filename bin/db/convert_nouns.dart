@@ -33,6 +33,8 @@ Future<List<Noun>> _convertLevel(Level level, startId) async {
       withoutArticle: components[_NounIndex.withoutArticle],
       level: level,
       isAmbiguous: components[_NounIndex.isAmbiguous] == '1',
+      attemps: 0,
+      timesCorrect: 0,
     );
     nouns.add(noun);
     id++;
