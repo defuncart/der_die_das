@@ -45,5 +45,9 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# local assets
+# local dev assets
 assets_dev/l10n
+assets_dev/db
+
+# local assets
+assets/db

@@ -15,6 +15,13 @@ jobs:
       # the arb files aren't under source control, generate them
       - name: Generate arb files
         run: dart run arb_generator
+      # db isn't under source control, create fake one
+      - name: Generate db
+        run: |
+          cd assets
+          mkdir db
+          cd ..
+          touch assets/db/db.zip
       - name: Install packages
         run: flutter pub get
       - name: Lint

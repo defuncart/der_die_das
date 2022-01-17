@@ -1,9 +1,8 @@
 import 'package:der_die_das/configs/app_theme.dart';
+import 'package:der_die_das/services/nouns_database/enums/level.dart';
 import 'package:der_die_das/widgets/common/rounded_rectangle.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-enum Level { a1, a2 }
 
 class LevelIcon extends StatelessWidget {
   const LevelIcon({

@@ -14,21 +14,30 @@ dependencies:
     sdk: flutter 
   cupertino_icons:
   intl:
+  collection:
   gap:
   settings_ui:
   auto_size_text:
   # google_fonts:
+  drift:
+  sqlite3_flutter_libs:
+  path_provider:
+  path:
+  archive:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints:
   arb_generator:
-
+  drift_dev:
+  build_runner:
 
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - assets/db/db.zip
   fonts:
     - family: Lovelo
       fonts:
