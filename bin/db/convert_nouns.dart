@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:der_die_das/extensions/normaize_string_extensions.dart';
 import 'package:der_die_das/services/nouns_database/enums/level.dart';
 import 'package:der_die_das/services/nouns_database/services/nouns_database.dart' show Noun;
 import 'package:der_die_das/services/nouns_database/utils/equal_list.dart';
@@ -32,6 +33,7 @@ Future<List<Noun>> _convertLevel(Level level, startId) async {
       key: components[_NounIndex.key],
       withArticle: components[_NounIndex.withArticle],
       withoutArticle: components[_NounIndex.withoutArticle],
+      withoutArticleNormalized: components[_NounIndex.withoutArticle].normalized,
       level: level,
       articleIndeces:
           EqualList(components[_NounIndex.articleIndeces].split('|').map((article) => int.parse(article)).toList()),

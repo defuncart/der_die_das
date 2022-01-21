@@ -2,7 +2,7 @@ import 'package:der_die_das/services/nouns_database/converters/int_list_converte
 import 'package:der_die_das/services/nouns_database/converters/level_converter.dart';
 import 'package:der_die_das/services/nouns_database/enums/level.dart';
 import 'package:der_die_das/services/nouns_database/services/i_nouns_database.dart';
-import 'package:der_die_das/services/nouns_database/tables/noun.dart';
+import 'package:der_die_das/services/nouns_database/tables/nouns.dart';
 import 'package:der_die_das/services/nouns_database/utils/equal_list.dart';
 import 'package:drift/drift.dart';
 

@@ -12,6 +12,7 @@ class Noun extends DataClass implements Insertable<Noun> {
   final String key;
   final String withArticle;
   final String withoutArticle;
+  final String withoutArticleNormalized;
   final EqualList<int> articleIndeces;
   final Level level;
   final bool isAmbiguous;
@@ -22,6 +23,7 @@ class Noun extends DataClass implements Insertable<Noun> {
       required this.key,
       required this.withArticle,
       required this.withoutArticle,
+      required this.withoutArticleNormalized,
       required this.articleIndeces,
       required this.level,
       required this.isAmbiguous,
@@ -38,6 +40,8 @@ class Noun extends DataClass implements Insertable<Noun> {
           .mapFromDatabaseResponse(data['${effectivePrefix}with_article'])!,
       withoutArticle: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}without_article'])!,
+      withoutArticleNormalized: const StringType().mapFromDatabaseResponse(
+          data['${effectivePrefix}without_article_normalized'])!,
       articleIndeces: $NounsTable.$converter0.mapToDart(const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}article_indeces']))!,
       level: $NounsTable.$converter1.mapToDart(const IntType()
@@ -57,6 +61,8 @@ class Noun extends DataClass implements Insertable<Noun> {
     map['key'] = Variable<String>(key);
     map['with_article'] = Variable<String>(withArticle);
     map['without_article'] = Variable<String>(withoutArticle);
+    map['without_article_normalized'] =
+        Variable<String>(withoutArticleNormalized);
     {
       final converter = $NounsTable.$converter0;
       map['article_indeces'] =
@@ -78,6 +84,7 @@ class Noun extends DataClass implements Insertable<Noun> {
       key: Value(key),
       withArticle: Value(withArticle),
       withoutArticle: Value(withoutArticle),
+      withoutArticleNormalized: Value(withoutArticleNormalized),
       articleIndeces: Value(articleIndeces),
       level: Value(level),
       isAmbiguous: Value(isAmbiguous),
@@ -94,6 +101,8 @@ class Noun extends DataClass implements Insertable<Noun> {
       key: serializer.fromJson<String>(json['key']),
       withArticle: serializer.fromJson<String>(json['withArticle']),
       withoutArticle: serializer.fromJson<String>(json['withoutArticle']),
+      withoutArticleNormalized:
+          serializer.fromJson<String>(json['withoutArticleNormalized']),
       articleIndeces:
           serializer.fromJson<EqualList<int>>(json['articleIndeces']),
       level: serializer.fromJson<Level>(json['level']),
@@ -110,6 +119,8 @@ class Noun extends DataClass implements Insertable<Noun> {
       'key': serializer.toJson<String>(key),
       'withArticle': serializer.toJson<String>(withArticle),
       'withoutArticle': serializer.toJson<String>(withoutArticle),
+      'withoutArticleNormalized':
+          serializer.toJson<String>(withoutArticleNormalized),
       'articleIndeces': serializer.toJson<EqualList<int>>(articleIndeces),
       'level': serializer.toJson<Level>(level),
       'isAmbiguous': serializer.toJson<bool>(isAmbiguous),
@@ -123,6 +134,7 @@ class Noun extends DataClass implements Insertable<Noun> {
           String? key,
           String? withArticle,
           String? withoutArticle,
+          String? withoutArticleNormalized,
           EqualList<int>? articleIndeces,
           Level? level,
           bool? isAmbiguous,
@@ -133,6 +145,8 @@ class Noun extends DataClass implements Insertable<Noun> {
         key: key ?? this.key,
         withArticle: withArticle ?? this.withArticle,
         withoutArticle: withoutArticle ?? this.withoutArticle,
+        withoutArticleNormalized:
+            withoutArticleNormalized ?? this.withoutArticleNormalized,
         articleIndeces: articleIndeces ?? this.articleIndeces,
         level: level ?? this.level,
         isAmbiguous: isAmbiguous ?? this.isAmbiguous,
@@ -146,6 +160,7 @@ class Noun extends DataClass implements Insertable<Noun> {
           ..write('key: $key, ')
           ..write('withArticle: $withArticle, ')
           ..write('withoutArticle: $withoutArticle, ')
+          ..write('withoutArticleNormalized: $withoutArticleNormalized, ')
           ..write('articleIndeces: $articleIndeces, ')
           ..write('level: $level, ')
           ..write('isAmbiguous: $isAmbiguous, ')
@@ -156,8 +171,17 @@ class Noun extends DataClass implements Insertable<Noun> {
   }
 
   @override
-  int get hashCode => Object.hash(id, key, withArticle, withoutArticle,
-      articleIndeces, level, isAmbiguous, attemps, timesCorrect);
+  int get hashCode => Object.hash(
+      id,
+      key,
+      withArticle,
+      withoutArticle,
+      withoutArticleNormalized,
+      articleIndeces,
+      level,
+      isAmbiguous,
+      attemps,
+      timesCorrect);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -166,6 +190,7 @@ class Noun extends DataClass implements Insertable<Noun> {
           other.key == this.key &&
           other.withArticle == this.withArticle &&
           other.withoutArticle == this.withoutArticle &&
+          other.withoutArticleNormalized == this.withoutArticleNormalized &&
           other.articleIndeces == this.articleIndeces &&
           other.level == this.level &&
           other.isAmbiguous == this.isAmbiguous &&
@@ -178,6 +203,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
   final Value<String> key;
   final Value<String> withArticle;
   final Value<String> withoutArticle;
+  final Value<String> withoutArticleNormalized;
   final Value<EqualList<int>> articleIndeces;
   final Value<Level> level;
   final Value<bool> isAmbiguous;
@@ -188,6 +214,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     this.key = const Value.absent(),
     this.withArticle = const Value.absent(),
     this.withoutArticle = const Value.absent(),
+    this.withoutArticleNormalized = const Value.absent(),
     this.articleIndeces = const Value.absent(),
     this.level = const Value.absent(),
     this.isAmbiguous = const Value.absent(),
@@ -199,6 +226,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     required String key,
     required String withArticle,
     required String withoutArticle,
+    required String withoutArticleNormalized,
     required EqualList<int> articleIndeces,
     required Level level,
     required bool isAmbiguous,
@@ -207,6 +235,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
   })  : key = Value(key),
         withArticle = Value(withArticle),
         withoutArticle = Value(withoutArticle),
+        withoutArticleNormalized = Value(withoutArticleNormalized),
         articleIndeces = Value(articleIndeces),
         level = Value(level),
         isAmbiguous = Value(isAmbiguous);
@@ -215,6 +244,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     Expression<String>? key,
     Expression<String>? withArticle,
     Expression<String>? withoutArticle,
+    Expression<String>? withoutArticleNormalized,
     Expression<EqualList<int>>? articleIndeces,
     Expression<Level>? level,
     Expression<bool>? isAmbiguous,
@@ -226,6 +256,8 @@ class NounsCompanion extends UpdateCompanion<Noun> {
       if (key != null) 'key': key,
       if (withArticle != null) 'with_article': withArticle,
       if (withoutArticle != null) 'without_article': withoutArticle,
+      if (withoutArticleNormalized != null)
+        'without_article_normalized': withoutArticleNormalized,
       if (articleIndeces != null) 'article_indeces': articleIndeces,
       if (level != null) 'level': level,
       if (isAmbiguous != null) 'is_ambiguous': isAmbiguous,
@@ -239,6 +271,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
       Value<String>? key,
       Value<String>? withArticle,
       Value<String>? withoutArticle,
+      Value<String>? withoutArticleNormalized,
       Value<EqualList<int>>? articleIndeces,
       Value<Level>? level,
       Value<bool>? isAmbiguous,
@@ -249,6 +282,8 @@ class NounsCompanion extends UpdateCompanion<Noun> {
       key: key ?? this.key,
       withArticle: withArticle ?? this.withArticle,
       withoutArticle: withoutArticle ?? this.withoutArticle,
+      withoutArticleNormalized:
+          withoutArticleNormalized ?? this.withoutArticleNormalized,
       articleIndeces: articleIndeces ?? this.articleIndeces,
       level: level ?? this.level,
       isAmbiguous: isAmbiguous ?? this.isAmbiguous,
@@ -271,6 +306,10 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     }
     if (withoutArticle.present) {
       map['without_article'] = Variable<String>(withoutArticle.value);
+    }
+    if (withoutArticleNormalized.present) {
+      map['without_article_normalized'] =
+          Variable<String>(withoutArticleNormalized.value);
     }
     if (articleIndeces.present) {
       final converter = $NounsTable.$converter0;
@@ -300,6 +339,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
           ..write('key: $key, ')
           ..write('withArticle: $withArticle, ')
           ..write('withoutArticle: $withoutArticle, ')
+          ..write('withoutArticleNormalized: $withoutArticleNormalized, ')
           ..write('articleIndeces: $articleIndeces, ')
           ..write('level: $level, ')
           ..write('isAmbiguous: $isAmbiguous, ')
@@ -338,6 +378,12 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
   late final GeneratedColumn<String?> withoutArticle = GeneratedColumn<String?>(
       'without_article', aliasedName, false,
       type: const StringType(), requiredDuringInsert: true);
+  final VerificationMeta _withoutArticleNormalizedMeta =
+      const VerificationMeta('withoutArticleNormalized');
+  @override
+  late final GeneratedColumn<String?> withoutArticleNormalized =
+      GeneratedColumn<String?>('without_article_normalized', aliasedName, false,
+          type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _articleIndecesMeta =
       const VerificationMeta('articleIndeces');
   @override
@@ -381,6 +427,7 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
         key,
         withArticle,
         withoutArticle,
+        withoutArticleNormalized,
         articleIndeces,
         level,
         isAmbiguous,
@@ -420,6 +467,15 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
               data['without_article']!, _withoutArticleMeta));
     } else if (isInserting) {
       context.missing(_withoutArticleMeta);
+    }
+    if (data.containsKey('without_article_normalized')) {
+      context.handle(
+          _withoutArticleNormalizedMeta,
+          withoutArticleNormalized.isAcceptableOrUnknown(
+              data['without_article_normalized']!,
+              _withoutArticleNormalizedMeta));
+    } else if (isInserting) {
+      context.missing(_withoutArticleNormalizedMeta);
     }
     context.handle(_articleIndecesMeta, const VerificationResult.success());
     context.handle(_levelMeta, const VerificationResult.success());
