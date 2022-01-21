@@ -1,3 +1,4 @@
+import 'package:der_die_das/extensions/normaize_string_extensions.dart';
 import 'package:der_die_das/services/nouns_database/converters/int_list_converter.dart';
 import 'package:der_die_das/services/nouns_database/converters/level_converter.dart';
 import 'package:der_die_das/services/nouns_database/enums/level.dart';
@@ -32,12 +33,12 @@ class NounDatabase extends _$NounDatabase implements INounDatabase {
 
     if (text != null && level != null) {
       return (select(nouns)
-            ..where((noun) => noun.withoutArticle.contains(text) & noun.level.equals(level.index))
+            ..where((noun) => noun.withoutArticleNormalized.contains(text.normalized) & noun.level.equals(level.index))
             ..orderBy([(noun) => OrderingTerm.asc(noun.withoutArticle)]))
           .get();
     } else if (text != null) {
       return (select(nouns)
-            ..where((noun) => noun.withoutArticle.contains(text))
+            ..where((noun) => noun.withoutArticleNormalized.contains(text.normalized))
             ..orderBy([(noun) => OrderingTerm.asc(noun.withoutArticle)]))
           .get();
     } else if (level != null) {
