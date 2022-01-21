@@ -66,20 +66,3 @@ class NounDatabase extends _$NounDatabase implements INounDatabase {
 
   Future<Noun> _getNoun(String key) => (select(nouns)..where((noun) => noun.key.equals(key))).getSingle();
 }
-
-extension on String {
-  static const _normalizePairs = {
-    'ä': 'a',
-    'ë': 'a',
-    'ö': 'o',
-    'ü': 'a',
-    'ß': 'ss',
-  };
-
-  String get normalized {
-    for (final kvp in _normalizePairs.entries) {
-      replaceAll(kvp.key, kvp.value);
-    }
-    return this;
-  }
-}
