@@ -1,9 +1,11 @@
 import 'package:der_die_das/configs/app_theme.dart';
 import 'package:der_die_das/extensions/list_widget_extensions.dart';
-import 'package:der_die_das/services/nouns_database/enums/level.dart';
+import 'package:der_die_das/services/nouns_database/services/nouns_database.dart';
+import 'package:der_die_das/state/state.dart';
 import 'package:der_die_das/widgets/common/level_icon.dart';
 import 'package:der_die_das/widgets/common/rounded_rectangle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
 class NounsScreen extends StatefulWidget {
@@ -66,24 +68,55 @@ class _SearchDelegate extends SearchDelegate {
       );
     }
 
-    return _showResults;
+    return _showResults(context);
   }
 
   @override
-  Widget buildSuggestions(BuildContext context) => _showResults;
+  Widget buildSuggestions(BuildContext context) => _showResults(context);
 
-  Widget get _showResults {
-    final results = _nouns.where((element) => element.last.contains(query)).toList();
+  Widget _showResults(BuildContext context) {
+    if (query.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return Consumer(builder: (context, ref, _) {
+      final filteredNouns = ref.watch(filterNounsByTextProvider(query));
+
+      return filteredNouns.when(
+        loading: () => const SizedBox.shrink(),
+        error: (err, _) => const SizedBox.shrink(),
+        data: (results) => _NounResultList(
+          results: results,
+        ),
+      );
+    });
+  }
+}
+
+class _NounResultList extends StatelessWidget {
+  const _NounResultList({required this.results, Key? key}) : super(key: key);
+
+  final List<Noun> results;
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO move into db
+    results.sort((a, b) => a.withoutArticle.compareTo(b.withoutArticle));
 
     return ListView.builder(
       physics: const BouncingScrollPhysics(),
       itemCount: results.length,
       itemBuilder: (context, count) => ListTile(
-        title: Text('${results[count].first} ${results[count].last}'),
+        title: Text(results[count].withArticle),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const LevelIcon(level: Level.a1),
+            Opacity(
+              opacity: 0.8,
+              child: LevelIcon(
+                level: results[count].level,
+              ),
+            ),
             RoundedRectangle(
               width: 24,
               height: 24,
@@ -102,38 +135,6 @@ class _SearchDelegate extends SearchDelegate {
   }
 }
 
-const _nouns = [
-  ['die', 'Abfahrt'],
-  ['der', 'Absender'],
-  ['die', 'Adresse'],
-  ['das', 'Alter'],
-  ['das', 'Angebot'],
-  ['der', 'Anfang'],
-  ['die', 'Ankunft'],
-  ['die', 'Anmeldung'],
-  ['die', 'Anrede'],
-  ['der', 'Anruf'],
-  ['die', 'Ansage'],
-  ['der', 'Anschluss'],
-  ['die', 'Antwort'],
-  ['die', 'Anzeige'],
-  ['das', 'Apartment'],
-  ['der', 'Apfel'],
-  ['der', 'Appetit'],
-  ['die', 'Arbeit'],
-  ['der', 'Arbeitsplatz'],
-  ['der', 'Arm'],
-  ['der', 'Arzt'],
-  ['die', 'Aufgabe'],
-  ['der', 'Aufzug'],
-  ['das', 'Auge'],
-  ['der', 'Ausflug'],
-  ['der', 'Ausgang'],
-  ['die', 'Auskunft'],
-  ['das', 'Ausland'],
-  ['der', 'Ausländer'],
-  ['die', 'Aussage'],
-  ['der', 'Ausweis'],
-  ['die', 'Autobahn'],
-  ['der', 'Automat'],
-];
+final filterNounsByTextProvider = FutureProvider.family<List<Noun>, String>(
+  (ref, text) => ref.read(nounDatabaseProvider).nounsContaining(text),
+);
