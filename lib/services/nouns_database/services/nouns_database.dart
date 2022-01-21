@@ -26,7 +26,29 @@ class NounDatabase extends _$NounDatabase implements INounDatabase {
         ..limit(count))
       .get();
 
-  Future<Noun> _getNoun(String key) => (select(nouns)..where((noun) => noun.key.equals(key))).getSingle();
+  @override
+  Future<List<Noun>> filterNouns({String? text, Level? level}) {
+    assert(text != null || level != null);
+
+    if (text != null && level != null) {
+      return (select(nouns)
+            ..where((noun) => noun.withoutArticle.contains(text) & noun.level.equals(level.index))
+            ..orderBy([(noun) => OrderingTerm.asc(noun.withoutArticle)]))
+          .get();
+    } else if (text != null) {
+      return (select(nouns)
+            ..where((noun) => noun.withoutArticle.contains(text))
+            ..orderBy([(noun) => OrderingTerm.asc(noun.withoutArticle)]))
+          .get();
+    } else if (level != null) {
+      return (select(nouns)
+            ..where((noun) => noun.level.equals(level.index))
+            ..orderBy([(noun) => OrderingTerm.asc(noun.withoutArticle)]))
+          .get();
+    }
+
+    return Future.value(<Noun>[]);
+  }
 
   @override
   Future<void> updateProgress({required String key, required bool answeredCorrectly}) async {
@@ -40,5 +62,24 @@ class NounDatabase extends _$NounDatabase implements INounDatabase {
         timesCorrect: timesCorrect,
       ),
     );
+  }
+
+  Future<Noun> _getNoun(String key) => (select(nouns)..where((noun) => noun.key.equals(key))).getSingle();
+}
+
+extension on String {
+  static const _normalizePairs = {
+    'ä': 'a',
+    'ë': 'a',
+    'ö': 'o',
+    'ü': 'a',
+    'ß': 'ss',
+  };
+
+  String get normalized {
+    for (final kvp in _normalizePairs.entries) {
+      replaceAll(kvp.key, kvp.value);
+    }
+    return this;
   }
 }
