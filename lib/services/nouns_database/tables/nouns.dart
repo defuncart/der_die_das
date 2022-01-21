@@ -7,6 +7,7 @@ class Nouns extends Table {
   TextColumn get key => text()();
   TextColumn get withArticle => text()();
   TextColumn get withoutArticle => text()();
+  TextColumn get withoutArticleNormalized => text()();
   TextColumn get articleIndeces => text().map(const IntListConverter())();
   IntColumn get level => integer().map(const LevelConverter())();
   BoolColumn get isAmbiguous => boolean()();

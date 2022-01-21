@@ -1,8 +1,9 @@
+import 'package:der_die_das/extensions/normaize_string_extensions.dart';
 import 'package:der_die_das/services/nouns_database/converters/int_list_converter.dart';
 import 'package:der_die_das/services/nouns_database/converters/level_converter.dart';
 import 'package:der_die_das/services/nouns_database/enums/level.dart';
 import 'package:der_die_das/services/nouns_database/services/i_nouns_database.dart';
-import 'package:der_die_das/services/nouns_database/tables/noun.dart';
+import 'package:der_die_das/services/nouns_database/tables/nouns.dart';
 import 'package:der_die_das/services/nouns_database/utils/equal_list.dart';
 import 'package:drift/drift.dart';
 
@@ -26,7 +27,29 @@ class NounDatabase extends _$NounDatabase implements INounDatabase {
         ..limit(count))
       .get();
 
-  Future<Noun> _getNoun(String key) => (select(nouns)..where((noun) => noun.key.equals(key))).getSingle();
+  @override
+  Future<List<Noun>> filterNouns({String? text, Level? level}) {
+    assert(text != null || level != null);
+
+    if (text != null && level != null) {
+      return (select(nouns)
+            ..where((noun) => noun.withoutArticleNormalized.contains(text.normalized) & noun.level.equals(level.index))
+            ..orderBy([(noun) => OrderingTerm.asc(noun.withoutArticle)]))
+          .get();
+    } else if (text != null) {
+      return (select(nouns)
+            ..where((noun) => noun.withoutArticleNormalized.contains(text.normalized))
+            ..orderBy([(noun) => OrderingTerm.asc(noun.withoutArticle)]))
+          .get();
+    } else if (level != null) {
+      return (select(nouns)
+            ..where((noun) => noun.level.equals(level.index))
+            ..orderBy([(noun) => OrderingTerm.asc(noun.withoutArticle)]))
+          .get();
+    }
+
+    return Future.value(<Noun>[]);
+  }
 
   @override
   Future<void> updateProgress({required String key, required bool answeredCorrectly}) async {
@@ -41,4 +64,6 @@ class NounDatabase extends _$NounDatabase implements INounDatabase {
       ),
     );
   }
+
+  Future<Noun> _getNoun(String key) => (select(nouns)..where((noun) => noun.key.equals(key))).getSingle();
 }

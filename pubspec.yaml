@@ -24,6 +24,8 @@ dependencies:
   path_provider:
   path:
   archive:
+  flutter_riverpod: ^2.0.0-dev.0
+  freezed:
 
 dev_dependencies:
   flutter_test:
