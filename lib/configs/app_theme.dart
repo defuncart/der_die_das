@@ -15,10 +15,10 @@ final appTheme = ThemeData(
   // fontFamily: GoogleFonts.openSans().fontFamily,
   fontFamily: 'Lato',
   textTheme: const TextTheme(
-    bodyText2: TextStyle(
+    bodyMedium: TextStyle(
       color: AppColors.black,
     ),
-    subtitle1: TextStyle(
+    titleMedium: TextStyle(
       color: AppColors.black,
     ),
   ),

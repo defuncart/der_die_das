@@ -18,8 +18,8 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme.headline6?.copyWith(
-          color: Theme.of(context).textTheme.bodyText2?.color,
+    final textStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
+          color: Theme.of(context).textTheme.bodyMedium?.color,
         );
 
     return Scaffold(

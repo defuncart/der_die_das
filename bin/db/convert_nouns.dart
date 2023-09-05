@@ -19,7 +19,7 @@ Future<List<Noun>> convertNouns() async {
 }
 
 Future<List<Noun>> _convertLevel(Level level, startId) async {
-  final filepath = 'assets_dev/db/nouns_' + (level == Level.a1 ? 'a1' : 'a2') + '.csv';
+  final filepath = 'assets_dev/db/nouns_${level == Level.a1 ? 'a1' : 'a2'}.csv';
   final file = File(filepath);
   var contents = await file.readAsLines();
   contents = contents.sublist(1);
