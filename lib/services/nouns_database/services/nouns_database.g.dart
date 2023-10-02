@@ -2,11 +2,157 @@
 
 part of 'nouns_database.dart';
 
-// **************************************************************************
-// MoorGenerator
-// **************************************************************************
+// ignore_for_file: type=lint
+class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $NounsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>('id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints: GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _keyMeta = const VerificationMeta('key');
+  @override
+  late final GeneratedColumn<String> key =
+      GeneratedColumn<String>('key', aliasedName, false, type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _withArticleMeta = const VerificationMeta('withArticle');
+  @override
+  late final GeneratedColumn<String> withArticle = GeneratedColumn<String>('with_article', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _withoutArticleMeta = const VerificationMeta('withoutArticle');
+  @override
+  late final GeneratedColumn<String> withoutArticle = GeneratedColumn<String>('without_article', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _withoutArticleNormalizedMeta = const VerificationMeta('withoutArticleNormalized');
+  @override
+  late final GeneratedColumn<String> withoutArticleNormalized = GeneratedColumn<String>(
+      'without_article_normalized', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _articleIndecesMeta = const VerificationMeta('articleIndeces');
+  @override
+  late final GeneratedColumnWithTypeConverter<EqualList<int>, String> articleIndeces = GeneratedColumn<String>(
+          'article_indeces', aliasedName, false,
+          type: DriftSqlType.string, requiredDuringInsert: true)
+      .withConverter<EqualList<int>>($NounsTable.$converterarticleIndeces);
+  static const VerificationMeta _levelMeta = const VerificationMeta('level');
+  @override
+  late final GeneratedColumnWithTypeConverter<Level, int> level =
+      GeneratedColumn<int>('level', aliasedName, false, type: DriftSqlType.int, requiredDuringInsert: true)
+          .withConverter<Level>($NounsTable.$converterlevel);
+  static const VerificationMeta _isAmbiguousMeta = const VerificationMeta('isAmbiguous');
+  @override
+  late final GeneratedColumn<bool> isAmbiguous = GeneratedColumn<bool>('is_ambiguous', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: true,
+      defaultConstraints: GeneratedColumn.constraintIsAlways('CHECK ("is_ambiguous" IN (0, 1))'));
+  static const VerificationMeta _attempsMeta = const VerificationMeta('attemps');
+  @override
+  late final GeneratedColumn<int> attemps = GeneratedColumn<int>('attemps', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: false, defaultValue: const Constant(0));
+  static const VerificationMeta _timesCorrectMeta = const VerificationMeta('timesCorrect');
+  @override
+  late final GeneratedColumn<int> timesCorrect = GeneratedColumn<int>('times_correct', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: false, defaultValue: const Constant(0));
+  @override
+  List<GeneratedColumn> get $columns => [
+        id,
+        key,
+        withArticle,
+        withoutArticle,
+        withoutArticleNormalized,
+        articleIndeces,
+        level,
+        isAmbiguous,
+        attemps,
+        timesCorrect
+      ];
+  @override
+  String get aliasedName => _alias ?? 'nouns';
+  @override
+  String get actualTableName => 'nouns';
+  @override
+  VerificationContext validateIntegrity(Insertable<Noun> instance, {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('key')) {
+      context.handle(_keyMeta, key.isAcceptableOrUnknown(data['key']!, _keyMeta));
+    } else if (isInserting) {
+      context.missing(_keyMeta);
+    }
+    if (data.containsKey('with_article')) {
+      context.handle(_withArticleMeta, withArticle.isAcceptableOrUnknown(data['with_article']!, _withArticleMeta));
+    } else if (isInserting) {
+      context.missing(_withArticleMeta);
+    }
+    if (data.containsKey('without_article')) {
+      context.handle(
+          _withoutArticleMeta, withoutArticle.isAcceptableOrUnknown(data['without_article']!, _withoutArticleMeta));
+    } else if (isInserting) {
+      context.missing(_withoutArticleMeta);
+    }
+    if (data.containsKey('without_article_normalized')) {
+      context.handle(
+          _withoutArticleNormalizedMeta,
+          withoutArticleNormalized.isAcceptableOrUnknown(
+              data['without_article_normalized']!, _withoutArticleNormalizedMeta));
+    } else if (isInserting) {
+      context.missing(_withoutArticleNormalizedMeta);
+    }
+    context.handle(_articleIndecesMeta, const VerificationResult.success());
+    context.handle(_levelMeta, const VerificationResult.success());
+    if (data.containsKey('is_ambiguous')) {
+      context.handle(_isAmbiguousMeta, isAmbiguous.isAcceptableOrUnknown(data['is_ambiguous']!, _isAmbiguousMeta));
+    } else if (isInserting) {
+      context.missing(_isAmbiguousMeta);
+    }
+    if (data.containsKey('attemps')) {
+      context.handle(_attempsMeta, attemps.isAcceptableOrUnknown(data['attemps']!, _attempsMeta));
+    }
+    if (data.containsKey('times_correct')) {
+      context.handle(_timesCorrectMeta, timesCorrect.isAcceptableOrUnknown(data['times_correct']!, _timesCorrectMeta));
+    }
+    return context;
+  }
 
-// ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Noun map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Noun(
+      id: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      key: attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}key'])!,
+      withArticle: attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}with_article'])!,
+      withoutArticle:
+          attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}without_article'])!,
+      withoutArticleNormalized:
+          attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}without_article_normalized'])!,
+      articleIndeces: $NounsTable.$converterarticleIndeces
+          .fromSql(attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}article_indeces'])!),
+      level: $NounsTable.$converterlevel
+          .fromSql(attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}level'])!),
+      isAmbiguous: attachedDatabase.typeMapping.read(DriftSqlType.bool, data['${effectivePrefix}is_ambiguous'])!,
+      attemps: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}attemps'])!,
+      timesCorrect: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}times_correct'])!,
+    );
+  }
+
+  @override
+  $NounsTable createAlias(String alias) {
+    return $NounsTable(attachedDatabase, alias);
+  }
+
+  static TypeConverter<EqualList<int>, String> $converterarticleIndeces = const IntListConverter();
+  static TypeConverter<Level, int> $converterlevel = const LevelConverter();
+}
+
 class Noun extends DataClass implements Insertable<Noun> {
   final int id;
   final String key;
@@ -18,7 +164,7 @@ class Noun extends DataClass implements Insertable<Noun> {
   final bool isAmbiguous;
   final int attemps;
   final int timesCorrect;
-  Noun(
+  const Noun(
       {required this.id,
       required this.key,
       required this.withArticle,
@@ -29,31 +175,6 @@ class Noun extends DataClass implements Insertable<Noun> {
       required this.isAmbiguous,
       required this.attemps,
       required this.timesCorrect});
-  factory Noun.fromData(Map<String, dynamic> data, {String? prefix}) {
-    final effectivePrefix = prefix ?? '';
-    return Noun(
-      id: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      key: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}key'])!,
-      withArticle: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}with_article'])!,
-      withoutArticle: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}without_article'])!,
-      withoutArticleNormalized: const StringType().mapFromDatabaseResponse(
-          data['${effectivePrefix}without_article_normalized'])!,
-      articleIndeces: $NounsTable.$converter0.mapToDart(const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}article_indeces']))!,
-      level: $NounsTable.$converter1.mapToDart(const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}level']))!,
-      isAmbiguous: const BoolType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}is_ambiguous'])!,
-      attemps: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}attemps'])!,
-      timesCorrect: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}times_correct'])!,
-    );
-  }
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -61,16 +182,14 @@ class Noun extends DataClass implements Insertable<Noun> {
     map['key'] = Variable<String>(key);
     map['with_article'] = Variable<String>(withArticle);
     map['without_article'] = Variable<String>(withoutArticle);
-    map['without_article_normalized'] =
-        Variable<String>(withoutArticleNormalized);
+    map['without_article_normalized'] = Variable<String>(withoutArticleNormalized);
     {
-      final converter = $NounsTable.$converter0;
-      map['article_indeces'] =
-          Variable<String>(converter.mapToSql(articleIndeces)!);
+      final converter = $NounsTable.$converterarticleIndeces;
+      map['article_indeces'] = Variable<String>(converter.toSql(articleIndeces));
     }
     {
-      final converter = $NounsTable.$converter1;
-      map['level'] = Variable<int>(converter.mapToSql(level)!);
+      final converter = $NounsTable.$converterlevel;
+      map['level'] = Variable<int>(converter.toSql(level));
     }
     map['is_ambiguous'] = Variable<bool>(isAmbiguous);
     map['attemps'] = Variable<int>(attemps);
@@ -93,18 +212,15 @@ class Noun extends DataClass implements Insertable<Noun> {
     );
   }
 
-  factory Noun.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory Noun.fromJson(Map<String, dynamic> json, {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return Noun(
       id: serializer.fromJson<int>(json['id']),
       key: serializer.fromJson<String>(json['key']),
       withArticle: serializer.fromJson<String>(json['withArticle']),
       withoutArticle: serializer.fromJson<String>(json['withoutArticle']),
-      withoutArticleNormalized:
-          serializer.fromJson<String>(json['withoutArticleNormalized']),
-      articleIndeces:
-          serializer.fromJson<EqualList<int>>(json['articleIndeces']),
+      withoutArticleNormalized: serializer.fromJson<String>(json['withoutArticleNormalized']),
+      articleIndeces: serializer.fromJson<EqualList<int>>(json['articleIndeces']),
       level: serializer.fromJson<Level>(json['level']),
       isAmbiguous: serializer.fromJson<bool>(json['isAmbiguous']),
       attemps: serializer.fromJson<int>(json['attemps']),
@@ -119,8 +235,7 @@ class Noun extends DataClass implements Insertable<Noun> {
       'key': serializer.toJson<String>(key),
       'withArticle': serializer.toJson<String>(withArticle),
       'withoutArticle': serializer.toJson<String>(withoutArticle),
-      'withoutArticleNormalized':
-          serializer.toJson<String>(withoutArticleNormalized),
+      'withoutArticleNormalized': serializer.toJson<String>(withoutArticleNormalized),
       'articleIndeces': serializer.toJson<EqualList<int>>(articleIndeces),
       'level': serializer.toJson<Level>(level),
       'isAmbiguous': serializer.toJson<bool>(isAmbiguous),
@@ -145,8 +260,7 @@ class Noun extends DataClass implements Insertable<Noun> {
         key: key ?? this.key,
         withArticle: withArticle ?? this.withArticle,
         withoutArticle: withoutArticle ?? this.withoutArticle,
-        withoutArticleNormalized:
-            withoutArticleNormalized ?? this.withoutArticleNormalized,
+        withoutArticleNormalized: withoutArticleNormalized ?? this.withoutArticleNormalized,
         articleIndeces: articleIndeces ?? this.articleIndeces,
         level: level ?? this.level,
         isAmbiguous: isAmbiguous ?? this.isAmbiguous,
@@ -171,17 +285,8 @@ class Noun extends DataClass implements Insertable<Noun> {
   }
 
   @override
-  int get hashCode => Object.hash(
-      id,
-      key,
-      withArticle,
-      withoutArticle,
-      withoutArticleNormalized,
-      articleIndeces,
-      level,
-      isAmbiguous,
-      attemps,
-      timesCorrect);
+  int get hashCode => Object.hash(id, key, withArticle, withoutArticle, withoutArticleNormalized, articleIndeces, level,
+      isAmbiguous, attemps, timesCorrect);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -245,8 +350,8 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     Expression<String>? withArticle,
     Expression<String>? withoutArticle,
     Expression<String>? withoutArticleNormalized,
-    Expression<EqualList<int>>? articleIndeces,
-    Expression<Level>? level,
+    Expression<String>? articleIndeces,
+    Expression<int>? level,
     Expression<bool>? isAmbiguous,
     Expression<int>? attemps,
     Expression<int>? timesCorrect,
@@ -256,8 +361,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
       if (key != null) 'key': key,
       if (withArticle != null) 'with_article': withArticle,
       if (withoutArticle != null) 'without_article': withoutArticle,
-      if (withoutArticleNormalized != null)
-        'without_article_normalized': withoutArticleNormalized,
+      if (withoutArticleNormalized != null) 'without_article_normalized': withoutArticleNormalized,
       if (articleIndeces != null) 'article_indeces': articleIndeces,
       if (level != null) 'level': level,
       if (isAmbiguous != null) 'is_ambiguous': isAmbiguous,
@@ -282,8 +386,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
       key: key ?? this.key,
       withArticle: withArticle ?? this.withArticle,
       withoutArticle: withoutArticle ?? this.withoutArticle,
-      withoutArticleNormalized:
-          withoutArticleNormalized ?? this.withoutArticleNormalized,
+      withoutArticleNormalized: withoutArticleNormalized ?? this.withoutArticleNormalized,
       articleIndeces: articleIndeces ?? this.articleIndeces,
       level: level ?? this.level,
       isAmbiguous: isAmbiguous ?? this.isAmbiguous,
@@ -308,17 +411,15 @@ class NounsCompanion extends UpdateCompanion<Noun> {
       map['without_article'] = Variable<String>(withoutArticle.value);
     }
     if (withoutArticleNormalized.present) {
-      map['without_article_normalized'] =
-          Variable<String>(withoutArticleNormalized.value);
+      map['without_article_normalized'] = Variable<String>(withoutArticleNormalized.value);
     }
     if (articleIndeces.present) {
-      final converter = $NounsTable.$converter0;
-      map['article_indeces'] =
-          Variable<String>(converter.mapToSql(articleIndeces.value)!);
+      final converter = $NounsTable.$converterarticleIndeces;
+      map['article_indeces'] = Variable<String>(converter.toSql(articleIndeces.value));
     }
     if (level.present) {
-      final converter = $NounsTable.$converter1;
-      map['level'] = Variable<int>(converter.mapToSql(level.value)!);
+      final converter = $NounsTable.$converterlevel;
+      map['level'] = Variable<int>(converter.toSql(level.value));
     }
     if (isAmbiguous.present) {
       map['is_ambiguous'] = Variable<bool>(isAmbiguous.value);
@@ -350,179 +451,11 @@ class NounsCompanion extends UpdateCompanion<Noun> {
   }
 }
 
-class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
-  final GeneratedDatabase _db;
-  final String? _alias;
-  $NounsTable(this._db, [this._alias]);
-  final VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
-      'id', aliasedName, false,
-      type: const IntType(),
-      requiredDuringInsert: false,
-      defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
-  final VerificationMeta _keyMeta = const VerificationMeta('key');
-  @override
-  late final GeneratedColumn<String?> key = GeneratedColumn<String?>(
-      'key', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
-  final VerificationMeta _withArticleMeta =
-      const VerificationMeta('withArticle');
-  @override
-  late final GeneratedColumn<String?> withArticle = GeneratedColumn<String?>(
-      'with_article', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
-  final VerificationMeta _withoutArticleMeta =
-      const VerificationMeta('withoutArticle');
-  @override
-  late final GeneratedColumn<String?> withoutArticle = GeneratedColumn<String?>(
-      'without_article', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
-  final VerificationMeta _withoutArticleNormalizedMeta =
-      const VerificationMeta('withoutArticleNormalized');
-  @override
-  late final GeneratedColumn<String?> withoutArticleNormalized =
-      GeneratedColumn<String?>('without_article_normalized', aliasedName, false,
-          type: const StringType(), requiredDuringInsert: true);
-  final VerificationMeta _articleIndecesMeta =
-      const VerificationMeta('articleIndeces');
-  @override
-  late final GeneratedColumnWithTypeConverter<EqualList<int>, String?>
-      articleIndeces = GeneratedColumn<String?>(
-              'article_indeces', aliasedName, false,
-              type: const StringType(), requiredDuringInsert: true)
-          .withConverter<EqualList<int>>($NounsTable.$converter0);
-  final VerificationMeta _levelMeta = const VerificationMeta('level');
-  @override
-  late final GeneratedColumnWithTypeConverter<Level, int?> level =
-      GeneratedColumn<int?>('level', aliasedName, false,
-              type: const IntType(), requiredDuringInsert: true)
-          .withConverter<Level>($NounsTable.$converter1);
-  final VerificationMeta _isAmbiguousMeta =
-      const VerificationMeta('isAmbiguous');
-  @override
-  late final GeneratedColumn<bool?> isAmbiguous = GeneratedColumn<bool?>(
-      'is_ambiguous', aliasedName, false,
-      type: const BoolType(),
-      requiredDuringInsert: true,
-      defaultConstraints: 'CHECK (is_ambiguous IN (0, 1))');
-  final VerificationMeta _attempsMeta = const VerificationMeta('attemps');
-  @override
-  late final GeneratedColumn<int?> attemps = GeneratedColumn<int?>(
-      'attemps', aliasedName, false,
-      type: const IntType(),
-      requiredDuringInsert: false,
-      defaultValue: const Constant(0));
-  final VerificationMeta _timesCorrectMeta =
-      const VerificationMeta('timesCorrect');
-  @override
-  late final GeneratedColumn<int?> timesCorrect = GeneratedColumn<int?>(
-      'times_correct', aliasedName, false,
-      type: const IntType(),
-      requiredDuringInsert: false,
-      defaultValue: const Constant(0));
-  @override
-  List<GeneratedColumn> get $columns => [
-        id,
-        key,
-        withArticle,
-        withoutArticle,
-        withoutArticleNormalized,
-        articleIndeces,
-        level,
-        isAmbiguous,
-        attemps,
-        timesCorrect
-      ];
-  @override
-  String get aliasedName => _alias ?? 'nouns';
-  @override
-  String get actualTableName => 'nouns';
-  @override
-  VerificationContext validateIntegrity(Insertable<Noun> instance,
-      {bool isInserting = false}) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('key')) {
-      context.handle(
-          _keyMeta, key.isAcceptableOrUnknown(data['key']!, _keyMeta));
-    } else if (isInserting) {
-      context.missing(_keyMeta);
-    }
-    if (data.containsKey('with_article')) {
-      context.handle(
-          _withArticleMeta,
-          withArticle.isAcceptableOrUnknown(
-              data['with_article']!, _withArticleMeta));
-    } else if (isInserting) {
-      context.missing(_withArticleMeta);
-    }
-    if (data.containsKey('without_article')) {
-      context.handle(
-          _withoutArticleMeta,
-          withoutArticle.isAcceptableOrUnknown(
-              data['without_article']!, _withoutArticleMeta));
-    } else if (isInserting) {
-      context.missing(_withoutArticleMeta);
-    }
-    if (data.containsKey('without_article_normalized')) {
-      context.handle(
-          _withoutArticleNormalizedMeta,
-          withoutArticleNormalized.isAcceptableOrUnknown(
-              data['without_article_normalized']!,
-              _withoutArticleNormalizedMeta));
-    } else if (isInserting) {
-      context.missing(_withoutArticleNormalizedMeta);
-    }
-    context.handle(_articleIndecesMeta, const VerificationResult.success());
-    context.handle(_levelMeta, const VerificationResult.success());
-    if (data.containsKey('is_ambiguous')) {
-      context.handle(
-          _isAmbiguousMeta,
-          isAmbiguous.isAcceptableOrUnknown(
-              data['is_ambiguous']!, _isAmbiguousMeta));
-    } else if (isInserting) {
-      context.missing(_isAmbiguousMeta);
-    }
-    if (data.containsKey('attemps')) {
-      context.handle(_attempsMeta,
-          attemps.isAcceptableOrUnknown(data['attemps']!, _attempsMeta));
-    }
-    if (data.containsKey('times_correct')) {
-      context.handle(
-          _timesCorrectMeta,
-          timesCorrect.isAcceptableOrUnknown(
-              data['times_correct']!, _timesCorrectMeta));
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {id};
-  @override
-  Noun map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return Noun.fromData(data,
-        prefix: tablePrefix != null ? '$tablePrefix.' : null);
-  }
-
-  @override
-  $NounsTable createAlias(String alias) {
-    return $NounsTable(_db, alias);
-  }
-
-  static TypeConverter<EqualList<int>, String> $converter0 =
-      const IntListConverter();
-  static TypeConverter<Level, int> $converter1 = const LevelConverter();
-}
-
 abstract class _$NounDatabase extends GeneratedDatabase {
-  _$NounDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
+  _$NounDatabase(QueryExecutor e) : super(e);
   late final $NounsTable nouns = $NounsTable(this);
   @override
-  Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
+  Iterable<TableInfo<Table, Object?>> get allTables => allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities => [nouns];
 }

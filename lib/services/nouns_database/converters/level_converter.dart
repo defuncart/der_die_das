@@ -5,8 +5,8 @@ class LevelConverter extends TypeConverter<Level, int> {
   const LevelConverter();
 
   @override
-  Level? mapToDart(int? fromDb) => fromDb != null ? Level.values[fromDb] : null;
+  Level fromSql(int fromDb) => Level.values[fromDb];
 
   @override
-  int? mapToSql(Level? value) => value?.index;
+  int toSql(Level value) => value.index;
 }

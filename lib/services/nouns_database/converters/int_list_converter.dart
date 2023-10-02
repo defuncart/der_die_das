@@ -7,15 +7,11 @@ class IntListConverter extends TypeConverter<EqualList<int>, String> {
   const IntListConverter();
 
   @override
-  EqualList<int>? mapToDart(String? fromDb) {
-    if (fromDb == null) {
-      return EqualList(const <int>[]);
-    }
-
+  EqualList<int> fromSql(String fromDb) {
     final list = (json.decode(fromDb) as List).cast<int>().toList();
     return EqualList<int>(list);
   }
 
   @override
-  String? mapToSql(EqualList<int>? value) => value == null ? null : json.encode(value);
+  String toSql(EqualList<int> value) => json.encode(value);
 }

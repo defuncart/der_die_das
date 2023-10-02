@@ -18,7 +18,7 @@ dependencies:
   gap:
   settings_ui:
   auto_size_text:
-  drift: 1.3.0
+  drift:
   sqlite3_flutter_libs:
   path_provider:
   path:
