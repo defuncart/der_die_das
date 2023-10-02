@@ -25,6 +25,7 @@ dependencies:
   archive:
   flutter_riverpod:
   freezed_annotation:
+  theme_tailor_annotation:
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +35,7 @@ dev_dependencies:
   drift_dev:
   build_runner:
   freezed:
+  theme_tailor:
 
 flutter:
   uses-material-design: true

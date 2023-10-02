@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
+import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
+
+part 'app_theme.tailor.dart';
 
 final appTheme = ThemeData(
+  useMaterial3: true,
   splashColor: Colors.transparent,
   hoverColor: Colors.transparent,
   highlightColor: Colors.transparent,
@@ -27,7 +31,21 @@ final appTheme = ThemeData(
     elevation: 0,
   ),
   platform: TargetPlatform.android,
+  extensions: const [
+    CustomColorScheme.light,
+  ],
 );
+
+@Tailor(
+  themes: ['light'],
+  themeGetter: ThemeGetter.onBuildContext,
+  requireStaticConst: true,
+)
+class _$CustomColorScheme {
+  static const der = [
+    AppColors.blue,
+  ];
+}
 
 // https://mycolor.space/?hex=%238E44AF&sub=1
 
