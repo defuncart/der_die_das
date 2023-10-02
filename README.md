@@ -10,7 +10,7 @@ Der Die Das is a fun German article quiz game in which the player tries to guess
 - Words are pronounced using speech synthesis.
 - Various tips to recognize articles for certain nouns.
 - Example sentences for nouns whose article can be ambiguous (i.e. der See, die See).
-- Support for nouns which can take multiple articles (i.e. der Deutsche, der Deutsche).
+- Support for nouns which can take multiple articles (i.e. der Deutsche, die Deutsche).
 - Progress and difficult nouns can be viewed from a list overview.
 
 ## Roadmap

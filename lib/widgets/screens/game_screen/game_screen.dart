@@ -116,11 +116,11 @@ class GameScreen extends StatelessWidget {
                     color: AppColors.black,
                     fontSize: fontSize,
                     onPressed: () => Navigator.of(context).pushReplacementNamed(ResultsScreen.routeName),
-                    child: Column(
+                    child: const Column(
                       // TODO padding might be better
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: const [Text('D A S')],
+                      children: [Text('D A S')],
                     ),
                   ),
                 ],

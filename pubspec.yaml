@@ -4,8 +4,8 @@ publish_to: 'none'
 version: 0.2.0+1
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
-  flutter: ">=2.8.0 < 3.0.0"
+  sdk: ">=3.1.0 <4.0.0"
+  flutter: ">=3.13.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -18,14 +18,13 @@ dependencies:
   gap:
   settings_ui:
   auto_size_text:
-  # google_fonts:
   drift:
   sqlite3_flutter_libs:
   path_provider:
   path:
   archive:
-  flutter_riverpod: ^2.0.0-dev.0
-  freezed:
+  flutter_riverpod:
+  freezed_annotation:
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +33,7 @@ dev_dependencies:
   arb_generator:
   drift_dev:
   build_runner:
+  freezed:
 
 flutter:
   uses-material-design: true

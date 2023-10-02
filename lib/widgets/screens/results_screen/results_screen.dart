@@ -17,14 +17,14 @@ class ResultsScreen extends StatelessWidget {
           Center(
             child: Text(
               'You scored 15/20!',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
           const Gap(16),
           Center(
             child: Text(
               'New highscore! 🏆',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
           const Gap(32),
@@ -52,10 +52,10 @@ class ResultsScreen extends StatelessWidget {
             margin: const EdgeInsets.all(8),
             // color: AppColors.purple,
             color: Theme.of(context).scaffoldBackgroundColor,
-            child: Padding(
-              padding: const EdgeInsets.all(8),
+            child: const Padding(
+              padding: EdgeInsets.all(8),
               child: Row(
-                children: const [
+                children: [
                   Icon(Icons.lightbulb_outline,
                       // color: Theme.of(context).scaffoldBackgroundColor,
                       color: AppColors.purple),

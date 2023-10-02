@@ -51,3 +51,6 @@ assets_dev/db
 
 # local assets
 assets/db
+
+# FVM
+.fvm/flutter_sdk
