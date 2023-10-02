@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:der_die_das/extensions/normaize_string_extensions.dart';
-import 'package:der_die_das/services/nouns_database/enums/level.dart';
-import 'package:der_die_das/services/nouns_database/services/nouns_database.dart' show Noun;
-import 'package:der_die_das/services/nouns_database/utils/equal_list.dart';
+import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
+import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart' show Noun;
+import 'package:der_die_das/core/db/nouns_database/utils/equal_list.dart';
+import 'package:der_die_das/core/extensions/normaize_string_extensions.dart';
 
 Future<List<Noun>> convertNouns() async {
   const filepath = 'assets_dev/db/nouns_a1.csv';
