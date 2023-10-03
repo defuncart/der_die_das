@@ -35,3 +35,27 @@ class NumberQuestionsController extends _$NumberQuestionsController {
     state = value;
   }
 }
+
+@riverpod
+class VoiceLevelController extends _$VoiceLevelController {
+  @override
+  double build() => 1;
+
+  void set(double value) {
+    if (value >= 0 && value <= 1) {
+      state = value;
+    }
+  }
+}
+
+@riverpod
+class SoundLevelController extends _$SoundLevelController {
+  @override
+  double build() => 1;
+
+  void set(double value) {
+    if (value >= 0 && value <= 1) {
+      state = value;
+    }
+  }
+}

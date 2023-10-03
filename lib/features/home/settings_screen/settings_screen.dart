@@ -8,7 +8,6 @@ import 'package:der_die_das/features/home/settings_screen/state/settings_state.d
 import 'package:der_die_das/features/home/settings_screen/ui/language_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/level_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/number_questions_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -40,20 +39,8 @@ class SettingsScreen extends StatelessWidget {
               const _LanguageRow(),
               const _LevelRow(),
               const _NumberQuestionsRow(),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Stimme',
-                    style: textStyle,
-                  ),
-                  CupertinoSlider(
-                    value: 0.6,
-                    onChanged: (_) {},
-                  ),
-                ],
-              ),
+              const _VoiceRow(),
+              const _SoundRow(),
               Center(
                 child: Container(
                   decoration: BoxDecoration(
@@ -136,6 +123,67 @@ class _NumberQuestionsRow extends ConsumerWidget {
           onTap: () => ref.read(numberQuestionsControllerProvider.notifier).set(numberQuestions),
         ),
       ),
+    );
+  }
+}
+
+class _VoiceRow extends ConsumerWidget {
+  const _VoiceRow({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(voiceLevelControllerProvider);
+
+    return _SettingsRow(
+      label: context.l10n.settingsVoiceLabel,
+      items: [
+        _Slider(
+          value: state,
+          onChanged: ref.read(voiceLevelControllerProvider.notifier).set,
+        ),
+      ],
+    );
+  }
+}
+
+class _SoundRow extends ConsumerWidget {
+  const _SoundRow({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(soundLevelControllerProvider);
+
+    return _SettingsRow(
+      label: context.l10n.settingsSoundLabel,
+      items: [
+        _Slider(
+          value: state,
+          onChanged: ref.read(soundLevelControllerProvider.notifier).set,
+        ),
+      ],
+    );
+  }
+}
+
+class _Slider extends StatelessWidget {
+  const _Slider({
+    Key? key,
+    required this.value,
+    required this.onChanged,
+  }) : super(key: key);
+
+  final double value;
+  final void Function(double) onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Slider(
+      value: value,
+      min: 0,
+      max: 1,
+      divisions: 5,
+      label: (value * 100).ceil().toString(),
+      onChanged: onChanged,
     );
   }
 }
