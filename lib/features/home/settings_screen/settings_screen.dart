@@ -10,9 +10,8 @@ import 'package:der_die_das/features/home/settings_screen/ui/level_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/number_questions_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gap/gap.dart';
 
-const double _size = 32;
+const double _size = kMinInteractiveDimension;
 
 class SettingsScreen extends StatelessWidget {
   static const routeName = 'SettingsScreen';
@@ -21,9 +20,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
-          color: Theme.of(context).textTheme.bodyMedium?.color,
-        );
+    final textStyle = context.textTheme.titleMedium;
 
     return Scaffold(
       appBar: AppBar(

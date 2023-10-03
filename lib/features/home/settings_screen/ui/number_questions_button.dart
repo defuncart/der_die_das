@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
-import 'package:der_die_das/core/theme/app_theme.dart';
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
+import 'package:der_die_das/core/theme/app_theme.dart';
 import 'package:der_die_das/core/ui/common/basic_button.dart';
+import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
+import 'package:flutter/material.dart';
 
 class NumberQuestionsButton extends StatelessWidget {
   const NumberQuestionsButton({
@@ -51,11 +51,12 @@ class _NumberQuestionsIcon extends StatelessWidget {
       color: context.customColorScheme.defaultButton,
       borderRadius: 4,
       child: Padding(
-        padding: const EdgeInsets.only(top: 2),
+        padding: EdgeInsets.only(top: (size / 24) * 2),
         child: Text(
           numberQuestions,
           style: TextStyle(
             fontFamily: 'Lovelo',
+            fontSize: (size / 24) * 16,
             color: Theme.of(context).scaffoldBackgroundColor,
           ),
         ),
