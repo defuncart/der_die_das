@@ -120,7 +120,7 @@ class _SearchDelegate extends SearchDelegate {
     return Consumer(builder: (context, ref, _) {
       final filteredNouns = ref.watch(
         filterNounsProvider(
-          FilterSearch(text: query, level: _levelFilter.asLevel),
+          (text: query, level: _levelFilter.asLevel),
         ),
       );
 
