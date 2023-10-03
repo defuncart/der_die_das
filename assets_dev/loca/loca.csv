@@ -7,3 +7,8 @@ settingsLevelLabel;Level;Level;Level
 settingsNumberQuestionsLabel;Questions per Round;Fragen pro Runde;Pytania na rundę
 settingsVoiceLabel;Voice;Stimme;Lektor
 settingsSoundLabel;Sound;Ton;Dźwięk
+settingsDataPrivacyLabel;Data Privacy;Data Privacy;Data Privacy
+settingsDataPrivacyAlertTitle;Data Privacy;Data Privacy;Data Privacy
+settingsDataPrivacyAlertContent1;By using this application, you agree to the terms and conditions stated in the <a>privacy policy</a>.;By using this application, you agree to the terms and conditions stated in the <a>privacy policy</a>.;By using this application, you agree to the terms and conditions stated in the <a>privacy policy</a>.
+settingsDataPrivacyAlertContent2;No data is collected on how you use the app, nor is any data sent onto third parties.;No data is collected on how you use the app, nor is any data sent onto third parties.;No data is collected on how you use the app, nor is any data sent onto third parties.
+settingsDataPrivacyAlertContent3;Made with ❤️ in Berlin. <a>Source code</a>.;Made with ❤️ in Berlin. <a>Source code</a>.;Made with ❤️ in Berlin. <a>Source code</a>.
