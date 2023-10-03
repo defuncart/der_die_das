@@ -3,10 +3,10 @@ import 'package:der_die_das/core/db/settings/enums/language.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
-import 'package:der_die_das/core/ui/common/level_icon.dart';
 import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
 import 'package:der_die_das/features/home/settings_screen/state/settings_state.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/language_button.dart';
+import 'package:der_die_das/features/home/settings_screen/ui/level_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -37,32 +37,7 @@ class SettingsScreen extends StatelessWidget {
           child: Column(
             children: [
               const _LanguageRow(),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Level',
-                    style: textStyle,
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const LevelIcon(
-                        level: Level.a1,
-                        size: _size,
-                      ),
-                      const Opacity(
-                        opacity: 0.6,
-                        child: LevelIcon(
-                          level: Level.a2,
-                          size: _size,
-                        ),
-                      ),
-                    ].intersperse(const Gap(4)),
-                  ),
-                ],
-              ),
+              const _LevelRow(),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,24 +112,63 @@ class _LanguageRow extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(languageControllerProvider);
 
+    return _SettingsRow(
+      label: context.l10n.settingsLanguageLabel,
+      items: Language.values.map(
+        (language) => LanguageButton(
+          language: language,
+          isSelected: language == state,
+          size: _size,
+          onTap: () => ref.read(languageControllerProvider.notifier).set(language),
+        ),
+      ),
+    );
+  }
+}
+
+class _LevelRow extends ConsumerWidget {
+  const _LevelRow({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(levelControllerProvider);
+
+    return _SettingsRow(
+      label: context.l10n.settingsLevelLabel,
+      items: Level.values.map(
+        (level) => LevelButton(
+          level: level,
+          isSelected: level == state,
+          size: _size,
+          onTap: () => ref.read(levelControllerProvider.notifier).set(level),
+        ),
+      ),
+    );
+  }
+}
+
+class _SettingsRow extends StatelessWidget {
+  const _SettingsRow({
+    Key? key,
+    required this.label,
+    required this.items,
+  }) : super(key: key);
+
+  final String label;
+  final Iterable<Widget> items;
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          context.l10n.settingsLanguageLabel,
+          label,
         ),
         Row(
           mainAxisSize: MainAxisSize.min,
-          children: Language.values
-              .map((language) => LanguageButton(
-                    language: language,
-                    isSelected: language == state,
-                    size: _size,
-                    onTap: () => ref.read(languageControllerProvider.notifier).set(language),
-                  ))
-              .toList()
-              .intersperse(context.customSpacings.s),
+          children: items.toList().intersperse(context.customSpacings.s),
         ),
       ],
     );
