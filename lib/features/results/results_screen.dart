@@ -1,4 +1,4 @@
-import 'package:der_die_das/core/theme/app_theme.dart';
+import 'package:der_die_das/core/extensions/theme_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -44,27 +44,29 @@ class ResultsScreen extends StatelessWidget {
           Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
-              side: const BorderSide(
-                color: AppColors.purple,
+              side: BorderSide(
+                color: context.colorScheme.primary,
                 width: 2,
               ),
             ),
             margin: const EdgeInsets.all(8),
             // color: AppColors.purple,
             color: Theme.of(context).scaffoldBackgroundColor,
-            child: const Padding(
-              padding: EdgeInsets.all(8),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
               child: Row(
                 children: [
-                  Icon(Icons.lightbulb_outline,
-                      // color: Theme.of(context).scaffoldBackgroundColor,
-                      color: AppColors.purple),
-                  Gap(16),
+                  Icon(
+                    Icons.lightbulb_outline,
+                    // color: Theme.of(context).scaffoldBackgroundColor,
+                    color: context.colorScheme.primary,
+                  ),
+                  const Gap(16),
                   Expanded(
                     child: Text.rich(
                       TextSpan(
                         children: [
-                          TextSpan(
+                          const TextSpan(
                             text: 'Nomen mit der Endung ',
                             style: TextStyle(
                               // color: Theme.of(context).scaffoldBackgroundColor,
@@ -75,11 +77,11 @@ class ResultsScreen extends StatelessWidget {
                             text: '–heit',
                             style: TextStyle(
                               // color: Theme.of(context).scaffoldBackgroundColor,
-                              color: AppColors.purple,
+                              color: context.colorScheme.primary,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          TextSpan(
+                          const TextSpan(
                             text: ' haben den Artikel ',
                             style: TextStyle(
                               // color: Theme.of(context).scaffoldBackgroundColor,
@@ -90,7 +92,7 @@ class ResultsScreen extends StatelessWidget {
                             text: 'die',
                             style: TextStyle(
                               // color: Theme.of(context).scaffoldBackgroundColor,
-                              color: AppColors.purple,
+                              color: context.colorScheme.primary,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

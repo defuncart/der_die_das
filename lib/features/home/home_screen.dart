@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 _SquareButton(
                   size: playButtonSize,
-                  color: AppColors.purple,
+                  color: context.customColorScheme.green,
                   icon: Icons.play_arrow,
                   routeName: GameScreen.routeName,
                 ),
@@ -45,13 +45,13 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     _SquareButton(
                       size: otherButtonsSize,
-                      color: AppColors.black,
+                      color: context.customColorScheme.defaultButton,
                       icon: Icons.search,
                       routeName: NounsScreen.routeName,
                     ),
                     _SquareButton(
                       size: otherButtonsSize,
-                      color: AppColors.black,
+                      color: context.customColorScheme.defaultButton,
                       icon: Icons.lightbulb_outline,
                       routeName: TipsScreen.routeName,
                     ),
@@ -63,13 +63,13 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     _SquareButton(
                       size: otherButtonsSize,
-                      color: AppColors.black,
+                      color: context.customColorScheme.defaultButton,
                       icon: Icons.favorite_outline,
                       routeName: FavoritesScreen.routeName,
                     ),
                     _SquareButton(
                       size: otherButtonsSize,
-                      color: AppColors.black,
+                      color: context.customColorScheme.defaultButton,
                       icon: Icons.settings,
                       routeName: SettingsScreen.routeName,
                     ),

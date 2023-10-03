@@ -162,7 +162,7 @@ class _NounResultList extends StatelessWidget {
             RoundedRectangle(
               width: 24,
               height: 24,
-              color: AppColors.black,
+              color: context.customColorScheme.defaultButton,
               borderRadius: 4,
               child: Icon(
                 Icons.volume_up,

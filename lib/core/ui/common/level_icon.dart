@@ -19,7 +19,7 @@ class LevelIcon extends StatelessWidget {
     return RoundedRectangle(
       width: size,
       height: size,
-      color: AppColors.purple,
+      color: context.customColorScheme.levelIcon,
       borderRadius: 4,
       child: Padding(
         padding: EdgeInsets.only(top: (size / 24) * 3),

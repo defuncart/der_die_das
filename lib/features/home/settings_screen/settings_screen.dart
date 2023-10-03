@@ -147,7 +147,7 @@ class SettingsScreen extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
-                  color: AppColors.brown,
+                  color: context.customColorScheme.defaultButton,
                 ),
                 padding: const EdgeInsets.all(8),
                 child: Text(
@@ -178,7 +178,7 @@ class _NumberQuestionsIcon extends StatelessWidget {
     return RoundedRectangle(
       width: _size,
       height: _size,
-      color: AppColors.blue,
+      color: context.customColorScheme.defaultButton,
       borderRadius: 4,
       child: Padding(
         padding: const EdgeInsets.only(top: 2),

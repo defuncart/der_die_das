@@ -5,7 +5,6 @@ import 'package:der_die_das/features/home/home_screen.dart';
 import 'package:der_die_das/features/home/nouns_screen/nouns_screen.dart';
 import 'package:der_die_das/features/home/settings_screen/settings_screen.dart';
 import 'package:der_die_das/features/home/tips_screen/tips_screen.dart';
-import 'package:der_die_das/features/loading/loading_screen.dart';
 import 'package:der_die_das/features/results/results_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -34,8 +33,8 @@ class MyApp extends StatelessWidget {
         supportedLocales: AppLocalizations.supportedLocales,
         theme: appTheme,
         onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
-        home: const LoadingScreen(),
-        // home: const HomeScreen(),
+        // home: const LoadingScreen(),
+        home: const HomeScreen(),
         routes: {
           HomeScreen.routeName: (_) => const HomeScreen(),
           NounsScreen.routeName: (_) => const NounsScreen(),

@@ -80,7 +80,7 @@ class GameScreen extends StatelessWidget {
                       _AnswerButton(
                         width: derDieWidth,
                         height: derDieHeight,
-                        color: AppColors.blue,
+                        color: context.customColorScheme.der,
                         fontSize: fontSize,
                         onPressed: () => Navigator.of(context).pushReplacementNamed(ResultsScreen.routeName),
                         child: Column(
@@ -95,7 +95,7 @@ class GameScreen extends StatelessWidget {
                       _AnswerButton(
                         width: derDieWidth,
                         height: derDieHeight,
-                        color: AppColors.brown,
+                        color: context.customColorScheme.die,
                         fontSize: fontSize,
                         onPressed: () => Navigator.of(context).pushReplacementNamed(ResultsScreen.routeName),
                         child: Column(
@@ -113,7 +113,7 @@ class GameScreen extends StatelessWidget {
                   _AnswerButton(
                     width: dasWidth,
                     height: dasHeight,
-                    color: AppColors.black,
+                    color: context.customColorScheme.das,
                     fontSize: fontSize,
                     onPressed: () => Navigator.of(context).pushReplacementNamed(ResultsScreen.routeName),
                     child: const Column(

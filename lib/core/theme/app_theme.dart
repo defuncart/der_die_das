@@ -10,24 +10,26 @@ final appTheme = ThemeData(
   hoverColor: Colors.transparent,
   highlightColor: Colors.transparent,
   hintColor: Colors.transparent,
-  scaffoldBackgroundColor: AppColors.white,
-  primaryColor: AppColors.purple,
+  scaffoldBackgroundColor: _AppColors.white,
+  primaryColor: _AppColors.purple,
   colorScheme: const ColorScheme.light(
-    primary: AppColors.purple,
-    secondary: AppColors.green,
+    primary: _AppColors.purple,
+    secondary: _AppColors.green,
   ),
   // fontFamily: GoogleFonts.openSans().fontFamily,
   fontFamily: 'Lato',
   textTheme: const TextTheme(
     bodyMedium: TextStyle(
-      color: AppColors.black,
+      color: _AppColors.black,
     ),
     titleMedium: TextStyle(
-      color: AppColors.black,
+      color: _AppColors.black,
     ),
   ),
   appBarTheme: const AppBarTheme(
-    backgroundColor: AppColors.lightPurple,
+    // backgroundColor: _AppColors.lightPurple,
+    backgroundColor: Colors.transparent,
+    foregroundColor: _AppColors.black,
     elevation: 0,
   ),
   platform: TargetPlatform.android,
@@ -36,6 +38,7 @@ final appTheme = ThemeData(
   ],
 );
 
+// ignore: unused_element
 @Tailor(
   themes: ['light'],
   themeGetter: ThemeGetter.onBuildContext,
@@ -43,30 +46,48 @@ final appTheme = ThemeData(
 )
 class _$CustomColorScheme {
   static const der = [
-    AppColors.blue,
+    _AppColors.blue,
+  ];
+  static const die = [
+    _AppColors.brown,
+  ];
+  static const das = [
+    _AppColors.black,
+  ];
+  static const green = [
+    _AppColors.green,
+  ];
+  static const red = [
+    _AppColors.red,
+  ];
+  static const levelIcon = [
+    _AppColors.purple,
+  ];
+  static const defaultButton = [
+    _AppColors.black,
   ];
 }
 
 // https://mycolor.space/?hex=%238E44AF&sub=1
 
-abstract class AppColors {
-  // static const white = Color(0xffECF0F1);
-  static const white = Color(0xffFFF7FF);
-  // static const blue = Color(0xff2E81B7);
+abstract class _AppColors {
+  static const white = Color(0xffECF0F1);
+  // static const white = Color(0xffFFF7FF);
+  static const blue = Color(0xff2E81B7);
   // static const blue = Color(0xff6E8DAC);
-  static const blue = Color(0xff4F7EA7);
+  // static const blue = Color(0xff4F7EA7);
   // static const blue = Color(0xff007CD9);
-  // static const brown = Color(0xffB75D2F);
-  static const brown = Color(0xffB13F10);
+  static const brown = Color(0xffB75D2F);
+  // static const brown = Color(0xffB13F10);
   // static const brown = Color(0xffEF7442);
-  // static const black = Color(0xff2C3E4F);
-  static const black = Color(0xff4E4351);
+  static const black = Color(0xff2C3E4F);
+  // static const black = Color(0xff4E4351);
   static const gray = Color(0xffB3A7B7);
   static const purple = Color(0xff8E44AF);
   // static const lightPurple = Color(0xffAF8BBC);
   static const lightPurple = Color(0xffAE62CF);
-  // static const green = Color(0xff3FCC70);
-  static const green = Color(0xff66AF44);
+  static const green = Color(0xff3FCC70);
+  // static const green = Color(0xff66AF44);
   static const red = Color(0xffAF4466);
 }
 
