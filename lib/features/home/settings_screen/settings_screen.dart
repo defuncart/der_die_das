@@ -1,12 +1,13 @@
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
 import 'package:der_die_das/core/db/settings/enums/language.dart';
+import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
-import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
 import 'package:der_die_das/features/home/settings_screen/state/settings_state.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/language_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/level_button.dart';
+import 'package:der_die_das/features/home/settings_screen/ui/number_questions_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,36 +39,7 @@ class SettingsScreen extends StatelessWidget {
             children: [
               const _LanguageRow(),
               const _LevelRow(),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Fragen pro Runde',
-                    style: textStyle,
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Opacity(
-                        opacity: 0.6,
-                        child: _NumberQuestionsIcon(
-                          numberQuestions: '10',
-                        ),
-                      ),
-                      const _NumberQuestionsIcon(
-                        numberQuestions: '25',
-                      ),
-                      const Opacity(
-                        opacity: 0.6,
-                        child: _NumberQuestionsIcon(
-                          numberQuestions: '50',
-                        ),
-                      ),
-                    ].intersperse(const Gap(4)),
-                  ),
-                ],
-              ),
+              const _NumberQuestionsRow(),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -147,6 +119,27 @@ class _LevelRow extends ConsumerWidget {
   }
 }
 
+class _NumberQuestionsRow extends ConsumerWidget {
+  const _NumberQuestionsRow({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(numberQuestionsControllerProvider);
+
+    return _SettingsRow(
+      label: context.l10n.settingsNumberQuestionsLabel,
+      items: NumberQuestions.values.map(
+        (numberQuestions) => NumberQuestionsButton(
+          numberQuestions: numberQuestions,
+          isSelected: numberQuestions == state,
+          size: _size,
+          onTap: () => ref.read(numberQuestionsControllerProvider.notifier).set(numberQuestions),
+        ),
+      ),
+    );
+  }
+}
+
 class _SettingsRow extends StatelessWidget {
   const _SettingsRow({
     Key? key,
@@ -171,35 +164,6 @@ class _SettingsRow extends StatelessWidget {
           children: items.toList().intersperse(context.customSpacings.s),
         ),
       ],
-    );
-  }
-}
-
-class _NumberQuestionsIcon extends StatelessWidget {
-  const _NumberQuestionsIcon({
-    required this.numberQuestions,
-    Key? key,
-  }) : super(key: key);
-
-  final String numberQuestions;
-
-  @override
-  Widget build(BuildContext context) {
-    return RoundedRectangle(
-      width: _size,
-      height: _size,
-      color: context.customColorScheme.defaultButton,
-      borderRadius: 4,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 2),
-        child: Text(
-          numberQuestions,
-          style: TextStyle(
-            fontFamily: 'Lovelo',
-            color: Theme.of(context).scaffoldBackgroundColor,
-          ),
-        ),
-      ),
     );
   }
 }
