@@ -25,6 +25,7 @@ dependencies:
   archive:
   flutter_riverpod:
   freezed_annotation:
+  riverpod_annotation:
   theme_tailor_annotation:
 
 dev_dependencies:
@@ -36,6 +37,9 @@ dev_dependencies:
   build_runner:
   freezed:
   theme_tailor:
+  riverpod_generator:
+  custom_lint:
+  riverpod_lint:
 
 flutter:
   uses-material-design: true
