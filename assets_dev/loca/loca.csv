@@ -1,3 +1,5 @@
-key;description;en;de;pl
-appTitle;Title for the app;Der Die Das;Der Die Das;Der Die Das
-test;A test key;Hello World!;Hallo Welt!;Witaj świecie
+key;en;de;pl
+appTitle;Der Die Das;Der Die Das;Der Die Das
+test;Hello World!;Hallo Welt!;Witaj świecie
+settingsLabel;Settings;Sprache;Język
+settingsLanguageLabel;Language;Einstellungen;Ustawienia

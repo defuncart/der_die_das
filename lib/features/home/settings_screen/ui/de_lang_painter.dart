@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 
 class DELangPainter extends CustomPainter {
+  const DELangPainter();
+
   @override
   void paint(Canvas canvas, Size size) {
     final black = Paint()
@@ -20,5 +22,5 @@ class DELangPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

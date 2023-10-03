@@ -60,5 +60,4 @@ arb_generator:
   filename_prepend: "l10n_"
   csv_settings:
     delimiter: ";"
-    description_index: 1
-    base_index: 2
+    base_index: 1

@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 
 class PLLangPainter extends CustomPainter {
+  const PLLangPainter();
+
   @override
   void paint(Canvas canvas, Size size) {
     final white = Paint()
@@ -15,5 +17,5 @@ class PLLangPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
