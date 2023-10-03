@@ -15,7 +15,8 @@ final appTheme = ThemeData(
   primaryColor: _AppColors.purple,
   colorScheme: const ColorScheme.light(
     primary: _AppColors.purple,
-    secondary: _AppColors.green,
+    secondary: _AppColors.purple,
+    tertiary: _AppColors.purple,
   ),
   // fontFamily: GoogleFonts.openSans().fontFamily,
   fontFamily: 'Lato',
@@ -166,11 +167,4 @@ abstract class _AppColors {
   static const green = Color(0xff3FCC70);
   // static const green = Color(0xff66AF44);
   static const red = Color(0xffAF4466);
-}
-
-abstract class DFAColors {
-  static const pink = Color(0xffE8337E);
-  static const blue = Color(0xff337EE8);
-  static const green = Color(0xff33E87E);
-  static const yellow = Color(0xffE8E833);
 }

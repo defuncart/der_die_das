@@ -1,5 +1,4 @@
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
-import 'package:der_die_das/core/theme/app_theme.dart';
 import 'package:der_die_das/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -67,11 +66,11 @@ class _LoadingScreenState extends State<LoadingScreen> with TickerProviderStateM
                 children: [
                   Opacity(
                     opacity: _animations[0].value,
-                    child: const _Square(color: DFAColors.pink),
+                    child: const _Square(color: _DFAColors.pink),
                   ),
                   Opacity(
                     opacity: _animations[1].value,
-                    child: const _Square(color: DFAColors.blue),
+                    child: const _Square(color: _DFAColors.blue),
                   ),
                 ].intersperse(const Gap(_spacer)),
               ),
@@ -80,11 +79,11 @@ class _LoadingScreenState extends State<LoadingScreen> with TickerProviderStateM
                 children: [
                   Opacity(
                     opacity: _animations[3].value,
-                    child: const _Square(color: DFAColors.green),
+                    child: const _Square(color: _DFAColors.green),
                   ),
                   Opacity(
                     opacity: _animations[2].value,
-                    child: const _Square(color: DFAColors.yellow),
+                    child: const _Square(color: _DFAColors.yellow),
                   ),
                 ].intersperse(const Gap(_spacer)),
               ),
@@ -112,4 +111,11 @@ class _Square extends StatelessWidget {
       height: _size,
     );
   }
+}
+
+abstract class _DFAColors {
+  static const pink = Color(0xffE8337E);
+  static const blue = Color(0xff337EE8);
+  static const green = Color(0xff33E87E);
+  static const yellow = Color(0xffE8E833);
 }
