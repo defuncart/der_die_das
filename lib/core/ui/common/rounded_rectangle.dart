@@ -1,28 +1,31 @@
+import 'package:der_die_das/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class RoundedRectangle extends StatelessWidget {
   const RoundedRectangle({
+    super.key,
     required this.width,
     required this.height,
     required this.color,
+    this.borderRadius,
     required this.child,
-    this.borderRadius = 8,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final double width;
   final double height;
   final Color color;
-  final double borderRadius;
+  final BorderRadius? borderRadius;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
+    final effectiveBorderRadius = borderRadius ?? context.customRadii.s;
+
     return Container(
       width: width,
       height: height,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: effectiveBorderRadius,
         color: color,
       ),
       child: Center(

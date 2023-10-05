@@ -1,7 +1,7 @@
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
 import 'package:der_die_das/core/ui/common/basic_button.dart';
-import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
+import 'package:der_die_das/core/ui/common/rounded_square.dart';
 import 'package:flutter/material.dart';
 
 class NumberQuestionsButton extends StatelessWidget {
@@ -35,21 +35,20 @@ class NumberQuestionsButton extends StatelessWidget {
 
 class _NumberQuestionsIcon extends StatelessWidget {
   const _NumberQuestionsIcon({
-    super.key,
+    Key? key,
     required this.numberQuestions,
     required this.size,
-  });
+  }) : super(key: key);
 
   final String numberQuestions;
   final double size;
 
   @override
   Widget build(BuildContext context) {
-    return RoundedRectangle(
-      width: size,
-      height: size,
+    return RoundedSquare(
+      size: size,
       color: context.customColorScheme.defaultButton,
-      borderRadius: 4,
+      borderRadius: context.customRadii.xs,
       child: Padding(
         padding: EdgeInsets.only(top: (size / 24) * 2),
         child: Text(

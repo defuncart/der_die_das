@@ -4,7 +4,7 @@ import 'package:der_die_das/core/db/nouns_database/state/state.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
 import 'package:der_die_das/core/ui/common/level_icon.dart';
-import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
+import 'package:der_die_das/core/ui/common/rounded_square.dart';
 import 'package:der_die_das/features/home/nouns_screen/filter_search.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -159,11 +159,10 @@ class _NounResultList extends StatelessWidget {
                 level: results[count].level,
               ),
             ),
-            RoundedRectangle(
-              width: 24,
-              height: 24,
+            RoundedSquare(
+              size: 24,
               color: context.customColorScheme.defaultButton,
-              borderRadius: 4,
+              borderRadius: context.customRadii.xs,
               child: Icon(
                 Icons.volume_up,
                 size: 24 * 0.6,

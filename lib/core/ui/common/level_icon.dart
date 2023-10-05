@@ -1,6 +1,6 @@
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
-import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
+import 'package:der_die_das/core/ui/common/rounded_square.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -16,11 +16,10 @@ class LevelIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RoundedRectangle(
-      width: size,
-      height: size,
+    return RoundedSquare(
+      size: size,
       color: context.customColorScheme.levelIcon,
-      borderRadius: 4,
+      borderRadius: context.customRadii.xs,
       child: Padding(
         padding: EdgeInsets.only(top: (size / 24) * 3),
         child: Text(
