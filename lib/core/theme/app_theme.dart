@@ -121,14 +121,38 @@ class _$CustomPaddings {
   static const xs = [
     EdgeInsets.all(_Spacings.xs),
   ];
+  static const xsHorizontal = [
+    EdgeInsets.symmetric(horizontal: _Spacings.xs),
+  ];
+  static const xsVertical = [
+    EdgeInsets.symmetric(vertical: _Spacings.xs),
+  ];
   static const s = [
     EdgeInsets.all(_Spacings.s),
+  ];
+  static const sHorizontal = [
+    EdgeInsets.symmetric(horizontal: _Spacings.s),
+  ];
+  static const sVertical = [
+    EdgeInsets.symmetric(vertical: _Spacings.s),
   ];
   static const m = [
     EdgeInsets.all(_Spacings.m),
   ];
+  static const mHorizontal = [
+    EdgeInsets.symmetric(horizontal: _Spacings.m),
+  ];
+  static const mVertical = [
+    EdgeInsets.symmetric(vertical: _Spacings.m),
+  ];
   static const l = [
     EdgeInsets.all(_Spacings.l),
+  ];
+  static const lHorizontal = [
+    EdgeInsets.symmetric(horizontal: _Spacings.l),
+  ];
+  static const lVertical = [
+    EdgeInsets.symmetric(vertical: _Spacings.l),
   ];
 }
 

@@ -266,21 +266,45 @@ extension CustomSpacingsBuildContext on BuildContext {
 class CustomPaddings extends ThemeExtension<CustomPaddings> {
   const CustomPaddings({
     required this.l,
+    required this.lHorizontal,
+    required this.lVertical,
     required this.m,
+    required this.mHorizontal,
+    required this.mVertical,
     required this.s,
+    required this.sHorizontal,
+    required this.sVertical,
     required this.xs,
+    required this.xsHorizontal,
+    required this.xsVertical,
   });
 
   final EdgeInsets l;
+  final EdgeInsets lHorizontal;
+  final EdgeInsets lVertical;
   final EdgeInsets m;
+  final EdgeInsets mHorizontal;
+  final EdgeInsets mVertical;
   final EdgeInsets s;
+  final EdgeInsets sHorizontal;
+  final EdgeInsets sVertical;
   final EdgeInsets xs;
+  final EdgeInsets xsHorizontal;
+  final EdgeInsets xsVertical;
 
   static const CustomPaddings light = CustomPaddings(
     l: EdgeInsets.all(_Spacings.l),
+    lHorizontal: EdgeInsets.symmetric(horizontal: _Spacings.l),
+    lVertical: EdgeInsets.symmetric(vertical: _Spacings.l),
     m: EdgeInsets.all(_Spacings.m),
+    mHorizontal: EdgeInsets.symmetric(horizontal: _Spacings.m),
+    mVertical: EdgeInsets.symmetric(vertical: _Spacings.m),
     s: EdgeInsets.all(_Spacings.s),
+    sHorizontal: EdgeInsets.symmetric(horizontal: _Spacings.s),
+    sVertical: EdgeInsets.symmetric(vertical: _Spacings.s),
     xs: EdgeInsets.all(_Spacings.xs),
+    xsHorizontal: EdgeInsets.symmetric(horizontal: _Spacings.xs),
+    xsVertical: EdgeInsets.symmetric(vertical: _Spacings.xs),
   );
 
   static const themes = [
@@ -290,15 +314,31 @@ class CustomPaddings extends ThemeExtension<CustomPaddings> {
   @override
   CustomPaddings copyWith({
     EdgeInsets? l,
+    EdgeInsets? lHorizontal,
+    EdgeInsets? lVertical,
     EdgeInsets? m,
+    EdgeInsets? mHorizontal,
+    EdgeInsets? mVertical,
     EdgeInsets? s,
+    EdgeInsets? sHorizontal,
+    EdgeInsets? sVertical,
     EdgeInsets? xs,
+    EdgeInsets? xsHorizontal,
+    EdgeInsets? xsVertical,
   }) {
     return CustomPaddings(
       l: l ?? this.l,
+      lHorizontal: lHorizontal ?? this.lHorizontal,
+      lVertical: lVertical ?? this.lVertical,
       m: m ?? this.m,
+      mHorizontal: mHorizontal ?? this.mHorizontal,
+      mVertical: mVertical ?? this.mVertical,
       s: s ?? this.s,
+      sHorizontal: sHorizontal ?? this.sHorizontal,
+      sVertical: sVertical ?? this.sVertical,
       xs: xs ?? this.xs,
+      xsHorizontal: xsHorizontal ?? this.xsHorizontal,
+      xsVertical: xsVertical ?? this.xsVertical,
     );
   }
 
@@ -307,9 +347,17 @@ class CustomPaddings extends ThemeExtension<CustomPaddings> {
     if (other is! CustomPaddings) return this as CustomPaddings;
     return CustomPaddings(
       l: t < 0.5 ? l : other.l,
+      lHorizontal: t < 0.5 ? lHorizontal : other.lHorizontal,
+      lVertical: t < 0.5 ? lVertical : other.lVertical,
       m: t < 0.5 ? m : other.m,
+      mHorizontal: t < 0.5 ? mHorizontal : other.mHorizontal,
+      mVertical: t < 0.5 ? mVertical : other.mVertical,
       s: t < 0.5 ? s : other.s,
+      sHorizontal: t < 0.5 ? sHorizontal : other.sHorizontal,
+      sVertical: t < 0.5 ? sVertical : other.sVertical,
       xs: t < 0.5 ? xs : other.xs,
+      xsHorizontal: t < 0.5 ? xsHorizontal : other.xsHorizontal,
+      xsVertical: t < 0.5 ? xsVertical : other.xsVertical,
     );
   }
 
@@ -319,9 +367,17 @@ class CustomPaddings extends ThemeExtension<CustomPaddings> {
         (other.runtimeType == runtimeType &&
             other is CustomPaddings &&
             const DeepCollectionEquality().equals(l, other.l) &&
+            const DeepCollectionEquality().equals(lHorizontal, other.lHorizontal) &&
+            const DeepCollectionEquality().equals(lVertical, other.lVertical) &&
             const DeepCollectionEquality().equals(m, other.m) &&
+            const DeepCollectionEquality().equals(mHorizontal, other.mHorizontal) &&
+            const DeepCollectionEquality().equals(mVertical, other.mVertical) &&
             const DeepCollectionEquality().equals(s, other.s) &&
-            const DeepCollectionEquality().equals(xs, other.xs));
+            const DeepCollectionEquality().equals(sHorizontal, other.sHorizontal) &&
+            const DeepCollectionEquality().equals(sVertical, other.sVertical) &&
+            const DeepCollectionEquality().equals(xs, other.xs) &&
+            const DeepCollectionEquality().equals(xsHorizontal, other.xsHorizontal) &&
+            const DeepCollectionEquality().equals(xsVertical, other.xsVertical));
   }
 
   @override
@@ -329,9 +385,17 @@ class CustomPaddings extends ThemeExtension<CustomPaddings> {
     return Object.hash(
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(l),
+      const DeepCollectionEquality().hash(lHorizontal),
+      const DeepCollectionEquality().hash(lVertical),
       const DeepCollectionEquality().hash(m),
+      const DeepCollectionEquality().hash(mHorizontal),
+      const DeepCollectionEquality().hash(mVertical),
       const DeepCollectionEquality().hash(s),
+      const DeepCollectionEquality().hash(sHorizontal),
+      const DeepCollectionEquality().hash(sVertical),
       const DeepCollectionEquality().hash(xs),
+      const DeepCollectionEquality().hash(xsHorizontal),
+      const DeepCollectionEquality().hash(xsVertical),
     );
   }
 }

@@ -1,51 +1,57 @@
+import 'package:der_die_das/core/db/tips/model/tip.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
+import 'package:der_die_das/core/extensions/theme_extensions.dart';
+import 'package:der_die_das/core/l10n/l10n_extension.dart';
+import 'package:der_die_das/core/theme/app_theme.dart';
+import 'package:der_die_das/core/ui/common/highlighted_text.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 
 class TipsScreen extends StatelessWidget {
   static const routeName = 'TipsScreen';
 
-  const TipsScreen({Key? key}) : super(key: key);
+  const TipsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tips'),
-        centerTitle: true,
+    final tips = getAllTips(context: context).toList();
+
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        systemNavigationBarColor: context.colorScheme.primary,
       ),
-      body: Container(
-        color: Theme.of(context).appBarTheme.backgroundColor,
-        child: ListView.separated(
+      child: Scaffold(
+        backgroundColor: context.colorScheme.primary,
+        appBar: AppBar(
+          backgroundColor: context.colorScheme.primary,
+          foregroundColor: context.colorScheme.onPrimary,
+          title: Text(context.l10n.homeTipsTitle),
+          centerTitle: true,
+        ),
+        body: ListView.separated(
           physics: const BouncingScrollPhysics(),
-          itemCount: _tips.length,
-          separatorBuilder: (context, _) => const SizedBox(
-            height: 8,
-          ),
+          itemCount: tips.length,
+          separatorBuilder: (context, _) => context.customSpacings.s,
           itemBuilder: (context, index) => Container(
-            margin: const EdgeInsets.symmetric(horizontal: 4),
+            margin: context.customPaddings.sHorizontal,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: context.customRadii.xs,
               color: Theme.of(context).scaffoldBackgroundColor,
             ),
             child: ListTile(
               title: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4),
+                padding: context.customPaddings.xsVertical,
                 child: Column(
                   children: [
-                    Text(
-                      _tips[index].description,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                      ),
+                    HighlightedText(
+                      tips[index].description,
+                      highlightColor: context.colorScheme.primary,
                     ),
-                    Text(
-                      _tips[index].example,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                      ),
+                    HighlightedText(
+                      tips[index].example,
+                      highlightColor: context.colorScheme.primary,
                     ),
-                  ].intersperse(const Gap(8)),
+                  ].intersperse(context.customSpacings.s),
                 ),
               ),
             ),
@@ -55,20 +61,3 @@ class TipsScreen extends StatelessWidget {
     );
   }
 }
-
-class _Tip {
-  const _Tip({
-    required this.description,
-    required this.example,
-  });
-
-  final String description;
-  final String example;
-}
-
-final _tips = List.generate(
-  20,
-  (index) => _Tip(
-      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.',
-      example: 'Example $index'),
-);
