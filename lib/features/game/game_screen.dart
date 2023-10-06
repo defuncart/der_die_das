@@ -1,6 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
+import 'package:der_die_das/core/extensions/theme_extensions.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
+import 'package:der_die_das/core/ui/common/basic_material_close_button.dart';
+import 'package:der_die_das/core/ui/common/basic_material_icon_button.dart';
 import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
 import 'package:der_die_das/features/results/results_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,18 +18,44 @@ class GameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const BasicMaterialCloseButton(),
+        title: LayoutBuilder(
+          builder: (_, boxConstraints) {
+            const percent = 0.75;
+
+            return SizedBox(
+              height: 12,
+              child: Stack(
+                children: [
+                  Container(
+                    width: boxConstraints.maxWidth,
+                    decoration: BoxDecoration(
+                      // color: Color(0xffd3d3d3),
+                      color: context.colorScheme.primary.withOpacity(0.25),
+                      borderRadius: context.customRadii.s,
+                    ),
+                  ),
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    width: boxConstraints.maxWidth * percent,
+                    decoration: BoxDecoration(
+                      color: context.colorScheme.primary,
+                      borderRadius: context.customRadii.s,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
         actions: [
-          IconButton(
+          BasicMaterialIconButton(
             onPressed: () {},
-            icon: const Icon(
-              Icons.lightbulb_outline,
-            ),
+            icon: Icons.lightbulb_outline,
           ),
-          IconButton(
+          BasicMaterialIconButton(
             onPressed: () {},
-            icon: const Icon(
-              Icons.favorite_border_outlined,
-            ),
+            icon: Icons.favorite_border_outlined,
           ),
         ],
       ),

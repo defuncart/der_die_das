@@ -7,6 +7,7 @@ part 'app_theme.tailor.dart';
 
 final appTheme = ThemeData(
   useMaterial3: true,
+  splashFactory: NoSplash.splashFactory,
   splashColor: Colors.transparent,
   hoverColor: Colors.transparent,
   highlightColor: Colors.transparent,
@@ -29,7 +30,6 @@ final appTheme = ThemeData(
     ),
   ),
   appBarTheme: const AppBarTheme(
-    // backgroundColor: _AppColors.lightPurple,
     backgroundColor: Colors.transparent,
     foregroundColor: _AppColors.black,
     elevation: 0,

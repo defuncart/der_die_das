@@ -6,6 +6,7 @@ import 'package:der_die_das/core/extensions/theme_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
 import 'package:der_die_das/core/ui/common/basic_button.dart';
+import 'package:der_die_das/core/ui/common/basic_material_close_button.dart';
 import 'package:der_die_das/features/home/settings_screen/state/settings_state.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/language_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/level_button.dart';
@@ -29,6 +30,7 @@ class SettingsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: const BasicMaterialCloseButton(),
         title: Text(context.l10n.settingsLabel),
         centerTitle: true,
       ),
