@@ -1,3 +1,5 @@
+import 'package:der_die_das/core/db/settings/enums/language.dart';
+import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
 import 'package:der_die_das/features/game/game_screen.dart';
 import 'package:der_die_das/features/home/favorites_screen/favorites_screen.dart';
@@ -11,12 +13,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final locale = ref.watch(languageControllerProvider).toLocale();
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         systemNavigationBarColor: appTheme.scaffoldBackgroundColor,
@@ -31,6 +36,7 @@ class MyApp extends StatelessWidget {
           AppLocalizations.delegate,
         ],
         supportedLocales: AppLocalizations.supportedLocales,
+        locale: locale,
         theme: appTheme,
         onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
         // home: const LoadingScreen(),

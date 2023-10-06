@@ -1,13 +1,13 @@
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
 import 'package:der_die_das/core/db/settings/enums/language.dart';
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
+import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/extensions/theme_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
 import 'package:der_die_das/core/ui/common/basic_button.dart';
 import 'package:der_die_das/core/ui/common/basic_material_close_button.dart';
-import 'package:der_die_das/features/home/settings_screen/state/settings_state.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/language_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/level_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/number_questions_button.dart';

@@ -1,8 +1,7 @@
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
 import 'package:der_die_das/core/db/settings/enums/language.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'settings_state.g.dart';
 
