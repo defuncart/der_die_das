@@ -21,7 +21,7 @@ class LevelIcon extends StatelessWidget {
       color: context.customColorScheme.levelIcon,
       borderRadius: context.customRadii.xs,
       child: Padding(
-        padding: EdgeInsets.only(top: (size / 24) * 3),
+        padding: EdgeInsets.only(top: (size / 24) * 2),
         child: Text(
           describeEnum(level).toUpperCase(),
           style: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
+import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
 import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
 import 'package:der_die_das/features/game/game_screen.dart';
@@ -7,7 +8,6 @@ import 'package:der_die_das/features/home/nouns_screen/nouns_screen.dart';
 import 'package:der_die_das/features/home/settings_screen/settings_screen.dart';
 import 'package:der_die_das/features/home/tips_screen/tips_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/localizations.dart';
 import 'package:gap/gap.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.appTitle),
+        title: Text(context.l10n.appTitle),
         centerTitle: true,
       ),
       body: Padding(

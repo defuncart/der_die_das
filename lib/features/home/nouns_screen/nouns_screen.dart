@@ -1,8 +1,12 @@
+import 'dart:math';
+
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
 import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart';
 import 'package:der_die_das/core/db/nouns_database/state/state.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
+import 'package:der_die_das/core/extensions/theme_extensions.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
+import 'package:der_die_das/core/ui/common/basic_button.dart';
 import 'package:der_die_das/core/ui/common/level_icon.dart';
 import 'package:der_die_das/core/ui/common/rounded_square.dart';
 import 'package:der_die_das/features/home/nouns_screen/filter_search.dart';
@@ -14,7 +18,7 @@ import 'package:gap/gap.dart';
 class NounsScreen extends StatefulWidget {
   static const routeName = 'NounsScreen';
 
-  const NounsScreen({Key? key}) : super(key: key);
+  const NounsScreen({super.key});
 
   @override
   State<NounsScreen> createState() => _NounsScreenState();
@@ -149,24 +153,58 @@ class _NounResultList extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       itemCount: results.length,
       itemBuilder: (context, count) => ListTile(
-        title: Text(results[count].withArticle),
+        contentPadding: context.customPaddings.s,
+        title: Row(
+          children: [
+            Flexible(
+              child: Text(results[count].withArticle),
+            ),
+            context.customSpacings.s,
+            LevelIcon(
+              level: results[count].level,
+              size: 24,
+            ),
+          ],
+        ),
+        subtitle: Container(
+          height: 16,
+          margin: context.customPaddings.sVertical,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: context.colorScheme.primary,
+              width: 1,
+            ),
+          ),
+          child: LayoutBuilder(
+            builder: (context, constraints) => Container(
+              width: constraints.maxWidth * Random().nextDouble(),
+              height: constraints.maxHeight,
+              color: context.colorScheme.primary,
+            ),
+          ),
+        ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Opacity(
-              opacity: 0.8,
-              child: LevelIcon(
-                level: results[count].level,
+            BasicButton(
+              onTap: () {},
+              child: Icon(
+                Icons.favorite,
+                color: context.customColorScheme.red,
+                size: kMinInteractiveDimension,
               ),
             ),
-            RoundedSquare(
-              size: 24,
-              color: context.customColorScheme.defaultButton,
-              borderRadius: context.customRadii.xs,
-              child: Icon(
-                Icons.volume_up,
-                size: 24 * 0.6,
-                color: Theme.of(context).scaffoldBackgroundColor,
+            BasicButton(
+              onTap: () {},
+              child: RoundedSquare(
+                size: kMinInteractiveDimension,
+                color: context.customColorScheme.defaultButton,
+                borderRadius: context.customRadii.xs,
+                child: Icon(
+                  Icons.volume_up,
+                  size: kMinInteractiveDimension * 0.6,
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                ),
               ),
             ),
           ].intersperse(const Gap(4)),
