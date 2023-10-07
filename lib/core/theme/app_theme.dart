@@ -28,6 +28,9 @@ final appTheme = ThemeData(
     titleMedium: TextStyle(
       color: _AppColors.black,
     ),
+    headlineMedium: TextStyle(
+      color: _AppColors.black,
+    ),
   ),
   appBarTheme: const AppBarTheme(
     backgroundColor: Colors.transparent,

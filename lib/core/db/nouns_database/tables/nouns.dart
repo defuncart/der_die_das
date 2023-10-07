@@ -8,9 +8,11 @@ class Nouns extends Table {
   TextColumn get withArticle => text()();
   TextColumn get withoutArticle => text()();
   TextColumn get withoutArticleNormalized => text()();
+  // TODO rename Indices, convert to <Article>
   TextColumn get articleIndeces => text().map(const IntListConverter())();
   IntColumn get level => integer().map(const LevelConverter())();
   BoolColumn get isAmbiguous => boolean()();
+  // TODO rename attempts
   IntColumn get attemps => integer().withDefault(const Constant(0))();
   IntColumn get timesCorrect => integer().withDefault(const Constant(0))();
 }
