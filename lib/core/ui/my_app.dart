@@ -2,7 +2,6 @@ import 'package:der_die_das/core/db/settings/enums/language.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
 import 'package:der_die_das/features/game/game_screen.dart';
-import 'package:der_die_das/features/home/favorites_screen/favorites_screen.dart';
 import 'package:der_die_das/features/home/home_screen.dart';
 import 'package:der_die_das/features/home/nouns_screen/nouns_screen.dart';
 import 'package:der_die_das/features/home/settings_screen/settings_screen.dart';
@@ -45,7 +44,6 @@ class MyApp extends ConsumerWidget {
           HomeScreen.routeName: (_) => const HomeScreen(),
           NounsScreen.routeName: (_) => const NounsScreen(),
           TipsScreen.routeName: (_) => const TipsScreen(),
-          FavoritesScreen.routeName: (_) => const FavoritesScreen(),
           SettingsScreen.routeName: (_) => const SettingsScreen(),
           GameScreen.routeName: (_) => const GameScreen(),
           ResultsScreen.routeName: (_) => const ResultsScreen(),

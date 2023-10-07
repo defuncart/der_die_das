@@ -31,6 +31,12 @@ final appTheme = ThemeData(
     headlineMedium: TextStyle(
       color: _AppColors.black,
     ),
+  ).apply(
+    bodyColor: _AppColors.black,
+    displayColor: _AppColors.black,
+  ),
+  listTileTheme: const ListTileThemeData(
+    textColor: _AppColors.black,
   ),
   appBarTheme: const AppBarTheme(
     backgroundColor: Colors.transparent,

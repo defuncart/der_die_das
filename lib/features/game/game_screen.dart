@@ -80,11 +80,14 @@ class _GameScreen extends ConsumerWidget {
           },
         ),
         actions: [
-          if (state.tipId != null) _HintButton(tipId: state.tipId!),
-          BasicMaterialIconButton(
-            onPressed: () {},
-            icon: Icons.favorite_border_outlined,
-          ),
+          if (state.tipId != null)
+            _HintButton(
+              tipId: state.tipId!,
+            )
+          else
+            const SizedBox(
+              width: kMinInteractiveDimension,
+            )
         ],
       ),
       body: Padding(

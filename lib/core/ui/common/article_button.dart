@@ -12,6 +12,7 @@ class ArticleButton extends StatelessWidget {
     required this.width,
     required this.height,
     required this.fontSize,
+    this.borderRadius,
     this.onPressed,
     Key? key,
   }) : super(key: key);
@@ -20,6 +21,7 @@ class ArticleButton extends StatelessWidget {
   final double width;
   final double height;
   final double fontSize;
+  final BorderRadius? borderRadius;
   final VoidCallback? onPressed;
 
   @override
@@ -73,6 +75,7 @@ class ArticleButton extends StatelessWidget {
       width: width,
       height: height,
       color: color,
+      borderRadius: borderRadius,
       child: DefaultTextStyle(
         style: TextStyle(
           fontSize: fontSize,
@@ -80,7 +83,9 @@ class ArticleButton extends StatelessWidget {
           fontWeight: FontWeight.bold,
           fontFamily: 'Lovelo',
         ),
-        child: child,
+        child: Center(
+          child: child,
+        ),
       ),
     );
 

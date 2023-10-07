@@ -1,14 +1,13 @@
-import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
-import 'package:der_die_das/core/l10n/l10n_extension.dart';
+import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
-import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
+import 'package:der_die_das/core/ui/common/article_button.dart';
+import 'package:der_die_das/core/ui/common/basic_button.dart';
+import 'package:der_die_das/core/ui/common/rounded_square.dart';
 import 'package:der_die_das/features/game/game_screen.dart';
-import 'package:der_die_das/features/home/favorites_screen/favorites_screen.dart';
 import 'package:der_die_das/features/home/nouns_screen/nouns_screen.dart';
 import 'package:der_die_das/features/home/settings_screen/settings_screen.dart';
 import 'package:der_die_das/features/home/tips_screen/tips_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = 'HomeScreen';
@@ -18,30 +17,45 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.appTitle),
-        centerTitle: true,
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: LayoutBuilder(builder: (context, constraints) {
           final playButtonSize = constraints.maxWidth * 0.5;
           final otherButtonsSize = playButtonSize * 0.6;
-          final spacer = constraints.maxHeight * 0.1;
+
+          final articleWidth = constraints.maxWidth * 0.25;
+          final articleHeight = articleWidth * 0.5;
+          final articleFontSize = articleHeight * 0.75;
 
           return Center(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.max,
               children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: Article.values
+                      .map(
+                        (article) => ArticleButton(
+                          article: article,
+                          width: articleWidth,
+                          height: articleHeight,
+                          fontSize: articleFontSize,
+                          borderRadius: context.customRadii.xs,
+                        ),
+                      )
+                      .toList(),
+                ),
                 _SquareButton(
                   size: playButtonSize,
                   color: context.customColorScheme.green,
                   icon: Icons.play_arrow,
                   routeName: GameScreen.routeName,
                 ),
-                Gap(spacer),
                 Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     _SquareButton(
                       size: otherButtonsSize,
@@ -55,25 +69,13 @@ class HomeScreen extends StatelessWidget {
                       icon: Icons.lightbulb_outline,
                       routeName: TipsScreen.routeName,
                     ),
-                  ].intersperse(Gap(spacer * 0.5)),
-                ),
-                Gap(spacer * 0.5),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _SquareButton(
-                      size: otherButtonsSize,
-                      color: context.customColorScheme.defaultButton,
-                      icon: Icons.favorite_outline,
-                      routeName: FavoritesScreen.routeName,
-                    ),
                     _SquareButton(
                       size: otherButtonsSize,
                       color: context.customColorScheme.defaultButton,
                       icon: Icons.settings,
                       routeName: SettingsScreen.routeName,
                     ),
-                  ].intersperse(Gap(spacer * 0.5)),
+                  ],
                 ),
               ],
             ),
@@ -100,19 +102,15 @@ class _SquareButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return BasicButton(
       onTap: () => Navigator.of(context).pushNamed(routeName),
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: RoundedRectangle(
-          width: size,
-          height: size,
-          color: color,
-          child: Icon(
-            icon,
-            size: size * 0.6,
-            color: Theme.of(context).scaffoldBackgroundColor,
-          ),
+      child: RoundedSquare(
+        size: size,
+        color: color,
+        child: Icon(
+          icon,
+          size: size * 0.6,
+          color: Theme.of(context).scaffoldBackgroundColor,
         ),
       ),
     );

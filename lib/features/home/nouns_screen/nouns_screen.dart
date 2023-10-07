@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
 import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart';
 import 'package:der_die_das/core/db/nouns_database/state/state.dart';
-import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/extensions/theme_extensions.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
 import 'package:der_die_das/core/ui/common/basic_button.dart';
@@ -13,7 +12,6 @@ import 'package:der_die_das/features/home/nouns_screen/filter_search.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gap/gap.dart';
 
 class NounsScreen extends StatefulWidget {
   static const routeName = 'NounsScreen';
@@ -183,31 +181,18 @@ class _NounResultList extends StatelessWidget {
             ),
           ),
         ),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            BasicButton(
-              onTap: () {},
-              child: Icon(
-                Icons.favorite,
-                color: context.customColorScheme.red,
-                size: kMinInteractiveDimension,
-              ),
+        trailing: BasicButton(
+          onTap: () {},
+          child: RoundedSquare(
+            size: kMinInteractiveDimension,
+            color: context.customColorScheme.defaultButton,
+            borderRadius: context.customRadii.xs,
+            child: Icon(
+              Icons.volume_up,
+              size: kMinInteractiveDimension * 0.6,
+              color: Theme.of(context).scaffoldBackgroundColor,
             ),
-            BasicButton(
-              onTap: () {},
-              child: RoundedSquare(
-                size: kMinInteractiveDimension,
-                color: context.customColorScheme.defaultButton,
-                borderRadius: context.customRadii.xs,
-                child: Icon(
-                  Icons.volume_up,
-                  size: kMinInteractiveDimension * 0.6,
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                ),
-              ),
-            ),
-          ].intersperse(const Gap(4)),
+          ),
         ),
       ),
     );
