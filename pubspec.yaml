@@ -28,6 +28,7 @@ dependencies:
   riverpod_annotation:
   theme_tailor_annotation:
   url_launcher:
+  flutter_svg:
 
 dev_dependencies:
   flutter_test:
@@ -47,6 +48,7 @@ flutter:
   generate: true
   assets:
     - assets/db/db.zip
+    - assets/images/settings/
   fonts:
     - family: Lovelo
       fonts:
