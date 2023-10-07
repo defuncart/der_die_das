@@ -1,144 +1,124 @@
-import 'dart:math';
-
-import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
 import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart';
-import 'package:der_die_das/core/db/nouns_database/state/state.dart';
-import 'package:der_die_das/core/extensions/theme_extensions.dart';
+import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
 import 'package:der_die_das/core/ui/common/basic_button.dart';
+import 'package:der_die_das/core/ui/common/basic_material_close_button.dart';
 import 'package:der_die_das/core/ui/common/level_icon.dart';
 import 'package:der_die_das/core/ui/common/rounded_square.dart';
-import 'package:der_die_das/features/home/nouns_screen/filter_search.dart';
-import 'package:flutter/foundation.dart';
+import 'package:der_die_das/features/home/nouns_screen/state/nouns_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NounsScreen extends StatefulWidget {
+class NounsScreen extends ConsumerStatefulWidget {
   static const routeName = 'NounsScreen';
 
   const NounsScreen({super.key});
 
   @override
-  State<NounsScreen> createState() => _NounsScreenState();
+  ConsumerState<NounsScreen> createState() => _NounsScreenState();
 }
 
-class _NounsScreenState extends State<NounsScreen> {
+class _NounsScreenState extends ConsumerState<NounsScreen> {
+  late final TextEditingController _controller;
+  late final FocusNode _focusNode;
+  var _allNounsForCurrentLevel = <Noun>[];
+  var _results = <Noun>[];
+  var _showClearButton = false;
+
+  String get _searchTerm => _controller.text.trim();
+  bool get _showAllNounsForCurrentLevel => _searchTerm.isEmpty;
+
   @override
   void initState() {
     super.initState();
 
-    Future.microtask(
-      () => showSearch(
-        context: context,
-        delegate: _SearchDelegate(),
-      ),
-    );
+    _controller = TextEditingController()
+      ..addListener(() async {
+        final searchTerm = _searchTerm;
+        if (searchTerm.isNotEmpty) {
+          await ref.read(filterNounsProvider(searchTerm).future).then((value) => setState(() => _results = value));
+        } else {
+          setState(() => _results = <Noun>[]);
+        }
+
+        final showClearButton = _controller.text.isNotEmpty;
+        if (_showClearButton != showClearButton) {
+          setState(() => _showClearButton = showClearButton);
+        }
+      });
+    _focusNode = FocusNode()..requestFocus();
+
+    _init();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Future<void> _init() async {
+    await ref
+        .read(nounsForCurrentLevelProvider.future)
+        .then((value) => setState(() => _allNounsForCurrentLevel = value));
   }
 
   @override
   Widget build(BuildContext context) {
+    final hintColor = context.customColorScheme.defaultButton.withOpacity(0.5);
+
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: const BasicMaterialCloseButton(),
+        title: TextField(
+          controller: _controller,
+          focusNode: _focusNode,
+          decoration: InputDecoration(
+            hintText: context.l10n.nounsSearchFieldHint,
+            hintStyle: TextStyle(
+              color: hintColor,
+            ),
+            suffixIcon: _showClearButton
+                ? IconButton(
+                    icon: Icon(
+                      Icons.close,
+                      size: 20,
+                      color: context.customColorScheme.defaultButton.withOpacity(0.5),
+                    ),
+                    onPressed: () => _controller.clear(),
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                  )
+                : null,
+          ),
+          style: TextStyle(
+            color: context.customColorScheme.defaultButton,
+          ),
+        ),
+      ),
+      body: _showAllNounsForCurrentLevel
+          ? _allNounsForCurrentLevel.isNotEmpty
+              ? _NounResultList(
+                  results: _allNounsForCurrentLevel,
+                )
+              : const SizedBox.shrink()
+          : _results.isNotEmpty
+              ? _NounResultList(
+                  results: _results,
+                )
+              : Center(
+                  child: Text(context.l10n.nounsNoResultsFound),
+                ),
     );
   }
 }
 
-enum _LevelFilter {
-  all,
-  a1,
-  a2,
-}
-
-extension on _LevelFilter {
-  Level? get asLevel {
-    switch (this) {
-      case _LevelFilter.all:
-        return null;
-      case _LevelFilter.a1:
-        return Level.a1;
-      case _LevelFilter.a2:
-        return Level.a2;
-    }
-  }
-}
-
-class _SearchDelegate extends SearchDelegate {
-  _SearchDelegate();
-
-  var _levelFilter = _LevelFilter.all;
-
-  @override
-  ThemeData appBarTheme(BuildContext context) => Theme.of(context).copyWith();
-
-  @override
-  List<Widget> buildActions(BuildContext context) => [
-        DropdownButton<_LevelFilter>(
-          items: _LevelFilter.values
-              .map((value) => DropdownMenuItem(
-                    value: value,
-                    child: Text(describeEnum(value).toUpperCase()),
-                  ))
-              .toList(),
-          value: _levelFilter,
-          onChanged: (levelFilter) {
-            _levelFilter = levelFilter!;
-            // HACK to rebuild suggestions/results
-            query = query;
-          },
-        ),
-        IconButton(
-          icon: const Icon(Icons.clear),
-          onPressed: () => query = '',
-        ),
-      ];
-
-  @override
-  Widget buildLeading(BuildContext context) => IconButton(
-      icon: const Icon(Icons.arrow_back),
-      onPressed: () {
-        close(context, null);
-        Navigator.of(context).pop();
-      });
-
-  @override
-  Widget buildResults(BuildContext context) {
-    if (query.isEmpty) {
-      return const Center(
-        child: Text('Invalid search term'),
-      );
-    }
-
-    return _showResults(context);
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) => _showResults(context);
-
-  Widget _showResults(BuildContext context) {
-    if (query.isEmpty) {
-      return const SizedBox.shrink();
-    }
-
-    return Consumer(builder: (context, ref, _) {
-      final filteredNouns = ref.watch(
-        filterNounsProvider(
-          (text: query, level: _levelFilter.asLevel),
-        ),
-      );
-
-      return filteredNouns.when(
-        loading: () => const SizedBox.shrink(),
-        error: (err, _) => const SizedBox.shrink(),
-        data: (results) => _NounResultList(
-          results: results,
-        ),
-      );
-    });
-  }
-}
-
 class _NounResultList extends StatelessWidget {
-  const _NounResultList({required this.results, Key? key}) : super(key: key);
+  const _NounResultList({
+    Key? key,
+    required this.results,
+  }) : super(key: key);
 
   final List<Noun> results;
 
@@ -164,23 +144,6 @@ class _NounResultList extends StatelessWidget {
             ),
           ],
         ),
-        subtitle: Container(
-          height: 16,
-          margin: context.customPaddings.sVertical,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: context.colorScheme.primary,
-              width: 1,
-            ),
-          ),
-          child: LayoutBuilder(
-            builder: (context, constraints) => Container(
-              width: constraints.maxWidth * Random().nextDouble(),
-              height: constraints.maxHeight,
-              color: context.colorScheme.primary,
-            ),
-          ),
-        ),
         trailing: BasicButton(
           onTap: () {},
           child: RoundedSquare(
@@ -198,11 +161,3 @@ class _NounResultList extends StatelessWidget {
     );
   }
 }
-
-@visibleForTesting
-final filterNounsProvider = FutureProvider.family<List<Noun>, FilterSearch>(
-  (ref, filter) => ref.read(nounDatabaseProvider).filterNouns(
-        text: filter.text,
-        level: filter.level,
-      ),
-);

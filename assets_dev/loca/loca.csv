@@ -1,7 +1,8 @@
 key;en;de;pl
 appTitle;Der Die Das;Der Die Das;Der Die Das
-test;Hello World!;Hallo Welt!;Witaj świecie
-homeTipsTitle;Article Tips;Tipps für die Artikel;Wskazówki do rodzajników
+tipsTitle;Article Tips;Tipps für die Artikel;Wskazówki do rodzajników
+nounsSearchFieldHint;Noun;Nomen;Rzeczownik
+nounsNoResultsFound;No nouns found;Keine Nomen gefunden;Brak rzeczowników
 settingsLabel;Settings;Einstellungen;Język
 settingsLanguageLabel;Language;Sprache;Ustawienia
 settingsLevelLabel;Level;Level;Level

@@ -27,7 +27,7 @@ class TipsScreen extends StatelessWidget {
           leading: const BasicMaterialCloseButton(),
           backgroundColor: context.colorScheme.primary,
           foregroundColor: context.colorScheme.onPrimary,
-          title: Text(context.l10n.homeTipsTitle),
+          title: Text(context.l10n.tipsTitle),
           centerTitle: true,
         ),
         body: ListView.separated(
