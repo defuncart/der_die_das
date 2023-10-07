@@ -5,6 +5,7 @@ import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/extensions/theme_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/app_theme.dart';
+import 'package:der_die_das/core/ui/common/article_button.dart';
 import 'package:der_die_das/core/ui/common/basic_button.dart';
 import 'package:der_die_das/core/ui/common/basic_material_close_button.dart';
 import 'package:der_die_das/core/ui/common/basic_material_icon_button.dart';
@@ -14,7 +15,6 @@ import 'package:der_die_das/features/game/state/game_state.dart';
 import 'package:der_die_das/features/results/results_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gap/gap.dart';
 
 class GameScreen extends ConsumerWidget {
   static const routeName = 'GameScreen';
@@ -143,7 +143,7 @@ class _GameScreen extends ConsumerWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 ...state.answeredIncorrectly!.articles.map(
-                                  (article) => _AnswerButton(
+                                  (article) => ArticleButton(
                                     article: article,
                                     width: horizontalWidth,
                                     height: horizontalHeight,
@@ -247,7 +247,7 @@ class _Articles extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             if (_interactive || _articles?.contains(Article.der) == true)
-              _AnswerButton(
+              ArticleButton(
                 article: Article.der,
                 width: verticalWidth,
                 height: verticalHeight,
@@ -261,7 +261,7 @@ class _Articles extends ConsumerWidget {
                 height: verticalHeight,
               ),
             if (_interactive || _articles?.contains(Article.die) == true)
-              _AnswerButton(
+              ArticleButton(
                 article: Article.die,
                 width: verticalWidth,
                 height: verticalHeight,
@@ -277,7 +277,7 @@ class _Articles extends ConsumerWidget {
           ],
         ),
         if (_interactive || _articles?.contains(Article.das) == true)
-          _AnswerButton(
+          ArticleButton(
             article: Article.das,
             width: horizontalWidth,
             height: horizontalHeight,
@@ -382,92 +382,5 @@ class _TipCard extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class _AnswerButton extends StatelessWidget {
-  const _AnswerButton({
-    required this.article,
-    required this.width,
-    required this.height,
-    required this.fontSize,
-    this.onPressed,
-    Key? key,
-  }) : super(key: key);
-
-  final Article article;
-  final double width;
-  final double height;
-  final double fontSize;
-  final VoidCallback? onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    final isHorizontal = width > height;
-    final child = switch (article) {
-      Article.der => isHorizontal
-          ? const Column(
-              // TODO padding might be better
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [Text('D E R')],
-            )
-          : Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text('D'),
-                const Text('E'),
-                const Text('R'),
-              ].intersperse(Gap(fontSize * 0.025)),
-            ),
-      Article.die => isHorizontal
-          ? const Column(
-              // TODO padding might be better
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [Text('D I E')],
-            )
-          : Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text('D'),
-                const Text('I'),
-                const Text('E'),
-              ].intersperse(Gap(fontSize * 0.05)),
-            ),
-      Article.das => const Column(
-          // TODO padding might be better
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [Text('D A S')],
-        ),
-    };
-    final color = switch (article) {
-      Article.der => context.customColorScheme.der,
-      Article.die => context.customColorScheme.die,
-      Article.das => context.customColorScheme.das,
-    };
-
-    final widget = RoundedRectangle(
-      width: width,
-      height: height,
-      color: color,
-      child: DefaultTextStyle(
-        style: TextStyle(
-          fontSize: fontSize,
-          color: Theme.of(context).scaffoldBackgroundColor,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'Lovelo',
-        ),
-        child: child,
-      ),
-    );
-
-    return onPressed != null
-        ? BasicButton(
-            onTap: onPressed!,
-            child: widget,
-          )
-        : widget;
   }
 }
