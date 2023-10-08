@@ -8,14 +8,14 @@ import 'package:gap/gap.dart';
 
 class ArticleButton extends StatelessWidget {
   const ArticleButton({
+    super.key,
     required this.article,
     required this.width,
     required this.height,
     required this.fontSize,
     this.borderRadius,
     this.onPressed,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final Article article;
   final double width;

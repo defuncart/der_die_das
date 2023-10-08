@@ -1,11 +1,11 @@
-import 'package:der_die_das/core/extensions/theme_extensions.dart';
+import 'package:der_die_das/core/theme/theme_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class ResultsScreen extends StatelessWidget {
   static const path = '/results';
 
-  const ResultsScreen({Key? key}) : super(key: key);
+  const ResultsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

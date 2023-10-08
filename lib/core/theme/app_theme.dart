@@ -193,10 +193,10 @@ abstract class _AppColors {
   // static const brown = Color(0xffEF7442);
   static const black = Color(0xff2C3E4F);
   // static const black = Color(0xff4E4351);
-  static const gray = Color(0xffB3A7B7);
+  // static const gray = Color(0xffB3A7B7);
   static const purple = Color(0xff8E44AF);
   // static const lightPurple = Color(0xffAF8BBC);
-  static const lightPurple = Color(0xffAE62CF);
+  // static const lightPurple = Color(0xffAE62CF);
   static const green = Color(0xff3FCC70);
   // static const green = Color(0xff66AF44);
   static const red = Color(0xffAF4466);

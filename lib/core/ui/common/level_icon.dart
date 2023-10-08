@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 
 class LevelIcon extends StatelessWidget {
   const LevelIcon({
+    super.key,
     required this.level,
     this.size = 24,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final Level level;
   final double size;
