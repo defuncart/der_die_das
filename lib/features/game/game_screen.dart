@@ -122,6 +122,7 @@ class _GameScreen extends ConsumerWidget {
                       style: TextStyle(
                         fontSize: fontSize,
                         fontWeight: FontWeight.bold,
+                        color: context.textTheme.headlineMedium?.color,
                       ),
                       maxLines: 1,
                     ),
@@ -170,7 +171,7 @@ class _GameScreen extends ConsumerWidget {
                             child: RoundedRectangle(
                               width: horizontalWidth,
                               height: horizontalHeight * 0.6,
-                              color: context.customColorScheme.green,
+                              color: context.colorScheme.primary,
                               child: Text(
                                 context.l10n.gameContinueLabel,
                                 style: context.textTheme.headlineMedium?.copyWith(
@@ -382,7 +383,9 @@ class _TipCard extends StatelessWidget {
         child: HighlightedText(
           text,
           highlightColor: context.colorScheme.primary,
-          textStyle: context.textTheme.headlineMedium,
+          textStyle: context.textTheme.headlineMedium?.copyWith(
+            color: context.textTheme.bodyMedium?.color,
+          ),
         ),
       ),
     );

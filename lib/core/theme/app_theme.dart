@@ -32,7 +32,7 @@ final appTheme = ThemeData(
       color: _AppColors.black,
     ),
   ).apply(
-    bodyColor: _AppColors.black,
+    bodyColor: _AppColors.gray,
     displayColor: _AppColors.black,
   ),
   listTileTheme: const ListTileThemeData(
@@ -66,19 +66,13 @@ class _$CustomColorScheme {
     _AppColors.brown,
   ];
   static const das = [
-    _AppColors.black,
-  ];
-  static const green = [
-    _AppColors.green,
-  ];
-  static const red = [
-    _AppColors.red,
+    _AppColors.gray,
   ];
   static const levelIcon = [
     _AppColors.purple,
   ];
   static const defaultButton = [
-    _AppColors.black,
+    _AppColors.black2,
   ];
 }
 
@@ -183,21 +177,22 @@ abstract class _Spacings {
 
 abstract class _AppColors {
   static const white = Color(0xffECF0F1);
-  // static const white = Color(0xffFFF7FF);
-  static const blue = Color(0xff2E81B7);
-  // static const blue = Color(0xff6E8DAC);
-  // static const blue = Color(0xff4F7EA7);
-  // static const blue = Color(0xff007CD9);
-  static const brown = Color(0xffB75D2F);
-  // static const brown = Color(0xffB13F10);
-  // static const brown = Color(0xffEF7442);
-  static const black = Color(0xff2C3E4F);
-  // static const black = Color(0xff4E4351);
-  // static const gray = Color(0xffB3A7B7);
+  static const blue = Color(0xff2E81B7); // 00A8D3
+  static const brown = Color(0xffBD5B00);
+  static const gray = Color(0xff324B50);
+  static const black = Color(0xff2B2F2F);
+  static const black2 = Color(0xff434647);
   static const purple = Color(0xff8E44AF);
-  // static const lightPurple = Color(0xffAF8BBC);
-  // static const lightPurple = Color(0xffAE62CF);
-  static const green = Color(0xff3FCC70);
-  // static const green = Color(0xff66AF44);
-  static const red = Color(0xffAF4466);
 }
+
+// abstract class _AppColors {
+//   static const white = Color(0xffECF0F1);
+//   static const blue = Color(0xff2E81B7);
+//   static const brown = Color(0xffB75D2F);
+//   static const gray = Color(0xff2C3E4F);
+//   static const black = Color(0xff2C3E4F);
+//   static const black2 = Color(0xff2C3E4F);
+//   static const purple = Color(0xff8E44AF);
+//   static const green = Color(0xff3FCC70);
+//   static const red = Color(0xffAF4466);
+// }

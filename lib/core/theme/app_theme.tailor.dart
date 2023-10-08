@@ -14,27 +14,21 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     required this.defaultButton,
     required this.der,
     required this.die,
-    required this.green,
     required this.levelIcon,
-    required this.red,
   });
 
   final Color das;
   final Color defaultButton;
   final Color der;
   final Color die;
-  final Color green;
   final Color levelIcon;
-  final Color red;
 
   static const CustomColorScheme light = CustomColorScheme(
-    das: _AppColors.black,
-    defaultButton: _AppColors.black,
+    das: _AppColors.gray,
+    defaultButton: _AppColors.black2,
     der: _AppColors.blue,
     die: _AppColors.brown,
-    green: _AppColors.green,
     levelIcon: _AppColors.purple,
-    red: _AppColors.red,
   );
 
   static const themes = [
@@ -47,18 +41,14 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? defaultButton,
     Color? der,
     Color? die,
-    Color? green,
     Color? levelIcon,
-    Color? red,
   }) {
     return CustomColorScheme(
       das: das ?? this.das,
       defaultButton: defaultButton ?? this.defaultButton,
       der: der ?? this.der,
       die: die ?? this.die,
-      green: green ?? this.green,
       levelIcon: levelIcon ?? this.levelIcon,
-      red: red ?? this.red,
     );
   }
 
@@ -70,9 +60,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       defaultButton: Color.lerp(defaultButton, other.defaultButton, t)!,
       der: Color.lerp(der, other.der, t)!,
       die: Color.lerp(die, other.die, t)!,
-      green: Color.lerp(green, other.green, t)!,
       levelIcon: Color.lerp(levelIcon, other.levelIcon, t)!,
-      red: Color.lerp(red, other.red, t)!,
     );
   }
 
@@ -85,9 +73,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
             const DeepCollectionEquality().equals(defaultButton, other.defaultButton) &&
             const DeepCollectionEquality().equals(der, other.der) &&
             const DeepCollectionEquality().equals(die, other.die) &&
-            const DeepCollectionEquality().equals(green, other.green) &&
-            const DeepCollectionEquality().equals(levelIcon, other.levelIcon) &&
-            const DeepCollectionEquality().equals(red, other.red));
+            const DeepCollectionEquality().equals(levelIcon, other.levelIcon));
   }
 
   @override
@@ -98,9 +84,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       const DeepCollectionEquality().hash(defaultButton),
       const DeepCollectionEquality().hash(der),
       const DeepCollectionEquality().hash(die),
-      const DeepCollectionEquality().hash(green),
       const DeepCollectionEquality().hash(levelIcon),
-      const DeepCollectionEquality().hash(red),
     );
   }
 }
