@@ -1,5 +1,5 @@
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
-import 'package:der_die_das/core/theme/app_theme.dart';
+import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/basic_button.dart';
 import 'package:der_die_das/core/ui/common/rounded_square.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +54,7 @@ class _NumberQuestionsIcon extends StatelessWidget {
         child: Text(
           numberQuestions,
           style: TextStyle(
-            fontFamily: 'Lovelo',
+            fontFamily: AppFonts.lovelo,
             fontSize: (size / 24) * 16,
             color: Theme.of(context).scaffoldBackgroundColor,
           ),

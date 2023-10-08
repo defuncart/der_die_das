@@ -1,7 +1,7 @@
 import 'package:der_die_das/core/db/settings/enums/language.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
-import 'package:der_die_das/core/theme/app_theme.dart';
+import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/features/game/game_screen.dart';
 import 'package:der_die_das/features/home/home_screen.dart';
 import 'package:der_die_das/features/home/nouns_screen/nouns_screen.dart';

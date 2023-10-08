@@ -1,5 +1,5 @@
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
-import 'package:der_die_das/core/theme/app_theme.dart';
+import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/rounded_square.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class LevelIcon extends StatelessWidget {
         child: Text(
           describeEnum(level).toUpperCase(),
           style: TextStyle(
-            fontFamily: 'Lovelo',
+            fontFamily: AppFonts.lovelo,
             fontSize: (size / 24) * 16,
             color: Theme.of(context).scaffoldBackgroundColor,
           ),

@@ -1,5 +1,5 @@
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
-import 'package:der_die_das/core/theme/app_theme.dart';
+import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';

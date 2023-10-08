@@ -1,8 +1,7 @@
 import 'package:der_die_das/core/db/tips/model/tip.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
-import 'package:der_die_das/core/theme/app_theme.dart';
-import 'package:der_die_das/core/theme/theme_extensions.dart';
+import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/basic_material_close_button.dart';
 import 'package:der_die_das/core/ui/common/highlighted_text.dart';
 import 'package:flutter/material.dart';

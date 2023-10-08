@@ -1,6 +1,6 @@
 import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
-import 'package:der_die_das/core/theme/app_theme.dart';
+import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/basic_button.dart';
 import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +84,7 @@ class ArticleButton extends StatelessWidget {
           fontSize: fontSize,
           color: Theme.of(context).scaffoldBackgroundColor,
           fontWeight: FontWeight.bold,
-          fontFamily: 'Lovelo',
+          fontFamily: AppFonts.lovelo,
           height: textHeight,
         ),
         child: Center(

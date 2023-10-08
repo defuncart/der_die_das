@@ -1,6 +1,5 @@
 import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
-import 'package:der_die_das/core/theme/app_theme.dart';
-import 'package:der_die_das/core/theme/theme_extensions.dart';
+import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/article_button.dart';
 import 'package:der_die_das/core/ui/common/basic_button.dart';
 import 'package:der_die_das/core/ui/common/rounded_square.dart';

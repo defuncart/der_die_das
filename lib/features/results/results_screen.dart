@@ -1,4 +1,4 @@
-import 'package:der_die_das/core/theme/theme_extensions.dart';
+import 'package:der_die_das/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

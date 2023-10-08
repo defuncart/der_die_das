@@ -1,5 +1,5 @@
 import 'package:der_die_das/core/db/settings/enums/language.dart';
-import 'package:der_die_das/core/theme/app_theme.dart';
+import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/basic_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/de_lang_painter.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/pl_lang_painter.dart';

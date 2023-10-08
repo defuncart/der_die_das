@@ -1,4 +1,4 @@
-import 'package:der_die_das/core/theme/app_theme.dart';
+import 'package:der_die_das/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class RoundedRectangle extends StatelessWidget {
