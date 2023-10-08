@@ -165,19 +165,9 @@ class _GameScreen extends ConsumerWidget {
                         ),
                         Align(
                           alignment: Alignment.bottomCenter,
-                          child: BasicButton(
+                          child: HorizontalButton(
                             onPressed: ref.read(gameStateControllerProvider.notifier).onContinue,
-                            child: RoundedRectangle(
-                              width: horizontalWidth,
-                              height: horizontalHeight * 0.6,
-                              color: context.colorScheme.primary,
-                              child: Text(
-                                context.l10n.gameContinueLabel,
-                                style: context.textTheme.headlineMedium?.copyWith(
-                                  color: context.colorScheme.onPrimary,
-                                ),
-                              ),
-                            ),
+                            text: context.l10n.gameContinueLabel,
                           ),
                         ),
                       ].intersperse(context.customSpacings.m),

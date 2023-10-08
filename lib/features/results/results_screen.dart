@@ -104,6 +104,12 @@ class ResultsScreen extends StatelessWidget {
               ),
             ),
           ),
+          HorizontalButton(
+            onPressed: () {
+              context.pushReplacement(GameScreen.path);
+            },
+            text: context.l10n.resultsContinueLabel,
+          ),
         ],
       ),
     );
