@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
           final playButtonSize = constraints.maxWidth * 0.5;
           final otherButtonsSize = playButtonSize * 0.6;
 
-          final articleWidth = constraints.maxWidth * 0.25;
+          final articleWidth = constraints.maxWidth * 0.3;
           final articleHeight = articleWidth * 0.5;
           final articleFontSize = articleHeight * 0.75;
 

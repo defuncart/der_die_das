@@ -29,11 +29,10 @@ class ArticleButton extends StatelessWidget {
     final isHorizontal = width > height;
     final child = switch (article) {
       Article.der => isHorizontal
-          ? const Column(
-              // TODO padding might be better
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [Text('D E R')],
+          ? Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const [Text('D'), Text('E'), Text('R')].intersperse(Gap(width * 0.05)),
             )
           : Column(
               mainAxisSize: MainAxisSize.min,
@@ -44,11 +43,10 @@ class ArticleButton extends StatelessWidget {
               ].intersperse(Gap(fontSize * 0.025)),
             ),
       Article.die => isHorizontal
-          ? const Column(
-              // TODO padding might be better
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [Text('D I E')],
+          ? Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const [Text('D'), Text('I'), Text('E')].intersperse(Gap(width * 0.075)),
             )
           : Column(
               mainAxisSize: MainAxisSize.min,
@@ -58,11 +56,10 @@ class ArticleButton extends StatelessWidget {
                 const Text('E'),
               ].intersperse(Gap(fontSize * 0.05)),
             ),
-      Article.das => const Column(
-          // TODO padding might be better
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [Text('D A S')],
+      Article.das => Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: const [Text('D'), Text('A'), Text('S')].intersperse(Gap(width * 0.05)),
         ),
     };
     final color = switch (article) {
@@ -70,6 +67,12 @@ class ArticleButton extends StatelessWidget {
       Article.die => context.customColorScheme.die,
       Article.das => context.customColorScheme.das,
     };
+
+    // when horizontal, use full height + offset to correctly center
+    double? textHeight;
+    if (isHorizontal) {
+      textHeight = (height / fontSize) * 1.05;
+    }
 
     final widget = RoundedRectangle(
       width: width,
@@ -82,6 +85,7 @@ class ArticleButton extends StatelessWidget {
           color: Theme.of(context).scaffoldBackgroundColor,
           fontWeight: FontWeight.bold,
           fontFamily: 'Lovelo',
+          height: textHeight,
         ),
         child: Center(
           child: child,
