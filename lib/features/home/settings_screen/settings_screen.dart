@@ -14,6 +14,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 const double _size = kMinInteractiveDimension;
@@ -213,7 +214,7 @@ class _DataPrivacyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BasicButton(
-      onTap: () => _DataPrivacyDialog.show(context),
+      onPressed: () => _DataPrivacyDialog.show(context),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: context.customRadii.xs,
@@ -222,7 +223,7 @@ class _DataPrivacyButton extends StatelessWidget {
         padding: context.customPaddings.m,
         child: Text(
           context.l10n.settingsDataPrivacyLabel,
-          style: context.textTheme.labelMedium?.copyWith(
+          style: context.textTheme.labelLarge?.copyWith(
             color: Theme.of(context).scaffoldBackgroundColor,
           ),
         ),
@@ -242,7 +243,11 @@ class _DataPrivacyDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: context.customRadii.s,
+      ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      surfaceTintColor: Colors.transparent,
       title: Text(context.l10n.settingsDataPrivacyAlertTitle),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -256,26 +261,30 @@ class _DataPrivacyDialog extends StatelessWidget {
             text: context.l10n.settingsDataPrivacyAlertContent3,
             url: 'https://github.com/defuncart/der_die_das/',
           ),
-        ].intersperse(context.customSpacings.s),
+        ].intersperse(context.customSpacings.m),
       ),
       actions: <Widget>[
-        TextButton(
-          style: TextButton.styleFrom(
-            foregroundColor: Theme.of(context).colorScheme.secondary,
+        BasicButton(
+          child: Text(
+            MaterialLocalizations.of(context).viewLicensesButtonLabel,
+            style: TextStyle(
+              color: context.colorScheme.primary,
+            ),
           ),
-          child: Text(MaterialLocalizations.of(context).viewLicensesButtonLabel),
           onPressed: () => showLicensePage(
             context: context,
             applicationName: context.l10n.appTitle,
             applicationLegalese: '© 2023 defuncart',
           ),
         ),
-        TextButton(
-          style: TextButton.styleFrom(
-            foregroundColor: Theme.of(context).colorScheme.secondary,
+        BasicButton(
+          child: Text(
+            MaterialLocalizations.of(context).closeButtonLabel,
+            style: TextStyle(
+              color: context.colorScheme.primary,
+            ),
           ),
-          child: Text(MaterialLocalizations.of(context).closeButtonLabel),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => context.pop(),
         ),
       ],
       scrollable: true,

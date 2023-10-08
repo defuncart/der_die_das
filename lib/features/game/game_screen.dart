@@ -166,7 +166,7 @@ class _GameScreen extends ConsumerWidget {
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: BasicButton(
-                            onTap: ref.read(gameStateControllerProvider.notifier).onContinue,
+                            onPressed: ref.read(gameStateControllerProvider.notifier).onContinue,
                             child: RoundedRectangle(
                               width: horizontalWidth,
                               height: horizontalHeight * 0.6,

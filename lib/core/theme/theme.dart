@@ -25,12 +25,24 @@ final appTheme = ThemeData(
   fontFamily: AppFonts.lato,
   textTheme: const TextTheme(
     bodyMedium: TextStyle(
+      color: _AppColors.gray,
+    ),
+    titleSmall: TextStyle(
       color: _AppColors.black,
     ),
     titleMedium: TextStyle(
       color: _AppColors.black,
     ),
+    titleLarge: TextStyle(
+      color: _AppColors.black,
+    ),
+    headlineSmall: TextStyle(
+      color: _AppColors.black,
+    ),
     headlineMedium: TextStyle(
+      color: _AppColors.black,
+    ),
+    headlineLarge: TextStyle(
       color: _AppColors.black,
     ),
   ).apply(

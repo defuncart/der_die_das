@@ -95,7 +95,7 @@ class ArticleButton extends StatelessWidget {
 
     return onPressed != null
         ? BasicButton(
-            onTap: onPressed!,
+            onPressed: onPressed!,
             child: widget,
           )
         : widget;

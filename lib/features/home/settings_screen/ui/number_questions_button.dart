@@ -23,7 +23,7 @@ class NumberQuestionsButton extends StatelessWidget {
     return Opacity(
       opacity: isSelected ? 1 : 0.6,
       child: BasicButton(
-        onTap: onTap,
+        onPressed: onTap,
         child: _NumberQuestionsIcon(
           numberQuestions: numberQuestions.value.toString(),
           size: size,

@@ -3,17 +3,17 @@ import 'package:flutter/widgets.dart';
 class BasicButton extends StatelessWidget {
   const BasicButton({
     super.key,
-    required this.onTap,
+    required this.onPressed,
     required this.child,
   });
 
-  final VoidCallback onTap;
+  final VoidCallback onPressed;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onPressed,
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: child,

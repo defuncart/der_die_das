@@ -145,7 +145,7 @@ class _NounResultList extends StatelessWidget {
           ],
         ),
         trailing: BasicButton(
-          onTap: () {},
+          onPressed: () {},
           child: RoundedSquare(
             size: kMinInteractiveDimension,
             color: context.customColorScheme.defaultButton,

@@ -22,7 +22,7 @@ class LevelButton extends StatelessWidget {
     return Opacity(
       opacity: isSelected ? 1 : 0.6,
       child: BasicButton(
-        onTap: onTap,
+        onPressed: onTap,
         child: LevelIcon(
           level: level,
           size: size,

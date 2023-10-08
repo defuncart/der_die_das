@@ -25,7 +25,7 @@ class LanguageButton extends StatelessWidget {
     return Opacity(
       opacity: isSelected ? 1 : 0.6,
       child: BasicButton(
-        onTap: onTap,
+        onPressed: onTap,
         child: ClipRRect(
           borderRadius: context.customRadii.xs,
           child: language == Language.en

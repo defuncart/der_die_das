@@ -104,7 +104,7 @@ class _SquareButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BasicButton(
-      onTap: () => context.push(path),
+      onPressed: () => context.push(path),
       child: RoundedSquare(
         size: size,
         color: color,
