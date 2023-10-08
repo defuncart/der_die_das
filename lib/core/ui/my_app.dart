@@ -26,6 +26,9 @@ class MyApp extends ConsumerWidget {
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
+        statusBarBrightness: Brightness.light,
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
         systemNavigationBarColor: appTheme.scaffoldBackgroundColor,
       ),
       child: MaterialApp.router(
