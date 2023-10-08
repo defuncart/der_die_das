@@ -1,5 +1,6 @@
 import 'package:der_die_das/core/ui/common/basic_material_icon_button.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BasicMaterialCloseButton extends StatelessWidget {
   const BasicMaterialCloseButton({
@@ -9,7 +10,7 @@ class BasicMaterialCloseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BasicMaterialIconButton(
-      onPressed: () => Navigator.of(context).pop(),
+      onPressed: () => context.pop(),
       icon: Icons.close,
     );
   }

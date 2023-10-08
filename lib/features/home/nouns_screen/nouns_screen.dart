@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NounsScreen extends ConsumerStatefulWidget {
-  static const routeName = 'NounsScreen';
+  static const path = '/nouns';
 
   const NounsScreen({super.key});
 

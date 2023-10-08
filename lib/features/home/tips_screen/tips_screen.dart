@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 
 class TipsScreen extends StatelessWidget {
-  static const routeName = 'TipsScreen';
+  static const path = '/tips';
 
   const TipsScreen({super.key});
 

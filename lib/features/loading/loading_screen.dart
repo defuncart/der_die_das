@@ -2,8 +2,11 @@ import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 class LoadingScreen extends StatefulWidget {
+  static const path = '/';
+
   const LoadingScreen({Key? key}) : super(key: key);
 
   @override
@@ -30,7 +33,7 @@ class _LoadingScreenState extends State<LoadingScreen> with TickerProviderStateM
       ..forward()
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
-          Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+          context.pushReplacement(HomeScreen.path);
         }
       });
 

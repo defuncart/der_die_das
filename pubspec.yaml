@@ -29,6 +29,7 @@ dependencies:
   theme_tailor_annotation:
   url_launcher:
   flutter_svg:
+  go_router:
 
 dev_dependencies:
   flutter_test:

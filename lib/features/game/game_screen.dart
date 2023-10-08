@@ -15,9 +15,10 @@ import 'package:der_die_das/features/game/state/game_state.dart';
 import 'package:der_die_das/features/results/results_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class GameScreen extends ConsumerWidget {
-  static const routeName = 'GameScreen';
+  static const path = '/game';
 
   const GameScreen({super.key});
 
@@ -29,7 +30,7 @@ class GameScreen extends ConsumerWidget {
       data: (data) {
         if (data.value.progress == 1) {
           Future.microtask(
-            () => Navigator.of(context).pushReplacementNamed(ResultsScreen.routeName),
+            () => context.pushReplacement(ResultsScreen.path),
           );
           return const Scaffold();
         }

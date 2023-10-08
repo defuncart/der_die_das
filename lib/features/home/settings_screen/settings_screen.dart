@@ -20,7 +20,7 @@ import 'package:url_launcher/url_launcher.dart';
 const double _size = kMinInteractiveDimension;
 
 class SettingsScreen extends StatelessWidget {
-  static const routeName = 'SettingsScreen';
+  static const path = '/settings';
 
   const SettingsScreen({Key? key}) : super(key: key);
 

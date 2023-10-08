@@ -8,9 +8,10 @@ import 'package:der_die_das/features/home/nouns_screen/nouns_screen.dart';
 import 'package:der_die_das/features/home/settings_screen/settings_screen.dart';
 import 'package:der_die_das/features/home/tips_screen/tips_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
-  static const routeName = 'HomeScreen';
+  static const path = '/home';
 
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -51,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                   size: playButtonSize,
                   color: context.customColorScheme.green,
                   icon: Icons.play_arrow,
-                  routeName: GameScreen.routeName,
+                  path: GameScreen.path,
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -61,19 +62,19 @@ class HomeScreen extends StatelessWidget {
                       size: otherButtonsSize,
                       color: context.customColorScheme.defaultButton,
                       icon: Icons.search,
-                      routeName: NounsScreen.routeName,
+                      path: NounsScreen.path,
                     ),
                     _SquareButton(
                       size: otherButtonsSize,
                       color: context.customColorScheme.defaultButton,
                       icon: Icons.lightbulb_outline,
-                      routeName: TipsScreen.routeName,
+                      path: TipsScreen.path,
                     ),
                     _SquareButton(
                       size: otherButtonsSize,
                       color: context.customColorScheme.defaultButton,
                       icon: Icons.settings,
-                      routeName: SettingsScreen.routeName,
+                      path: SettingsScreen.path,
                     ),
                   ],
                 ),
@@ -91,19 +92,19 @@ class _SquareButton extends StatelessWidget {
     required this.size,
     required this.color,
     required this.icon,
-    required this.routeName,
+    required this.path,
     Key? key,
   }) : super(key: key);
 
   final double size;
   final Color color;
   final IconData icon;
-  final String routeName;
+  final String path;
 
   @override
   Widget build(BuildContext context) {
     return BasicButton(
-      onTap: () => Navigator.of(context).pushNamed(routeName),
+      onTap: () => context.push(path),
       child: RoundedSquare(
         size: size,
         color: color,

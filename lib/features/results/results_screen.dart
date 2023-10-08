@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class ResultsScreen extends StatelessWidget {
-  static const routeName = 'ResultsScreen';
+  static const path = '/results';
 
   const ResultsScreen({Key? key}) : super(key: key);
 
