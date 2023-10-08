@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'settings_state.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class LanguageController extends _$LanguageController {
   @override
   Language build() => Language.de;
@@ -15,7 +15,7 @@ class LanguageController extends _$LanguageController {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class LevelController extends _$LevelController {
   @override
   Level build() => Level.a1;
@@ -25,7 +25,7 @@ class LevelController extends _$LevelController {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class NumberQuestionsController extends _$NumberQuestionsController {
   @override
   NumberQuestions build() => NumberQuestions.twentyFive;
@@ -35,7 +35,7 @@ class NumberQuestionsController extends _$NumberQuestionsController {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class VoiceLevelController extends _$VoiceLevelController {
   @override
   double build() => 1;
@@ -47,7 +47,7 @@ class VoiceLevelController extends _$VoiceLevelController {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class SoundLevelController extends _$SoundLevelController {
   @override
   double build() => 1;

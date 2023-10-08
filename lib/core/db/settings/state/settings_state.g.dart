@@ -6,11 +6,11 @@ part of 'settings_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$languageControllerHash() => r'dc10a2aae16081776b9ec95276cb71daed1ae6a3';
+String _$languageControllerHash() => r'9d217d93b24efa0df3b98d3c25ceb84ed78b4956';
 
 /// See also [LanguageController].
 @ProviderFor(LanguageController)
-final languageControllerProvider = AutoDisposeNotifierProvider<LanguageController, Language>.internal(
+final languageControllerProvider = NotifierProvider<LanguageController, Language>.internal(
   LanguageController.new,
   name: r'languageControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$languageControllerHash,
@@ -18,12 +18,12 @@ final languageControllerProvider = AutoDisposeNotifierProvider<LanguageControlle
   allTransitiveDependencies: null,
 );
 
-typedef _$LanguageController = AutoDisposeNotifier<Language>;
-String _$levelControllerHash() => r'eae80911c0541451fce268a86a3b4f50f824f80e';
+typedef _$LanguageController = Notifier<Language>;
+String _$levelControllerHash() => r'2aacec07779b76627d00d4a42c391ea9cf694ded';
 
 /// See also [LevelController].
 @ProviderFor(LevelController)
-final levelControllerProvider = AutoDisposeNotifierProvider<LevelController, Level>.internal(
+final levelControllerProvider = NotifierProvider<LevelController, Level>.internal(
   LevelController.new,
   name: r'levelControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$levelControllerHash,
@@ -31,13 +31,12 @@ final levelControllerProvider = AutoDisposeNotifierProvider<LevelController, Lev
   allTransitiveDependencies: null,
 );
 
-typedef _$LevelController = AutoDisposeNotifier<Level>;
-String _$numberQuestionsControllerHash() => r'01d135c40061a42b9045b02036acc3d5056a93c7';
+typedef _$LevelController = Notifier<Level>;
+String _$numberQuestionsControllerHash() => r'57306eb6009ace2bb35050378f0e3d01dcac9961';
 
 /// See also [NumberQuestionsController].
 @ProviderFor(NumberQuestionsController)
-final numberQuestionsControllerProvider =
-    AutoDisposeNotifierProvider<NumberQuestionsController, NumberQuestions>.internal(
+final numberQuestionsControllerProvider = NotifierProvider<NumberQuestionsController, NumberQuestions>.internal(
   NumberQuestionsController.new,
   name: r'numberQuestionsControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$numberQuestionsControllerHash,
@@ -45,12 +44,12 @@ final numberQuestionsControllerProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$NumberQuestionsController = AutoDisposeNotifier<NumberQuestions>;
-String _$voiceLevelControllerHash() => r'7649d6a09d4f722ebc138afc147c4b708bf1a320';
+typedef _$NumberQuestionsController = Notifier<NumberQuestions>;
+String _$voiceLevelControllerHash() => r'9f2628f98d150aac428251faf9ac322cc20ea8d4';
 
 /// See also [VoiceLevelController].
 @ProviderFor(VoiceLevelController)
-final voiceLevelControllerProvider = AutoDisposeNotifierProvider<VoiceLevelController, double>.internal(
+final voiceLevelControllerProvider = NotifierProvider<VoiceLevelController, double>.internal(
   VoiceLevelController.new,
   name: r'voiceLevelControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$voiceLevelControllerHash,
@@ -58,12 +57,12 @@ final voiceLevelControllerProvider = AutoDisposeNotifierProvider<VoiceLevelContr
   allTransitiveDependencies: null,
 );
 
-typedef _$VoiceLevelController = AutoDisposeNotifier<double>;
-String _$soundLevelControllerHash() => r'309ee05a1cc3515f08fd75439f7f75a0562552ee';
+typedef _$VoiceLevelController = Notifier<double>;
+String _$soundLevelControllerHash() => r'36ac2ddaa78a24b53aa1a511106b63d9f7757396';
 
 /// See also [SoundLevelController].
 @ProviderFor(SoundLevelController)
-final soundLevelControllerProvider = AutoDisposeNotifierProvider<SoundLevelController, double>.internal(
+final soundLevelControllerProvider = NotifierProvider<SoundLevelController, double>.internal(
   SoundLevelController.new,
   name: r'soundLevelControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$soundLevelControllerHash,
@@ -71,6 +70,6 @@ final soundLevelControllerProvider = AutoDisposeNotifierProvider<SoundLevelContr
   allTransitiveDependencies: null,
 );
 
-typedef _$SoundLevelController = AutoDisposeNotifier<double>;
+typedef _$SoundLevelController = Notifier<double>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
