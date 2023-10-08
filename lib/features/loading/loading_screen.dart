@@ -1,104 +1,57 @@
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
+import 'package:der_die_das/core/theme/app_theme.dart';
 import 'package:der_die_das/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 
-class LoadingScreen extends StatefulWidget {
+const _segmentDuration = Duration(milliseconds: 600);
+const _fadeOutDuration = Duration(milliseconds: 300);
+
+// TODO initialize dbs, precache SVGs
+class LoadingScreen extends StatelessWidget {
   static const path = '/';
 
-  const LoadingScreen({Key? key}) : super(key: key);
-
-  @override
-  State<LoadingScreen> createState() => _LoadingScreenState();
-}
-
-class _LoadingScreenState extends State<LoadingScreen> with TickerProviderStateMixin {
-  late AnimationController _controller;
-  late List<Animation<double>> _animations;
-
-  static const _numberSegments = 4;
-  static const _segmentDuration = 0.75;
-
-  int get _totalDuration => (_segmentDuration * _numberSegments * 1000).floor();
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimationController(
-      duration: Duration(milliseconds: _totalDuration),
-      vsync: this,
-    )
-      ..forward()
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          context.pushReplacement(HomeScreen.path);
-        }
-      });
-
-    _animations = List.generate(
-      _numberSegments,
-      (index) => Tween<double>(
-        begin: 0.0,
-        end: 1.0,
-      ).animate(
-        CurvedAnimation(
-          parent: _controller,
-          curve: Interval(
-            (index * _segmentDuration) / _numberSegments,
-            ((index + 1) * _segmentDuration) / _numberSegments,
-            curve: Curves.easeInOut,
-          ),
-        ),
-      ),
-    );
-  }
+  const LoadingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: AnimatedBuilder(
-          animation: _controller,
-          builder: (context, _) => Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Opacity(
-                    opacity: _animations[0].value,
-                    child: const _Square(color: _DFAColors.pink),
-                  ),
-                  Opacity(
-                    opacity: _animations[1].value,
-                    child: const _Square(color: _DFAColors.blue),
-                  ),
-                ].intersperse(const Gap(_spacer)),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Opacity(
-                    opacity: _animations[3].value,
-                    child: const _Square(color: _DFAColors.green),
-                  ),
-                  Opacity(
-                    opacity: _animations[2].value,
-                    child: const _Square(color: _DFAColors.yellow),
-                  ),
-                ].intersperse(const Gap(_spacer)),
-              ),
-            ].intersperse(const Gap(_spacer)),
-          ),
-        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const _Square(color: _DFAColors.pink).animate().fadeIn(duration: _segmentDuration),
+                const _Square(color: _DFAColors.blue)
+                    .animate(delay: _segmentDuration)
+                    .fadeIn(duration: _segmentDuration),
+              ].intersperse(context.customSpacings.s),
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const _Square(color: _DFAColors.green)
+                    .animate(delay: _segmentDuration * 3)
+                    .fadeIn(duration: _segmentDuration),
+                const _Square(color: _DFAColors.yellow)
+                    .animate(delay: _segmentDuration * 2)
+                    .fadeIn(duration: _segmentDuration),
+              ].intersperse(context.customSpacings.s),
+            ),
+          ].intersperse(context.customSpacings.s),
+        ).animate(delay: _segmentDuration * 4).fadeOut(duration: _fadeOutDuration).listen(callback: (value) {
+          if (value == 1) {
+            context.pushReplacement(HomeScreen.path);
+          }
+        }),
       ),
     );
   }
 }
 
-const _spacer = 5.0;
 const _size = 75.0;
 
 class _Square extends StatelessWidget {

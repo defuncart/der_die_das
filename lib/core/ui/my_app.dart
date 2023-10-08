@@ -55,7 +55,9 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: HomeScreen.path,
-      builder: (context, state) => const HomeScreen(),
+      pageBuilder: (context, state) => const NoTransitionPage(
+        child: HomeScreen(),
+      ),
     ),
     GoRoute(
       path: NounsScreen.path,

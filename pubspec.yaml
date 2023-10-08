@@ -30,6 +30,7 @@ dependencies:
   url_launcher:
   flutter_svg:
   go_router:
+  flutter_animate:
 
 dev_dependencies:
   flutter_test:
