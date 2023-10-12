@@ -15,10 +15,14 @@ class AppIcon extends StatelessWidget with ArticleContent {
     super.key,
     this.size = 512,
     this.border = AppIconBorder.iOS,
+    this.hasTransparentBackground = false,
+    this.hasSpacer = true,
   });
 
   final double size;
   final AppIconBorder border;
+  final bool hasTransparentBackground;
+  final bool hasSpacer;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +53,7 @@ class AppIcon extends StatelessWidget with ArticleContent {
           AppIconBorder.round => BoxShape.circle,
           _ => BoxShape.rectangle,
         },
-        color: Theme.of(context).scaffoldBackgroundColor,
+        color: hasTransparentBackground ? null : Theme.of(context).scaffoldBackgroundColor,
       ),
       child: _IconClipper(
         border: border,
@@ -80,7 +84,9 @@ class AppIcon extends StatelessWidget with ArticleContent {
                     ),
                     child: dasHorizontal,
                   ),
-                ].intersperse(context.customSpacings.s),
+                ].intersperse(
+                  hasSpacer ? context.customSpacings.s : const SizedBox.shrink(),
+                ),
               ),
             ),
           ),
