@@ -150,6 +150,7 @@ class _GameScreen extends ConsumerWidget {
                                   (article) => ArticleButton(
                                     article: article,
                                     width: horizontalWidth,
+                                    horizontalTextWidthPercent: 0.6,
                                     height: horizontalHeight,
                                     fontSize: fontSize,
                                     onPressed: () {},
@@ -244,6 +245,7 @@ class _Articles extends ConsumerWidget {
               ArticleButton(
                 article: Article.der,
                 width: verticalWidth,
+                horizontalTextWidthPercent: 0.6,
                 height: verticalHeight,
                 fontSize: fontSize,
                 onPressed:
@@ -257,6 +259,7 @@ class _Articles extends ConsumerWidget {
             if (_interactive || _articles?.contains(Article.die) == true)
               ArticleButton(
                 article: Article.die,
+                horizontalTextWidthPercent: 0.6,
                 width: verticalWidth,
                 height: verticalHeight,
                 fontSize: fontSize,
@@ -274,6 +277,7 @@ class _Articles extends ConsumerWidget {
           ArticleButton(
             article: Article.das,
             width: horizontalWidth,
+            horizontalTextWidthPercent: 0.6,
             height: horizontalHeight,
             fontSize: fontSize,
             onPressed: _interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.das) : null,

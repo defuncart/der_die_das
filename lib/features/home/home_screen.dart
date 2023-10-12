@@ -41,6 +41,7 @@ class HomeScreen extends StatelessWidget {
                         (article) => ArticleButton(
                           article: article,
                           width: articleWidth,
+                          horizontalTextWidthPercent: 0.8,
                           height: articleHeight,
                           fontSize: articleFontSize,
                           borderRadius: context.customRadii.xs,
