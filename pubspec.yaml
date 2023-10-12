@@ -45,6 +45,7 @@ dev_dependencies:
   custom_lint:
   riverpod_lint:
   golden_toolkit:
+  flutter_launcher_icons:
 
 flutter:
   uses-material-design: true
@@ -67,3 +68,8 @@ arb_generator:
   csv_settings:
     delimiter: ";"
     base_index: 1
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets_dev/app_icons/app_icon.png"
