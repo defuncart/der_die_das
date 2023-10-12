@@ -5,6 +5,7 @@ import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/theme.dart';
+import 'package:der_die_das/core/ui/common/app_icon.dart';
 import 'package:der_die_das/core/ui/common/basic_button.dart';
 import 'package:der_die_das/core/ui/common/basic_material_close_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/language_button.dart';
@@ -273,7 +274,10 @@ class _DataPrivacyDialog extends StatelessWidget {
           ),
           onPressed: () => showLicensePage(
             context: context,
-            applicationName: context.l10n.appTitle,
+            applicationIcon: const AppIcon(
+              size: 96,
+            ),
+            applicationName: '',
             applicationLegalese: '© 2023 defuncart',
           ),
         ),
