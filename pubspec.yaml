@@ -44,6 +44,7 @@ dev_dependencies:
   riverpod_generator:
   custom_lint:
   riverpod_lint:
+  golden_toolkit:
 
 flutter:
   uses-material-design: true

@@ -48,6 +48,7 @@ app.*.map.json
 # local dev assets
 assets_dev/l10n
 assets_dev/db
+assets_dev/app_icons
 
 # local assets
 assets/db
