@@ -10,7 +10,7 @@ import 'package:der_die_das/core/ui/common/basic_button.dart';
 import 'package:der_die_das/core/ui/common/basic_material_close_button.dart';
 import 'package:der_die_das/core/ui/common/basic_material_icon_button.dart';
 import 'package:der_die_das/core/ui/common/highlighted_text.dart';
-import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
+import 'package:der_die_das/core/ui/common/horizontal_button.dart';
 import 'package:der_die_das/features/game/state/game_state.dart';
 import 'package:der_die_das/features/results/results_screen.dart';
 import 'package:flutter/material.dart';
@@ -115,28 +115,30 @@ class _GameScreen extends ConsumerWidget {
               mainAxisAlignment:
                   state.answeredIncorrectly != null ? MainAxisAlignment.start : MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AutoSizeText(
-                      state.withoutArticle,
-                      style: TextStyle(
-                        fontSize: fontSize,
-                        fontWeight: FontWeight.bold,
-                        color: context.textTheme.headlineMedium?.color,
-                      ),
-                      maxLines: 1,
-                    ),
-                    if (state.ambiguousLabel != null)
+                Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
                       AutoSizeText(
-                        state.ambiguousLabel!,
+                        state.withoutArticle,
                         style: TextStyle(
-                          fontSize: fontSize * 0.25,
+                          fontSize: fontSize,
+                          fontWeight: FontWeight.bold,
+                          color: context.textTheme.headlineMedium?.color,
                         ),
                         maxLines: 1,
                       ),
-                  ],
+                      if (state.ambiguousLabel != null)
+                        AutoSizeText(
+                          state.ambiguousLabel!,
+                          style: TextStyle(
+                            fontSize: fontSize * 0.25,
+                          ),
+                          maxLines: 1,
+                        ),
+                    ],
+                  ),
                 ),
                 if (state.answeredIncorrectly != null)
                   Expanded(

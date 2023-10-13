@@ -6,7 +6,7 @@ part of 'game_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$gameStateControllerHash() => r'df602027329cedbf0b2f7a35255e268ac1a4e96b';
+String _$gameStateControllerHash() => r'4b5c85d074c7bcd70589e3ff4c84d197bea6cb67';
 
 /// See also [GameStateController].
 @ProviderFor(GameStateController)
@@ -17,6 +17,7 @@ final gameStateControllerProvider = AutoDisposeAsyncNotifierProvider<
       ({Iterable<Article> articles})? answeredCorrectly,
       ({Iterable<Article> articles})? answeredIncorrectly,
       double progress,
+      ({int correct, Iterable<({int? tipId, String withArticle})> incorrectlyAnswered, int total})? result,
       int? tipId,
       String withoutArticle
     })>.internal(
@@ -33,6 +34,7 @@ typedef _$GameStateController = AutoDisposeAsyncNotifier<
       ({Iterable<Article> articles})? answeredCorrectly,
       ({Iterable<Article> articles})? answeredIncorrectly,
       double progress,
+      ({int correct, Iterable<({int? tipId, String withArticle})> incorrectlyAnswered, int total})? result,
       int? tipId,
       String withoutArticle
     })>;

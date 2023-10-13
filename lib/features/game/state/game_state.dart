@@ -5,6 +5,7 @@ import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
 import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart';
 import 'package:der_die_das/core/db/nouns_database/state/state.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
+import 'package:der_die_das/core/models/game_result.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'game_state.g.dart';
@@ -14,7 +15,6 @@ class GameStateController extends _$GameStateController {
   late final int _numberQuestions;
   late final List<Noun> _nouns;
   var _currentIndex = 0;
-  // ignore: unused_field
   var _correct = 0;
   final _incorrectlyAnswered = <Noun>[];
   Timer? _timer;
@@ -48,6 +48,7 @@ class GameStateController extends _$GameStateController {
           ),
         ),
         answeredIncorrectly: null,
+        result: null,
       ));
       _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
         _timer?.cancel();
@@ -67,13 +68,38 @@ class GameStateController extends _$GameStateController {
             (index) => Article.values[index],
           ),
         ),
+        result: null,
       ));
     }
   }
 
   void onContinue() {
-    _currentIndex++;
-    state = AsyncData(_gameState);
+    if (_currentIndex < _numberQuestions - 1) {
+      _currentIndex++;
+      state = AsyncData(_gameState);
+    } else {
+      state = AsyncData((
+        progress: (_currentIndex + 1) / _numberQuestions,
+        withoutArticle: _currentNoun.withoutArticle,
+        ambiguousLabel: '(Essen)',
+        tipId: state.value?.tipId,
+        answeredCorrectly: null,
+        answeredIncorrectly: (
+          articles: _currentNoun.articleIndeces.map(
+            (index) => Article.values[index],
+          ),
+        ),
+        result: (
+          correct: _correct,
+          total: _numberQuestions,
+          incorrectlyAnswered: _incorrectlyAnswered.map((noun) => (
+                withArticle: noun.withArticle,
+                // TODO get from db
+                tipId: 100,
+              )),
+        ),
+      ));
+    }
   }
 
   GameState get _gameState => (
@@ -83,6 +109,7 @@ class GameStateController extends _$GameStateController {
         tipId: Random().nextDouble() > 0.6 ? 100 : null,
         answeredCorrectly: null,
         answeredIncorrectly: null,
+        result: null,
       );
 }
 
@@ -94,6 +121,7 @@ typedef GameState = ({
   int? tipId,
   AnsweredCorrectly? answeredCorrectly,
   AnsweredIncorrectly? answeredIncorrectly,
+  GameResult? result,
 });
 
 typedef AnsweredCorrectly = ({
