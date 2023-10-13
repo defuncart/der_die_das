@@ -1,7 +1,7 @@
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
 import 'package:der_die_das/core/theme/theme.dart';
-import 'package:der_die_das/core/ui/common/basic_button.dart';
 import 'package:der_die_das/core/ui/common/rounded_square.dart';
+import 'package:der_die_das/features/home/settings_screen/ui/settings_button.dart';
 import 'package:flutter/material.dart';
 
 class NumberQuestionsButton extends StatelessWidget {
@@ -9,25 +9,21 @@ class NumberQuestionsButton extends StatelessWidget {
     super.key,
     required this.numberQuestions,
     required this.isSelected,
-    required this.size,
     required this.onTap,
   });
 
   final NumberQuestions numberQuestions;
   final bool isSelected;
-  final double size;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: isSelected ? 1 : 0.6,
-      child: BasicButton(
-        onPressed: onTap,
-        child: _NumberQuestionsIcon(
-          numberQuestions: numberQuestions.value.toString(),
-          size: size,
-        ),
+    return SettingsButton(
+      isSelected: isSelected,
+      onTap: onTap,
+      childBuilder: (size) => _NumberQuestionsIcon(
+        numberQuestions: numberQuestions.value.toString(),
+        size: size,
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
-import 'package:der_die_das/core/ui/common/basic_button.dart';
 import 'package:der_die_das/core/ui/common/level_icon.dart';
+import 'package:der_die_das/features/home/settings_screen/ui/settings_button.dart';
 import 'package:flutter/material.dart';
 
 class LevelButton extends StatelessWidget {
@@ -8,25 +8,21 @@ class LevelButton extends StatelessWidget {
     super.key,
     required this.level,
     required this.isSelected,
-    required this.size,
     required this.onTap,
   });
 
   final Level level;
   final bool isSelected;
-  final double size;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: isSelected ? 1 : 0.6,
-      child: BasicButton(
-        onPressed: onTap,
-        child: LevelIcon(
-          level: level,
-          size: size,
-        ),
+    return SettingsButton(
+      isSelected: isSelected,
+      onTap: onTap,
+      childBuilder: (size) => LevelIcon(
+        level: level,
+        size: size,
       ),
     );
   }

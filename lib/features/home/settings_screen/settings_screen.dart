@@ -19,8 +19,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const double _size = kMinInteractiveDimension;
-
 class SettingsScreen extends StatelessWidget {
   static const path = '/settings';
 
@@ -72,7 +70,6 @@ class _LanguageRow extends ConsumerWidget {
         (language) => LanguageButton(
           language: language,
           isSelected: language == state,
-          size: _size,
           onTap: () => ref.read(languageControllerProvider.notifier).set(language),
         ),
       ),
@@ -93,7 +90,6 @@ class _LevelRow extends ConsumerWidget {
         (level) => LevelButton(
           level: level,
           isSelected: level == state,
-          size: _size,
           onTap: () => ref.read(levelControllerProvider.notifier).set(level),
         ),
       ),
@@ -114,7 +110,6 @@ class _NumberQuestionsRow extends ConsumerWidget {
         (numberQuestions) => NumberQuestionsButton(
           numberQuestions: numberQuestions,
           isSelected: numberQuestions == state,
-          size: _size,
           onTap: () => ref.read(numberQuestionsControllerProvider.notifier).set(numberQuestions),
         ),
       ),
@@ -135,7 +130,6 @@ class _ShowTipsRow extends ConsumerWidget {
         (value) => TipsButton(
           value: value,
           isSelected: state == value,
-          size: kMinInteractiveDimension,
           onTap: () => ref.read(showTipsControllerProvider.notifier).set(value),
         ),
       ),
