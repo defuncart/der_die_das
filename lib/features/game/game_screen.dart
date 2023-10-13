@@ -315,6 +315,7 @@ class __HintButtonState extends State<_HintButton> {
         return SizedBox.fromSize(
           size: MediaQuery.sizeOf(context),
           child: Stack(
+            alignment: Alignment.center,
             children: [
               SizedBox.fromSize(
                 size: MediaQuery.sizeOf(context),
@@ -325,12 +326,9 @@ class __HintButtonState extends State<_HintButton> {
                   ),
                 ),
               ),
-              Positioned(
-                right: 32,
-                top: MediaQuery.paddingOf(context).top + kToolbarHeight,
-                child: _TipCard(
-                  tipIndex: widget.tipId,
-                ),
+              _TipCard(
+                tipIndex: widget.tipId,
+                onClose: _tooltipController.toggle,
               ),
             ],
           ),
@@ -348,9 +346,11 @@ class _TipCard extends StatelessWidget {
   const _TipCard({
     Key? key,
     required this.tipIndex,
+    this.onClose,
   }) : super(key: key);
 
   final int tipIndex;
+  final VoidCallback? onClose;
 
   @override
   Widget build(BuildContext context) {
@@ -359,28 +359,52 @@ class _TipCard extends StatelessWidget {
       index: tipIndex,
     ).description;
 
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: context.customRadii.xs,
-        side: BorderSide(
-          color: context.colorScheme.primary,
-          width: 4,
-        ),
-      ),
-      color: Theme.of(context).scaffoldBackgroundColor,
-      child: Container(
-        constraints: BoxConstraints(
-          maxWidth: MediaQuery.sizeOf(context).width - 64,
-        ),
-        padding: context.customPaddings.m,
-        child: HighlightedText(
-          text,
-          highlightColor: context.colorScheme.primary,
-          textStyle: context.textTheme.headlineMedium?.copyWith(
-            color: context.textTheme.bodyMedium?.color,
+    return Stack(
+      alignment: Alignment.topRight,
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.sizeOf(context).width - 64,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: context.customRadii.xs,
+            border: Border.all(
+              color: context.colorScheme.primary,
+              width: 4,
+            ),
+            color: Theme.of(context).scaffoldBackgroundColor,
+          ),
+          padding: context.customPaddings.m,
+          child: HighlightedText(
+            text,
+            highlightColor: context.colorScheme.primary,
+            textStyle: context.textTheme.headlineMedium?.copyWith(
+              color: context.textTheme.bodyMedium?.color,
+            ),
           ),
         ),
-      ),
+        if (onClose != null)
+          Positioned(
+            top: -kMinInteractiveDimension * 0.375,
+            right: -kMinInteractiveDimension * 0.375,
+            child: BasicButton(
+              onPressed: onClose!,
+              child: Container(
+                width: kMinInteractiveDimension,
+                height: kMinInteractiveDimension,
+                color: context.colorScheme.primary,
+                child: Center(
+                  child: Icon(
+                    Icons.close,
+                    size: kMinInteractiveDimension * 0.75,
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                  ),
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
