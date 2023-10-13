@@ -1,8 +1,8 @@
 import 'package:der_die_das/core/db/tips/model/tip.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/theme/theme.dart';
-import 'package:der_die_das/core/ui/common/basic_button.dart';
-import 'package:der_die_das/core/ui/common/highlighted_text.dart';
+import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
+import 'package:der_die_das/core/ui/common/text/highlighted_text.dart';
 import 'package:flutter/material.dart';
 
 class TipCard extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/theme.dart';
-import 'package:der_die_das/core/ui/common/basic_button.dart';
-import 'package:der_die_das/core/ui/common/basic_material_close_button.dart';
-import 'package:der_die_das/core/ui/common/level_icon.dart';
+import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
+import 'package:der_die_das/core/ui/common/buttons/basic_material_close_button.dart';
+import 'package:der_die_das/core/ui/common/icons/level_icon.dart';
 import 'package:der_die_das/core/ui/common/rounded_square.dart';
 import 'package:der_die_das/features/home/nouns_screen/state/nouns_state.dart';
 import 'package:flutter/material.dart';

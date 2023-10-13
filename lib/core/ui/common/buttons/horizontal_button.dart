@@ -1,5 +1,5 @@
 import 'package:der_die_das/core/theme/theme.dart';
-import 'package:der_die_das/core/ui/common/basic_button.dart';
+import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
 import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
 import 'package:flutter/material.dart';
 

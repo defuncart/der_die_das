@@ -1,4 +1,4 @@
-import 'package:der_die_das/core/ui/common/basic_button.dart';
+import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
 import 'package:flutter/material.dart';
 
 class SettingsButton extends StatelessWidget {

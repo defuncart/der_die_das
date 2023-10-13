@@ -71,9 +71,10 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
         timesCorrect
       ];
   @override
-  String get aliasedName => _alias ?? 'nouns';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'nouns';
+  String get actualTableName => $name;
+  static const String $name = 'nouns';
   @override
   VerificationContext validateIntegrity(Insertable<Noun> instance, {bool isInserting = false}) {
     final context = VerificationContext();

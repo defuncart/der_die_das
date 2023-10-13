@@ -1,6 +1,6 @@
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/theme/theme.dart';
-import 'package:der_die_das/core/ui/common/article_content.dart';
+import 'package:der_die_das/core/ui/common/icons/article_content.dart';
 import 'package:flutter/material.dart';
 
 enum AppIconBorder {

@@ -1,4 +1,4 @@
-import 'package:der_die_das/core/ui/common/basic_material_icon_button.dart';
+import 'package:der_die_das/core/ui/common/buttons/basic_material_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

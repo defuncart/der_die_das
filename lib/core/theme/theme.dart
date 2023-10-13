@@ -53,8 +53,9 @@ final appTheme = ThemeData(
     textColor: _AppColors.black,
   ),
   appBarTheme: const AppBarTheme(
+    surfaceTintColor: Colors.transparent,
     backgroundColor: Colors.transparent,
-    foregroundColor: _AppColors.black,
+    foregroundColor: _AppColors.gray,
     elevation: 0,
   ),
   platform: TargetPlatform.android,

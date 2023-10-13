@@ -4,11 +4,12 @@ import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/theme.dart';
-import 'package:der_die_das/core/ui/common/article_button.dart';
-import 'package:der_die_das/core/ui/common/basic_material_close_button.dart';
-import 'package:der_die_das/core/ui/common/basic_material_icon_button.dart';
-import 'package:der_die_das/core/ui/common/horizontal_button.dart';
-import 'package:der_die_das/core/ui/common/tip_card.dart';
+import 'package:der_die_das/core/ui/common/buttons/article_button.dart';
+import 'package:der_die_das/core/ui/common/buttons/basic_material_close_button.dart';
+import 'package:der_die_das/core/ui/common/buttons/basic_material_icon_button.dart';
+import 'package:der_die_das/core/ui/common/buttons/horizontal_button.dart';
+import 'package:der_die_das/core/ui/common/icons/article_icons.dart';
+import 'package:der_die_das/core/ui/common/text/tip_card.dart';
 import 'package:der_die_das/features/game/state/game_state.dart';
 import 'package:der_die_das/features/results/results_screen.dart';
 import 'package:flutter/material.dart';
@@ -153,13 +154,12 @@ class _GameScreen extends ConsumerWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 ...state.answeredIncorrectly!.articles.map(
-                                  (article) => ArticleButton(
+                                  (article) => ArticleIcon(
                                     article: article,
                                     width: horizontalWidth,
                                     horizontalTextWidthPercent: 0.6,
                                     height: horizontalHeight,
                                     fontSize: fontSize,
-                                    onPressed: () {},
                                   ),
                                 ),
                                 if (state.tipId != null)

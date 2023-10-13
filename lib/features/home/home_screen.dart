@@ -1,7 +1,7 @@
 import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
 import 'package:der_die_das/core/theme/theme.dart';
-import 'package:der_die_das/core/ui/common/article_button.dart';
-import 'package:der_die_das/core/ui/common/basic_button.dart';
+import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
+import 'package:der_die_das/core/ui/common/icons/article_icons.dart';
 import 'package:der_die_das/core/ui/common/rounded_square.dart';
 import 'package:der_die_das/features/game/game_screen.dart';
 import 'package:der_die_das/features/home/nouns_screen/nouns_screen.dart';
@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: Article.values
                       .map(
-                        (article) => ArticleButton(
+                        (article) => ArticleIcon(
                           article: article,
                           width: articleWidth,
                           horizontalTextWidthPercent: 0.8,

@@ -1,14 +1,13 @@
 import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/theme/theme.dart';
-import 'package:der_die_das/core/ui/common/article_content.dart';
-import 'package:der_die_das/core/ui/common/basic_button.dart';
+import 'package:der_die_das/core/ui/common/icons/article_content.dart';
 import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class ArticleButton extends StatelessWidget with ArticleContent {
-  const ArticleButton({
+class ArticleIcon extends StatelessWidget with ArticleContent {
+  const ArticleIcon({
     super.key,
     required this.article,
     required this.width,
@@ -16,7 +15,6 @@ class ArticleButton extends StatelessWidget with ArticleContent {
     required this.height,
     required this.fontSize,
     this.borderRadius,
-    this.onPressed,
   });
 
   final Article article;
@@ -25,7 +23,6 @@ class ArticleButton extends StatelessWidget with ArticleContent {
   final double height;
   final double fontSize;
   final BorderRadius? borderRadius;
-  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +65,7 @@ class ArticleButton extends StatelessWidget with ArticleContent {
       textHeight = (height / fontSize) * 1.05;
     }
 
-    final widget = RoundedRectangle(
+    return RoundedRectangle(
       width: width,
       height: height,
       color: color,
@@ -86,12 +83,5 @@ class ArticleButton extends StatelessWidget with ArticleContent {
         ),
       ),
     );
-
-    return onPressed != null
-        ? BasicButton(
-            onPressed: onPressed!,
-            child: widget,
-          )
-        : widget;
   }
 }

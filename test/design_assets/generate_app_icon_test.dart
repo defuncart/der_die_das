@@ -1,5 +1,5 @@
 import 'package:der_die_das/core/theme/theme.dart';
-import 'package:der_die_das/core/ui/common/app_icon.dart';
+import 'package:der_die_das/core/ui/common/icons/app_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
