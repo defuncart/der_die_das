@@ -1,117 +1,114 @@
+import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
+import 'package:der_die_das/core/l10n/l10n_extension.dart';
+import 'package:der_die_das/core/models/game_result.dart';
 import 'package:der_die_das/core/theme/theme.dart';
+import 'package:der_die_das/core/ui/common/basic_material_close_button.dart';
+import 'package:der_die_das/core/ui/common/horizontal_button.dart';
+import 'package:der_die_das/core/ui/common/tip_card.dart';
+import 'package:der_die_das/features/game/game_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 class ResultsScreen extends StatelessWidget {
   static const path = '/results';
 
-  const ResultsScreen({super.key});
+  const ResultsScreen({
+    super.key,
+    required this.result,
+  });
+
+  final GameResult result;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: ListView(
-        children: [
-          const Gap(16),
-          Center(
-            child: Text(
-              'You scored 15/20!',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-          ),
-          const Gap(16),
-          Center(
-            child: Text(
-              'New highscore! 🏆',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ),
-          const Gap(32),
-          const Center(
-            child: Text('Mistakes:'),
-          ),
-          const Gap(8),
-          const Center(
-            child: Text(
-              'die Freiheit',
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
-              side: BorderSide(
-                color: context.colorScheme.primary,
-                width: 2,
-              ),
-            ),
-            margin: const EdgeInsets.all(8),
-            // color: AppColors.purple,
-            color: Theme.of(context).scaffoldBackgroundColor,
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.lightbulb_outline,
-                    // color: Theme.of(context).scaffoldBackgroundColor,
-                    color: context.colorScheme.primary,
-                  ),
-                  const Gap(16),
-                  Expanded(
-                    child: Text.rich(
-                      TextSpan(
-                        children: [
-                          const TextSpan(
-                            text: 'Nomen mit der Endung ',
-                            style: TextStyle(
-                              // color: Theme.of(context).scaffoldBackgroundColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextSpan(
-                            text: '–heit',
-                            style: TextStyle(
-                              // color: Theme.of(context).scaffoldBackgroundColor,
-                              color: context.colorScheme.primary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const TextSpan(
-                            text: ' haben den Artikel ',
-                            style: TextStyle(
-                              // color: Theme.of(context).scaffoldBackgroundColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'die',
-                            style: TextStyle(
-                              // color: Theme.of(context).scaffoldBackgroundColor,
-                              color: context.colorScheme.primary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          HorizontalButton(
-            onPressed: () {
-              context.pushReplacement(GameScreen.path);
-            },
-            text: context.l10n.resultsContinueLabel,
-          ),
-        ],
+      appBar: AppBar(
+        leading: const BasicMaterialCloseButton(),
       ),
+      body: Padding(
+        padding: context.customPaddings.s,
+        child: Column(
+          children: [
+            context.customSpacings.m,
+            Row(
+              children: [
+                Text(
+                  '🏆',
+                  style: context.textTheme.displayLarge,
+                ),
+                context.customSpacings.l,
+                Flexible(
+                  child: Text(
+                    context.l10n.resultsScoreLabel(result.correct, result.total),
+                    style: context.textTheme.headlineMedium,
+                  ),
+                ),
+              ],
+            ),
+            context.customSpacings.l,
+            if (result.incorrectlyAnswered.isNotEmpty) ...[
+              Center(
+                child: Text(
+                  context.l10n.resultsMistakesLabel,
+                  style: context.textTheme.bodyLarge?.copyWith(
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
+              context.customSpacings.s,
+              Expanded(
+                child: ListView(
+                  shrinkWrap: true,
+                  padding: context.customPaddings.sHorizontal,
+                  children: [
+                    for (final noun in result.incorrectlyAnswered)
+                      _Mistake(
+                        label: noun.withArticle,
+                        tipId: noun.tipId,
+                      ),
+                    context.customSpacings.s,
+                  ].intersperse(context.customSpacings.m),
+                ),
+              ),
+            ],
+            HorizontalButton(
+              onPressed: () {
+                context.pushReplacement(GameScreen.path);
+              },
+              text: context.l10n.resultsContinueLabel,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _Mistake extends StatelessWidget {
+  const _Mistake({
+    Key? key,
+    required this.label,
+    required this.tipId,
+  }) : super(key: key);
+
+  final String label;
+  final int? tipId;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          label,
+          style: context.textTheme.headlineLarge,
+        ),
+        if (tipId != null)
+          TipCard(
+            tipIndex: tipId!,
+            showIcon: true,
+          ),
+      ].intersperse(context.customSpacings.s),
     );
   }
 }

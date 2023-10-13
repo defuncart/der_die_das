@@ -16,6 +16,9 @@ settingsDataPrivacyAlertContent1;By using this application, you agree to the ter
 settingsDataPrivacyAlertContent2;No data is collected on how you use the app, nor is any data sent onto third parties.;No data is collected on how you use the app, nor is any data sent onto third parties.;No data is collected on how you use the app, nor is any data sent onto third parties.
 settingsDataPrivacyAlertContent3;Made with ❤️ in Berlin. <a>Source code</a>.;Made with ❤️ in Berlin. <a>Source code</a>.;Made with ❤️ in Berlin. <a>Source code</a>.
 gameContinueLabel;Continue;Weiter;
+resultsScoreLabel;You scored {count}/{total}!;Du hast {count}/{total} richtig geantwortet!;You scored {count}/{total}!
+resultsMistakesLabel;Mistakes;Fehler;Mistakes
+resultsContinueLabel;Play again;Play again;Play again
 tipException;<color>{color}</color> is an exception.;<color>{color}</color> ist eine Ausnahme.;<color>{color}</color> jest wyjątkiem.
 tip100;Nouns representing males, masculine animals and professions take the article <color>der</color>.;Männliche Personen, Tiere und Berufe haben den Artikel <color>der</color>.;Rzeczowniki reprezentujące mężczyzn, męskich przedstawicieli zawodów oraz zwierzęta płci męskiej mają rodzajnik <color>der</color>.
 tip101;Days of the week, months and seasons take the article <color>der</color>.;Wochentage, Monate und Jahreszeiten haben den Artikel <color>der</color>.;Dni tygodnia, miesiące i pory roku mają rodzajnik <color>der</color>.
