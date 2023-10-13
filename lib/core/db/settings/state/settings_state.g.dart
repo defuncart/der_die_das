@@ -45,6 +45,19 @@ final numberQuestionsControllerProvider = NotifierProvider<NumberQuestionsContro
 );
 
 typedef _$NumberQuestionsController = Notifier<NumberQuestions>;
+String _$showTipsControllerHash() => r'5c4280382ba7ef2cb8d29c139e178f66b1b0e7f5';
+
+/// See also [ShowTipsController].
+@ProviderFor(ShowTipsController)
+final showTipsControllerProvider = NotifierProvider<ShowTipsController, bool>.internal(
+  ShowTipsController.new,
+  name: r'showTipsControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$showTipsControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$ShowTipsController = Notifier<bool>;
 String _$voiceLevelControllerHash() => r'9f2628f98d150aac428251faf9ac322cc20ea8d4';
 
 /// See also [VoiceLevelController].

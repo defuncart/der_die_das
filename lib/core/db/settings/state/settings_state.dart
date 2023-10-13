@@ -36,6 +36,16 @@ class NumberQuestionsController extends _$NumberQuestionsController {
 }
 
 @Riverpod(keepAlive: true)
+class ShowTipsController extends _$ShowTipsController {
+  @override
+  bool build() => true;
+
+  void set(bool value) {
+    state = value;
+  }
+}
+
+@Riverpod(keepAlive: true)
 class VoiceLevelController extends _$VoiceLevelController {
   @override
   double build() => 1;

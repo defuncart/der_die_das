@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
+import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/db/tips/model/tip.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
@@ -50,6 +51,8 @@ class _GameScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final showTipsButton = ref.watch(showTipsControllerProvider);
+
     return Scaffold(
       appBar: AppBar(
         leading: const BasicMaterialCloseButton(),
@@ -80,7 +83,7 @@ class _GameScreen extends ConsumerWidget {
           },
         ),
         actions: [
-          if (state.tipId != null)
+          if (showTipsButton && state.tipId != null)
             _HintButton(
               tipId: state.tipId!,
             )

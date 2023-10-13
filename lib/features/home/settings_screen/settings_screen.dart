@@ -11,6 +11,7 @@ import 'package:der_die_das/core/ui/common/basic_material_close_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/language_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/level_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/number_questions_button.dart';
+import 'package:der_die_das/features/home/settings_screen/ui/tips_button.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +45,7 @@ class SettingsScreen extends StatelessWidget {
               _LanguageRow(),
               _LevelRow(),
               _NumberQuestionsRow(),
+              _ShowTipsRow(),
               _VoiceRow(),
               _SoundRow(),
               Center(
@@ -120,6 +122,27 @@ class _NumberQuestionsRow extends ConsumerWidget {
   }
 }
 
+class _ShowTipsRow extends ConsumerWidget {
+  const _ShowTipsRow({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(showTipsControllerProvider);
+
+    return _SettingsRow(
+      label: context.l10n.settingsShowTipsLabel,
+      items: [false, true].map(
+        (value) => TipsButton(
+          value: value,
+          isSelected: state == value,
+          size: kMinInteractiveDimension,
+          onTap: () => ref.read(showTipsControllerProvider.notifier).set(value),
+        ),
+      ),
+    );
+  }
+}
+
 class _VoiceRow extends ConsumerWidget {
   const _VoiceRow({Key? key}) : super(key: key);
 
@@ -170,13 +193,19 @@ class _Slider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Slider(
-      value: value,
-      min: 0,
-      max: 1,
-      divisions: 5,
-      label: (value * 100).ceil().toString(),
-      onChanged: onChanged,
+    return SliderTheme(
+      data: Theme.of(context).sliderTheme.copyWith(
+            inactiveTickMarkColor: Theme.of(context).scaffoldBackgroundColor,
+          ),
+      child: Slider(
+        value: value,
+        min: 0,
+        max: 1,
+        divisions: 5,
+        label: (value * 100).ceil().toString(),
+        onChanged: onChanged,
+        inactiveColor: context.colorScheme.primary.withOpacity(0.6),
+      ),
     );
   }
 }
