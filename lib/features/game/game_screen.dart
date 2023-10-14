@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
+import 'package:der_die_das/core/db/settings/enums/answers_layout.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
@@ -103,6 +104,7 @@ class _GameScreen extends ConsumerWidget {
           bottom: MediaQuery.paddingOf(context).bottom == 0 ? 8 : 0,
         ),
         child: LayoutBuilder(builder: (context, constraints) {
+          final buttonsHeight = constraints.maxHeight * (0.55 + 0.175) + context.customSpacings.s.mainAxisExtent;
           final verticalWidth = constraints.maxWidth * 0.325;
           final verticalHeight = constraints.maxHeight * 0.55;
           final horizontalWidth = constraints.maxWidth;
@@ -182,21 +184,29 @@ class _GameScreen extends ConsumerWidget {
                     ),
                   )
                 else if (state.answeredCorrectly != null)
-                  _Articles.subset(
-                    articles: state.answeredCorrectly!.articles.toList(),
-                    verticalWidth: verticalWidth,
-                    verticalHeight: verticalHeight,
-                    horizontalWidth: horizontalWidth,
-                    horizontalHeight: horizontalHeight,
-                    fontSize: fontSize,
+                  SizedBox(
+                    width: constraints.maxWidth,
+                    height: buttonsHeight,
+                    child: _Articles.subset(
+                      articles: state.answeredCorrectly!.articles.toList(),
+                      verticalWidth: verticalWidth,
+                      verticalHeight: verticalHeight,
+                      horizontalWidth: horizontalWidth,
+                      horizontalHeight: horizontalHeight,
+                      fontSize: fontSize,
+                    ),
                   )
                 else
-                  _Articles.interactive(
-                    verticalWidth: verticalWidth,
-                    verticalHeight: verticalHeight,
-                    horizontalWidth: horizontalWidth,
-                    horizontalHeight: horizontalHeight,
-                    fontSize: fontSize,
+                  SizedBox(
+                    width: constraints.maxWidth,
+                    height: buttonsHeight,
+                    child: _Articles.interactive(
+                      verticalWidth: verticalWidth,
+                      verticalHeight: verticalHeight,
+                      horizontalWidth: horizontalWidth,
+                      horizontalHeight: horizontalHeight,
+                      fontSize: fontSize,
+                    ),
                   ),
               ],
             ),
@@ -241,6 +251,51 @@ class _Articles extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(answersLayoutControllerProvider);
+
+    return switch (state) {
+      AnswersLayout.standard => _ArticlesLayoutStandard(
+          articles: _articles,
+          interactive: _interactive,
+          verticalWidth: verticalWidth,
+          verticalHeight: verticalHeight,
+          horizontalWidth: horizontalWidth,
+          horizontalHeight: horizontalHeight,
+          fontSize: fontSize,
+        ),
+      AnswersLayout.horizontal => _ArticlesLayoutHorizontal(
+          articles: _articles,
+          interactive: _interactive,
+          width: horizontalWidth,
+          height: horizontalHeight,
+          fontSize: fontSize,
+        ),
+    };
+  }
+}
+
+class _ArticlesLayoutStandard extends ConsumerWidget {
+  const _ArticlesLayoutStandard({
+    Key? key,
+    required this.articles,
+    required this.interactive,
+    required this.verticalWidth,
+    required this.verticalHeight,
+    required this.horizontalWidth,
+    required this.horizontalHeight,
+    required this.fontSize,
+  }) : super(key: key);
+
+  final List<Article>? articles;
+  final bool interactive;
+  final double verticalWidth;
+  final double verticalHeight;
+  final double horizontalWidth;
+  final double horizontalHeight;
+  final double fontSize;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -248,7 +303,7 @@ class _Articles extends ConsumerWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            if (_interactive || _articles?.contains(Article.der) == true)
+            if (interactive || articles?.contains(Article.der) == true)
               ArticleButton(
                 article: Article.der,
                 width: verticalWidth,
@@ -256,14 +311,14 @@ class _Articles extends ConsumerWidget {
                 height: verticalHeight,
                 fontSize: fontSize,
                 onPressed:
-                    _interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.der) : null,
+                    interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.der) : null,
               )
             else
               SizedBox(
                 width: verticalWidth,
                 height: verticalHeight,
               ),
-            if (_interactive || _articles?.contains(Article.die) == true)
+            if (interactive || articles?.contains(Article.die) == true)
               ArticleButton(
                 article: Article.die,
                 horizontalTextWidthPercent: 0.6,
@@ -271,7 +326,7 @@ class _Articles extends ConsumerWidget {
                 height: verticalHeight,
                 fontSize: fontSize,
                 onPressed:
-                    _interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.die) : null,
+                    interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.die) : null,
               )
             else
               SizedBox(
@@ -280,14 +335,14 @@ class _Articles extends ConsumerWidget {
               ),
           ],
         ),
-        if (_interactive || _articles?.contains(Article.das) == true)
+        if (interactive || articles?.contains(Article.das) == true)
           ArticleButton(
             article: Article.das,
             width: horizontalWidth,
             horizontalTextWidthPercent: 0.6,
             height: horizontalHeight,
             fontSize: fontSize,
-            onPressed: _interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.das) : null,
+            onPressed: interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.das) : null,
           )
         else
           SizedBox(
@@ -295,6 +350,49 @@ class _Articles extends ConsumerWidget {
             height: horizontalHeight,
           ),
       ].intersperse(context.customSpacings.s),
+    );
+  }
+}
+
+class _ArticlesLayoutHorizontal extends ConsumerWidget {
+  const _ArticlesLayoutHorizontal({
+    Key? key,
+    required this.articles,
+    required this.interactive,
+    required this.width,
+    required this.height,
+    required this.fontSize,
+  }) : super(key: key);
+
+  final List<Article>? articles;
+  final bool interactive;
+  final double width;
+  final double height;
+  final double fontSize;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: Article.values
+          .map(
+            (article) => interactive || articles?.contains(article) == true
+                ? ArticleButton(
+                    article: article,
+                    width: width,
+                    horizontalTextWidthPercent: 0.6,
+                    height: height,
+                    fontSize: fontSize,
+                    onPressed:
+                        interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(article) : null,
+                  )
+                : SizedBox(
+                    width: width,
+                    height: height,
+                  ),
+          )
+          .toList(),
     );
   }
 }
