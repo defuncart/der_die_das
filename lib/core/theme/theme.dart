@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'package:gap/gap.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
@@ -57,6 +58,14 @@ final appTheme = ThemeData(
     backgroundColor: Colors.transparent,
     foregroundColor: _AppColors.gray,
     elevation: 0,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarBrightness: Brightness.light,
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: _AppColors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
+      systemNavigationBarDividerColor: _AppColors.white,
+    ),
   ),
   platform: TargetPlatform.android,
   extensions: [

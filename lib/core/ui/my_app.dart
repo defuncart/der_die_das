@@ -26,12 +26,7 @@ class MyApp extends ConsumerWidget {
     final locale = ref.watch(languageControllerProvider).toLocale();
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(
-        statusBarBrightness: Brightness.light,
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light,
-        systemNavigationBarColor: appTheme.scaffoldBackgroundColor,
-      ),
+      value: appTheme.appBarTheme.systemOverlayStyle!,
       child: MaterialApp.router(
         routerConfig: _router,
         debugShowCheckedModeBanner: false,
