@@ -46,6 +46,7 @@ dev_dependencies:
   riverpod_lint:
   golden_toolkit:
   flutter_launcher_icons:
+  icon_font_generator:
 
 flutter:
   uses-material-design: true
@@ -60,6 +61,9 @@ flutter:
     - family: Lato
       fonts:
         - asset: assets/fonts/Lato-Bold.ttf
+    - family: CustomIcons
+      fonts:
+        - asset: assets/fonts/custom_icons.ttf
 
 arb_generator:
   input_filepath: "assets_dev/loca/loca.csv"
