@@ -51,7 +51,6 @@ class _TipsScreenState extends State<TipsScreen> {
           backgroundColor: context.colorScheme.primary,
           foregroundColor: context.colorScheme.onPrimary,
           title: Text(context.l10n.tipsTitle),
-          centerTitle: true,
           systemOverlayStyle: customOverlayStyle,
         ),
         body: ListView.separated(

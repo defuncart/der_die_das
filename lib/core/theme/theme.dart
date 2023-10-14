@@ -58,6 +58,7 @@ final appTheme = ThemeData(
     backgroundColor: Colors.transparent,
     foregroundColor: _AppColors.gray,
     elevation: 0,
+    centerTitle: true,
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarBrightness: Brightness.light,
       statusBarColor: Colors.transparent,

@@ -34,7 +34,6 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(
         leading: const BasicMaterialCloseButton(),
         title: Text(context.l10n.settingsLabel),
-        centerTitle: true,
       ),
       body: Padding(
         padding: context.customPaddings.s,
