@@ -1,4 +1,5 @@
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
+import 'package:der_die_das/core/db/settings/enums/answers_layout.dart';
 import 'package:der_die_das/core/db/settings/enums/language.dart';
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -41,6 +42,16 @@ class ShowTipsController extends _$ShowTipsController {
   bool build() => true;
 
   void set(bool value) {
+    state = value;
+  }
+}
+
+@Riverpod(keepAlive: true)
+class AnswersLayoutController extends _$AnswersLayoutController {
+  @override
+  AnswersLayout build() => AnswersLayout.standard;
+
+  void set(AnswersLayout value) {
     state = value;
   }
 }

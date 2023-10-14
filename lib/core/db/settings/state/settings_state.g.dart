@@ -58,6 +58,19 @@ final showTipsControllerProvider = NotifierProvider<ShowTipsController, bool>.in
 );
 
 typedef _$ShowTipsController = Notifier<bool>;
+String _$answersLayoutControllerHash() => r'49c9bd0d214de71a30b9dde200b28a16f950ad07';
+
+/// See also [AnswersLayoutController].
+@ProviderFor(AnswersLayoutController)
+final answersLayoutControllerProvider = NotifierProvider<AnswersLayoutController, AnswersLayout>.internal(
+  AnswersLayoutController.new,
+  name: r'answersLayoutControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$answersLayoutControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$AnswersLayoutController = Notifier<AnswersLayout>;
 String _$voiceLevelControllerHash() => r'9f2628f98d150aac428251faf9ac322cc20ea8d4';
 
 /// See also [VoiceLevelController].

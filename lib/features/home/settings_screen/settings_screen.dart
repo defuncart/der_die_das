@@ -1,4 +1,5 @@
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
+import 'package:der_die_das/core/db/settings/enums/answers_layout.dart';
 import 'package:der_die_das/core/db/settings/enums/language.dart';
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
@@ -8,6 +9,7 @@ import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_material_close_button.dart';
 import 'package:der_die_das/core/ui/common/icons/app_icon.dart';
+import 'package:der_die_das/features/home/settings_screen/ui/answers_layout_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/language_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/level_button.dart';
 import 'package:der_die_das/features/home/settings_screen/ui/number_questions_button.dart';
@@ -44,6 +46,7 @@ class SettingsScreen extends StatelessWidget {
               _LevelRow(),
               _NumberQuestionsRow(),
               _ShowTipsRow(),
+              _AnswersLayoutRow(),
               _VoiceRow(),
               _SoundRow(),
               Center(
@@ -131,6 +134,26 @@ class _ShowTipsRow extends ConsumerWidget {
           value: value,
           isSelected: state == value,
           onTap: () => ref.read(showTipsControllerProvider.notifier).set(value),
+        ),
+      ),
+    );
+  }
+}
+
+class _AnswersLayoutRow extends ConsumerWidget {
+  const _AnswersLayoutRow({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(answersLayoutControllerProvider);
+
+    return _SettingsRow(
+      label: context.l10n.settingsAnswersLayoutLabel,
+      items: AnswersLayout.values.map(
+        (answersLayout) => AnswersLayoutButton(
+          answersLayout: answersLayout,
+          isSelected: answersLayout == state,
+          onTap: () => ref.read(answersLayoutControllerProvider.notifier).set(answersLayout),
         ),
       ),
     );
