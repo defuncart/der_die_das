@@ -5,7 +5,6 @@ import 'package:drift/drift.dart';
 class Nouns extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get key => text()();
-  TextColumn get withArticle => text()();
   TextColumn get withoutArticle => text()();
   TextColumn get withoutArticleNormalized => text()();
   TextColumn get articles => text().map(const ArticleListConverter())();

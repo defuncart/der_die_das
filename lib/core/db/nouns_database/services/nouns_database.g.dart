@@ -19,10 +19,6 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
   @override
   late final GeneratedColumn<String> key =
       GeneratedColumn<String>('key', aliasedName, false, type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _withArticleMeta = const VerificationMeta('withArticle');
-  @override
-  late final GeneratedColumn<String> withArticle = GeneratedColumn<String>('with_article', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _withoutArticleMeta = const VerificationMeta('withoutArticle');
   @override
   late final GeneratedColumn<String> withoutArticle = GeneratedColumn<String>('without_article', aliasedName, false,
@@ -57,18 +53,8 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
   late final GeneratedColumn<int> timesCorrect = GeneratedColumn<int>('times_correct', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: false, defaultValue: const Constant(0));
   @override
-  List<GeneratedColumn> get $columns => [
-        id,
-        key,
-        withArticle,
-        withoutArticle,
-        withoutArticleNormalized,
-        articles,
-        level,
-        isAmbiguous,
-        attempts,
-        timesCorrect
-      ];
+  List<GeneratedColumn> get $columns =>
+      [id, key, withoutArticle, withoutArticleNormalized, articles, level, isAmbiguous, attempts, timesCorrect];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -85,11 +71,6 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
       context.handle(_keyMeta, key.isAcceptableOrUnknown(data['key']!, _keyMeta));
     } else if (isInserting) {
       context.missing(_keyMeta);
-    }
-    if (data.containsKey('with_article')) {
-      context.handle(_withArticleMeta, withArticle.isAcceptableOrUnknown(data['with_article']!, _withArticleMeta));
-    } else if (isInserting) {
-      context.missing(_withArticleMeta);
     }
     if (data.containsKey('without_article')) {
       context.handle(
@@ -129,7 +110,6 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
     return Noun(
       id: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       key: attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}key'])!,
-      withArticle: attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}with_article'])!,
       withoutArticle:
           attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}without_article'])!,
       withoutArticleNormalized:
@@ -156,7 +136,6 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
 class Noun extends DataClass implements Insertable<Noun> {
   final int id;
   final String key;
-  final String withArticle;
   final String withoutArticle;
   final String withoutArticleNormalized;
   final EqualList<Article> articles;
@@ -167,7 +146,6 @@ class Noun extends DataClass implements Insertable<Noun> {
   const Noun(
       {required this.id,
       required this.key,
-      required this.withArticle,
       required this.withoutArticle,
       required this.withoutArticleNormalized,
       required this.articles,
@@ -180,7 +158,6 @@ class Noun extends DataClass implements Insertable<Noun> {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     map['key'] = Variable<String>(key);
-    map['with_article'] = Variable<String>(withArticle);
     map['without_article'] = Variable<String>(withoutArticle);
     map['without_article_normalized'] = Variable<String>(withoutArticleNormalized);
     {
@@ -201,7 +178,6 @@ class Noun extends DataClass implements Insertable<Noun> {
     return NounsCompanion(
       id: Value(id),
       key: Value(key),
-      withArticle: Value(withArticle),
       withoutArticle: Value(withoutArticle),
       withoutArticleNormalized: Value(withoutArticleNormalized),
       articles: Value(articles),
@@ -217,7 +193,6 @@ class Noun extends DataClass implements Insertable<Noun> {
     return Noun(
       id: serializer.fromJson<int>(json['id']),
       key: serializer.fromJson<String>(json['key']),
-      withArticle: serializer.fromJson<String>(json['withArticle']),
       withoutArticle: serializer.fromJson<String>(json['withoutArticle']),
       withoutArticleNormalized: serializer.fromJson<String>(json['withoutArticleNormalized']),
       articles: serializer.fromJson<EqualList<Article>>(json['articles']),
@@ -233,7 +208,6 @@ class Noun extends DataClass implements Insertable<Noun> {
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'key': serializer.toJson<String>(key),
-      'withArticle': serializer.toJson<String>(withArticle),
       'withoutArticle': serializer.toJson<String>(withoutArticle),
       'withoutArticleNormalized': serializer.toJson<String>(withoutArticleNormalized),
       'articles': serializer.toJson<EqualList<Article>>(articles),
@@ -247,7 +221,6 @@ class Noun extends DataClass implements Insertable<Noun> {
   Noun copyWith(
           {int? id,
           String? key,
-          String? withArticle,
           String? withoutArticle,
           String? withoutArticleNormalized,
           EqualList<Article>? articles,
@@ -258,7 +231,6 @@ class Noun extends DataClass implements Insertable<Noun> {
       Noun(
         id: id ?? this.id,
         key: key ?? this.key,
-        withArticle: withArticle ?? this.withArticle,
         withoutArticle: withoutArticle ?? this.withoutArticle,
         withoutArticleNormalized: withoutArticleNormalized ?? this.withoutArticleNormalized,
         articles: articles ?? this.articles,
@@ -272,7 +244,6 @@ class Noun extends DataClass implements Insertable<Noun> {
     return (StringBuffer('Noun(')
           ..write('id: $id, ')
           ..write('key: $key, ')
-          ..write('withArticle: $withArticle, ')
           ..write('withoutArticle: $withoutArticle, ')
           ..write('withoutArticleNormalized: $withoutArticleNormalized, ')
           ..write('articles: $articles, ')
@@ -285,15 +256,14 @@ class Noun extends DataClass implements Insertable<Noun> {
   }
 
   @override
-  int get hashCode => Object.hash(id, key, withArticle, withoutArticle, withoutArticleNormalized, articles, level,
-      isAmbiguous, attempts, timesCorrect);
+  int get hashCode => Object.hash(
+      id, key, withoutArticle, withoutArticleNormalized, articles, level, isAmbiguous, attempts, timesCorrect);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is Noun &&
           other.id == this.id &&
           other.key == this.key &&
-          other.withArticle == this.withArticle &&
           other.withoutArticle == this.withoutArticle &&
           other.withoutArticleNormalized == this.withoutArticleNormalized &&
           other.articles == this.articles &&
@@ -306,7 +276,6 @@ class Noun extends DataClass implements Insertable<Noun> {
 class NounsCompanion extends UpdateCompanion<Noun> {
   final Value<int> id;
   final Value<String> key;
-  final Value<String> withArticle;
   final Value<String> withoutArticle;
   final Value<String> withoutArticleNormalized;
   final Value<EqualList<Article>> articles;
@@ -317,7 +286,6 @@ class NounsCompanion extends UpdateCompanion<Noun> {
   const NounsCompanion({
     this.id = const Value.absent(),
     this.key = const Value.absent(),
-    this.withArticle = const Value.absent(),
     this.withoutArticle = const Value.absent(),
     this.withoutArticleNormalized = const Value.absent(),
     this.articles = const Value.absent(),
@@ -329,7 +297,6 @@ class NounsCompanion extends UpdateCompanion<Noun> {
   NounsCompanion.insert({
     this.id = const Value.absent(),
     required String key,
-    required String withArticle,
     required String withoutArticle,
     required String withoutArticleNormalized,
     required EqualList<Article> articles,
@@ -338,7 +305,6 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     this.attempts = const Value.absent(),
     this.timesCorrect = const Value.absent(),
   })  : key = Value(key),
-        withArticle = Value(withArticle),
         withoutArticle = Value(withoutArticle),
         withoutArticleNormalized = Value(withoutArticleNormalized),
         articles = Value(articles),
@@ -347,7 +313,6 @@ class NounsCompanion extends UpdateCompanion<Noun> {
   static Insertable<Noun> custom({
     Expression<int>? id,
     Expression<String>? key,
-    Expression<String>? withArticle,
     Expression<String>? withoutArticle,
     Expression<String>? withoutArticleNormalized,
     Expression<String>? articles,
@@ -359,7 +324,6 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (key != null) 'key': key,
-      if (withArticle != null) 'with_article': withArticle,
       if (withoutArticle != null) 'without_article': withoutArticle,
       if (withoutArticleNormalized != null) 'without_article_normalized': withoutArticleNormalized,
       if (articles != null) 'articles': articles,
@@ -373,7 +337,6 @@ class NounsCompanion extends UpdateCompanion<Noun> {
   NounsCompanion copyWith(
       {Value<int>? id,
       Value<String>? key,
-      Value<String>? withArticle,
       Value<String>? withoutArticle,
       Value<String>? withoutArticleNormalized,
       Value<EqualList<Article>>? articles,
@@ -384,7 +347,6 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     return NounsCompanion(
       id: id ?? this.id,
       key: key ?? this.key,
-      withArticle: withArticle ?? this.withArticle,
       withoutArticle: withoutArticle ?? this.withoutArticle,
       withoutArticleNormalized: withoutArticleNormalized ?? this.withoutArticleNormalized,
       articles: articles ?? this.articles,
@@ -403,9 +365,6 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     }
     if (key.present) {
       map['key'] = Variable<String>(key.value);
-    }
-    if (withArticle.present) {
-      map['with_article'] = Variable<String>(withArticle.value);
     }
     if (withoutArticle.present) {
       map['without_article'] = Variable<String>(withoutArticle.value);
@@ -438,7 +397,6 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     return (StringBuffer('NounsCompanion(')
           ..write('id: $id, ')
           ..write('key: $key, ')
-          ..write('withArticle: $withArticle, ')
           ..write('withoutArticle: $withoutArticle, ')
           ..write('withoutArticleNormalized: $withoutArticleNormalized, ')
           ..write('articles: $articles, ')

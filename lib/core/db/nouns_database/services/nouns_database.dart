@@ -67,3 +67,7 @@ class NounDatabase extends _$NounDatabase implements INounDatabase {
 
   Future<Noun> _getNoun(String key) => (select(nouns)..where((noun) => noun.key.equals(key))).getSingle();
 }
+
+extension NounExtensions on Noun {
+  String get withArticle => '${articles.map((article) => article.name).join('/')} $withoutArticle';
+}

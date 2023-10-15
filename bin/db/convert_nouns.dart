@@ -32,7 +32,6 @@ Future<List<Noun>> _convertLevel(Level level, startId) async {
     final noun = Noun(
       id: id,
       key: components[_NounIndex.key],
-      withArticle: components[_NounIndex.withArticle],
       withoutArticle: components[_NounIndex.withoutArticle],
       withoutArticleNormalized: components[_NounIndex.withoutArticle].normalized,
       level: level,
@@ -53,7 +52,6 @@ Future<List<Noun>> _convertLevel(Level level, startId) async {
 
 class _NounIndex {
   static const key = 1;
-  static const withArticle = 2;
   static const withoutArticle = 5;
   static const articleIndices = 6;
   static const isAmbiguous = 8;
