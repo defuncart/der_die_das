@@ -5,6 +5,7 @@ import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart'
 import 'package:der_die_das/core/db/nouns_database/state/state.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/models/game_result.dart';
+import 'package:der_die_das/core/sound/sound_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'game_state.g.dart';
@@ -45,6 +46,7 @@ class GameStateController extends _$GameStateController {
         answeredIncorrectly: null,
         result: null,
       ));
+      ref.read(ttsProvider).speak(_currentNoun.speak);
       _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
         _timer?.cancel();
         onContinue();
@@ -61,6 +63,7 @@ class GameStateController extends _$GameStateController {
         answeredIncorrectly: (articles: _currentNoun.articles,),
         result: null,
       ));
+      ref.read(ttsProvider).speak(_currentNoun.speak);
     }
   }
 

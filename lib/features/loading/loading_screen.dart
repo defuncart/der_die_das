@@ -1,18 +1,35 @@
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
+import 'package:der_die_das/core/sound/sound_state.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 const _segmentDuration = Duration(milliseconds: 600);
 const _fadeOutDuration = Duration(milliseconds: 300);
 
 // TODO initialize dbs, precache SVGs
-class LoadingScreen extends StatelessWidget {
+class LoadingScreen extends ConsumerStatefulWidget {
   static const path = '/';
 
   const LoadingScreen({super.key});
+
+  @override
+  ConsumerState<LoadingScreen> createState() => _LoadingScreenState();
+}
+
+class _LoadingScreenState extends ConsumerState<LoadingScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _init();
+  }
+
+  Future<void> _init() async {
+    await ref.read(ttsProvider).init();
+  }
 
   @override
   Widget build(BuildContext context) {

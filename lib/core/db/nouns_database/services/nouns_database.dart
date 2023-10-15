@@ -69,5 +69,9 @@ class NounDatabase extends _$NounDatabase implements INounDatabase {
 }
 
 extension NounExtensions on Noun {
-  String get withArticle => '${articles.map((article) => article.name).join('/')} $withoutArticle';
+  Iterable<String> get _articleNames => articles.map((article) => article.name);
+
+  String get withArticle => '${_articleNames.join('/')} $withoutArticle';
+
+  String get speak => '${_articleNames.join(' oder ')} $withoutArticle';
 }
