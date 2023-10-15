@@ -9,7 +9,7 @@ class Nouns extends Table {
   TextColumn get withoutArticleNormalized => text()();
   TextColumn get articles => text().map(const ArticleListConverter())();
   IntColumn get level => intEnum<Level>()();
-  BoolColumn get isAmbiguous => boolean()();
+  TextColumn get ambiguousExample => text().nullable()();
   IntColumn get attempts => integer().withDefault(const Constant(0))();
   IntColumn get timesCorrect => integer().withDefault(const Constant(0))();
 }

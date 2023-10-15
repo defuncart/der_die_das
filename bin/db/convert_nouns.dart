@@ -39,7 +39,7 @@ Future<List<Noun>> _convertLevel(Level level, startId) async {
           .split('|')
           .map((article) => Article.values[int.parse(article)])
           .toList()),
-      isAmbiguous: components[_NounIndex.isAmbiguous] == '1',
+      ambiguousExample: components[_NounIndex.ambiguousExample].notEmptyOrNull,
       attempts: 0,
       timesCorrect: 0,
     );
@@ -54,5 +54,9 @@ class _NounIndex {
   static const key = 1;
   static const withoutArticle = 5;
   static const articleIndices = 6;
-  static const isAmbiguous = 8;
+  static const ambiguousExample = 7;
+}
+
+extension on String {
+  String? get notEmptyOrNull => isNotEmpty ? this : null;
 }

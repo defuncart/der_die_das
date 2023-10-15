@@ -40,7 +40,7 @@ class GameStateController extends _$GameStateController {
       state = AsyncData((
         progress: (_currentIndex + 1) / _numberQuestions,
         withoutArticle: _currentNoun.withoutArticle,
-        ambiguousLabel: '(Essen)',
+        ambiguousLabel: _currentNoun.ambiguousExample,
         tipId: state.value?.tipId,
         answeredCorrectly: (articles: _currentNoun.articles,),
         answeredIncorrectly: null,
@@ -56,7 +56,7 @@ class GameStateController extends _$GameStateController {
       state = AsyncData((
         progress: (_currentIndex + 1) / _numberQuestions,
         withoutArticle: _currentNoun.withoutArticle,
-        ambiguousLabel: '(Essen)',
+        ambiguousLabel: _currentNoun.ambiguousExample,
         tipId: state.value?.tipId,
         answeredCorrectly: null,
         answeredIncorrectly: (articles: _currentNoun.articles,),
@@ -73,7 +73,7 @@ class GameStateController extends _$GameStateController {
       state = AsyncData((
         progress: (_currentIndex + 1) / _numberQuestions,
         withoutArticle: _currentNoun.withoutArticle,
-        ambiguousLabel: '(Essen)',
+        ambiguousLabel: _currentNoun.ambiguousExample,
         tipId: state.value?.tipId,
         answeredCorrectly: null,
         answeredIncorrectly: (articles: _currentNoun.articles,),
@@ -93,7 +93,7 @@ class GameStateController extends _$GameStateController {
   GameState get _gameState => (
         progress: _progress,
         withoutArticle: _currentNoun.withoutArticle,
-        ambiguousLabel: '(Essen)',
+        ambiguousLabel: _currentNoun.ambiguousExample,
         tipId: Random().nextDouble() > 0.6 ? 100 : null,
         answeredCorrectly: null,
         answeredIncorrectly: null,
