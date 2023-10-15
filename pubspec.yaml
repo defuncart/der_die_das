@@ -25,6 +25,12 @@ dependencies:
   archive:
   flutter_riverpod:
   freezed_annotation:
+  riverpod_annotation:
+  theme_tailor_annotation:
+  url_launcher:
+  flutter_svg:
+  go_router:
+  flutter_animate:
 
 dev_dependencies:
   flutter_test:
@@ -34,12 +40,20 @@ dev_dependencies:
   drift_dev:
   build_runner:
   freezed:
+  theme_tailor:
+  riverpod_generator:
+  custom_lint:
+  riverpod_lint:
+  golden_toolkit:
+  flutter_launcher_icons:
+  icon_font_generator:
 
 flutter:
   uses-material-design: true
   generate: true
   assets:
     - assets/db/db.zip
+    - assets/images/settings/
   fonts:
     - family: Lovelo
       fonts:
@@ -47,6 +61,9 @@ flutter:
     - family: Lato
       fonts:
         - asset: assets/fonts/Lato-Bold.ttf
+    - family: CustomIcons
+      fonts:
+        - asset: assets/fonts/custom_icons.ttf
 
 arb_generator:
   input_filepath: "assets_dev/loca/loca.csv"
@@ -54,5 +71,11 @@ arb_generator:
   filename_prepend: "l10n_"
   csv_settings:
     delimiter: ";"
-    description_index: 1
-    base_index: 2
+    base_index: 1
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets_dev/app_icons/app_icon.png"
+  adaptive_icon_background: "#ECF0F1"
+  adaptive_icon_foreground: "assets_dev/app_icons/android_icon_foreground.png"

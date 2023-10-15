@@ -1,0 +1,4 @@
+enum AnswersLayout {
+  standard,
+  horizontal,
+}

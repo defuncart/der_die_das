@@ -1,3 +1,52 @@
-key;description;en;de;pl
-appTitle;Title for the app;Der Die Das;Der Die Das;Der Die Das
-test;A test key;Hello World!;Hallo Welt!;Witaj świecie
+key;en;de;pl
+appTitle;Der Die Das;Der Die Das;Der Die Das
+tipsTitle;Article Tips;Tipps für die Artikel;Wskazówki do rodzajników
+nounsSearchFieldHint;Noun;Nomen;Rzeczownik
+nounsNoResultsFound;No nouns found;Keine Nomen gefunden;Brak rzeczowników
+settingsLabel;Settings;Einstellungen;Język
+settingsLanguageLabel;Language;Sprache;Ustawienia
+settingsLevelLabel;Level;Niveau;Poziom
+settingsNumberQuestionsLabel;Questions per Round;Fragen pro Runde;Pytania na rundę
+settingsShowTipsLabel;Show Tips;Tipps anzeigen;Pokaż podpowiedzi
+settingsAnswersLayoutLabel;Answers layout;Antwortenansicht;Answers layout
+settingsVoiceLabel;Voice;Stimme;Lektor
+settingsSoundLabel;Sound;Ton;Dźwięk
+settingsDataPrivacyLabel;Data Privacy;Datenschutz;Data Privacy
+settingsDataPrivacyAlertTitle;Data Privacy;Datenschutz;Data Privacy
+settingsDataPrivacyAlertContent1;By using this application, you agree to the terms and conditions stated in the <a>privacy policy</a>.;By using this application, you agree to the terms and conditions stated in the <a>privacy policy</a>.;By using this application, you agree to the terms and conditions stated in the <a>privacy policy</a>.
+settingsDataPrivacyAlertContent2;No data is collected on how you use the app, nor is any data sent onto third parties.;No data is collected on how you use the app, nor is any data sent onto third parties.;No data is collected on how you use the app, nor is any data sent onto third parties.
+settingsDataPrivacyAlertContent3;Made with ❤️ in Berlin. <a>Source code</a>.;Made with ❤️ in Berlin. <a>Source code</a>.;Made with ❤️ in Berlin. <a>Source code</a>.
+gameContinueLabel;Continue;Weiter;Dalej
+resultsScoreLabel;You scored {count}/{total}!;Du hast {count}/{total} richtig geantwortet!;You scored {count}/{total}!
+resultsMistakesLabel;Mistakes;Fehler;Mistakes
+resultsContinueLabel;Play again;Play again;Play again
+tipException;<color>{color}</color> is an exception.;<color>{color}</color> ist eine Ausnahme.;<color>{color}</color> jest wyjątkiem.
+tip100;Nouns representing males, masculine animals and professions take the article <color>der</color>.;Männliche Personen, Tiere und Berufe haben den Artikel <color>der</color>.;Rzeczowniki reprezentujące mężczyzn, męskich przedstawicieli zawodów oraz zwierzęta płci męskiej mają rodzajnik <color>der</color>.
+tip101;Days of the week, months and seasons take the article <color>der</color>.;Wochentage, Monate und Jahreszeiten haben den Artikel <color>der</color>.;Dni tygodnia, miesiące i pory roku mają rodzajnik <color>der</color>.
+tip102;Most alcoholic beverages take the article <color>der</color>.;Die meisten alkoholischen Getränke haben den Artikel <color>der</color>.;Większość napojów alkoholowych ma rodzajnik <color>der</color>.
+tip107;Most nouns ending in <color>-ant</color> take the article <color>der</color>.;Die meisten Nomen mit der Endung <color>-ant</color> haben den Artikel <color>der</color>.;Większość rzeczowników kończących się na <color>-ant</color> ma rodzajnik <color>der</color>.
+tip112;Most nouns ending in <color>-or</color> take the article <color>der</color>.;Die meisten Nomen mit der Endung <color>-or</color> haben den Artikel <color>der</color>.;Większość rzeczowników kończących się na <color>-or</color> ma rodzajnik <color>der</color>.
+tip113;Most nouns ending in <color>-er</color> take the article <color>der</color>.;Die meisten Nomen mit der Endung <color>-er</color> haben den Artikel <color>der</color>.;Większość rzeczowników kończących się na <color>-er</color> ma rodzajnik <color>der</color>.
+tip114;Most nouns ending in <color>-en</color> take the article <color>der</color>.;Die meisten Nomen mit der Endung <color>-en</color> haben den Artikel <color>der</color>.;Większość rzeczowników kończących się na <color>-en</color> ma rodzajnik <color>der</color>.
+tip200;Nouns representing females, feminine animals and professions take the article <color>die</color>.;Weibliche Personen, Tiere und Berufe haben den Artikel <color>die</color>.;Rzeczowniki reprezentujące kobiety, żeńskich przedstawicieli zawodów oraz zwierzęta płci żeńskiej mają rodzajnik <color>die</color>.
+tip202;Nouns ending in <color>-heit</color> take the article <color>die</color>.;Nomen mit der Endung <color>-heit</color> haben den Artikel <color>die</color>.;Rzeczowniki kończące się na <color>-heit</color> mają rodzajnik <color>die</color>.
+tip203;Nouns ending in <color>-keit</color> take the article <color>die</color>.;Nomen mit der Endung <color>-keit</color> haben den Artikel <color>die</color>.;Rzeczowniki kończące się na <color>-keit</color> mają rodzajnik <color>die</color>.
+tip204;Nouns ending in <color>-schaft</color> take the article <color>die</color>.;Nomen mit der Endung <color>-schaft</color> haben den Artikel <color>die</color>.;Rzeczowniki kończące się na <color>-schaft</color> mają rodzajnik <color>die</color>.
+tip205;Nouns ending in <color>-ung</color> take the article <color>die</color>.;Nomen mit der Endung <color>-ung</color> haben den Artikel <color>die</color>.;Rzeczowniki kończące się na <color>-ung</color> mają rodzajnik <color>die</color>.
+tip206;Nouns ending in <color>-tät</color> take the article <color>die</color>.;Nomen mit der Endung <color>-tät</color> haben den Artikel <color>die</color>.;Rzeczowniki kończące się na <color>-tät</color> mają rodzajnik <color>die</color>.
+tip211;Nouns ending in <color>-tion</color> take the article <color>die</color>.;Nomen mit der Endung <color>-tion</color> haben den Artikel <color>die</color>.;Rzeczowniki kończące się na <color>-tion</color> mają rodzajnik <color>die</color>.
+tip213;Most nouns ending in <color>-e</color> take the article <color>die</color>.;Die meisten Nomen mit der Endung <color>-e</color> haben den Artikel <color>die</color>.;Większość rzeczowników kończących się na <color>-e</color> ma rodzajnik <color>die</color>.
+tip214;Most nouns ending in <color>-ei</color> take the article <color>die</color>.;Die meisten Nomen mit der Endung <color>-ei</color> haben den Artikel <color>die</color>.;Większość rzeczowników kończących się na <color>-ei</color> ma rodzajnik <color>die</color>.
+tip215;Most nouns ending in <color>-ie</color> take the article <color>die</color>.;Die meisten Nomen mit der Endung <color>-ie</color> haben den Artikel <color>die</color>.;Większość rzeczowników kończących się na <color>-ie</color> ma rodzajnik <color>die</color>.
+tip216;Most nouns ending in <color>-ik</color> take the article <color>die</color>.;Die meisten Nomen mit der Endung <color>-ik</color> haben den Artikel <color>die</color>.;Większość rzeczowników kończących się na <color>-ik</color> ma rodzajnik <color>die</color>.
+tip217;Most nouns ending in <color>-in</color> take the article <color>die</color>.;Die meisten Nomen mit der Endung <color>-in</color> haben den Artikel <color>die</color>.;Większość rzeczowników kończących się na <color>-in</color> ma rodzajnik <color>die</color>.
+tip218;Most nouns ending in <color>-ur</color> take the article <color>die</color>.;Die meisten Nomen mit der Endung <color>-ur</color> haben den Artikel die.;Większość rzeczowników kończących się na <color>-ur</color> ma rodzajnik <color>die</color>.
+tip300;All diminutives (proper nouns ending in <color>-chen</color> or <color>-lein</color>) take the article <color>das</color>.;Alle Diminutive (Nomen mit den Endungen <color>-chen</color> or <color>-lein</color>) haben den Artikel <color>das</color>.;Zdrobnienia (nazwy własne kończące się na <color>-chen</color> lub <color>-lein</color>) mają rodzajnik <color>das</color>.
+tip301;Nouns derived from infinitives take the article <color>das</color>.;Nomen vom Infinitiv haben den Artikel <color>das</color>.;Rzeczowniki pochodzące od bezokoliczników mają rodzajnik <color>das</color>.
+tip305;Most nouns ending in <color>-ment</color> take the article <color>das</color>.;Die meisten Nomen mit der Endung <color>-ment</color> haben den Artikel <color>das</color>.;Większość rzeczowników kończących się na <color>-ment</color> ma rodzajnik <color>das</color>.
+tip306;Most nouns ending in <color>-nis</color> take the article <color>das</color>.;Die meisten Nomen mit der Endung <color>-nis</color> haben den Artikel <color>das</color>.;Większość rzeczowników kończących się na <color>-nis</color> ma rodzajnik <color>das</color>.
+tip307;Most nouns ending in <color>-o</color> take the article <color>das</color>.;Die meisten Nomen mit der Endung <color>-o</color> haben den Artikel <color>das</color>.;Większość rzeczowników kończących się na <color>-o</color> ma rodzajnik <color>das</color>.
+tip308;Most nouns ending in <color>-um</color> take the article <color>das</color>.;Die meisten Nomen mit der Endung <color>-um</color> haben den Artikel <color>das</color>.;Większość rzeczowników kończących się na <color>-um</color> ma rodzajnik <color>das</color>.
+tip309;Nouns starting with <color>Ge-</color> often take the article <color>das</color>.;Nomen mit <color>Ge-</color> am Anfang haben oft den Artikel <color>das</color>.;Rzeczowniki zaczynające się od <color>Ge-</color> często mają rodzajnik <color>das</color>.
+tip400;Compond nouns take the same article as the last noun.;Zusammengesetzte Wörter haben den gleichen Artikel als das letzte Wort.;Rzeczowniki złożone mają taki sam rodzajnik jak ich ostatni wyraz.
+tip402;Nouns derived from adjectives referring to people can take either the article <color>der</color> or <color>die</color>.;Substantivierte Adjektive (die Menschen bezeichnen) haben den Artikel <color>der</color> oder <color>die</color>.;Rzeczowniki tworzone od przymiotników odnoszące się do ludzi mogą mieć rodzajnik <color>der</color> albo <color>die</color>.

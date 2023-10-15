@@ -19,7 +19,7 @@ The application is presently in development and is a re-write of [https://defunc
 
 ## Credits
 
-Lovelo Black foont is a trademark of Renzler Design. Lato Font is a trademark of Łukasz Dziedzic.
+Lovelo Black Font is a trademark of Renzler Design, Lato Font is a trademark of Łukasz Dziedzic. Both are used under [SIL Open Font License](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL).
 
 ## Raising Issues and Contributing
 

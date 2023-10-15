@@ -1,7 +1,7 @@
 import 'dart:io' show File;
 
 import 'package:archive/archive_io.dart';
-import 'package:der_die_das/services/nouns_database/services/nouns_database.dart' show Noun, NounDatabase;
+import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart' show Noun, NounDatabase;
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 

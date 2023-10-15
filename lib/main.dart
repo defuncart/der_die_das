@@ -1,4 +1,4 @@
-import 'package:der_die_das/widgets/my_app.dart';
+import 'package:der_die_das/core/ui/my_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
