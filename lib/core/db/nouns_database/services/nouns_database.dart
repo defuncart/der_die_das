@@ -23,7 +23,7 @@ class NounDatabase extends _$NounDatabase implements INounDatabase {
   @override
   Future<List<Noun>> getNouns({required int count, required Level level}) => (select(nouns)
         ..where((noun) => noun.level.equals(level.index))
-        ..orderBy([(n) => OrderingTerm.asc(n.attemps)])
+        ..orderBy([(n) => OrderingTerm.asc(n.attempts)])
         ..limit(count))
       .get();
 
@@ -54,12 +54,12 @@ class NounDatabase extends _$NounDatabase implements INounDatabase {
   @override
   Future<void> updateProgress({required String key, required bool answeredCorrectly}) async {
     final noun = await _getNoun(key);
-    final attempts = Value(noun.attemps + 1);
+    final attempts = Value(noun.attempts + 1);
     final timesCorrect = answeredCorrectly ? Value(noun.timesCorrect + 1) : const Value<int>.absent();
 
     (update(nouns)..where((noun) => noun.key.equals(key))).write(
       NounsCompanion(
-        attemps: attempts,
+        attempts: attempts,
         timesCorrect: timesCorrect,
       ),
     );

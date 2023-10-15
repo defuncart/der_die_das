@@ -38,7 +38,7 @@ Future<List<Noun>> _convertLevel(Level level, startId) async {
       articleIndeces:
           EqualList(components[_NounIndex.articleIndeces].split('|').map((article) => int.parse(article)).toList()),
       isAmbiguous: components[_NounIndex.isAmbiguous] == '1',
-      attemps: 0,
+      attempts: 0,
       timesCorrect: 0,
     );
     nouns.add(noun);

@@ -12,7 +12,6 @@ class Nouns extends Table {
   TextColumn get articleIndeces => text().map(const IntListConverter())();
   IntColumn get level => integer().map(const LevelConverter())();
   BoolColumn get isAmbiguous => boolean()();
-  // TODO rename attempts
-  IntColumn get attemps => integer().withDefault(const Constant(0))();
+  IntColumn get attempts => integer().withDefault(const Constant(0))();
   IntColumn get timesCorrect => integer().withDefault(const Constant(0))();
 }
