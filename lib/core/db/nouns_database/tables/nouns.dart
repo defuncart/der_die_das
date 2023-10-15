@@ -10,6 +10,7 @@ class Nouns extends Table {
   TextColumn get articles => text().map(const ArticleListConverter())();
   IntColumn get level => intEnum<Level>()();
   TextColumn get ambiguousExample => text().nullable()();
+  IntColumn get tipId => integer().nullable()();
   IntColumn get attempts => integer().withDefault(const Constant(0))();
   IntColumn get timesCorrect => integer().withDefault(const Constant(0))();
 }

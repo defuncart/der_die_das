@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
 import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart';
@@ -82,8 +81,7 @@ class GameStateController extends _$GameStateController {
           total: _numberQuestions,
           incorrectlyAnswered: _incorrectlyAnswered.map((noun) => (
                 withArticle: noun.withArticle,
-                // TODO get from db
-                tipId: 100,
+                tipId: _currentNoun.tipId,
               )),
         ),
       ));
@@ -94,7 +92,7 @@ class GameStateController extends _$GameStateController {
         progress: _progress,
         withoutArticle: _currentNoun.withoutArticle,
         ambiguousLabel: _currentNoun.ambiguousExample,
-        tipId: Random().nextDouble() > 0.6 ? 100 : null,
+        tipId: _currentNoun.tipId,
         answeredCorrectly: null,
         answeredIncorrectly: null,
         result: null,

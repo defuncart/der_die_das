@@ -40,6 +40,7 @@ Future<List<Noun>> _convertLevel(Level level, startId) async {
           .map((article) => Article.values[int.parse(article)])
           .toList()),
       ambiguousExample: components[_NounIndex.ambiguousExample].notEmptyOrNull,
+      tipId: components[_NounIndex.tipId] != '-1' ? int.parse(components[_NounIndex.tipId]) : null,
       attempts: 0,
       timesCorrect: 0,
     );
@@ -55,6 +56,7 @@ class _NounIndex {
   static const withoutArticle = 5;
   static const articleIndices = 6;
   static const ambiguousExample = 7;
+  static const tipId = 14;
 }
 
 extension on String {
