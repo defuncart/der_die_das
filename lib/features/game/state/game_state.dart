@@ -34,7 +34,7 @@ class GameStateController extends _$GameStateController {
   }
 
   void onAnswer(Article answer) {
-    final answeredCorrectly = _currentNoun.articleIndeces.contains(answer.index);
+    final answeredCorrectly = _currentNoun.articles.contains(answer);
     if (answeredCorrectly) {
       _correct++;
       state = AsyncData((
@@ -42,11 +42,7 @@ class GameStateController extends _$GameStateController {
         withoutArticle: _currentNoun.withoutArticle,
         ambiguousLabel: '(Essen)',
         tipId: state.value?.tipId,
-        answeredCorrectly: (
-          articles: _currentNoun.articleIndeces.map(
-            (index) => Article.values[index],
-          ),
-        ),
+        answeredCorrectly: (articles: _currentNoun.articles,),
         answeredIncorrectly: null,
         result: null,
       ));
@@ -63,11 +59,7 @@ class GameStateController extends _$GameStateController {
         ambiguousLabel: '(Essen)',
         tipId: state.value?.tipId,
         answeredCorrectly: null,
-        answeredIncorrectly: (
-          articles: _currentNoun.articleIndeces.map(
-            (index) => Article.values[index],
-          ),
-        ),
+        answeredIncorrectly: (articles: _currentNoun.articles,),
         result: null,
       ));
     }
@@ -84,11 +76,7 @@ class GameStateController extends _$GameStateController {
         ambiguousLabel: '(Essen)',
         tipId: state.value?.tipId,
         answeredCorrectly: null,
-        answeredIncorrectly: (
-          articles: _currentNoun.articleIndeces.map(
-            (index) => Article.values[index],
-          ),
-        ),
+        answeredIncorrectly: (articles: _currentNoun.articles,),
         result: (
           correct: _correct,
           total: _numberQuestions,

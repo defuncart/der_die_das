@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
 import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart' show Noun;
 import 'package:der_die_das/core/db/nouns_database/utils/equal_list.dart';
@@ -35,8 +36,10 @@ Future<List<Noun>> _convertLevel(Level level, startId) async {
       withoutArticle: components[_NounIndex.withoutArticle],
       withoutArticleNormalized: components[_NounIndex.withoutArticle].normalized,
       level: level,
-      articleIndeces:
-          EqualList(components[_NounIndex.articleIndeces].split('|').map((article) => int.parse(article)).toList()),
+      articles: EqualList(components[_NounIndex.articleIndices]
+          .split('|')
+          .map((article) => Article.values[int.parse(article)])
+          .toList()),
       isAmbiguous: components[_NounIndex.isAmbiguous] == '1',
       attempts: 0,
       timesCorrect: 0,
@@ -52,6 +55,6 @@ class _NounIndex {
   static const key = 1;
   static const withArticle = 2;
   static const withoutArticle = 5;
-  static const articleIndeces = 6;
+  static const articleIndices = 6;
   static const isAmbiguous = 8;
 }
