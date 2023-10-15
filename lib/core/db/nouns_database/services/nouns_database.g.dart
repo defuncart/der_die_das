@@ -151,7 +151,7 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
   }
 
   static TypeConverter<EqualList<int>, String> $converterarticleIndeces = const IntListConverter();
-  static TypeConverter<Level, int> $converterlevel = const LevelConverter();
+  static JsonTypeConverter2<Level, int, int> $converterlevel = const EnumIndexConverter<Level>(Level.values);
 }
 
 class Noun extends DataClass implements Insertable<Noun> {
@@ -222,7 +222,7 @@ class Noun extends DataClass implements Insertable<Noun> {
       withoutArticle: serializer.fromJson<String>(json['withoutArticle']),
       withoutArticleNormalized: serializer.fromJson<String>(json['withoutArticleNormalized']),
       articleIndeces: serializer.fromJson<EqualList<int>>(json['articleIndeces']),
-      level: serializer.fromJson<Level>(json['level']),
+      level: $NounsTable.$converterlevel.fromJson(serializer.fromJson<int>(json['level'])),
       isAmbiguous: serializer.fromJson<bool>(json['isAmbiguous']),
       attempts: serializer.fromJson<int>(json['attempts']),
       timesCorrect: serializer.fromJson<int>(json['timesCorrect']),
@@ -238,7 +238,7 @@ class Noun extends DataClass implements Insertable<Noun> {
       'withoutArticle': serializer.toJson<String>(withoutArticle),
       'withoutArticleNormalized': serializer.toJson<String>(withoutArticleNormalized),
       'articleIndeces': serializer.toJson<EqualList<int>>(articleIndeces),
-      'level': serializer.toJson<Level>(level),
+      'level': serializer.toJson<int>($NounsTable.$converterlevel.toJson(level)),
       'isAmbiguous': serializer.toJson<bool>(isAmbiguous),
       'attempts': serializer.toJson<int>(attempts),
       'timesCorrect': serializer.toJson<int>(timesCorrect),

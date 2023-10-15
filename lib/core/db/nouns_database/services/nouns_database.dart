@@ -1,5 +1,4 @@
 import 'package:der_die_das/core/db/nouns_database/converters/int_list_converter.dart';
-import 'package:der_die_das/core/db/nouns_database/converters/level_converter.dart';
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
 import 'package:der_die_das/core/db/nouns_database/services/i_nouns_database.dart';
 import 'package:der_die_das/core/db/nouns_database/tables/nouns.dart';
