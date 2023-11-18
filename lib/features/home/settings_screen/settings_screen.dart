@@ -60,7 +60,7 @@ class SettingsScreen extends StatelessWidget {
 }
 
 class _LanguageRow extends ConsumerWidget {
-  const _LanguageRow({Key? key}) : super(key: key);
+  const _LanguageRow();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -80,7 +80,7 @@ class _LanguageRow extends ConsumerWidget {
 }
 
 class _LevelRow extends ConsumerWidget {
-  const _LevelRow({Key? key}) : super(key: key);
+  const _LevelRow();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -100,7 +100,7 @@ class _LevelRow extends ConsumerWidget {
 }
 
 class _NumberQuestionsRow extends ConsumerWidget {
-  const _NumberQuestionsRow({Key? key}) : super(key: key);
+  const _NumberQuestionsRow();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -120,7 +120,7 @@ class _NumberQuestionsRow extends ConsumerWidget {
 }
 
 class _ShowTipsRow extends ConsumerWidget {
-  const _ShowTipsRow({Key? key}) : super(key: key);
+  const _ShowTipsRow();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -140,7 +140,7 @@ class _ShowTipsRow extends ConsumerWidget {
 }
 
 class _AnswersLayoutRow extends ConsumerWidget {
-  const _AnswersLayoutRow({Key? key}) : super(key: key);
+  const _AnswersLayoutRow();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -160,7 +160,7 @@ class _AnswersLayoutRow extends ConsumerWidget {
 }
 
 class _VoiceRow extends ConsumerWidget {
-  const _VoiceRow({Key? key}) : super(key: key);
+  const _VoiceRow();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -179,7 +179,7 @@ class _VoiceRow extends ConsumerWidget {
 }
 
 class _SoundRow extends ConsumerWidget {
-  const _SoundRow({Key? key}) : super(key: key);
+  const _SoundRow();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -199,10 +199,9 @@ class _SoundRow extends ConsumerWidget {
 
 class _Slider extends StatelessWidget {
   const _Slider({
-    Key? key,
     required this.value,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   final double value;
   final void Function(double) onChanged;
@@ -228,10 +227,9 @@ class _Slider extends StatelessWidget {
 
 class _SettingsRow extends StatelessWidget {
   const _SettingsRow({
-    Key? key,
     required this.label,
     required this.items,
-  }) : super(key: key);
+  });
 
   final String label;
   final Iterable<Widget> items;
@@ -255,7 +253,7 @@ class _SettingsRow extends StatelessWidget {
 }
 
 class _DataPrivacyButton extends StatelessWidget {
-  const _DataPrivacyButton({Key? key}) : super(key: key);
+  const _DataPrivacyButton();
 
   @override
   Widget build(BuildContext context) {
@@ -279,7 +277,7 @@ class _DataPrivacyButton extends StatelessWidget {
 }
 
 class _DataPrivacyDialog extends StatelessWidget {
-  const _DataPrivacyDialog({Key? key}) : super(key: key);
+  const _DataPrivacyDialog();
 
   static void show(BuildContext context) => showDialog(
         context: context,
@@ -343,10 +341,9 @@ class _DataPrivacyDialog extends StatelessWidget {
 
 class _TextWithLink extends StatelessWidget {
   const _TextWithLink({
-    Key? key,
     required this.text,
     required this.url,
-  }) : super(key: key);
+  });
 
   final String text;
   final String url;
@@ -388,12 +385,10 @@ class _TextWithLink extends StatelessWidget {
 
 class _ClickableTextSpan extends TextSpan {
   _ClickableTextSpan({
-    required String text,
-    TextStyle? style,
+    required String super.text,
+    super.style,
     required String url,
   }) : super(
-          text: text,
-          style: style,
           recognizer: TapGestureRecognizer()..onTap = () async => await _openUrl(url),
         );
 

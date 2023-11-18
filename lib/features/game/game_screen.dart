@@ -46,9 +46,8 @@ class GameScreen extends ConsumerWidget {
 
 class _GameScreen extends ConsumerWidget {
   const _GameScreen({
-    Key? key,
     required this.state,
-  }) : super(key: key);
+  });
 
   final GameState state;
 
@@ -219,18 +218,15 @@ class _GameScreen extends ConsumerWidget {
 
 class _Articles extends ConsumerWidget {
   const _Articles.interactive({
-    Key? key,
     required this.verticalWidth,
     required this.verticalHeight,
     required this.horizontalWidth,
     required this.horizontalHeight,
     required this.fontSize,
   })  : _articles = null,
-        _interactive = true,
-        super(key: key);
+        _interactive = true;
 
   const _Articles.subset({
-    Key? key,
     required List<Article> articles,
     required this.verticalWidth,
     required this.verticalHeight,
@@ -238,8 +234,7 @@ class _Articles extends ConsumerWidget {
     required this.horizontalHeight,
     required this.fontSize,
   })  : _articles = articles,
-        _interactive = false,
-        super(key: key);
+        _interactive = false;
 
   final List<Article>? _articles;
   final bool _interactive;
@@ -276,7 +271,6 @@ class _Articles extends ConsumerWidget {
 
 class _ArticlesLayoutStandard extends ConsumerWidget {
   const _ArticlesLayoutStandard({
-    Key? key,
     required this.articles,
     required this.interactive,
     required this.verticalWidth,
@@ -284,7 +278,7 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
     required this.horizontalWidth,
     required this.horizontalHeight,
     required this.fontSize,
-  }) : super(key: key);
+  });
 
   final List<Article>? articles;
   final bool interactive;
@@ -356,13 +350,12 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
 
 class _ArticlesLayoutHorizontal extends ConsumerWidget {
   const _ArticlesLayoutHorizontal({
-    Key? key,
     required this.articles,
     required this.interactive,
     required this.width,
     required this.height,
     required this.fontSize,
-  }) : super(key: key);
+  });
 
   final List<Article>? articles;
   final bool interactive;
@@ -399,9 +392,8 @@ class _ArticlesLayoutHorizontal extends ConsumerWidget {
 
 class _HintButton extends StatefulWidget {
   const _HintButton({
-    Key? key,
     required this.tipId,
-  }) : super(key: key);
+  });
 
   final int tipId;
 

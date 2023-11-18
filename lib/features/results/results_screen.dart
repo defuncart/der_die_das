@@ -86,10 +86,9 @@ class ResultsScreen extends StatelessWidget {
 
 class _Mistake extends StatelessWidget {
   const _Mistake({
-    Key? key,
     required this.label,
     required this.tipId,
-  }) : super(key: key);
+  });
 
   final String label;
   final int? tipId;

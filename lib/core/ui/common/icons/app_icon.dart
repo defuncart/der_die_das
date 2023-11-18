@@ -98,11 +98,10 @@ class AppIcon extends StatelessWidget with ArticleContent {
 
 class _IconClipper extends StatelessWidget {
   const _IconClipper({
-    Key? key,
     required this.border,
     required this.size,
     required this.child,
-  }) : super(key: key);
+  });
 
   final AppIconBorder border;
   final double size;
