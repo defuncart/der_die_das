@@ -32,6 +32,7 @@ dependencies:
   go_router:
   flutter_animate:
   flutter_tts:
+  audioplayers:
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +56,7 @@ flutter:
   assets:
     - assets/db/db.zip
     - assets/images/settings/
+    - assets/sfx/
   fonts:
     - family: Lovelo
       fonts:
