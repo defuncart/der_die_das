@@ -11,6 +11,7 @@ settingsShowTipsLabel;Show Tips;Tipps anzeigen;Pokaż podpowiedzi
 settingsAnswersLayoutLabel;Answers layout;Antwortenansicht;Answers layout
 settingsVoiceLabel;Voice;Stimme;Lektor
 settingsSoundLabel;Sound;Ton;Dźwięk
+settingsSpeechRateLabel;Speech Rate;Sprechgeschwindigkeit;Szybkość mowy
 settingsDataPrivacyLabel;Data Privacy;Datenschutz;Data Privacy
 settingsDataPrivacyAlertTitle;Data Privacy;Datenschutz;Data Privacy
 settingsDataPrivacyAlertContent1;By using this application, you agree to the terms and conditions stated in the <a>privacy policy</a>.;By using this application, you agree to the terms and conditions stated in the <a>privacy policy</a>.;By using this application, you agree to the terms and conditions stated in the <a>privacy policy</a>.

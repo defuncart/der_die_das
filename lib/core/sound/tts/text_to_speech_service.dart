@@ -13,6 +13,17 @@ enum TextToSpeechRate {
   final double value;
 }
 
+extension TextToSpeechDoubleExtension on double {
+  TextToSpeechRate get asTextToSpeechRate => switch (this) {
+        0.25 => TextToSpeechRate.oneQuarter,
+        0.5 => TextToSpeechRate.oneHalf,
+        0.75 => TextToSpeechRate.threeQuarters,
+        1.0 => TextToSpeechRate.standard,
+        1.25 => TextToSpeechRate.oneAndOneQuarter,
+        _ => throw ArgumentError.value(this),
+      };
+}
+
 abstract class ITextToSpeechService {
   Future<void> init();
   Future<bool> get isSupported;

@@ -5,6 +5,7 @@ import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
+import 'package:der_die_das/core/sound/tts/text_to_speech_service.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_material_close_button.dart';
@@ -48,6 +49,7 @@ class SettingsScreen extends StatelessWidget {
               _AnswersLayoutRow(),
               _VoiceRow(),
               _SoundRow(),
+              _SpeechRateRow(),
               Center(
                 child: _DataPrivacyButton(),
               )
@@ -172,6 +174,7 @@ class _VoiceRow extends ConsumerWidget {
         _Slider(
           value: state,
           onChanged: ref.read(voiceLevelControllerProvider.notifier).set,
+          onGenerateLabel: (value) => (value * 100).ceil().toString(),
         ),
       ],
     );
@@ -191,6 +194,29 @@ class _SoundRow extends ConsumerWidget {
         _Slider(
           value: state,
           onChanged: ref.read(soundLevelControllerProvider.notifier).set,
+          onGenerateLabel: (value) => (value * 100).ceil().toString(),
+        ),
+      ],
+    );
+  }
+}
+
+class _SpeechRateRow extends ConsumerWidget {
+  const _SpeechRateRow();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(speechRateControllerProvider).value;
+
+    return _SettingsRow(
+      label: context.l10n.settingsSpeechRateLabel,
+      items: [
+        _Slider(
+          value: state,
+          min: TextToSpeechRate.values.first.value,
+          max: TextToSpeechRate.values.last.value,
+          divisions: TextToSpeechRate.values.length - 1,
+          onChanged: (value) => ref.read(speechRateControllerProvider.notifier).set(value.asTextToSpeechRate),
         ),
       ],
     );
@@ -201,10 +227,18 @@ class _Slider extends StatelessWidget {
   const _Slider({
     required this.value,
     required this.onChanged,
+    this.min = 0,
+    this.max = 1,
+    this.divisions = 5,
+    this.onGenerateLabel,
   });
 
   final double value;
   final void Function(double) onChanged;
+  final double min;
+  final double max;
+  final int divisions;
+  final String Function(double)? onGenerateLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -212,14 +246,17 @@ class _Slider extends StatelessWidget {
       data: Theme.of(context).sliderTheme.copyWith(
             inactiveTickMarkColor: Theme.of(context).scaffoldBackgroundColor,
           ),
-      child: Slider(
-        value: value,
-        min: 0,
-        max: 1,
-        divisions: 5,
-        label: (value * 100).ceil().toString(),
-        onChanged: onChanged,
-        inactiveColor: context.colorScheme.primary.withOpacity(0.6),
+      child: SizedBox(
+        width: kMinInteractiveDimension * 3 + context.customSpacings.s.mainAxisExtent * 2,
+        child: Slider(
+          value: value,
+          min: min,
+          max: max,
+          divisions: divisions,
+          label: onGenerateLabel != null ? onGenerateLabel!(value) : value.toString(),
+          onChanged: onChanged,
+          inactiveColor: context.colorScheme.primary.withOpacity(0.6),
+        ),
       ),
     );
   }
