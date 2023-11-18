@@ -21,11 +21,14 @@ class NounDatabase extends _$NounDatabase implements INounDatabase {
       (select(nouns)..where((noun) => noun.withoutArticle.contains(text))).get();
 
   @override
-  Future<List<Noun>> getNouns({required int count, required Level level}) => (select(nouns)
-        ..where((noun) => noun.level.equals(level.index))
-        ..orderBy([(n) => OrderingTerm.asc(n.attempts)])
-        ..limit(count))
-      .get();
+  Future<List<Noun>> getNouns({required int count, required Level level}) async {
+    final levelNouns = await (select(nouns)
+          ..where((noun) => noun.level.equals(level.index))
+          ..orderBy([(n) => OrderingTerm.asc(n.attempts)]))
+        .get();
+    levelNouns.shuffle();
+    return levelNouns.take(count).toList();
+  }
 
   @override
   Future<List<Noun>> filterNouns({String? text, Level? level}) {
