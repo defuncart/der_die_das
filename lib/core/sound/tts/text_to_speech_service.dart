@@ -18,6 +18,7 @@ abstract class ITextToSpeechService {
   Future<bool> get isSupported;
   Future<void> speak(String text);
   Future<void> setSpeechRate(TextToSpeechRate rate);
+  Future<void> setVolume(double volume);
 }
 
 class TextToSpeechService implements ITextToSpeechService {
@@ -28,6 +29,7 @@ class TextToSpeechService implements ITextToSpeechService {
   final FlutterTts _tts;
   late final bool _isSupported;
   TextToSpeechRate? _rate;
+  double? _volume;
 
   @override
   Future<void> init() async {
@@ -52,6 +54,14 @@ class TextToSpeechService implements ITextToSpeechService {
       _rate = rate;
       final normalizedRate = rate.value * normalizedPlatformSpeechRate;
       await _tts.setSpeechRate(normalizedRate);
+    }
+  }
+
+  @override
+  Future<void> setVolume(double volume) async {
+    if (_volume != volume && volume >= 0 && volume <= 1) {
+      _volume = volume;
+      await _tts.setVolume(volume);
     }
   }
 
