@@ -245,9 +245,11 @@ class _Slider extends StatelessWidget {
     return SliderTheme(
       data: Theme.of(context).sliderTheme.copyWith(
             inactiveTickMarkColor: Theme.of(context).scaffoldBackgroundColor,
+            overlayShape: SliderComponentShape.noOverlay,
           ),
       child: SizedBox(
         width: kMinInteractiveDimension * 3 + context.customSpacings.s.mainAxisExtent * 2,
+        height: kMinInteractiveDimension,
         child: Slider(
           value: value,
           min: min,
