@@ -1,6 +1,6 @@
 import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
-import 'package:der_die_das/core/sound/sound_state.dart';
+import 'package:der_die_das/core/state/sound_settings_state.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_material_close_button.dart';
@@ -161,7 +161,7 @@ class _NounTile extends ConsumerWidget {
         ],
       ),
       trailing: BasicButton(
-        onPressed: () => ref.read(ttsProvider).speak(noun.speak),
+        onPressed: () => ref.read(speakControllerProvider(text: noun.speak)),
         child: RoundedSquare(
           size: kMinInteractiveDimension,
           color: context.customColorScheme.defaultButton,
