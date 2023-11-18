@@ -63,7 +63,11 @@ class GameStateController extends _$GameStateController {
         answeredIncorrectly: (articles: _currentNoun.articles,),
         result: null,
       ));
-      ref.read(ttsProvider).speak(_currentNoun.speak);
+      // ref.read(ttsProvider).speak(_currentNoun.speak);
+      ref.read(nounDatabaseProvider).updateProgress(
+            key: _currentNoun.key,
+            answeredCorrectly: answeredCorrectly,
+          );
     }
   }
 
