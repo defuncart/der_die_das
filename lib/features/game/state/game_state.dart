@@ -17,7 +17,6 @@ class GameStateController extends _$GameStateController {
   var _currentIndex = 0;
   var _correct = 0;
   final _incorrectlyAnswered = <Noun>[];
-  Timer? _timer;
 
   Noun get _currentNoun => _nouns[_currentIndex];
   double get _progress => _currentIndex / _numberQuestions;
@@ -46,13 +45,8 @@ class GameStateController extends _$GameStateController {
         answeredIncorrectly: null,
         result: null,
       ));
-      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-        _timer?.cancel();
-        onContinue();
-      });
     } else {
       _incorrectlyAnswered.add(_currentNoun);
-
       state = AsyncData((
         progress: (_currentIndex + 1) / _numberQuestions,
         withoutArticle: _currentNoun.withoutArticle,
@@ -63,11 +57,21 @@ class GameStateController extends _$GameStateController {
         result: null,
       ));
     }
-    ref.read(speakControllerProvider(text: _currentNoun.speak));
     ref.read(nounDatabaseProvider).updateProgress(
           key: _currentNoun.key,
           answeredCorrectly: answeredCorrectly,
         );
+    ref.read(sfxControllerProvider(
+      effect: answeredCorrectly ? SFXEffect.answerCorrect : SFXEffect.answerIncorrect,
+    ));
+    Future.delayed(const Duration(milliseconds: 500)).then((_) {
+      ref.read(speakControllerProvider(text: _currentNoun.speak));
+      if (answeredCorrectly) {
+        Future.delayed(const Duration(seconds: 1)).then((_) {
+          onContinue();
+        });
+      }
+    });
   }
 
   void onContinue() {
