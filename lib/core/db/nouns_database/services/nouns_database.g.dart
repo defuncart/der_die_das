@@ -410,10 +410,12 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     }
     if (articles.present) {
       final converter = $NounsTable.$converterarticles;
+
       map['articles'] = Variable<String>(converter.toSql(articles.value));
     }
     if (level.present) {
       final converter = $NounsTable.$converterlevel;
+
       map['level'] = Variable<int>(converter.toSql(level.value));
     }
     if (ambiguousExample.present) {

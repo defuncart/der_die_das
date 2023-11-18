@@ -6,7 +6,7 @@ part of 'sound_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$ttsHash() => r'91613a12a1766cb9d91a3bd0e95d319b0ce176df';
+String _$ttsHash() => r'83a72b13ac7f800c9ccc6a539e11bcc22042a13a';
 
 /// See also [tts].
 @ProviderFor(tts)

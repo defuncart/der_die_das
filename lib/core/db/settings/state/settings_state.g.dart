@@ -97,5 +97,18 @@ final soundLevelControllerProvider = NotifierProvider<SoundLevelController, doub
 );
 
 typedef _$SoundLevelController = Notifier<double>;
+String _$speechRateControllerHash() => r'2f57387f6ab2a92bb30f51f37c850bb0389b7956';
+
+/// See also [SpeechRateController].
+@ProviderFor(SpeechRateController)
+final speechRateControllerProvider = NotifierProvider<SpeechRateController, TextToSpeechRate>.internal(
+  SpeechRateController.new,
+  name: r'speechRateControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$speechRateControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SpeechRateController = Notifier<TextToSpeechRate>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

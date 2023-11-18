@@ -2,6 +2,7 @@ import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
 import 'package:der_die_das/core/db/settings/enums/answers_layout.dart';
 import 'package:der_die_das/core/db/settings/enums/language.dart';
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
+import 'package:der_die_das/core/sound/tts/text_to_speech_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'settings_state.g.dart';
@@ -77,5 +78,15 @@ class SoundLevelController extends _$SoundLevelController {
     if (value >= 0 && value <= 1) {
       state = value;
     }
+  }
+}
+
+@Riverpod(keepAlive: true)
+class SpeechRateController extends _$SpeechRateController {
+  @override
+  TextToSpeechRate build() => TextToSpeechRate.threeQuarters;
+
+  void set(TextToSpeechRate value) {
+    state = value;
   }
 }
