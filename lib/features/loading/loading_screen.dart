@@ -27,9 +27,10 @@ class _LoadingScreenState extends ConsumerState<LoadingScreen> {
     _init();
   }
 
-  Future<void> _init() async {
-    await ref.read(ttsProvider).init();
-  }
+  Future<void> _init() => Future.wait([
+        ref.read(ttsProvider).init(),
+        ref.read(sfxProvider).init(),
+      ]);
 
   @override
   Widget build(BuildContext context) {

@@ -19,5 +19,18 @@ final ttsProvider = Provider<ITextToSpeechService>.internal(
 );
 
 typedef TtsRef = ProviderRef<ITextToSpeechService>;
+String _$sfxHash() => r'd6b4cfece655fe8cc72a61f9d08a12a246f14a8c';
+
+/// See also [sfx].
+@ProviderFor(sfx)
+final sfxProvider = Provider<ISFXService>.internal(
+  sfx,
+  name: r'sfxProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$sfxHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef SfxRef = ProviderRef<ISFXService>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
