@@ -13,7 +13,7 @@ import 'package:go_router/go_router.dart';
 class HomeScreen extends StatelessWidget {
   static const path = '/home';
 
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -94,8 +94,7 @@ class _SquareButton extends StatelessWidget {
     required this.color,
     required this.icon,
     required this.path,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final double size;
   final Color color;

@@ -11,7 +11,7 @@ part 'nouns_database.g.dart';
 
 @DriftDatabase(tables: [Nouns])
 class NounDatabase extends _$NounDatabase implements INounDatabase {
-  NounDatabase(QueryExecutor openDb) : super(openDb);
+  NounDatabase(super.openDb);
 
   @override
   int get schemaVersion => 1;

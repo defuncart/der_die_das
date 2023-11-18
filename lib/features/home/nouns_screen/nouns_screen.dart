@@ -116,9 +116,8 @@ class _NounsScreenState extends ConsumerState<NounsScreen> {
 
 class _NounResultList extends StatelessWidget {
   const _NounResultList({
-    Key? key,
     required this.results,
-  }) : super(key: key);
+  });
 
   final List<Noun> results;
 

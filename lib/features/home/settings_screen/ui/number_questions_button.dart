@@ -31,10 +31,9 @@ class NumberQuestionsButton extends StatelessWidget {
 
 class _NumberQuestionsIcon extends StatelessWidget {
   const _NumberQuestionsIcon({
-    Key? key,
     required this.numberQuestions,
     required this.size,
-  }) : super(key: key);
+  });
 
   final String numberQuestions;
   final double size;

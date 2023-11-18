@@ -55,7 +55,7 @@ class LoadingScreen extends StatelessWidget {
 const _size = 75.0;
 
 class _Square extends StatelessWidget {
-  const _Square({required this.color, Key? key}) : super(key: key);
+  const _Square({required this.color});
 
   final Color color;
 
