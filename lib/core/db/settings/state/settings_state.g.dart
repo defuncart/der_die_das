@@ -6,6 +6,19 @@ part of 'settings_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$settingsServiceHash() => r'2b5ae48f3f67f56e18a09d22c655283cb896625b';
+
+/// See also [_settingsService].
+@ProviderFor(_settingsService)
+final _settingsServiceProvider = AutoDisposeProvider<ISettingsService>.internal(
+  _settingsService,
+  name: r'_settingsServiceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$settingsServiceHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _SettingsServiceRef = AutoDisposeProviderRef<ISettingsService>;
 String _$languageControllerHash() => r'9d217d93b24efa0df3b98d3c25ceb84ed78b4956';
 
 /// See also [LanguageController].
