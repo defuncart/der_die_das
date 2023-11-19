@@ -2,7 +2,7 @@ import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
 import 'package:der_die_das/core/db/settings/enums/answers_layout.dart';
 import 'package:der_die_das/core/db/settings/enums/language.dart';
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
-import 'package:der_die_das/core/sound/tts/text_to_speech_service.dart';
+import 'package:der_die_das/core/db/settings/enums/speech_rate.dart';
 import 'package:hive/hive.dart';
 
 abstract class ISettingsService {
@@ -21,14 +21,14 @@ abstract class ISettingsService {
   AnswersLayout get answersLayout;
   set answersLayout(AnswersLayout value);
 
+  SpeechRate get speechRate;
+  set speechRate(SpeechRate value);
+
   double get voiceLevel;
   set voiceLevel(double value);
 
   double get soundLevel;
   set soundLevel(double value);
-
-  TextToSpeechRate get speechRate;
-  set speechRate(TextToSpeechRate value);
 }
 
 class SettingsService extends ISettingsService {
@@ -98,6 +98,19 @@ class SettingsService extends ISettingsService {
   set answersLayout(AnswersLayout value) => _box.put(_Keys.answersLayout, value.index);
 
   @override
+  SpeechRate get speechRate {
+    try {
+      final index = _box.get(_Keys.speechRate) as int;
+      return SpeechRate.values[index];
+    } catch (_) {
+      return _Defaults.speechRate;
+    }
+  }
+
+  @override
+  set speechRate(SpeechRate value) => _box.put(_Keys.speechRate, value.index);
+
+  @override
   double get voiceLevel => _box.get(_Keys.voiceLevel, defaultValue: _Defaults.voiceLevel);
 
   @override
@@ -108,19 +121,6 @@ class SettingsService extends ISettingsService {
 
   @override
   set soundLevel(double value) => _box.put(_Keys.soundLevel, value);
-
-  @override
-  TextToSpeechRate get speechRate {
-    try {
-      final index = _box.get(_Keys.speechRate) as int;
-      return TextToSpeechRate.values[index];
-    } catch (_) {
-      return _Defaults.speechRate;
-    }
-  }
-
-  @override
-  set speechRate(TextToSpeechRate value) => _box.put(_Keys.speechRate, value.index);
 }
 
 class _Keys {
@@ -131,9 +131,9 @@ class _Keys {
   static const numberQuestions = 'numberQuestions';
   static const showTips = 'showTips';
   static const answersLayout = 'answersLayout';
+  static const speechRate = 'speechRate';
   static const voiceLevel = 'voiceLevel';
   static const soundLevel = 'soundLevel';
-  static const speechRate = 'speechRate';
 }
 
 class _Defaults {
@@ -144,7 +144,7 @@ class _Defaults {
   static const numberQuestions = NumberQuestions.twentyFive;
   static const showTips = true;
   static const answersLayout = AnswersLayout.standard;
+  static const speechRate = SpeechRate.threeQuarters;
   static const voiceLevel = 1.0;
   static const soundLevel = 1.0;
-  static const speechRate = TextToSpeechRate.threeQuarters;
 }

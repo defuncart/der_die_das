@@ -2,8 +2,8 @@ import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
 import 'package:der_die_das/core/db/settings/enums/answers_layout.dart';
 import 'package:der_die_das/core/db/settings/enums/language.dart';
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
+import 'package:der_die_das/core/db/settings/enums/speech_rate.dart';
 import 'package:der_die_das/core/db/settings/services/settings_service.dart';
-import 'package:der_die_das/core/sound/tts/text_to_speech_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'settings_state.g.dart';
@@ -67,6 +67,17 @@ class AnswersLayoutController extends _$AnswersLayoutController {
 }
 
 @Riverpod(keepAlive: true)
+class SpeechRateController extends _$SpeechRateController {
+  @override
+  SpeechRate build() => ref.read(_settingsServiceProvider).speechRate;
+
+  void set(SpeechRate value) {
+    ref.read(_settingsServiceProvider).speechRate = value;
+    state = value;
+  }
+}
+
+@Riverpod(keepAlive: true)
 class VoiceLevelController extends _$VoiceLevelController {
   @override
   double build() => ref.read(_settingsServiceProvider).voiceLevel;
@@ -89,16 +100,5 @@ class SoundLevelController extends _$SoundLevelController {
       ref.read(_settingsServiceProvider).soundLevel = value;
       state = value;
     }
-  }
-}
-
-@Riverpod(keepAlive: true)
-class SpeechRateController extends _$SpeechRateController {
-  @override
-  TextToSpeechRate build() => ref.read(_settingsServiceProvider).speechRate;
-
-  void set(TextToSpeechRate value) {
-    ref.read(_settingsServiceProvider).speechRate = value;
-    state = value;
   }
 }
