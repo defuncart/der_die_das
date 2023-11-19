@@ -128,7 +128,7 @@ class _GameScreen extends ConsumerWidget {
                         style: TextStyle(
                           fontSize: fontSize,
                           fontWeight: FontWeight.bold,
-                          color: context.textTheme.headlineMedium?.color,
+                          color: context.customColorScheme.defaultButton,
                         ),
                         maxLines: 1,
                       ),

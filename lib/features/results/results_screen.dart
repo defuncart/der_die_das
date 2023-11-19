@@ -28,22 +28,14 @@ class ResultsScreen extends StatelessWidget {
       body: Padding(
         padding: context.customPaddings.s,
         child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
             context.customSpacings.m,
-            Row(
-              children: [
-                Text(
-                  '🏆',
-                  style: context.textTheme.displayLarge,
-                ),
-                context.customSpacings.l,
-                Flexible(
-                  child: Text(
-                    context.l10n.resultsScoreLabel(result.correct, result.total),
-                    style: context.textTheme.headlineMedium,
-                  ),
-                ),
-              ],
+            Center(
+              child: Text(
+                context.l10n.resultsScoreLabel(result.correct, result.total),
+                style: context.textTheme.headlineMedium,
+              ),
             ),
             context.customSpacings.l,
             if (result.incorrectlyAnswered.isNotEmpty) ...[
@@ -70,12 +62,16 @@ class ResultsScreen extends StatelessWidget {
                   ].intersperse(context.customSpacings.m),
                 ),
               ),
-            ],
-            HorizontalButton(
-              onPressed: () {
-                context.pushReplacement(GameScreen.path);
-              },
-              text: context.l10n.resultsContinueLabel,
+            ] else
+              const Spacer(),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: HorizontalButton(
+                onPressed: () {
+                  context.pushReplacement(GameScreen.path);
+                },
+                text: context.l10n.resultsContinueLabel,
+              ),
             ),
           ],
         ),
