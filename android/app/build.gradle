@@ -42,7 +42,7 @@ android {
 
     defaultConfig {
         applicationId "com.defuncart.derdiedas.dev"
-        minSdkVersion 21 // tts
+        minSdkVersion 23 // 21 tts, 23 isar
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
