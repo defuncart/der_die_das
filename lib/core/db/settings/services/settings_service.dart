@@ -36,7 +36,7 @@ class SettingsService extends ISettingsService {
   static const _name = 'settings';
 
   SettingsService() {
-    _box = Hive.box<dynamic>(name: _name);
+    _box = Hive.box<dynamic>(_name);
   }
 
   @override
