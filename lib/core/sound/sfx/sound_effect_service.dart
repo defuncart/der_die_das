@@ -13,6 +13,8 @@ abstract class ISFXService {
   Future<void> setVolume(double volume);
 }
 
+const _reduceVolumeFactor = 0.25;
+
 class SFXService implements ISFXService {
   late List<AudioPlayer> _players;
 
@@ -37,7 +39,7 @@ class SFXService implements ISFXService {
     assert(volume >= 0 && volume <= 1);
 
     for (final player in _players) {
-      await player.setVolume(volume);
+      await player.setVolume(volume * _reduceVolumeFactor);
     }
   }
 }
