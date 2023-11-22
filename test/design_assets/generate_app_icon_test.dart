@@ -5,8 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 
 void main() {
-  const generateAppIcon = bool.fromEnvironment(
-    'GENERATE_APP_ICON',
+  const generateDesignAssets = bool.fromEnvironment(
+    'GENERATE_DESIGN_ASSETS',
     defaultValue: false,
   );
 
@@ -26,7 +26,7 @@ void main() {
       surfaceSize: const Size(512, 512),
     );
     await screenMatchesGolden(tester, 'app_icon');
-  }, skip: !generateAppIcon);
+  }, skip: !generateDesignAssets);
 
   testGoldens('Generate android icon foreground', (tester) async {
     await tester.pumpWidgetBuilder(
@@ -52,5 +52,5 @@ void main() {
       ),
     );
     await screenMatchesGolden(tester, 'android_icon_foreground');
-  }, skip: !generateAppIcon);
+  }, skip: !generateDesignAssets);
 }

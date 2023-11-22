@@ -46,6 +46,7 @@ app.*.map.json
 assets_dev/l10n
 assets_dev/db
 assets_dev/app_icons
+assets_dev/google_play_assets
 
 # local assets
 assets/db
