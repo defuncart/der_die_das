@@ -32,9 +32,18 @@ class ResultsScreen extends StatelessWidget {
           children: [
             context.customSpacings.m,
             Center(
-              child: Text(
-                context.l10n.resultsScoreLabel(result.correct, result.total),
-                style: context.textTheme.headlineMedium,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    '🏆',
+                    style: TextStyle(fontSize: 32),
+                  ),
+                  Text(
+                    context.l10n.resultsScoreLabel(result.correct, result.total),
+                    style: context.textTheme.headlineMedium,
+                  ),
+                ].intersperse(context.customSpacings.m),
               ),
             ),
             context.customSpacings.l,
