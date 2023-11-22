@@ -50,6 +50,8 @@ dev_dependencies:
   golden_toolkit:
   flutter_launcher_icons:
   icon_font_generator:
+  mocktail:
+  device_frame:
 
 flutter:
   uses-material-design: true

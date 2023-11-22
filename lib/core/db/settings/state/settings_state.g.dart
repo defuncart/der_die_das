@@ -6,20 +6,20 @@ part of 'settings_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$settingsServiceHash() => r'75f57a55030ebe67a8efadac1de29b045e0efb8e';
+String _$settingsServiceHash() => r'4bccfb676ebd858ab40a19467757914c93e0fea6';
 
-/// See also [_settingsService].
-@ProviderFor(_settingsService)
-final _settingsServiceProvider = AutoDisposeProvider<ISettingsService>.internal(
-  _settingsService,
-  name: r'_settingsServiceProvider',
+/// See also [settingsService].
+@ProviderFor(settingsService)
+final settingsServiceProvider = AutoDisposeProvider<ISettingsService>.internal(
+  settingsService,
+  name: r'settingsServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$settingsServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _SettingsServiceRef = AutoDisposeProviderRef<ISettingsService>;
-String _$languageControllerHash() => r'c9cd901c5590b5e7e751c859a459c4d81e312aab';
+typedef SettingsServiceRef = AutoDisposeProviderRef<ISettingsService>;
+String _$languageControllerHash() => r'37e7c37e357451e282efe63f7f5de3c6863876da';
 
 /// See also [LanguageController].
 @ProviderFor(LanguageController)
@@ -32,7 +32,7 @@ final languageControllerProvider = NotifierProvider<LanguageController, Language
 );
 
 typedef _$LanguageController = Notifier<Language>;
-String _$levelControllerHash() => r'ba1b699589e4456d584e58a09dfa21de65810d6e';
+String _$levelControllerHash() => r'794ebb6f66527f81e4513c3d265d32c8da0f43f4';
 
 /// See also [LevelController].
 @ProviderFor(LevelController)
@@ -45,7 +45,7 @@ final levelControllerProvider = NotifierProvider<LevelController, Level>.interna
 );
 
 typedef _$LevelController = Notifier<Level>;
-String _$numberQuestionsControllerHash() => r'93931f4860ec62bcbc0c8012923dbea546388797';
+String _$numberQuestionsControllerHash() => r'eaa1d1a747a1a5932316443c4bc16f9ec5d500f9';
 
 /// See also [NumberQuestionsController].
 @ProviderFor(NumberQuestionsController)
@@ -58,7 +58,7 @@ final numberQuestionsControllerProvider = NotifierProvider<NumberQuestionsContro
 );
 
 typedef _$NumberQuestionsController = Notifier<NumberQuestions>;
-String _$showTipsControllerHash() => r'1b8a1a4613513f2ff45d63fd456257a0ae27252d';
+String _$showTipsControllerHash() => r'3d76b7f7b9e7ba9c0b1a57025b3f4d9959272a70';
 
 /// See also [ShowTipsController].
 @ProviderFor(ShowTipsController)
@@ -71,7 +71,7 @@ final showTipsControllerProvider = NotifierProvider<ShowTipsController, bool>.in
 );
 
 typedef _$ShowTipsController = Notifier<bool>;
-String _$answersLayoutControllerHash() => r'f9c69f4468b309404911c4c300bd80f7abd53ee9';
+String _$answersLayoutControllerHash() => r'8a3d79574ab00f97e1f27c741c4b4cd5ed1324a4';
 
 /// See also [AnswersLayoutController].
 @ProviderFor(AnswersLayoutController)
@@ -84,7 +84,7 @@ final answersLayoutControllerProvider = NotifierProvider<AnswersLayoutController
 );
 
 typedef _$AnswersLayoutController = Notifier<AnswersLayout>;
-String _$speechRateControllerHash() => r'5a34381bbf9823e0e658985cb8302c213957c3c8';
+String _$speechRateControllerHash() => r'c5c7e6f49b81bfcf80b061d4e1b964b0d01a90de';
 
 /// See also [SpeechRateController].
 @ProviderFor(SpeechRateController)
@@ -97,7 +97,7 @@ final speechRateControllerProvider = NotifierProvider<SpeechRateController, Spee
 );
 
 typedef _$SpeechRateController = Notifier<SpeechRate>;
-String _$voiceLevelControllerHash() => r'06bf323367df5c1598981ac6ffba87c3f9c2673d';
+String _$voiceLevelControllerHash() => r'bb78262b8a6c66d48b9d19249794dd1df337b28c';
 
 /// See also [VoiceLevelController].
 @ProviderFor(VoiceLevelController)
@@ -110,7 +110,7 @@ final voiceLevelControllerProvider = NotifierProvider<VoiceLevelController, doub
 );
 
 typedef _$VoiceLevelController = Notifier<double>;
-String _$soundLevelControllerHash() => r'66379ac51af7c9a3b7c8f69a70081a821098e5b8';
+String _$soundLevelControllerHash() => r'8553eff632a82464c51edbfd9052cabd071d1f7e';
 
 /// See also [SoundLevelController].
 @ProviderFor(SoundLevelController)
