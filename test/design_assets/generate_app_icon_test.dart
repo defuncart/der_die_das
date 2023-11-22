@@ -25,7 +25,7 @@ void main() {
       ),
       surfaceSize: const Size(512, 512),
     );
-    await screenMatchesGolden(tester, 'app_icon');
+    await screenMatchesGolden(tester, 'app_icons/app_icon');
   }, skip: !generateDesignAssets);
 
   testGoldens('Generate android icon foreground', (tester) async {
@@ -51,6 +51,6 @@ void main() {
         ),
       ),
     );
-    await screenMatchesGolden(tester, 'android_icon_foreground');
+    await screenMatchesGolden(tester, 'app_icons/android_icon_foreground');
   }, skip: !generateDesignAssets);
 }

@@ -25,7 +25,7 @@ void main() {
 
     for (final kvp in languageLabels.entries) {
       final text = kvp.value;
-      final filename = 'google_play_feature_graphic_${kvp.key}';
+      final filename = 'google_play_assets/google_play_feature_graphic_${kvp.key}';
       await tester.pumpWidgetBuilder(
         Theme(
           data: appTheme,
@@ -40,9 +40,9 @@ void main() {
 
 class GooglePlayFeatureGraphics extends StatelessWidget {
   const GooglePlayFeatureGraphics({
-    Key? key,
+    super.key,
     required this.text,
-  }) : super(key: key);
+  });
 
   final String text;
 
