@@ -91,7 +91,7 @@ class GameStateController extends _$GameStateController {
           total: _numberQuestions,
           incorrectlyAnswered: _incorrectlyAnswered.map((noun) => (
                 withArticle: noun.withArticle,
-                tipId: noun.tipId,
+                tipId: noun.tip?.id,
               )),
         ),
       ));
@@ -102,7 +102,7 @@ class GameStateController extends _$GameStateController {
         progress: _progress,
         withoutArticle: _currentNoun.withoutArticle,
         ambiguousLabel: _currentNoun.ambiguousExample,
-        tipId: _currentNoun.tipId,
+        tipId: _currentNoun.tip?.id,
         answeredCorrectly: null,
         answeredIncorrectly: null,
         result: null,

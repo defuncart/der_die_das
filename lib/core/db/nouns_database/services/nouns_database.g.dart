@@ -42,10 +42,11 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
   @override
   late final GeneratedColumn<String> ambiguousExample = GeneratedColumn<String>('ambiguous_example', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
-  static const VerificationMeta _tipIdMeta = const VerificationMeta('tipId');
+  static const VerificationMeta _tipMeta = const VerificationMeta('tip');
   @override
-  late final GeneratedColumn<int> tipId =
-      GeneratedColumn<int>('tip_id', aliasedName, true, type: DriftSqlType.int, requiredDuringInsert: false);
+  late final GeneratedColumnWithTypeConverter<Tip?, String> tip =
+      GeneratedColumn<String>('tip', aliasedName, true, type: DriftSqlType.string, requiredDuringInsert: false)
+          .withConverter<Tip?>($NounsTable.$convertertipn);
   static const VerificationMeta _attemptsMeta = const VerificationMeta('attempts');
   @override
   late final GeneratedColumn<int> attempts = GeneratedColumn<int>('attempts', aliasedName, false,
@@ -63,7 +64,7 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
         articles,
         level,
         ambiguousExample,
-        tipId,
+        tip,
         attempts,
         timesCorrect
       ];
@@ -104,9 +105,7 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
       context.handle(_ambiguousExampleMeta,
           ambiguousExample.isAcceptableOrUnknown(data['ambiguous_example']!, _ambiguousExampleMeta));
     }
-    if (data.containsKey('tip_id')) {
-      context.handle(_tipIdMeta, tipId.isAcceptableOrUnknown(data['tip_id']!, _tipIdMeta));
-    }
+    context.handle(_tipMeta, const VerificationResult.success());
     if (data.containsKey('attempts')) {
       context.handle(_attemptsMeta, attempts.isAcceptableOrUnknown(data['attempts']!, _attemptsMeta));
     }
@@ -134,7 +133,8 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
           .fromSql(attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}level'])!),
       ambiguousExample:
           attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}ambiguous_example']),
-      tipId: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}tip_id']),
+      tip: $NounsTable.$convertertipn
+          .fromSql(attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}tip'])),
       attempts: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}attempts'])!,
       timesCorrect: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}times_correct'])!,
     );
@@ -147,6 +147,8 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
 
   static TypeConverter<EqualList<Article>, String> $converterarticles = const ArticleListConverter();
   static JsonTypeConverter2<Level, int, int> $converterlevel = const EnumIndexConverter<Level>(Level.values);
+  static TypeConverter<Tip, String> $convertertip = const TipConverter();
+  static TypeConverter<Tip?, String?> $convertertipn = NullAwareTypeConverter.wrap($convertertip);
 }
 
 class Noun extends DataClass implements Insertable<Noun> {
@@ -157,7 +159,7 @@ class Noun extends DataClass implements Insertable<Noun> {
   final EqualList<Article> articles;
   final Level level;
   final String? ambiguousExample;
-  final int? tipId;
+  final Tip? tip;
   final int attempts;
   final int timesCorrect;
   const Noun(
@@ -168,7 +170,7 @@ class Noun extends DataClass implements Insertable<Noun> {
       required this.articles,
       required this.level,
       this.ambiguousExample,
-      this.tipId,
+      this.tip,
       required this.attempts,
       required this.timesCorrect});
   @override
@@ -189,8 +191,9 @@ class Noun extends DataClass implements Insertable<Noun> {
     if (!nullToAbsent || ambiguousExample != null) {
       map['ambiguous_example'] = Variable<String>(ambiguousExample);
     }
-    if (!nullToAbsent || tipId != null) {
-      map['tip_id'] = Variable<int>(tipId);
+    if (!nullToAbsent || tip != null) {
+      final converter = $NounsTable.$convertertipn;
+      map['tip'] = Variable<String>(converter.toSql(tip));
     }
     map['attempts'] = Variable<int>(attempts);
     map['times_correct'] = Variable<int>(timesCorrect);
@@ -206,7 +209,7 @@ class Noun extends DataClass implements Insertable<Noun> {
       articles: Value(articles),
       level: Value(level),
       ambiguousExample: ambiguousExample == null && nullToAbsent ? const Value.absent() : Value(ambiguousExample),
-      tipId: tipId == null && nullToAbsent ? const Value.absent() : Value(tipId),
+      tip: tip == null && nullToAbsent ? const Value.absent() : Value(tip),
       attempts: Value(attempts),
       timesCorrect: Value(timesCorrect),
     );
@@ -222,7 +225,7 @@ class Noun extends DataClass implements Insertable<Noun> {
       articles: serializer.fromJson<EqualList<Article>>(json['articles']),
       level: $NounsTable.$converterlevel.fromJson(serializer.fromJson<int>(json['level'])),
       ambiguousExample: serializer.fromJson<String?>(json['ambiguousExample']),
-      tipId: serializer.fromJson<int?>(json['tipId']),
+      tip: serializer.fromJson<Tip?>(json['tip']),
       attempts: serializer.fromJson<int>(json['attempts']),
       timesCorrect: serializer.fromJson<int>(json['timesCorrect']),
     );
@@ -238,7 +241,7 @@ class Noun extends DataClass implements Insertable<Noun> {
       'articles': serializer.toJson<EqualList<Article>>(articles),
       'level': serializer.toJson<int>($NounsTable.$converterlevel.toJson(level)),
       'ambiguousExample': serializer.toJson<String?>(ambiguousExample),
-      'tipId': serializer.toJson<int?>(tipId),
+      'tip': serializer.toJson<Tip?>(tip),
       'attempts': serializer.toJson<int>(attempts),
       'timesCorrect': serializer.toJson<int>(timesCorrect),
     };
@@ -252,7 +255,7 @@ class Noun extends DataClass implements Insertable<Noun> {
           EqualList<Article>? articles,
           Level? level,
           Value<String?> ambiguousExample = const Value.absent(),
-          Value<int?> tipId = const Value.absent(),
+          Value<Tip?> tip = const Value.absent(),
           int? attempts,
           int? timesCorrect}) =>
       Noun(
@@ -263,7 +266,7 @@ class Noun extends DataClass implements Insertable<Noun> {
         articles: articles ?? this.articles,
         level: level ?? this.level,
         ambiguousExample: ambiguousExample.present ? ambiguousExample.value : this.ambiguousExample,
-        tipId: tipId.present ? tipId.value : this.tipId,
+        tip: tip.present ? tip.value : this.tip,
         attempts: attempts ?? this.attempts,
         timesCorrect: timesCorrect ?? this.timesCorrect,
       );
@@ -277,7 +280,7 @@ class Noun extends DataClass implements Insertable<Noun> {
           ..write('articles: $articles, ')
           ..write('level: $level, ')
           ..write('ambiguousExample: $ambiguousExample, ')
-          ..write('tipId: $tipId, ')
+          ..write('tip: $tip, ')
           ..write('attempts: $attempts, ')
           ..write('timesCorrect: $timesCorrect')
           ..write(')'))
@@ -286,7 +289,7 @@ class Noun extends DataClass implements Insertable<Noun> {
 
   @override
   int get hashCode => Object.hash(id, key, withoutArticle, withoutArticleNormalized, articles, level, ambiguousExample,
-      tipId, attempts, timesCorrect);
+      tip, attempts, timesCorrect);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -298,7 +301,7 @@ class Noun extends DataClass implements Insertable<Noun> {
           other.articles == this.articles &&
           other.level == this.level &&
           other.ambiguousExample == this.ambiguousExample &&
-          other.tipId == this.tipId &&
+          other.tip == this.tip &&
           other.attempts == this.attempts &&
           other.timesCorrect == this.timesCorrect);
 }
@@ -311,7 +314,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
   final Value<EqualList<Article>> articles;
   final Value<Level> level;
   final Value<String?> ambiguousExample;
-  final Value<int?> tipId;
+  final Value<Tip?> tip;
   final Value<int> attempts;
   final Value<int> timesCorrect;
   const NounsCompanion({
@@ -322,7 +325,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     this.articles = const Value.absent(),
     this.level = const Value.absent(),
     this.ambiguousExample = const Value.absent(),
-    this.tipId = const Value.absent(),
+    this.tip = const Value.absent(),
     this.attempts = const Value.absent(),
     this.timesCorrect = const Value.absent(),
   });
@@ -334,7 +337,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     required EqualList<Article> articles,
     required Level level,
     this.ambiguousExample = const Value.absent(),
-    this.tipId = const Value.absent(),
+    this.tip = const Value.absent(),
     this.attempts = const Value.absent(),
     this.timesCorrect = const Value.absent(),
   })  : key = Value(key),
@@ -350,7 +353,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     Expression<String>? articles,
     Expression<int>? level,
     Expression<String>? ambiguousExample,
-    Expression<int>? tipId,
+    Expression<String>? tip,
     Expression<int>? attempts,
     Expression<int>? timesCorrect,
   }) {
@@ -362,7 +365,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
       if (articles != null) 'articles': articles,
       if (level != null) 'level': level,
       if (ambiguousExample != null) 'ambiguous_example': ambiguousExample,
-      if (tipId != null) 'tip_id': tipId,
+      if (tip != null) 'tip': tip,
       if (attempts != null) 'attempts': attempts,
       if (timesCorrect != null) 'times_correct': timesCorrect,
     });
@@ -376,7 +379,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
       Value<EqualList<Article>>? articles,
       Value<Level>? level,
       Value<String?>? ambiguousExample,
-      Value<int?>? tipId,
+      Value<Tip?>? tip,
       Value<int>? attempts,
       Value<int>? timesCorrect}) {
     return NounsCompanion(
@@ -387,7 +390,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
       articles: articles ?? this.articles,
       level: level ?? this.level,
       ambiguousExample: ambiguousExample ?? this.ambiguousExample,
-      tipId: tipId ?? this.tipId,
+      tip: tip ?? this.tip,
       attempts: attempts ?? this.attempts,
       timesCorrect: timesCorrect ?? this.timesCorrect,
     );
@@ -421,8 +424,10 @@ class NounsCompanion extends UpdateCompanion<Noun> {
     if (ambiguousExample.present) {
       map['ambiguous_example'] = Variable<String>(ambiguousExample.value);
     }
-    if (tipId.present) {
-      map['tip_id'] = Variable<int>(tipId.value);
+    if (tip.present) {
+      final converter = $NounsTable.$convertertipn;
+
+      map['tip'] = Variable<String>(converter.toSql(tip.value));
     }
     if (attempts.present) {
       map['attempts'] = Variable<int>(attempts.value);
@@ -443,7 +448,7 @@ class NounsCompanion extends UpdateCompanion<Noun> {
           ..write('articles: $articles, ')
           ..write('level: $level, ')
           ..write('ambiguousExample: $ambiguousExample, ')
-          ..write('tipId: $tipId, ')
+          ..write('tip: $tip, ')
           ..write('attempts: $attempts, ')
           ..write('timesCorrect: $timesCorrect')
           ..write(')'))

@@ -1,4 +1,5 @@
 import 'package:der_die_das/core/db/nouns_database/converters/article_list_converter.dart';
+import 'package:der_die_das/core/db/nouns_database/converters/tip_converter.dart';
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
 import 'package:drift/drift.dart';
 
@@ -10,7 +11,7 @@ class Nouns extends Table {
   TextColumn get articles => text().map(const ArticleListConverter())();
   IntColumn get level => intEnum<Level>()();
   TextColumn get ambiguousExample => text().nullable()();
-  IntColumn get tipId => integer().nullable()();
+  TextColumn get tip => text().map(const TipConverter()).nullable()();
   IntColumn get attempts => integer().withDefault(const Constant(0))();
   IntColumn get timesCorrect => integer().withDefault(const Constant(0))();
 }

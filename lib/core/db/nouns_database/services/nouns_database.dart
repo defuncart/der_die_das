@@ -1,6 +1,8 @@
 import 'package:der_die_das/core/db/nouns_database/converters/article_list_converter.dart';
+import 'package:der_die_das/core/db/nouns_database/converters/tip_converter.dart';
 import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
+import 'package:der_die_das/core/db/nouns_database/models/tip.dart';
 import 'package:der_die_das/core/db/nouns_database/services/i_nouns_database.dart';
 import 'package:der_die_das/core/db/nouns_database/tables/nouns.dart';
 import 'package:der_die_das/core/db/nouns_database/utils/equal_list.dart';

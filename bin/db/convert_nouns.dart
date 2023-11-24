@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
+import 'package:der_die_das/core/db/nouns_database/models/tip.dart';
 import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart' show Noun;
 import 'package:der_die_das/core/db/nouns_database/utils/equal_list.dart';
 import 'package:der_die_das/core/extensions/normaize_string_extensions.dart';
@@ -40,7 +41,12 @@ Future<List<Noun>> _convertLevel(Level level, startId) async {
           .map((article) => Article.values[int.parse(article)])
           .toList()),
       ambiguousExample: components[_NounIndex.ambiguousExample].notEmptyOrNull,
-      tipId: components[_NounIndex.tipId] != '-1' ? int.parse(components[_NounIndex.tipId]) : null,
+      tip: components[_NounIndex.tipId] != '-1'
+          ? Tip(
+              id: int.parse(components[_NounIndex.tipId]),
+              isException: components[_NounIndex.tipIsException] == '1',
+            )
+          : null,
       attempts: 0,
       timesCorrect: 0,
     );
@@ -57,6 +63,7 @@ class _NounIndex {
   static const articleIndices = 6;
   static const ambiguousExample = 7;
   static const tipId = 14;
+  static const tipIsException = 15;
 }
 
 extension on String {
