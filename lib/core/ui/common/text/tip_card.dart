@@ -1,4 +1,4 @@
-import 'package:der_die_das/core/db/tips/model/tip.dart';
+import 'package:der_die_das/core/db/tips/localized_tip.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
