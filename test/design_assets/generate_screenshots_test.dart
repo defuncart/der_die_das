@@ -124,9 +124,9 @@ void main() {
         appTheme.colorScheme.primary,
         <Override>[],
         {
-          'en': 'Over 25 useful tips',
-          'de': 'Über 25 Tipps',
-          'pl': 'Ponad 25 wskazówek',
+          'en': '30 cunning tips',
+          'de': '30 schlaue Tipps',
+          'pl': '30 wskazówek',
         },
       ),
       (
@@ -137,9 +137,9 @@ void main() {
           nounDatabaseProvider.overrideWithValue(db),
         ],
         {
-          'en': 'Supports A1 & A2',
-          'de': 'Stufe A1 & A2',
-          'pl': 'Poziom A1 & A2',
+          'en': 'Levels A1 & A2',
+          'de': 'Stufen A1 & A2',
+          'pl': 'Poziomy A1 & A2',
         },
       ),
     ];
