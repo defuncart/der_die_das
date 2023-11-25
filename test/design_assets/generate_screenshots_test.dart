@@ -1,5 +1,6 @@
 import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
 import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
+import 'package:der_die_das/core/db/nouns_database/models/tip.dart';
 import 'package:der_die_das/core/db/nouns_database/state/state.dart';
 import 'package:der_die_das/core/db/settings/enums/answers_layout.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
@@ -73,7 +74,10 @@ void main() {
                   progress: 0.5,
                   withoutArticle: 'Straße',
                   ambiguousLabel: null,
-                  tipId: 213,
+                  tip: const Tip(
+                    id: 213,
+                    isException: false,
+                  ),
                   answeredCorrectly: null,
                   answeredIncorrectly: null,
                   result: null,
@@ -99,7 +103,10 @@ void main() {
                   progress: 0.6,
                   withoutArticle: 'Straße',
                   ambiguousLabel: null,
-                  tipId: 213,
+                  tip: const Tip(
+                    id: 213,
+                    isException: false,
+                  ),
                   answeredCorrectly: null,
                   answeredIncorrectly: (articles: [Article.die],),
                   result: null,

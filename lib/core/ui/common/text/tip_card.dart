@@ -1,5 +1,7 @@
+import 'package:der_die_das/core/db/nouns_database/models/tip.dart';
 import 'package:der_die_das/core/db/tips/localized_tip.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
+import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
 import 'package:der_die_das/core/ui/common/text/highlighted_text.dart';
@@ -8,21 +10,25 @@ import 'package:flutter/material.dart';
 class TipCard extends StatelessWidget {
   const TipCard({
     super.key,
-    required this.tipIndex,
+    required this.tip,
+    required this.noun,
     this.showIcon = false,
     this.onClose,
   });
 
-  final int tipIndex;
+  final Tip tip;
+  final String noun;
   final bool showIcon;
   final VoidCallback? onClose;
 
   @override
   Widget build(BuildContext context) {
-    final text = getTip(
+    final tipText = getTip(
       context: context,
-      index: tipIndex,
+      index: tip.id,
     ).description;
+    final exceptionText = tip.isException ? context.l10n.tipException(noun) : null;
+    final text = showIcon && exceptionText != null ? '$tipText $exceptionText' : tipText;
     final textStyle = showIcon ? context.textTheme.bodyLarge : context.textTheme.headlineMedium;
 
     return Stack(
@@ -42,20 +48,31 @@ class TipCard extends StatelessWidget {
             color: Theme.of(context).scaffoldBackgroundColor,
           ),
           padding: context.customPaddings.m,
-          child: Row(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              if (showIcon)
-                Icon(
-                  Icons.lightbulb_outline,
-                  color: context.colorScheme.primary,
-                ),
-              Expanded(
-                child: HighlightedText(
-                  text,
-                  highlightColor: context.colorScheme.primary,
-                  textStyle: textStyle,
-                ),
+              Row(
+                children: [
+                  if (showIcon)
+                    Icon(
+                      Icons.lightbulb_outline,
+                      color: context.colorScheme.primary,
+                    ),
+                  Expanded(
+                    child: HighlightedText(
+                      text,
+                      highlightColor: context.colorScheme.primary,
+                      textStyle: textStyle,
+                    ),
+                  ),
+                ].intersperse(context.customSpacings.s),
               ),
+              if (tip.isException && !showIcon)
+                HighlightedText(
+                  exceptionText!,
+                  textStyle: textStyle,
+                  highlightColor: context.colorScheme.primary,
+                ),
             ].intersperse(context.customSpacings.s),
           ),
         ),

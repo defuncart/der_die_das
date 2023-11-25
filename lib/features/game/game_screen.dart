@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
+import 'package:der_die_das/core/db/nouns_database/models/tip.dart';
 import 'package:der_die_das/core/db/settings/enums/answers_layout.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
@@ -85,9 +86,10 @@ class _GameScreen extends ConsumerWidget {
           },
         ),
         actions: [
-          if (showTipsButton && state.tipId != null)
+          if (showTipsButton && state.tip != null)
             _HintButton(
-              tipId: state.tipId!,
+              tip: state.tip!,
+              noun: state.withoutArticle,
             )
           else
             const SizedBox(
@@ -163,9 +165,10 @@ class _GameScreen extends ConsumerWidget {
                                     fontSize: fontSize,
                                   ),
                                 ),
-                                if (state.tipId != null)
+                                if (state.tip != null)
                                   TipCard(
-                                    tipIndex: state.tipId!,
+                                    tip: state.tip!,
+                                    noun: state.withoutArticle,
                                     showIcon: true,
                                   ),
                               ].intersperse(context.customSpacings.l),
@@ -392,10 +395,12 @@ class _ArticlesLayoutHorizontal extends ConsumerWidget {
 
 class _HintButton extends StatefulWidget {
   const _HintButton({
-    required this.tipId,
+    required this.tip,
+    required this.noun,
   });
 
-  final int tipId;
+  final Tip tip;
+  final String noun;
 
   @override
   State<_HintButton> createState() => __HintButtonState();
@@ -424,7 +429,8 @@ class __HintButtonState extends State<_HintButton> {
                 ),
               ),
               TipCard(
-                tipIndex: widget.tipId,
+                tip: widget.tip,
+                noun: widget.noun,
                 onClose: _tooltipController.toggle,
               ),
             ],

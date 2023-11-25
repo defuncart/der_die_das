@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
+import 'package:der_die_das/core/db/nouns_database/models/tip.dart';
 import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart';
 import 'package:der_die_das/core/db/nouns_database/state/state.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
@@ -40,7 +41,7 @@ class GameStateController extends _$GameStateController {
         progress: (_currentIndex + 1) / _numberQuestions,
         withoutArticle: _currentNoun.withoutArticle,
         ambiguousLabel: _currentNoun.ambiguousExample,
-        tipId: state.value?.tipId,
+        tip: _currentNoun.tip,
         answeredCorrectly: (articles: _currentNoun.articles,),
         answeredIncorrectly: null,
         result: null,
@@ -51,7 +52,7 @@ class GameStateController extends _$GameStateController {
         progress: (_currentIndex + 1) / _numberQuestions,
         withoutArticle: _currentNoun.withoutArticle,
         ambiguousLabel: _currentNoun.ambiguousExample,
-        tipId: state.value?.tipId,
+        tip: _currentNoun.tip,
         answeredCorrectly: null,
         answeredIncorrectly: (articles: _currentNoun.articles,),
         result: null,
@@ -83,7 +84,7 @@ class GameStateController extends _$GameStateController {
         progress: (_currentIndex + 1) / _numberQuestions,
         withoutArticle: _currentNoun.withoutArticle,
         ambiguousLabel: _currentNoun.ambiguousExample,
-        tipId: state.value?.tipId,
+        tip: _currentNoun.tip,
         answeredCorrectly: null,
         answeredIncorrectly: (articles: _currentNoun.articles,),
         result: (
@@ -91,7 +92,8 @@ class GameStateController extends _$GameStateController {
           total: _numberQuestions,
           incorrectlyAnswered: _incorrectlyAnswered.map((noun) => (
                 withArticle: noun.withArticle,
-                tipId: noun.tip?.id,
+                withoutArticle: noun.withoutArticle,
+                tip: noun.tip,
               )),
         ),
       ));
@@ -102,7 +104,7 @@ class GameStateController extends _$GameStateController {
         progress: _progress,
         withoutArticle: _currentNoun.withoutArticle,
         ambiguousLabel: _currentNoun.ambiguousExample,
-        tipId: _currentNoun.tip?.id,
+        tip: _currentNoun.tip,
         answeredCorrectly: null,
         answeredIncorrectly: null,
         result: null,
@@ -114,7 +116,7 @@ typedef GameState = ({
   double progress,
   String withoutArticle,
   String? ambiguousLabel,
-  int? tipId,
+  Tip? tip,
   AnsweredCorrectly? answeredCorrectly,
   AnsweredIncorrectly? answeredIncorrectly,
   GameResult? result,
