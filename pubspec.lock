@@ -25,6 +25,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.11.3"
+  app_store_screenshots:
+    dependency: "direct dev"
+    description:
+      path: "."
+      ref: d65dcd87d4bcf920b367db1c8809da0c3331b5ee
+      resolved-ref: d65dcd87d4bcf920b367db1c8809da0c3331b5ee
+      url: "https://github.com/defuncart/app_store_screenshots"
+    source: git
+    version: "0.0.1"
   arb_generator:
     dependency: "direct dev"
     description:
@@ -346,7 +355,7 @@ packages:
     source: hosted
     version: "2.3.3"
   device_frame:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: device_frame
       sha256: afe76182aec178d171953d9b4a50a43c57c7cf3c77d8b09a48bf30c8fa04dd9d

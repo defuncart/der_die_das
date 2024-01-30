@@ -51,7 +51,10 @@ dev_dependencies:
   flutter_launcher_icons:
   icon_font_generator:
   mocktail:
-  device_frame:
+  app_store_screenshots:
+    git:
+      url: https://github.com/defuncart/app_store_screenshots
+      ref: d65dcd87d4bcf920b367db1c8809da0c3331b5ee
 
 flutter:
   uses-material-design: true

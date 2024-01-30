@@ -1,41 +1,27 @@
+import 'package:app_store_screenshots/app_store_screenshots.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/icons/der_die_das_horizontal_logo.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:golden_toolkit/golden_toolkit.dart';
+import 'package:flutter_gen/gen_l10n/localizations.dart';
 
 void main() {
-  const generateDesignAssets = bool.fromEnvironment(
-    'GENERATE_DESIGN_ASSETS',
-    defaultValue: false,
+  final languageLabels = {
+    const Locale('en'): 'A fun German articles quiz game',
+    const Locale('de'): 'Ein lustiges Artikelspiel für die deutsche Sprache',
+    const Locale('pl'): 'Zabawna gra ucząca niemieckich rodzajników',
+  };
+
+  generateGooglePlayFeatureGraphic(
+    locales: AppLocalizations.supportedLocales,
+    onBuildGraphic: (locale) => Theme(
+      data: appTheme,
+      child: GooglePlayFeatureGraphics(
+        text: languageLabels[locale]!,
+      ),
+    ),
   );
-
-  setUp(() async {
-    await loadAppFonts();
-  });
-
-  testGoldens('Generate Google Play Feature Graphic', (tester) async {
-    const languageLabels = {
-      'en': 'A fun German articles quiz game',
-      'de': 'Ein lustiges Artikelspiel für die deutsche Sprache',
-      'pl': 'Zabawna gra ucząca niemieckich rodzajników',
-    };
-
-    for (final kvp in languageLabels.entries) {
-      final text = kvp.value;
-      final filename = 'google_play_assets/google_play_feature_graphic_${kvp.key}';
-      await tester.pumpWidgetBuilder(
-        Theme(
-          data: appTheme,
-          child: GooglePlayFeatureGraphics(text: text),
-        ),
-        surfaceSize: const Size(1024, 500),
-      );
-      await screenMatchesGolden(tester, filename);
-    }
-  }, skip: !generateDesignAssets);
 }
 
 class GooglePlayFeatureGraphics extends StatelessWidget {
