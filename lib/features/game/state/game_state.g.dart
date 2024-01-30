@@ -6,21 +6,11 @@ part of 'game_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$gameStateControllerHash() => r'4b5c85d074c7bcd70589e3ff4c84d197bea6cb67';
+String _$gameStateControllerHash() => r'6216ca94910f4eddff1f3cba832fd86b2ef984f9';
 
 /// See also [GameStateController].
 @ProviderFor(GameStateController)
-final gameStateControllerProvider = AutoDisposeAsyncNotifierProvider<
-    GameStateController,
-    ({
-      String? ambiguousLabel,
-      ({Iterable<Article> articles})? answeredCorrectly,
-      ({Iterable<Article> articles})? answeredIncorrectly,
-      double progress,
-      ({int correct, Iterable<({int? tipId, String withArticle})> incorrectlyAnswered, int total})? result,
-      int? tipId,
-      String withoutArticle
-    })>.internal(
+final gameStateControllerProvider = AutoDisposeAsyncNotifierProvider<GameStateController, GameState>.internal(
   GameStateController.new,
   name: r'gameStateControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$gameStateControllerHash,
@@ -28,15 +18,6 @@ final gameStateControllerProvider = AutoDisposeAsyncNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$GameStateController = AutoDisposeAsyncNotifier<
-    ({
-      String? ambiguousLabel,
-      ({Iterable<Article> articles})? answeredCorrectly,
-      ({Iterable<Article> articles})? answeredIncorrectly,
-      double progress,
-      ({int correct, Iterable<({int? tipId, String withArticle})> incorrectlyAnswered, int total})? result,
-      int? tipId,
-      String withoutArticle
-    })>;
+typedef _$GameStateController = AutoDisposeAsyncNotifier<GameState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

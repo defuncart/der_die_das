@@ -1,3 +1,4 @@
+import 'package:der_die_das/core/db/nouns_database/models/tip.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/models/game_result.dart';
@@ -28,22 +29,23 @@ class ResultsScreen extends StatelessWidget {
       body: Padding(
         padding: context.customPaddings.s,
         child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
             context.customSpacings.m,
-            Row(
-              children: [
-                Text(
-                  '🏆',
-                  style: context.textTheme.displayLarge,
-                ),
-                context.customSpacings.l,
-                Flexible(
-                  child: Text(
+            Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    '🏆',
+                    style: TextStyle(fontSize: 32),
+                  ),
+                  Text(
                     context.l10n.resultsScoreLabel(result.correct, result.total),
                     style: context.textTheme.headlineMedium,
                   ),
-                ),
-              ],
+                ].intersperse(context.customSpacings.m),
+              ),
             ),
             context.customSpacings.l,
             if (result.incorrectlyAnswered.isNotEmpty) ...[
@@ -64,18 +66,23 @@ class ResultsScreen extends StatelessWidget {
                     for (final noun in result.incorrectlyAnswered)
                       _Mistake(
                         label: noun.withArticle,
-                        tipId: noun.tipId,
+                        noun: noun.withoutArticle,
+                        tip: noun.tip,
                       ),
                     context.customSpacings.s,
                   ].intersperse(context.customSpacings.m),
                 ),
               ),
-            ],
-            HorizontalButton(
-              onPressed: () {
-                context.pushReplacement(GameScreen.path);
-              },
-              text: context.l10n.resultsContinueLabel,
+            ] else
+              const Spacer(),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: HorizontalButton(
+                onPressed: () {
+                  context.pushReplacement(GameScreen.path);
+                },
+                text: context.l10n.resultsContinueLabel,
+              ),
             ),
           ],
         ),
@@ -87,11 +94,13 @@ class ResultsScreen extends StatelessWidget {
 class _Mistake extends StatelessWidget {
   const _Mistake({
     required this.label,
-    required this.tipId,
+    required this.noun,
+    required this.tip,
   });
 
   final String label;
-  final int? tipId;
+  final String noun;
+  final Tip? tip;
 
   @override
   Widget build(BuildContext context) {
@@ -102,9 +111,10 @@ class _Mistake extends StatelessWidget {
           label,
           style: context.textTheme.headlineLarge,
         ),
-        if (tipId != null)
+        if (tip != null)
           TipCard(
-            tipIndex: tipId!,
+            tip: tip!,
+            noun: noun,
             showIcon: true,
           ),
       ].intersperse(context.customSpacings.s),

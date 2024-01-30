@@ -31,6 +31,9 @@ dependencies:
   flutter_svg:
   go_router:
   flutter_animate:
+  flutter_tts:
+  audioplayers:
+  hive: ^2.2.3
 
 dev_dependencies:
   flutter_test:
@@ -47,6 +50,11 @@ dev_dependencies:
   golden_toolkit:
   flutter_launcher_icons:
   icon_font_generator:
+  mocktail:
+  app_store_screenshots:
+    git:
+      url: https://github.com/defuncart/app_store_screenshots
+      ref: d65dcd87d4bcf920b367db1c8809da0c3331b5ee
 
 flutter:
   uses-material-design: true
@@ -54,6 +62,7 @@ flutter:
   assets:
     - assets/db/db.zip
     - assets/images/settings/
+    - assets/sfx/
   fonts:
     - family: Lovelo
       fonts:

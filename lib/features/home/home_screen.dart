@@ -1,7 +1,6 @@
-import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
-import 'package:der_die_das/core/ui/common/icons/article_icons.dart';
+import 'package:der_die_das/core/ui/common/icons/der_die_das_horizontal_logo.dart';
 import 'package:der_die_das/core/ui/common/rounded_square.dart';
 import 'package:der_die_das/features/game/game_screen.dart';
 import 'package:der_die_das/features/home/nouns_screen/nouns_screen.dart';
@@ -24,31 +23,12 @@ class HomeScreen extends StatelessWidget {
           final playButtonSize = constraints.maxWidth * 0.5;
           final otherButtonsSize = playButtonSize * 0.6;
 
-          final articleWidth = constraints.maxWidth * 0.3;
-          final articleHeight = articleWidth * 0.5;
-          final articleFontSize = articleHeight * 0.75;
-
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: Article.values
-                      .map(
-                        (article) => ArticleIcon(
-                          article: article,
-                          width: articleWidth,
-                          horizontalTextWidthPercent: 0.8,
-                          height: articleHeight,
-                          fontSize: articleFontSize,
-                          borderRadius: context.customRadii.xs,
-                        ),
-                      )
-                      .toList(),
-                ),
+                const DerDieDasHorizontalLogo(),
                 _SquareButton(
                   size: playButtonSize,
                   color: context.colorScheme.primary,

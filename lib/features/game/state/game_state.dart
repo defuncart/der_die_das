@@ -1,11 +1,12 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
+import 'package:der_die_das/core/db/nouns_database/models/tip.dart';
 import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart';
 import 'package:der_die_das/core/db/nouns_database/state/state.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/models/game_result.dart';
+import 'package:der_die_das/core/state/sound_settings_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'game_state.g.dart';
@@ -17,7 +18,6 @@ class GameStateController extends _$GameStateController {
   var _currentIndex = 0;
   var _correct = 0;
   final _incorrectlyAnswered = <Noun>[];
-  Timer? _timer;
 
   Noun get _currentNoun => _nouns[_currentIndex];
   double get _progress => _currentIndex / _numberQuestions;
@@ -34,43 +34,45 @@ class GameStateController extends _$GameStateController {
   }
 
   void onAnswer(Article answer) {
-    final answeredCorrectly = _currentNoun.articleIndeces.contains(answer.index);
+    final answeredCorrectly = _currentNoun.articles.contains(answer);
     if (answeredCorrectly) {
       _correct++;
       state = AsyncData((
         progress: (_currentIndex + 1) / _numberQuestions,
         withoutArticle: _currentNoun.withoutArticle,
-        ambiguousLabel: '(Essen)',
-        tipId: state.value?.tipId,
-        answeredCorrectly: (
-          articles: _currentNoun.articleIndeces.map(
-            (index) => Article.values[index],
-          ),
-        ),
+        ambiguousLabel: _currentNoun.ambiguousExample,
+        tip: _currentNoun.tip,
+        answeredCorrectly: (articles: _currentNoun.articles,),
         answeredIncorrectly: null,
         result: null,
       ));
-      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-        _timer?.cancel();
-        onContinue();
-      });
     } else {
       _incorrectlyAnswered.add(_currentNoun);
-
       state = AsyncData((
         progress: (_currentIndex + 1) / _numberQuestions,
         withoutArticle: _currentNoun.withoutArticle,
-        ambiguousLabel: '(Essen)',
-        tipId: state.value?.tipId,
+        ambiguousLabel: _currentNoun.ambiguousExample,
+        tip: _currentNoun.tip,
         answeredCorrectly: null,
-        answeredIncorrectly: (
-          articles: _currentNoun.articleIndeces.map(
-            (index) => Article.values[index],
-          ),
-        ),
+        answeredIncorrectly: (articles: _currentNoun.articles,),
         result: null,
       ));
     }
+    ref.read(nounDatabaseProvider).updateProgress(
+          key: _currentNoun.key,
+          answeredCorrectly: answeredCorrectly,
+        );
+    ref.read(sfxControllerProvider(
+      effect: answeredCorrectly ? SFXEffect.answerCorrect : SFXEffect.answerIncorrect,
+    ));
+    Future.delayed(const Duration(milliseconds: 500)).then((_) {
+      ref.read(speakControllerProvider(text: _currentNoun.speak));
+      if (answeredCorrectly) {
+        Future.delayed(const Duration(seconds: 1)).then((_) {
+          onContinue();
+        });
+      }
+    });
   }
 
   void onContinue() {
@@ -81,21 +83,17 @@ class GameStateController extends _$GameStateController {
       state = AsyncData((
         progress: (_currentIndex + 1) / _numberQuestions,
         withoutArticle: _currentNoun.withoutArticle,
-        ambiguousLabel: '(Essen)',
-        tipId: state.value?.tipId,
+        ambiguousLabel: _currentNoun.ambiguousExample,
+        tip: _currentNoun.tip,
         answeredCorrectly: null,
-        answeredIncorrectly: (
-          articles: _currentNoun.articleIndeces.map(
-            (index) => Article.values[index],
-          ),
-        ),
+        answeredIncorrectly: (articles: _currentNoun.articles,),
         result: (
           correct: _correct,
           total: _numberQuestions,
           incorrectlyAnswered: _incorrectlyAnswered.map((noun) => (
                 withArticle: noun.withArticle,
-                // TODO get from db
-                tipId: 100,
+                withoutArticle: noun.withoutArticle,
+                tip: noun.tip,
               )),
         ),
       ));
@@ -105,8 +103,8 @@ class GameStateController extends _$GameStateController {
   GameState get _gameState => (
         progress: _progress,
         withoutArticle: _currentNoun.withoutArticle,
-        ambiguousLabel: '(Essen)',
-        tipId: Random().nextDouble() > 0.6 ? 100 : null,
+        ambiguousLabel: _currentNoun.ambiguousExample,
+        tip: _currentNoun.tip,
         answeredCorrectly: null,
         answeredIncorrectly: null,
         result: null,
@@ -118,7 +116,7 @@ typedef GameState = ({
   double progress,
   String withoutArticle,
   String? ambiguousLabel,
-  int? tipId,
+  Tip? tip,
   AnsweredCorrectly? answeredCorrectly,
   AnsweredIncorrectly? answeredIncorrectly,
   GameResult? result,

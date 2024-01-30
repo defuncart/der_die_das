@@ -2,6 +2,7 @@ import 'package:der_die_das/core/db/nouns_database/enums/level.dart';
 import 'package:der_die_das/core/db/settings/enums/answers_layout.dart';
 import 'package:der_die_das/core/db/settings/enums/language.dart';
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
+import 'package:der_die_das/core/db/settings/enums/speech_rate.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
@@ -46,6 +47,7 @@ class SettingsScreen extends StatelessWidget {
               _NumberQuestionsRow(),
               _ShowTipsRow(),
               _AnswersLayoutRow(),
+              _SpeechRateRow(),
               _VoiceRow(),
               _SoundRow(),
               Center(
@@ -159,6 +161,28 @@ class _AnswersLayoutRow extends ConsumerWidget {
   }
 }
 
+class _SpeechRateRow extends ConsumerWidget {
+  const _SpeechRateRow();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(speechRateControllerProvider).value;
+
+    return _SettingsRow(
+      label: context.l10n.settingsSpeechRateLabel,
+      items: [
+        _Slider(
+          value: state,
+          min: SpeechRate.values.first.value,
+          max: SpeechRate.values.last.value,
+          divisions: SpeechRate.values.length - 1,
+          onChanged: (value) => ref.read(speechRateControllerProvider.notifier).set(value.asTextToSpeechRate),
+        ),
+      ],
+    );
+  }
+}
+
 class _VoiceRow extends ConsumerWidget {
   const _VoiceRow();
 
@@ -172,6 +196,7 @@ class _VoiceRow extends ConsumerWidget {
         _Slider(
           value: state,
           onChanged: ref.read(voiceLevelControllerProvider.notifier).set,
+          onGenerateLabel: (value) => (value * 100).ceil().toString(),
         ),
       ],
     );
@@ -191,6 +216,7 @@ class _SoundRow extends ConsumerWidget {
         _Slider(
           value: state,
           onChanged: ref.read(soundLevelControllerProvider.notifier).set,
+          onGenerateLabel: (value) => (value * 100).ceil().toString(),
         ),
       ],
     );
@@ -201,25 +227,38 @@ class _Slider extends StatelessWidget {
   const _Slider({
     required this.value,
     required this.onChanged,
+    this.min = 0,
+    this.max = 1,
+    this.divisions = 5,
+    this.onGenerateLabel,
   });
 
   final double value;
   final void Function(double) onChanged;
+  final double min;
+  final double max;
+  final int divisions;
+  final String Function(double)? onGenerateLabel;
 
   @override
   Widget build(BuildContext context) {
     return SliderTheme(
       data: Theme.of(context).sliderTheme.copyWith(
             inactiveTickMarkColor: Theme.of(context).scaffoldBackgroundColor,
+            overlayShape: SliderComponentShape.noOverlay,
           ),
-      child: Slider(
-        value: value,
-        min: 0,
-        max: 1,
-        divisions: 5,
-        label: (value * 100).ceil().toString(),
-        onChanged: onChanged,
-        inactiveColor: context.colorScheme.primary.withOpacity(0.6),
+      child: SizedBox(
+        width: kMinInteractiveDimension * 3 + context.customSpacings.s.mainAxisExtent * 2,
+        height: kMinInteractiveDimension,
+        child: Slider(
+          value: value,
+          min: min,
+          max: max,
+          divisions: divisions,
+          label: onGenerateLabel != null ? onGenerateLabel!(value) : value.toString(),
+          onChanged: onChanged,
+          inactiveColor: context.colorScheme.primary.withOpacity(0.6),
+        ),
       ),
     );
   }

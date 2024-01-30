@@ -1,5 +1,6 @@
 import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
+import 'package:der_die_das/core/state/sound_settings_state.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_material_close_button.dart';
@@ -129,31 +130,46 @@ class _NounResultList extends StatelessWidget {
     return ListView.builder(
       physics: const BouncingScrollPhysics(),
       itemCount: results.length,
-      itemBuilder: (context, count) => ListTile(
-        contentPadding: context.customPaddings.s,
-        title: Row(
-          children: [
-            Flexible(
-              child: Text(results[count].withArticle),
-            ),
-            context.customSpacings.s,
-            LevelIcon(
-              level: results[count].level,
-              size: 24,
-            ),
-          ],
-        ),
-        trailing: BasicButton(
-          onPressed: () {},
-          child: RoundedSquare(
-            size: kMinInteractiveDimension,
-            color: context.customColorScheme.defaultButton,
-            borderRadius: context.customRadii.xs,
-            child: Icon(
-              Icons.volume_up,
-              size: kMinInteractiveDimension * 0.6,
-              color: Theme.of(context).scaffoldBackgroundColor,
-            ),
+      itemBuilder: (context, index) => _NounTile(
+        noun: results[index],
+      ),
+    );
+  }
+}
+
+class _NounTile extends ConsumerWidget {
+  const _NounTile({
+    required this.noun,
+  });
+
+  final Noun noun;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ListTile(
+      contentPadding: context.customPaddings.s,
+      title: Row(
+        children: [
+          Flexible(
+            child: Text(noun.withArticle),
+          ),
+          context.customSpacings.s,
+          LevelIcon(
+            level: noun.level,
+            size: 24,
+          ),
+        ],
+      ),
+      trailing: BasicButton(
+        onPressed: () => ref.read(speakControllerProvider(text: noun.speak)),
+        child: RoundedSquare(
+          size: kMinInteractiveDimension,
+          color: context.customColorScheme.defaultButton,
+          borderRadius: context.customRadii.xs,
+          child: Icon(
+            Icons.volume_up,
+            size: kMinInteractiveDimension * 0.6,
+            color: Theme.of(context).scaffoldBackgroundColor,
           ),
         ),
       ),

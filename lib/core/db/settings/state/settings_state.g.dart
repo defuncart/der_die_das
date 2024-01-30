@@ -6,7 +6,20 @@ part of 'settings_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$languageControllerHash() => r'9d217d93b24efa0df3b98d3c25ceb84ed78b4956';
+String _$settingsServiceHash() => r'4bccfb676ebd858ab40a19467757914c93e0fea6';
+
+/// See also [settingsService].
+@ProviderFor(settingsService)
+final settingsServiceProvider = AutoDisposeProvider<ISettingsService>.internal(
+  settingsService,
+  name: r'settingsServiceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$settingsServiceHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef SettingsServiceRef = AutoDisposeProviderRef<ISettingsService>;
+String _$languageControllerHash() => r'37e7c37e357451e282efe63f7f5de3c6863876da';
 
 /// See also [LanguageController].
 @ProviderFor(LanguageController)
@@ -19,7 +32,7 @@ final languageControllerProvider = NotifierProvider<LanguageController, Language
 );
 
 typedef _$LanguageController = Notifier<Language>;
-String _$levelControllerHash() => r'2aacec07779b76627d00d4a42c391ea9cf694ded';
+String _$levelControllerHash() => r'794ebb6f66527f81e4513c3d265d32c8da0f43f4';
 
 /// See also [LevelController].
 @ProviderFor(LevelController)
@@ -32,7 +45,7 @@ final levelControllerProvider = NotifierProvider<LevelController, Level>.interna
 );
 
 typedef _$LevelController = Notifier<Level>;
-String _$numberQuestionsControllerHash() => r'57306eb6009ace2bb35050378f0e3d01dcac9961';
+String _$numberQuestionsControllerHash() => r'eaa1d1a747a1a5932316443c4bc16f9ec5d500f9';
 
 /// See also [NumberQuestionsController].
 @ProviderFor(NumberQuestionsController)
@@ -45,7 +58,7 @@ final numberQuestionsControllerProvider = NotifierProvider<NumberQuestionsContro
 );
 
 typedef _$NumberQuestionsController = Notifier<NumberQuestions>;
-String _$showTipsControllerHash() => r'5c4280382ba7ef2cb8d29c139e178f66b1b0e7f5';
+String _$showTipsControllerHash() => r'3d76b7f7b9e7ba9c0b1a57025b3f4d9959272a70';
 
 /// See also [ShowTipsController].
 @ProviderFor(ShowTipsController)
@@ -58,7 +71,7 @@ final showTipsControllerProvider = NotifierProvider<ShowTipsController, bool>.in
 );
 
 typedef _$ShowTipsController = Notifier<bool>;
-String _$answersLayoutControllerHash() => r'49c9bd0d214de71a30b9dde200b28a16f950ad07';
+String _$answersLayoutControllerHash() => r'8a3d79574ab00f97e1f27c741c4b4cd5ed1324a4';
 
 /// See also [AnswersLayoutController].
 @ProviderFor(AnswersLayoutController)
@@ -71,7 +84,20 @@ final answersLayoutControllerProvider = NotifierProvider<AnswersLayoutController
 );
 
 typedef _$AnswersLayoutController = Notifier<AnswersLayout>;
-String _$voiceLevelControllerHash() => r'9f2628f98d150aac428251faf9ac322cc20ea8d4';
+String _$speechRateControllerHash() => r'c5c7e6f49b81bfcf80b061d4e1b964b0d01a90de';
+
+/// See also [SpeechRateController].
+@ProviderFor(SpeechRateController)
+final speechRateControllerProvider = NotifierProvider<SpeechRateController, SpeechRate>.internal(
+  SpeechRateController.new,
+  name: r'speechRateControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$speechRateControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SpeechRateController = Notifier<SpeechRate>;
+String _$voiceLevelControllerHash() => r'bb78262b8a6c66d48b9d19249794dd1df337b28c';
 
 /// See also [VoiceLevelController].
 @ProviderFor(VoiceLevelController)
@@ -84,7 +110,7 @@ final voiceLevelControllerProvider = NotifierProvider<VoiceLevelController, doub
 );
 
 typedef _$VoiceLevelController = Notifier<double>;
-String _$soundLevelControllerHash() => r'36ac2ddaa78a24b53aa1a511106b63d9f7757396';
+String _$soundLevelControllerHash() => r'8553eff632a82464c51edbfd9052cabd071d1f7e';
 
 /// See also [SoundLevelController].
 @ProviderFor(SoundLevelController)

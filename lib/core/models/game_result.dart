@@ -1,3 +1,5 @@
+import 'package:der_die_das/core/db/nouns_database/models/tip.dart';
+
 typedef GameResult = ({
   int correct,
   int total,
@@ -6,5 +8,6 @@ typedef GameResult = ({
 
 typedef ResultNoun = ({
   String withArticle,
-  int? tipId,
+  String withoutArticle,
+  Tip? tip,
 });

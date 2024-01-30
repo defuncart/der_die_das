@@ -8,6 +8,7 @@
 .buildlog/
 .history
 .svn/
+migrate_working_dir/
 
 # IntelliJ related
 *.iml
@@ -26,13 +27,9 @@
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
-.packages
 .pub-cache/
 .pub/
 /build/
-
-# Web related
-lib/generated_plugin_registrant.dart
 
 # Symbolication related
 app.*.symbols
@@ -49,6 +46,8 @@ app.*.map.json
 assets_dev/l10n
 assets_dev/db
 assets_dev/app_icons
+assets_dev/google_play_assets
+assets_dev/screenshots
 
 # local assets
 assets/db
