@@ -52,5 +52,5 @@ assets_dev/screenshots
 # local assets
 assets/db
 
-# FVM
-.fvm/flutter_sdk
+# FVM Version Cache
+.fvm/
