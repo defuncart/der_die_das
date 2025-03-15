@@ -3,7 +3,6 @@ import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
 import 'package:der_die_das/core/db/nouns_database/models/tip.dart';
 import 'package:der_die_das/core/db/settings/enums/answers_layout.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
-import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/buttons/article_button.dart';
@@ -125,11 +124,13 @@ class _GameScreen extends ConsumerWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        spacing: context.customSpacings.m.mainAxisExtent,
                         children: [
                           Expanded(
                             child: Center(
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
+                                spacing: context.customSpacings.l.mainAxisExtent,
                                 children: [
                                   ...state.answeredIncorrectly!.articles.map(
                                     (article) => ArticleIcon(
@@ -142,7 +143,7 @@ class _GameScreen extends ConsumerWidget {
                                   ),
                                   if (state.tip != null)
                                     TipCard(tip: state.tip!, noun: state.withoutArticle, showIcon: true),
-                                ].intersperse(context.customSpacings.l),
+                                ],
                               ),
                             ),
                           ),
@@ -153,7 +154,7 @@ class _GameScreen extends ConsumerWidget {
                               text: context.l10n.gameContinueLabel,
                             ),
                           ),
-                        ].intersperse(context.customSpacings.m),
+                        ],
                       ),
                     )
                   else if (state.answeredCorrectly != null)
@@ -267,6 +268,7 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       mainAxisSize: MainAxisSize.max,
+      spacing: context.customSpacings.s.mainAxisExtent,
       children: [
         Row(
           mainAxisSize: MainAxisSize.max,
@@ -309,7 +311,7 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
           )
         else
           SizedBox(width: horizontalWidth, height: horizontalHeight),
-      ].intersperse(context.customSpacings.s),
+      ],
     );
   }
 }

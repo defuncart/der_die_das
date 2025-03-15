@@ -1,5 +1,4 @@
 import 'package:der_die_das/core/db/tips/localized_tip.dart';
-import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_material_close_button.dart';
@@ -68,10 +67,11 @@ class _TipsScreenState extends State<TipsScreen> {
                   title: Padding(
                     padding: context.customPaddings.xsVertical,
                     child: Column(
+                      spacing: context.customSpacings.s.mainAxisExtent,
                       children: [
                         HighlightedText(tips[index].description, highlightColor: context.colorScheme.primary),
                         HighlightedText(tips[index].example, highlightColor: context.colorScheme.primary),
-                      ].intersperse(context.customSpacings.s),
+                      ],
                     ),
                   ),
                 ),

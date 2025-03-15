@@ -4,7 +4,6 @@ import 'package:der_die_das/core/db/settings/enums/language.dart';
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
 import 'package:der_die_das/core/db/settings/enums/speech_rate.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
-import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
@@ -38,6 +37,7 @@ class SettingsScreen extends StatelessWidget {
         child: DefaultTextStyle(
           style: textStyle!,
           child: Column(
+            spacing: context.customSpacings.m.mainAxisExtent,
             children: const [
               _LanguageRow(),
               _LevelRow(),
@@ -48,7 +48,7 @@ class SettingsScreen extends StatelessWidget {
               _VoiceRow(),
               _SoundRow(),
               Center(child: _DataPrivacyButton()),
-            ].intersperse(context.customSpacings.m),
+            ],
           ),
         ),
       ),
@@ -272,7 +272,7 @@ class _SettingsRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(label),
-        Row(mainAxisSize: MainAxisSize.min, children: items.toList().intersperse(context.customSpacings.s)),
+        Row(mainAxisSize: MainAxisSize.min, spacing: context.customSpacings.s.mainAxisExtent, children: items.toList()),
       ],
     );
   }
@@ -312,6 +312,7 @@ class _DataPrivacyDialog extends StatelessWidget {
       title: Text(context.l10n.settingsDataPrivacyAlertTitle),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: context.customSpacings.m.mainAxisExtent,
         children: [
           _TextWithLink(
             text: context.l10n.settingsDataPrivacyAlertContent1,
@@ -322,7 +323,7 @@ class _DataPrivacyDialog extends StatelessWidget {
             text: context.l10n.settingsDataPrivacyAlertContent3,
             url: 'https://github.com/defuncart/der_die_das/',
           ),
-        ].intersperse(context.customSpacings.m),
+        ],
       ),
       actions: <Widget>[
         BasicButton(

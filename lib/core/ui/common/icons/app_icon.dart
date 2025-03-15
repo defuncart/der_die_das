@@ -1,4 +1,3 @@
-import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/icons/article_content.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +52,7 @@ class AppIcon extends StatelessWidget with ArticleContent {
               width: size * 0.6,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                spacing: hasSpacer ? context.customSpacings.s.mainAxisExtent : 0,
                 children: [
                   DefaultTextStyle(
                     style: textStyle.copyWith(color: context.customColorScheme.der),
@@ -66,7 +66,7 @@ class AppIcon extends StatelessWidget with ArticleContent {
                     style: textStyle.copyWith(color: context.customColorScheme.das),
                     child: dasHorizontal,
                   ),
-                ].intersperse(hasSpacer ? context.customSpacings.s : const SizedBox.shrink()),
+                ],
               ),
             ),
           ),

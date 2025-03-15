@@ -30,13 +30,14 @@ class ResultsScreen extends StatelessWidget {
             Center(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
+                spacing: context.customSpacings.m.mainAxisExtent,
                 children: [
                   const Text('🏆', style: TextStyle(fontSize: 32)),
                   Text(
                     context.l10n.resultsScoreLabel(result.correct, result.total),
                     style: context.textTheme.headlineMedium,
                   ),
-                ].intersperse(context.customSpacings.m),
+                ],
               ),
             ),
             context.customSpacings.l,
@@ -88,10 +89,11 @@ class _Mistake extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      spacing: context.customSpacings.s.mainAxisExtent,
       children: [
         Text(label, style: context.textTheme.headlineLarge),
         if (tip != null) TipCard(tip: tip!, noun: noun, showIcon: true),
-      ].intersperse(context.customSpacings.s),
+      ],
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:app_store_screenshots/app_store_screenshots.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/generated/localizations.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/icons/der_die_das_horizontal_logo.dart';
@@ -33,6 +32,7 @@ class GooglePlayFeatureGraphics extends StatelessWidget {
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          spacing: 64,
           children: [
             const DerDieDasHorizontalLogo(),
             Padding(
@@ -43,7 +43,7 @@ class GooglePlayFeatureGraphics extends StatelessWidget {
                 style: TextStyle(fontSize: 64, color: context.customColorScheme.defaultButton),
               ),
             ),
-          ].intersperse(const SizedBox(height: 64)),
+          ],
         ),
       ),
     );

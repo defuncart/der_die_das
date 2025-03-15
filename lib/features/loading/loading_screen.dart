@@ -1,4 +1,3 @@
-import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/sound/sound_state.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/features/home/home_screen.dart';
@@ -35,18 +34,21 @@ class _LoadingScreenState extends ConsumerState<LoadingScreen> {
       body: Center(
         child: Column(
               mainAxisSize: MainAxisSize.min,
+              spacing: context.customSpacings.s.mainAxisExtent,
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.min,
+                  spacing: context.customSpacings.s.mainAxisExtent,
                   children: [
                     const _Square(color: _DFAColors.pink).animate().fadeIn(duration: _segmentDuration),
                     const _Square(
                       color: _DFAColors.blue,
                     ).animate(delay: _segmentDuration).fadeIn(duration: _segmentDuration),
-                  ].intersperse(context.customSpacings.s),
+                  ],
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.min,
+                  spacing: context.customSpacings.s.mainAxisExtent,
                   children: [
                     const _Square(
                       color: _DFAColors.green,
@@ -54,9 +56,9 @@ class _LoadingScreenState extends ConsumerState<LoadingScreen> {
                     const _Square(
                       color: _DFAColors.yellow,
                     ).animate(delay: _segmentDuration * 2).fadeIn(duration: _segmentDuration),
-                  ].intersperse(context.customSpacings.s),
+                  ],
                 ),
-              ].intersperse(context.customSpacings.s),
+              ],
             )
             .animate(delay: _segmentDuration * 4)
             .fadeOut(duration: _fadeOutDuration)
