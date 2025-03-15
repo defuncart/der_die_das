@@ -13,4 +13,8 @@ void main() {
           child: AppIcon(border: AppIconBorder.none, size: size, hasTransparentBackground: true, hasSpacer: false),
         ),
   );
+
+  generateAppIconMacOS(
+    onBuildIcon: (size) => Theme(data: appTheme, child: AppIcon(border: AppIconBorder.none, size: size)),
+  );
 }
