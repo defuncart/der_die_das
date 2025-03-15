@@ -1,4 +1,4 @@
-// ignore_for_file: unused_element, unused_field
+// ignore_for_file: unused_element, unused_field, annotate_overrides
 
 part of 'theme.dart';
 
