@@ -22,6 +22,7 @@ final appTheme = ThemeData(
     primary: _AppColors.purple,
     secondary: _AppColors.purple,
     tertiary: _AppColors.purple,
+    surface: _AppColors.white,
   ),
   fontFamily: AppFonts.lato,
   textTheme: const TextTheme(
