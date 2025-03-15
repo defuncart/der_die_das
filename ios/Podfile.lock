@@ -7,18 +7,22 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - sqlite3 (3.44.0):
-    - sqlite3/common (= 3.44.0)
-  - sqlite3/common (3.44.0)
-  - sqlite3/fts5 (3.44.0):
+  - sqlite3 (3.49.1):
+    - sqlite3/common (= 3.49.1)
+  - sqlite3/common (3.49.1)
+  - sqlite3/dbstatvtab (3.49.1):
     - sqlite3/common
-  - sqlite3/perf-threadsafe (3.44.0):
+  - sqlite3/fts5 (3.49.1):
     - sqlite3/common
-  - sqlite3/rtree (3.44.0):
+  - sqlite3/perf-threadsafe (3.49.1):
+    - sqlite3/common
+  - sqlite3/rtree (3.49.1):
     - sqlite3/common
   - sqlite3_flutter_libs (0.0.1):
     - Flutter
-    - sqlite3 (~> 3.44.0)
+    - FlutterMacOS
+    - sqlite3 (~> 3.49.1)
+    - sqlite3/dbstatvtab
     - sqlite3/fts5
     - sqlite3/perf-threadsafe
     - sqlite3/rtree
@@ -30,7 +34,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_tts (from `.symlinks/plugins/flutter_tts/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
-  - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/ios`)
+  - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
@@ -47,19 +51,19 @@ EXTERNAL SOURCES:
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   sqlite3_flutter_libs:
-    :path: ".symlinks/plugins/sqlite3_flutter_libs/ios"
+    :path: ".symlinks/plugins/sqlite3_flutter_libs/darwin"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  audioplayers_darwin: 877d9a4d06331c5c374595e46e16453ac7eafa40
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  flutter_tts: 0f492aab6accf87059b72354fcb4ba934304771d
-  path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
-  sqlite3: 6e2d4a4879854d0ec86b476bf3c3e30870bac273
-  sqlite3_flutter_libs: eb769059df0356dc52ddda040f09cacc9391a7cf
-  url_launcher_ios: bf5ce03e0e2088bad9cc378ea97fa0ed5b49673b
+  audioplayers_darwin: ccf9c770ee768abb07e26d90af093f7bab1c12ab
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_tts: b88dbc8655d3dc961bc4a796e4e16a4cc1795833
+  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
+  sqlite3: fc1400008a9b3525f5914ed715a5d1af0b8f4983
+  sqlite3_flutter_libs: f8fc13346870e73fe35ebf6dbb997fbcd156b241
+  url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
 
-PODFILE CHECKSUM: 6b9eb94e9f98a329f2ef624b852a6e42d090af2b
+PODFILE CHECKSUM: 4305caec6b40dde0ae97be1573c53de1882a07e5
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.16.2
