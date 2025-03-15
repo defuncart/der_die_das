@@ -24,13 +24,8 @@ class RoundedRectangle extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      decoration: BoxDecoration(
-        borderRadius: effectiveBorderRadius,
-        color: color,
-      ),
-      child: Center(
-        child: child,
-      ),
+      decoration: BoxDecoration(borderRadius: effectiveBorderRadius, color: color),
+      child: Center(child: child),
     );
   }
 }

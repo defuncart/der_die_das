@@ -2,23 +2,21 @@
 
 part of 'theme.dart';
 
-@Tailor(
-  themes: ['light'],
-  themeGetter: ThemeGetter.onBuildContext,
-)
-class _$CustomRadii {
-  static final xs = [
-    BorderRadius.circular(_Radii.xs),
-  ];
-  static final s = [
-    BorderRadius.circular(_Radii.s),
-  ];
-  static final m = [
-    BorderRadius.circular(_Radii.m),
-  ];
-  static final l = [
-    BorderRadius.circular(_Radii.l),
-  ];
+@TailorMixin(themeGetter: ThemeGetter.onBuildContext)
+class CustomRadii extends ThemeExtension<CustomRadii> with _$CustomRadiiTailorMixin {
+  const CustomRadii({required this.xs, required this.s, required this.m, required this.l});
+
+  final BorderRadius xs;
+  final BorderRadius s;
+  final BorderRadius m;
+  final BorderRadius l;
+
+  factory CustomRadii.standard() => CustomRadii(
+    xs: BorderRadius.circular(_Radii.xs),
+    s: BorderRadius.circular(_Radii.s),
+    m: BorderRadius.circular(_Radii.m),
+    l: BorderRadius.circular(_Radii.l),
+  );
 }
 
 abstract class _Radii {

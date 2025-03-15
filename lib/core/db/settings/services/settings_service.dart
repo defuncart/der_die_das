@@ -3,7 +3,7 @@ import 'package:der_die_das/core/db/settings/enums/answers_layout.dart';
 import 'package:der_die_das/core/db/settings/enums/language.dart';
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
 import 'package:der_die_das/core/db/settings/enums/speech_rate.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 
 abstract class ISettingsService {
   Language get language;

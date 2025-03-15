@@ -4,26 +4,13 @@ import 'package:der_die_das/core/ui/common/icons/app_icon.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  generateAppIcon(
-    onBuildIcon: () => Theme(
-      data: appTheme,
-      child: const AppIcon(
-        border: AppIconBorder.none,
-        size: 512,
-      ),
-    ),
-  );
+  generateAppIcon(onBuildIcon: (size) => Theme(data: appTheme, child: AppIcon(border: AppIconBorder.none, size: size)));
 
   generateAppIconAndroidForeground(
-    padding: const EdgeInsets.all(80),
-    onBuildIcon: () => Theme(
-      data: appTheme,
-      child: const AppIcon(
-        border: AppIconBorder.none,
-        size: 512 - 80 * 2,
-        hasTransparentBackground: true,
-        hasSpacer: false,
-      ),
-    ),
+    onBuildIcon:
+        (size) => Theme(
+          data: appTheme,
+          child: AppIcon(border: AppIconBorder.none, size: size, hasTransparentBackground: true, hasSpacer: false),
+        ),
   );
 }

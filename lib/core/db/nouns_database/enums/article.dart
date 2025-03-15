@@ -1,5 +1,1 @@
-enum Article {
-  der,
-  die,
-  das,
-}
+enum Article { der, die, das }

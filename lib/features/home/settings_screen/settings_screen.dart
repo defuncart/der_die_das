@@ -32,10 +32,7 @@ class SettingsScreen extends StatelessWidget {
     final textStyle = context.textTheme.titleMedium;
 
     return Scaffold(
-      appBar: AppBar(
-        leading: const BasicMaterialCloseButton(),
-        title: Text(context.l10n.settingsLabel),
-      ),
+      appBar: AppBar(leading: const BasicMaterialCloseButton(), title: Text(context.l10n.settingsLabel)),
       body: Padding(
         padding: context.customPaddings.s,
         child: DefaultTextStyle(
@@ -50,9 +47,7 @@ class SettingsScreen extends StatelessWidget {
               _SpeechRateRow(),
               _VoiceRow(),
               _SoundRow(),
-              Center(
-                child: _DataPrivacyButton(),
-              )
+              Center(child: _DataPrivacyButton()),
             ].intersperse(context.customSpacings.m),
           ),
         ),
@@ -244,9 +239,9 @@ class _Slider extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliderTheme(
       data: Theme.of(context).sliderTheme.copyWith(
-            inactiveTickMarkColor: Theme.of(context).scaffoldBackgroundColor,
-            overlayShape: SliderComponentShape.noOverlay,
-          ),
+        inactiveTickMarkColor: Theme.of(context).scaffoldBackgroundColor,
+        overlayShape: SliderComponentShape.noOverlay,
+      ),
       child: SizedBox(
         width: kMinInteractiveDimension * 3 + context.customSpacings.s.mainAxisExtent * 2,
         height: kMinInteractiveDimension,
@@ -257,7 +252,7 @@ class _Slider extends StatelessWidget {
           divisions: divisions,
           label: onGenerateLabel != null ? onGenerateLabel!(value) : value.toString(),
           onChanged: onChanged,
-          inactiveColor: context.colorScheme.primary.withOpacity(0.6),
+          inactiveColor: context.colorScheme.primary.withValues(alpha: 0.6),
         ),
       ),
     );
@@ -265,10 +260,7 @@ class _Slider extends StatelessWidget {
 }
 
 class _SettingsRow extends StatelessWidget {
-  const _SettingsRow({
-    required this.label,
-    required this.items,
-  });
+  const _SettingsRow({required this.label, required this.items});
 
   final String label;
   final Iterable<Widget> items;
@@ -279,13 +271,8 @@ class _SettingsRow extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          label,
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: items.toList().intersperse(context.customSpacings.s),
-        ),
+        Text(label),
+        Row(mainAxisSize: MainAxisSize.min, children: items.toList().intersperse(context.customSpacings.s)),
       ],
     );
   }
@@ -299,16 +286,11 @@ class _DataPrivacyButton extends StatelessWidget {
     return BasicButton(
       onPressed: () => _DataPrivacyDialog.show(context),
       child: Container(
-        decoration: BoxDecoration(
-          borderRadius: context.customRadii.xs,
-          color: context.customColorScheme.defaultButton,
-        ),
+        decoration: BoxDecoration(borderRadius: context.customRadii.xs, color: context.customColorScheme.defaultButton),
         padding: context.customPaddings.m,
         child: Text(
           context.l10n.settingsDataPrivacyLabel,
-          style: context.textTheme.labelLarge?.copyWith(
-            color: Theme.of(context).scaffoldBackgroundColor,
-          ),
+          style: context.textTheme.labelLarge?.copyWith(color: Theme.of(context).scaffoldBackgroundColor),
         ),
       ),
     );
@@ -318,17 +300,13 @@ class _DataPrivacyButton extends StatelessWidget {
 class _DataPrivacyDialog extends StatelessWidget {
   const _DataPrivacyDialog();
 
-  static void show(BuildContext context) => showDialog(
-        context: context,
-        builder: (context) => const _DataPrivacyDialog(),
-      );
+  static void show(BuildContext context) =>
+      showDialog(context: context, builder: (context) => const _DataPrivacyDialog());
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: context.customRadii.s,
-      ),
+      shape: RoundedRectangleBorder(borderRadius: context.customRadii.s),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       surfaceTintColor: Colors.transparent,
       title: Text(context.l10n.settingsDataPrivacyAlertTitle),
@@ -350,25 +328,20 @@ class _DataPrivacyDialog extends StatelessWidget {
         BasicButton(
           child: Text(
             MaterialLocalizations.of(context).viewLicensesButtonLabel,
-            style: TextStyle(
-              color: context.colorScheme.primary,
-            ),
+            style: TextStyle(color: context.colorScheme.primary),
           ),
-          onPressed: () => showLicensePage(
-            context: context,
-            applicationIcon: const AppIcon(
-              size: 96,
-            ),
-            applicationName: '',
-            applicationLegalese: '© 2023 defuncart',
-          ),
+          onPressed:
+              () => showLicensePage(
+                context: context,
+                applicationIcon: const AppIcon(size: 96),
+                applicationName: '',
+                applicationLegalese: '© 2023 defuncart',
+              ),
         ),
         BasicButton(
           child: Text(
             MaterialLocalizations.of(context).closeButtonLabel,
-            style: TextStyle(
-              color: context.colorScheme.primary,
-            ),
+            style: TextStyle(color: context.colorScheme.primary),
           ),
           onPressed: () => context.pop(),
         ),
@@ -379,10 +352,7 @@ class _DataPrivacyDialog extends StatelessWidget {
 }
 
 class _TextWithLink extends StatelessWidget {
-  const _TextWithLink({
-    required this.text,
-    required this.url,
-  });
+  const _TextWithLink({required this.text, required this.url});
 
   final String text;
   final String url;
@@ -391,53 +361,38 @@ class _TextWithLink extends StatelessWidget {
   Widget build(BuildContext context) {
     final start = text.indexOf('<a>');
     final end = text.indexOf('</a>');
-    final components = start != -1 && end != -1 && end > start
-        ? [
-            TextSpan(
-              text: text.substring(0, start),
-            ),
-            _ClickableTextSpan(
-              text: text.substring(start, end).replaceAll('<a>', ''),
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.secondary,
-                fontWeight: FontWeight.bold,
+    final components =
+        start != -1 && end != -1 && end > start
+            ? [
+              TextSpan(text: text.substring(0, start)),
+              _ClickableTextSpan(
+                text: text.substring(start, end).replaceAll('<a>', ''),
+                style: TextStyle(color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.bold),
+                url: url,
               ),
-              url: url,
-            ),
-            TextSpan(
-              text: text.substring(end).replaceAll('</a>', ''),
-            ),
-          ]
-        : [
-            TextSpan(text: text),
-          ];
+              TextSpan(text: text.substring(end).replaceAll('</a>', '')),
+            ]
+            : [TextSpan(text: text)];
 
     return RichText(
       textAlign: TextAlign.justify,
-      text: TextSpan(
-        style: context.textTheme.bodyMedium,
-        children: components,
-      ),
+      text: TextSpan(style: context.textTheme.bodyMedium, children: components),
     );
   }
 }
 
 class _ClickableTextSpan extends TextSpan {
-  _ClickableTextSpan({
-    required String super.text,
-    super.style,
-    required String url,
-  }) : super(
-          recognizer: TapGestureRecognizer()..onTap = () async => await _openUrl(url),
-        );
+  _ClickableTextSpan({required String super.text, super.style, required String url})
+    : super(recognizer: TapGestureRecognizer()..onTap = () async => await _openUrl(url));
 
   static Future<void> _openUrl(String url) async {
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(
         Uri.parse(url),
-        mode: defaultTargetPlatform == TargetPlatform.android
-            ? LaunchMode.externalApplication
-            : LaunchMode.platformDefault,
+        mode:
+            defaultTargetPlatform == TargetPlatform.android
+                ? LaunchMode.externalApplication
+                : LaunchMode.platformDefault,
       );
     }
   }

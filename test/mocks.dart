@@ -13,9 +13,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 class MockSettingsService extends Mock implements ISettingsService {}
 
 class FakeGameStateController extends AutoDisposeAsyncNotifier<GameState> implements GameStateController {
-  FakeGameStateController({
-    required GameState state,
-  }) : _state = state;
+  FakeGameStateController({required GameState state}) : _state = state;
 
   final GameState _state;
 

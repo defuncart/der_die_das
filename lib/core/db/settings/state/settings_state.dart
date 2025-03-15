@@ -4,12 +4,13 @@ import 'package:der_die_das/core/db/settings/enums/language.dart';
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
 import 'package:der_die_das/core/db/settings/enums/speech_rate.dart';
 import 'package:der_die_das/core/db/settings/services/settings_service.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'settings_state.g.dart';
 
 @riverpod
-ISettingsService settingsService(SettingsServiceRef ref) => SettingsService();
+ISettingsService settingsService(Ref ref) => SettingsService();
 
 @Riverpod(keepAlive: true)
 class LanguageController extends _$LanguageController {

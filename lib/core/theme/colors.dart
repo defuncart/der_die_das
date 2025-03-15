@@ -2,27 +2,21 @@
 
 part of 'theme.dart';
 
-@Tailor(
-  themes: ['light'],
-  themeGetter: ThemeGetter.onBuildContext,
-  requireStaticConst: true,
-)
-class _$CustomColorScheme {
-  static const der = [
-    _AppColors.blue,
-  ];
-  static const die = [
-    _AppColors.brown,
-  ];
-  static const das = [
-    _AppColors.gray,
-  ];
-  static const levelIcon = [
-    _AppColors.purple,
-  ];
-  static const defaultButton = [
-    _AppColors.black2,
-  ];
+@TailorMixin(themeGetter: ThemeGetter.onBuildContext)
+class CustomColorScheme extends ThemeExtension<CustomColorScheme> with _$CustomColorSchemeTailorMixin {
+  const CustomColorScheme({
+    this.der = _AppColors.blue,
+    this.die = _AppColors.brown,
+    this.das = _AppColors.gray,
+    this.levelIcon = _AppColors.purple,
+    this.defaultButton = _AppColors.black2,
+  });
+
+  final Color der;
+  final Color die;
+  final Color das;
+  final Color levelIcon;
+  final Color defaultButton;
 }
 
 // https://mycolor.space/?hex=%238E44AF&sub=1

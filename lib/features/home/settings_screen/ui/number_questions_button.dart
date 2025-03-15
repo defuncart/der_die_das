@@ -21,19 +21,13 @@ class NumberQuestionsButton extends StatelessWidget {
     return SettingsButton(
       isSelected: isSelected,
       onTap: onTap,
-      childBuilder: (size) => _NumberQuestionsIcon(
-        numberQuestions: numberQuestions.value.toString(),
-        size: size,
-      ),
+      childBuilder: (size) => _NumberQuestionsIcon(numberQuestions: numberQuestions.value.toString(), size: size),
     );
   }
 }
 
 class _NumberQuestionsIcon extends StatelessWidget {
-  const _NumberQuestionsIcon({
-    required this.numberQuestions,
-    required this.size,
-  });
+  const _NumberQuestionsIcon({required this.numberQuestions, required this.size});
 
   final String numberQuestions;
   final double size;

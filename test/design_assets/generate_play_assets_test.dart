@@ -1,10 +1,10 @@
 import 'package:app_store_screenshots/app_store_screenshots.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
+import 'package:der_die_das/core/l10n/generated/localizations.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/icons/der_die_das_horizontal_logo.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/localizations.dart';
 
 void main() {
   final languageLabels = {
@@ -15,20 +15,12 @@ void main() {
 
   generateGooglePlayFeatureGraphic(
     locales: AppLocalizations.supportedLocales,
-    onBuildGraphic: (locale) => Theme(
-      data: appTheme,
-      child: GooglePlayFeatureGraphics(
-        text: languageLabels[locale]!,
-      ),
-    ),
+    onBuildGraphic: (locale) => Theme(data: appTheme, child: GooglePlayFeatureGraphics(text: languageLabels[locale]!)),
   );
 }
 
 class GooglePlayFeatureGraphics extends StatelessWidget {
-  const GooglePlayFeatureGraphics({
-    super.key,
-    required this.text,
-  });
+  const GooglePlayFeatureGraphics({super.key, required this.text});
 
   final String text;
 
@@ -48,10 +40,7 @@ class GooglePlayFeatureGraphics extends StatelessWidget {
               child: AutoSizeText(
                 text,
                 maxLines: 1,
-                style: TextStyle(
-                  fontSize: 64,
-                  color: context.customColorScheme.defaultButton,
-                ),
+                style: TextStyle(fontSize: 64, color: context.customColorScheme.defaultButton),
               ),
             ),
           ].intersperse(const SizedBox(height: 64)),

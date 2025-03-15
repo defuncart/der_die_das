@@ -52,5 +52,8 @@ assets_dev/screenshots
 # local assets
 assets/db
 
+# generated assets
+lib/core/l10n/generated
+
 # FVM Version Cache
 .fvm/

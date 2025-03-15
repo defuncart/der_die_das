@@ -4,12 +4,7 @@ import 'package:der_die_das/features/home/settings_screen/ui/settings_button.dar
 import 'package:flutter/material.dart';
 
 class LevelButton extends StatelessWidget {
-  const LevelButton({
-    super.key,
-    required this.level,
-    required this.isSelected,
-    required this.onTap,
-  });
+  const LevelButton({super.key, required this.level, required this.isSelected, required this.onTap});
 
   final Level level;
   final bool isSelected;
@@ -20,10 +15,7 @@ class LevelButton extends StatelessWidget {
     return SettingsButton(
       isSelected: isSelected,
       onTap: onTap,
-      childBuilder: (size) => LevelIcon(
-        level: level,
-        size: size,
-      ),
+      childBuilder: (size) => LevelIcon(level: level, size: size),
     );
   }
 }

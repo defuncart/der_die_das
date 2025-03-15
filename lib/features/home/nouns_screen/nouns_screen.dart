@@ -33,20 +33,20 @@ class _NounsScreenState extends ConsumerState<NounsScreen> {
   void initState() {
     super.initState();
 
-    _controller = TextEditingController()
-      ..addListener(() async {
-        final searchTerm = _searchTerm;
-        if (searchTerm.isNotEmpty) {
-          await ref.read(filterNounsProvider(searchTerm).future).then((value) => setState(() => _results = value));
-        } else {
-          setState(() => _results = <Noun>[]);
-        }
+    _controller =
+        TextEditingController()..addListener(() async {
+          final searchTerm = _searchTerm;
+          if (searchTerm.isNotEmpty) {
+            await ref.read(filterNounsProvider(searchTerm).future).then((value) => setState(() => _results = value));
+          } else {
+            setState(() => _results = <Noun>[]);
+          }
 
-        final showClearButton = _controller.text.isNotEmpty;
-        if (_showClearButton != showClearButton) {
-          setState(() => _showClearButton = showClearButton);
-        }
-      });
+          final showClearButton = _controller.text.isNotEmpty;
+          if (_showClearButton != showClearButton) {
+            setState(() => _showClearButton = showClearButton);
+          }
+        });
     _focusNode = FocusNode()..requestFocus();
 
     _init();
@@ -66,7 +66,7 @@ class _NounsScreenState extends ConsumerState<NounsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final hintColor = context.customColorScheme.defaultButton.withOpacity(0.5);
+    final hintColor = context.customColorScheme.defaultButton.withValues(alpha: 0.5);
 
     return Scaffold(
       appBar: AppBar(
@@ -76,49 +76,39 @@ class _NounsScreenState extends ConsumerState<NounsScreen> {
           focusNode: _focusNode,
           decoration: InputDecoration(
             hintText: context.l10n.nounsSearchFieldHint,
-            hintStyle: TextStyle(
-              color: hintColor,
-            ),
-            suffixIcon: _showClearButton
-                ? IconButton(
-                    icon: Icon(
-                      Icons.close,
-                      size: 20,
-                      color: context.customColorScheme.defaultButton.withOpacity(0.5),
-                    ),
-                    onPressed: () => _controller.clear(),
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                  )
-                : null,
+            hintStyle: TextStyle(color: hintColor),
+            suffixIcon:
+                _showClearButton
+                    ? IconButton(
+                      icon: Icon(
+                        Icons.close,
+                        size: 20,
+                        color: context.customColorScheme.defaultButton.withValues(alpha: 0.5),
+                      ),
+                      onPressed: () => _controller.clear(),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                    )
+                    : null,
           ),
-          style: TextStyle(
-            color: context.customColorScheme.defaultButton,
-          ),
+          style: TextStyle(color: context.customColorScheme.defaultButton),
         ),
       ),
-      body: _showAllNounsForCurrentLevel
-          ? _allNounsForCurrentLevel.isNotEmpty
-              ? _NounResultList(
-                  results: _allNounsForCurrentLevel,
-                )
-              : const SizedBox.shrink()
-          : _results.isNotEmpty
-              ? _NounResultList(
-                  results: _results,
-                )
-              : Center(
-                  child: Text(context.l10n.nounsNoResultsFound),
-                ),
+      body:
+          _showAllNounsForCurrentLevel
+              ? _allNounsForCurrentLevel.isNotEmpty
+                  ? _NounResultList(results: _allNounsForCurrentLevel)
+                  : const SizedBox.shrink()
+              : _results.isNotEmpty
+              ? _NounResultList(results: _results)
+              : Center(child: Text(context.l10n.nounsNoResultsFound)),
     );
   }
 }
 
 class _NounResultList extends StatelessWidget {
-  const _NounResultList({
-    required this.results,
-  });
+  const _NounResultList({required this.results});
 
   final List<Noun> results;
 
@@ -130,17 +120,13 @@ class _NounResultList extends StatelessWidget {
     return ListView.builder(
       physics: const BouncingScrollPhysics(),
       itemCount: results.length,
-      itemBuilder: (context, index) => _NounTile(
-        noun: results[index],
-      ),
+      itemBuilder: (context, index) => _NounTile(noun: results[index]),
     );
   }
 }
 
 class _NounTile extends ConsumerWidget {
-  const _NounTile({
-    required this.noun,
-  });
+  const _NounTile({required this.noun});
 
   final Noun noun;
 
@@ -150,14 +136,9 @@ class _NounTile extends ConsumerWidget {
       contentPadding: context.customPaddings.s,
       title: Row(
         children: [
-          Flexible(
-            child: Text(noun.withArticle),
-          ),
+          Flexible(child: Text(noun.withArticle)),
           context.customSpacings.s,
-          LevelIcon(
-            level: noun.level,
-            size: 24,
-          ),
+          LevelIcon(level: noun.level, size: 24),
         ],
       ),
       trailing: BasicButton(

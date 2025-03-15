@@ -3,12 +3,7 @@ import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/icons/article_content.dart';
 import 'package:flutter/material.dart';
 
-enum AppIconBorder {
-  none,
-  round,
-  iOS,
-  androidRoundRect,
-}
+enum AppIconBorder { none, round, iOS, androidRoundRect }
 
 class AppIcon extends StatelessWidget with ArticleContent {
   const AppIcon({
@@ -27,11 +22,7 @@ class AppIcon extends StatelessWidget with ArticleContent {
   @override
   Widget build(BuildContext context) {
     final fontSize = size * 0.225;
-    final textStyle = TextStyle(
-      fontSize: fontSize,
-      fontWeight: FontWeight.bold,
-      fontFamily: AppFonts.lovelo,
-    );
+    final textStyle = TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, fontFamily: AppFonts.lovelo);
 
     return Container(
       width: size,
@@ -39,10 +30,7 @@ class AppIcon extends StatelessWidget with ArticleContent {
       decoration: BoxDecoration(
         border: switch (border) {
           AppIconBorder.none => null,
-          _ => Border.all(
-              width: size * 0.0175,
-              color: context.textTheme.headlineLarge!.color!,
-            ),
+          _ => Border.all(width: size * 0.0175, color: context.textTheme.headlineLarge!.color!),
         },
         borderRadius: switch (border) {
           AppIconBorder.iOS => BorderRadius.circular(size * 0.2237),
@@ -67,26 +55,18 @@ class AppIcon extends StatelessWidget with ArticleContent {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   DefaultTextStyle(
-                    style: textStyle.copyWith(
-                      color: context.customColorScheme.der,
-                    ),
+                    style: textStyle.copyWith(color: context.customColorScheme.der),
                     child: derHorizontal,
                   ),
                   DefaultTextStyle(
-                    style: textStyle.copyWith(
-                      color: context.customColorScheme.die,
-                    ),
+                    style: textStyle.copyWith(color: context.customColorScheme.die),
                     child: dieHorizontal,
                   ),
                   DefaultTextStyle(
-                    style: textStyle.copyWith(
-                      color: context.customColorScheme.das,
-                    ),
+                    style: textStyle.copyWith(color: context.customColorScheme.das),
                     child: dasHorizontal,
                   ),
-                ].intersperse(
-                  hasSpacer ? context.customSpacings.s : const SizedBox.shrink(),
-                ),
+                ].intersperse(hasSpacer ? context.customSpacings.s : const SizedBox.shrink()),
               ),
             ),
           ),
@@ -97,11 +77,7 @@ class AppIcon extends StatelessWidget with ArticleContent {
 }
 
 class _IconClipper extends StatelessWidget {
-  const _IconClipper({
-    required this.border,
-    required this.size,
-    required this.child,
-  });
+  const _IconClipper({required this.border, required this.size, required this.child});
 
   final AppIconBorder border;
   final double size;
@@ -111,17 +87,9 @@ class _IconClipper extends StatelessWidget {
   Widget build(BuildContext context) {
     return switch (border) {
       AppIconBorder.none => child,
-      AppIconBorder.iOS => ClipRRect(
-          borderRadius: BorderRadius.circular(size * 0.2237),
-          child: child,
-        ),
-      AppIconBorder.androidRoundRect => ClipRRect(
-          borderRadius: BorderRadius.circular(size * 0.0833),
-          child: child,
-        ),
-      AppIconBorder.round => ClipOval(
-          child: child,
-        ),
+      AppIconBorder.iOS => ClipRRect(borderRadius: BorderRadius.circular(size * 0.2237), child: child),
+      AppIconBorder.androidRoundRect => ClipRRect(borderRadius: BorderRadius.circular(size * 0.0833), child: child),
+      AppIconBorder.round => ClipOval(child: child),
     };
   }
 }

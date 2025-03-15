@@ -5,12 +5,7 @@ import 'package:der_die_das/features/home/settings_screen/ui/settings_button.dar
 import 'package:flutter/material.dart';
 
 class AnswersLayoutButton extends StatelessWidget {
-  const AnswersLayoutButton({
-    super.key,
-    required this.answersLayout,
-    required this.isSelected,
-    required this.onTap,
-  });
+  const AnswersLayoutButton({super.key, required this.answersLayout, required this.isSelected, required this.onTap});
 
   final AnswersLayout answersLayout;
   final bool isSelected;
@@ -21,24 +16,21 @@ class AnswersLayoutButton extends StatelessWidget {
     return SettingsButton(
       isSelected: isSelected,
       onTap: onTap,
-      childBuilder: (size) => SizedBox(
-        width: size,
-        height: size,
-        child: Center(
-          child: Icon(
-            answersLayout.icon,
-            size: size * 0.8,
-            color: context.customColorScheme.defaultButton,
+      childBuilder:
+          (size) => SizedBox(
+            width: size,
+            height: size,
+            child: Center(
+              child: Icon(answersLayout.icon, size: size * 0.8, color: context.customColorScheme.defaultButton),
+            ),
           ),
-        ),
-      ),
     );
   }
 }
 
 extension on AnswersLayout {
   IconData get icon => switch (this) {
-        AnswersLayout.standard => CustomIcons.answers_layout_standard,
-        AnswersLayout.horizontal => CustomIcons.answers_layout_horizontal,
-      };
+    AnswersLayout.standard => CustomIcons.answers_layout_standard,
+    AnswersLayout.horizontal => CustomIcons.answers_layout_horizontal,
+  };
 }

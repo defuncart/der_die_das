@@ -19,62 +19,59 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: LayoutBuilder(builder: (context, constraints) {
-          final playButtonSize = constraints.maxWidth * 0.5;
-          final otherButtonsSize = playButtonSize * 0.6;
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final playButtonSize = constraints.maxWidth * 0.5;
+            final otherButtonsSize = playButtonSize * 0.6;
 
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                const DerDieDasHorizontalLogo(),
-                _SquareButton(
-                  size: playButtonSize,
-                  color: context.colorScheme.primary,
-                  icon: Icons.play_arrow,
-                  path: GameScreen.path,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _SquareButton(
-                      size: otherButtonsSize,
-                      color: context.customColorScheme.defaultButton,
-                      icon: Icons.search,
-                      path: NounsScreen.path,
-                    ),
-                    _SquareButton(
-                      size: otherButtonsSize,
-                      color: context.customColorScheme.defaultButton,
-                      icon: Icons.lightbulb_outline,
-                      path: TipsScreen.path,
-                    ),
-                    _SquareButton(
-                      size: otherButtonsSize,
-                      color: context.customColorScheme.defaultButton,
-                      icon: Icons.settings,
-                      path: SettingsScreen.path,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          );
-        }),
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  const DerDieDasHorizontalLogo(),
+                  _SquareButton(
+                    size: playButtonSize,
+                    color: context.colorScheme.primary,
+                    icon: Icons.play_arrow,
+                    path: GameScreen.path,
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _SquareButton(
+                        size: otherButtonsSize,
+                        color: context.customColorScheme.defaultButton,
+                        icon: Icons.search,
+                        path: NounsScreen.path,
+                      ),
+                      _SquareButton(
+                        size: otherButtonsSize,
+                        color: context.customColorScheme.defaultButton,
+                        icon: Icons.lightbulb_outline,
+                        path: TipsScreen.path,
+                      ),
+                      _SquareButton(
+                        size: otherButtonsSize,
+                        color: context.customColorScheme.defaultButton,
+                        icon: Icons.settings,
+                        path: SettingsScreen.path,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
 }
 
 class _SquareButton extends StatelessWidget {
-  const _SquareButton({
-    required this.size,
-    required this.color,
-    required this.icon,
-    required this.path,
-  });
+  const _SquareButton({required this.size, required this.color, required this.icon, required this.path});
 
   final double size;
   final Color color;
@@ -88,11 +85,7 @@ class _SquareButton extends StatelessWidget {
       child: RoundedSquare(
         size: size,
         color: color,
-        child: Icon(
-          icon,
-          size: size * 0.6,
-          color: Theme.of(context).scaffoldBackgroundColor,
-        ),
+        child: Icon(icon, size: size * 0.6, color: Theme.of(context).scaffoldBackgroundColor),
       ),
     );
   }

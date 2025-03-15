@@ -30,25 +30,19 @@ class ArticleIcon extends StatelessWidget with ArticleContent {
     final child = SizedBox(
       width: width * horizontalTextWidthPercent,
       child: switch (article) {
-        Article.der => isHorizontal
-            ? derHorizontal
-            : Column(
+        Article.der =>
+          isHorizontal
+              ? derHorizontal
+              : Column(
                 mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text('D'),
-                  const Text('E'),
-                  const Text('R'),
-                ].intersperse(Gap(fontSize * 0.025)),
+                children: [const Text('D'), const Text('E'), const Text('R')].intersperse(Gap(fontSize * 0.025)),
               ),
-        Article.die => isHorizontal
-            ? dieHorizontal
-            : Column(
+        Article.die =>
+          isHorizontal
+              ? dieHorizontal
+              : Column(
                 mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text('D'),
-                  const Text('I'),
-                  const Text('E'),
-                ].intersperse(Gap(fontSize * 0.05)),
+                children: [const Text('D'), const Text('I'), const Text('E')].intersperse(Gap(fontSize * 0.05)),
               ),
         Article.das => dasHorizontal,
       },
@@ -78,9 +72,7 @@ class ArticleIcon extends StatelessWidget with ArticleContent {
           fontFamily: AppFonts.lovelo,
           height: textHeight,
         ),
-        child: Center(
-          child: child,
-        ),
+        child: Center(child: child),
       ),
     );
   }

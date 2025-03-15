@@ -1,22 +1,13 @@
 class Tip {
-  const Tip({
-    required this.id,
-    required this.isException,
-  });
+  const Tip({required this.id, required this.isException});
 
   final int id;
   final bool isException;
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'isException': isException,
-      };
+  Map<String, dynamic> toJson() => {'id': id, 'isException': isException};
 
   factory Tip.fromJson(Map<String, dynamic> map) {
-    return Tip(
-      id: map['id']?.toInt() ?? 0,
-      isException: map['isException'] ?? false,
-    );
+    return Tip(id: map['id']?.toInt() ?? 0, isException: map['isException'] ?? false);
   }
 
   @override

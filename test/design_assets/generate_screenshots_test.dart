@@ -6,14 +6,13 @@ import 'package:der_die_das/core/db/nouns_database/models/tip.dart';
 import 'package:der_die_das/core/db/nouns_database/state/state.dart';
 import 'package:der_die_das/core/db/settings/enums/answers_layout.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
+import 'package:der_die_das/core/l10n/generated/localizations.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/features/game/game_screen.dart';
 import 'package:der_die_das/features/game/state/game_state.dart';
 import 'package:der_die_das/features/home/nouns_screen/nouns_screen.dart';
 import 'package:der_die_das/features/home/tips_screen/tips_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -35,131 +34,117 @@ void main() {
       when(() => mockSettingsService.answersLayout).thenReturn(AnswersLayout.standard);
     },
     config: ScreenshotsConfig(
-      devices: [
-        DeviceType.androidPhonePortrait,
-        DeviceType.iOSPhone55Portrait,
-        DeviceType.iOSPhone67Portrait,
-      ],
+      devices: [DeviceType.androidPhonePortrait, DeviceType.iOSPhone55Portrait, DeviceType.iOSPhone67Portrait],
       locales: AppLocalizations.supportedLocales,
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        AppLocalizations.delegate,
-      ],
-      background: ScreenshotBackground.solid(
-        color: appTheme.colorScheme.primary,
-      ),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      background: ScreenshotBackground.solid(color: appTheme.colorScheme.primary),
       theme: appTheme,
-      textStyle: const TextStyle(
-        fontFamily: 'Lato',
-        fontSize: 96,
-        color: Colors.white,
+      textOptions: const ScreenshotTextOptions(
+        textStyle: TextStyle(fontFamily: 'Lato', fontSize: 96, color: Colors.white),
       ),
     ),
     screens: [
       ScreenshotScenario(
-        onBuildScreen: () => const Padding(
-          padding: EdgeInsets.only(bottom: 16),
-          child: GameScreen(),
-        ),
-        wrapper: (child) => ProviderScope(
-          key: UniqueKey(),
-          overrides: [
-            settingsServiceProvider.overrideWithValue(mockSettingsService),
-            gameStateControllerProvider.overrideWith(
-              () => FakeGameStateController(
-                state: (
-                  progress: 0.5,
-                  withoutArticle: 'Straße',
-                  ambiguousLabel: null,
-                  tip: const Tip(
-                    id: 213,
-                    isException: false,
+        onBuildScreen: () => const Padding(padding: EdgeInsets.only(bottom: 16), child: GameScreen()),
+        wrapper:
+            (child) => ProviderScope(
+              key: UniqueKey(),
+              overrides: [
+                settingsServiceProvider.overrideWithValue(mockSettingsService),
+                gameStateControllerProvider.overrideWith(
+                  () => FakeGameStateController(
+                    state: (
+                      progress: 0.5,
+                      withoutArticle: 'Straße',
+                      ambiguousLabel: null,
+                      tip: const Tip(id: 213, isException: false),
+                      answeredCorrectly: null,
+                      answeredIncorrectly: null,
+                      result: null,
+                    ),
                   ),
-                  answeredCorrectly: null,
-                  answeredIncorrectly: null,
-                  result: null,
                 ),
-              ),
+              ],
+              child: child,
             ),
-          ],
-          child: child,
-        ),
         text: ScreenshotText(
-          text: {
-            const Locale('en'): 'Intuitive gameplay',
-            const Locale('de'): 'Intuitives Gameplay',
-            const Locale('pl'): 'Intuicyjna gra',
-          },
+          onGenerateText:
+              (locale) => switch (locale) {
+                const Locale('en') => 'Intuitive gameplay',
+                const Locale('de') => 'Intuitives Gameplay',
+                const Locale('pl') => 'Intuicyjna gra',
+                _ => throw ArgumentError(),
+              },
         ),
       ),
       ScreenshotScenario(
-        onBuildScreen: () => const Padding(
-          padding: EdgeInsets.only(bottom: 16),
-          child: GameScreen(),
-        ),
-        wrapper: (child) => ProviderScope(
-          key: UniqueKey(),
-          overrides: [
-            settingsServiceProvider.overrideWithValue(mockSettingsService),
-            gameStateControllerProvider.overrideWith(
-              () => FakeGameStateController(
-                state: (
-                  progress: 0.6,
-                  withoutArticle: 'Straße',
-                  ambiguousLabel: null,
-                  tip: const Tip(
-                    id: 213,
-                    isException: false,
+        onBuildScreen: () => const Padding(padding: EdgeInsets.only(bottom: 16), child: GameScreen()),
+        wrapper:
+            (child) => ProviderScope(
+              key: UniqueKey(),
+              overrides: [
+                settingsServiceProvider.overrideWithValue(mockSettingsService),
+                gameStateControllerProvider.overrideWith(
+                  () => FakeGameStateController(
+                    state: (
+                      progress: 0.6,
+                      withoutArticle: 'Straße',
+                      ambiguousLabel: null,
+                      tip: const Tip(id: 213, isException: false),
+                      answeredCorrectly: null,
+                      answeredIncorrectly: (articles: [Article.die]),
+                      result: null,
+                    ),
                   ),
-                  answeredCorrectly: null,
-                  answeredIncorrectly: (articles: [Article.die],),
-                  result: null,
                 ),
-              ),
+              ],
+              child: child,
             ),
-          ],
-          child: child,
-        ),
         text: ScreenshotText(
-          text: {
-            const Locale('en'): 'Instant feedback',
-            const Locale('de'): 'Sofortiges Feedback',
-            const Locale('pl'): 'Szybki feedback',
-          },
+          onGenerateText:
+              (locale) => switch (locale) {
+                const Locale('en') => 'Instant feedback',
+                const Locale('de') => 'Sofortiges Feedback',
+                const Locale('pl') => 'Szybki feedback',
+                _ => throw ArgumentError(),
+              },
         ),
       ),
       ScreenshotScenario(
         onBuildScreen: () => const TipsScreen(),
         text: ScreenshotText(
-          text: {
-            const Locale('en'): '30 cunning tips',
-            const Locale('de'): '30 schlaue Tipps',
-            const Locale('pl'): '30 wskazówek',
-          },
+          onGenerateText:
+              (locale) => switch (locale) {
+                const Locale('en') => '30 cunning tips',
+                const Locale('de') => '30 schlaue Tipps',
+                const Locale('pl') => '30 wskazówek',
+                _ => throw ArgumentError(),
+              },
         ),
       ),
       ScreenshotScenario(
         onBuildScreen: () => const NounsScreen(),
-        wrapper: (child) => ProviderScope(
-          key: UniqueKey(),
-          overrides: [
-            settingsServiceProvider.overrideWithValue(mockSettingsService),
-            nounDatabaseProvider.overrideWithValue(db),
-          ],
-          child: child,
-        ),
+        wrapper:
+            (child) => ProviderScope(
+              key: UniqueKey(),
+              overrides: [
+                settingsServiceProvider.overrideWithValue(mockSettingsService),
+                nounDatabaseProvider.overrideWithValue(db),
+              ],
+              child: child,
+            ),
         onPostPumped: (tester) async {
           await tester.enterText(find.byType(TextField), 'Wort');
           await tester.pumpAndSettle();
         },
         text: ScreenshotText(
-          text: {
-            const Locale('en'): 'Levels A1 & A2',
-            const Locale('de'): 'Stufen A1 & A2',
-            const Locale('pl'): 'Poziomy A1 & A2',
-          },
+          onGenerateText:
+              (locale) => switch (locale) {
+                const Locale('en') => 'Levels A1 & A2',
+                const Locale('de') => 'Stufen A1 & A2',
+                const Locale('pl') => 'Poziomy A1 & A2',
+                _ => throw ArgumentError(),
+              },
         ),
       ),
     ],

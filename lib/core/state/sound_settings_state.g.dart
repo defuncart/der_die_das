@@ -39,21 +39,13 @@ class SpeakControllerFamily extends Family<AsyncValue<void>> {
   const SpeakControllerFamily();
 
   /// See also [speakController].
-  SpeakControllerProvider call({
-    required String text,
-  }) {
-    return SpeakControllerProvider(
-      text: text,
-    );
+  SpeakControllerProvider call({required String text}) {
+    return SpeakControllerProvider(text: text);
   }
 
   @override
-  SpeakControllerProvider getProviderOverride(
-    covariant SpeakControllerProvider provider,
-  ) {
-    return call(
-      text: provider.text,
-    );
+  SpeakControllerProvider getProviderOverride(covariant SpeakControllerProvider provider) {
+    return call(text: provider.text);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -73,20 +65,16 @@ class SpeakControllerFamily extends Family<AsyncValue<void>> {
 /// See also [speakController].
 class SpeakControllerProvider extends AutoDisposeFutureProvider<void> {
   /// See also [speakController].
-  SpeakControllerProvider({
-    required String text,
-  }) : this._internal(
-          (ref) => speakController(
-            ref as SpeakControllerRef,
-            text: text,
-          ),
-          from: speakControllerProvider,
-          name: r'speakControllerProvider',
-          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$speakControllerHash,
-          dependencies: SpeakControllerFamily._dependencies,
-          allTransitiveDependencies: SpeakControllerFamily._allTransitiveDependencies,
-          text: text,
-        );
+  SpeakControllerProvider({required String text})
+    : this._internal(
+        (ref) => speakController(ref as SpeakControllerRef, text: text),
+        from: speakControllerProvider,
+        name: r'speakControllerProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$speakControllerHash,
+        dependencies: SpeakControllerFamily._dependencies,
+        allTransitiveDependencies: SpeakControllerFamily._allTransitiveDependencies,
+        text: text,
+      );
 
   SpeakControllerProvider._internal(
     super._createNotifier, {
@@ -101,9 +89,7 @@ class SpeakControllerProvider extends AutoDisposeFutureProvider<void> {
   final String text;
 
   @override
-  Override overrideWith(
-    FutureOr<void> Function(SpeakControllerRef provider) create,
-  ) {
+  Override overrideWith(FutureOr<void> Function(SpeakControllerRef provider) create) {
     return ProviderOverride(
       origin: this,
       override: SpeakControllerProvider._internal(
@@ -137,6 +123,8 @@ class SpeakControllerProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin SpeakControllerRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `text` of this provider.
   String get text;
@@ -161,21 +149,13 @@ class SfxControllerFamily extends Family<AsyncValue<void>> {
   const SfxControllerFamily();
 
   /// See also [sfxController].
-  SfxControllerProvider call({
-    required SFXEffect effect,
-  }) {
-    return SfxControllerProvider(
-      effect: effect,
-    );
+  SfxControllerProvider call({required SFXEffect effect}) {
+    return SfxControllerProvider(effect: effect);
   }
 
   @override
-  SfxControllerProvider getProviderOverride(
-    covariant SfxControllerProvider provider,
-  ) {
-    return call(
-      effect: provider.effect,
-    );
+  SfxControllerProvider getProviderOverride(covariant SfxControllerProvider provider) {
+    return call(effect: provider.effect);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -195,20 +175,16 @@ class SfxControllerFamily extends Family<AsyncValue<void>> {
 /// See also [sfxController].
 class SfxControllerProvider extends AutoDisposeFutureProvider<void> {
   /// See also [sfxController].
-  SfxControllerProvider({
-    required SFXEffect effect,
-  }) : this._internal(
-          (ref) => sfxController(
-            ref as SfxControllerRef,
-            effect: effect,
-          ),
-          from: sfxControllerProvider,
-          name: r'sfxControllerProvider',
-          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$sfxControllerHash,
-          dependencies: SfxControllerFamily._dependencies,
-          allTransitiveDependencies: SfxControllerFamily._allTransitiveDependencies,
-          effect: effect,
-        );
+  SfxControllerProvider({required SFXEffect effect})
+    : this._internal(
+        (ref) => sfxController(ref as SfxControllerRef, effect: effect),
+        from: sfxControllerProvider,
+        name: r'sfxControllerProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$sfxControllerHash,
+        dependencies: SfxControllerFamily._dependencies,
+        allTransitiveDependencies: SfxControllerFamily._allTransitiveDependencies,
+        effect: effect,
+      );
 
   SfxControllerProvider._internal(
     super._createNotifier, {
@@ -223,9 +199,7 @@ class SfxControllerProvider extends AutoDisposeFutureProvider<void> {
   final SFXEffect effect;
 
   @override
-  Override overrideWith(
-    FutureOr<void> Function(SfxControllerRef provider) create,
-  ) {
+  Override overrideWith(FutureOr<void> Function(SfxControllerRef provider) create) {
     return ProviderOverride(
       origin: this,
       override: SfxControllerProvider._internal(
@@ -259,6 +233,8 @@ class SfxControllerProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin SfxControllerRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `effect` of this provider.
   SFXEffect get effect;
@@ -270,5 +246,6 @@ class _SfxControllerProviderElement extends AutoDisposeFutureProviderElement<voi
   @override
   SFXEffect get effect => (origin as SfxControllerProvider).effect;
 }
+
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

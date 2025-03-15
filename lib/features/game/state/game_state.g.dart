@@ -6,7 +6,7 @@ part of 'game_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$gameStateControllerHash() => r'6216ca94910f4eddff1f3cba832fd86b2ef984f9';
+String _$gameStateControllerHash() => r'465753f1a5630c2bff03d9e00e0562b2332579ff';
 
 /// See also [GameStateController].
 @ProviderFor(GameStateController)
@@ -20,4 +20,4 @@ final gameStateControllerProvider = AutoDisposeAsyncNotifierProvider<GameStateCo
 
 typedef _$GameStateController = AutoDisposeAsyncNotifier<GameState>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

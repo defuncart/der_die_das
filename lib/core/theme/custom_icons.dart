@@ -5,10 +5,7 @@ import 'package:flutter/widgets.dart';
 // ignore_for_file: constant_identifier_names
 @immutable
 class _CustomIconsData extends IconData {
-  const _CustomIconsData(super.codePoint, this.name)
-      : super(
-          fontFamily: 'CustomIcons',
-        );
+  const _CustomIconsData(super.codePoint, this.name) : super(fontFamily: 'CustomIcons');
 
   final String name;
 }

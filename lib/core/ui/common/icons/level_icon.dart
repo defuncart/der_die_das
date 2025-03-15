@@ -4,11 +4,7 @@ import 'package:der_die_das/core/ui/common/rounded_square.dart';
 import 'package:flutter/material.dart';
 
 class LevelIcon extends StatelessWidget {
-  const LevelIcon({
-    super.key,
-    required this.level,
-    this.size = 24,
-  });
+  const LevelIcon({super.key, required this.level, this.size = 24});
 
   final Level level;
   final double size;
