@@ -29,6 +29,7 @@ class GameScreen extends ConsumerWidget {
     return state.maybeMap(
       data: (data) {
         if (data.value.result != null) {
+          // ignore: use_build_context_synchronously
           Future.microtask(() => context.pushReplacement(ResultsScreen.path, extra: data.value.result));
           return const Scaffold();
         }
