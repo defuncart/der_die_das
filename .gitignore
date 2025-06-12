@@ -57,5 +57,8 @@ assets/db
 # generated assets
 lib/core/l10n/generated
 
+# debug target
+macos/
+
 # FVM Version Cache
 .fvm/
