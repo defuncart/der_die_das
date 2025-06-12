@@ -32,18 +32,18 @@ class ArticleIcon extends StatelessWidget with ArticleContent {
           isHorizontal
               ? derHorizontal
               : Column(
-                mainAxisSize: MainAxisSize.min,
-                spacing: fontSize * 0.025,
-                children: const [Text('D'), Text('E'), Text('R')],
-              ),
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: fontSize * 0.025,
+                  children: const [Text('D'), Text('E'), Text('R')],
+                ),
         Article.die =>
           isHorizontal
               ? dieHorizontal
               : Column(
-                mainAxisSize: MainAxisSize.min,
-                spacing: fontSize * 0.05,
-                children: const [Text('D'), Text('I'), Text('E')],
-              ),
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: fontSize * 0.05,
+                  children: const [Text('D'), Text('I'), Text('E')],
+                ),
         Article.das => dasHorizontal,
       },
     );

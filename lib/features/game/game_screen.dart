@@ -97,8 +97,9 @@ class _GameScreen extends ConsumerWidget {
               height: constraints.maxHeight,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment:
-                    state.answeredIncorrectly != null ? MainAxisAlignment.start : MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: state.answeredIncorrectly != null
+                    ? MainAxisAlignment.start
+                    : MainAxisAlignment.spaceBetween,
                 children: [
                   Center(
                     child: Column(
@@ -281,8 +282,9 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
                 horizontalTextWidthPercent: 0.6,
                 height: verticalHeight,
                 fontSize: fontSize,
-                onPressed:
-                    interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.der) : null,
+                onPressed: interactive
+                    ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.der)
+                    : null,
               )
             else
               SizedBox(width: verticalWidth, height: verticalHeight),
@@ -293,8 +295,9 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
                 width: verticalWidth,
                 height: verticalHeight,
                 fontSize: fontSize,
-                onPressed:
-                    interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.die) : null,
+                onPressed: interactive
+                    ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.die)
+                    : null,
               )
             else
               SizedBox(width: verticalWidth, height: verticalHeight),
@@ -336,25 +339,22 @@ class _ArticlesLayoutHorizontal extends ConsumerWidget {
     return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children:
-          Article.values
-              .map(
-                (article) =>
-                    interactive || articles?.contains(article) == true
-                        ? ArticleButton(
-                          article: article,
-                          width: width,
-                          horizontalTextWidthPercent: 0.6,
-                          height: height,
-                          fontSize: fontSize,
-                          onPressed:
-                              interactive
-                                  ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(article)
-                                  : null,
-                        )
-                        : SizedBox(width: width, height: height),
-              )
-              .toList(),
+      children: Article.values
+          .map(
+            (article) => interactive || articles?.contains(article) == true
+                ? ArticleButton(
+                    article: article,
+                    width: width,
+                    horizontalTextWidthPercent: 0.6,
+                    height: height,
+                    fontSize: fontSize,
+                    onPressed: interactive
+                        ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(article)
+                        : null,
+                  )
+                : SizedBox(width: width, height: height),
+          )
+          .toList(),
     );
   }
 }

@@ -17,19 +17,18 @@ class DerDieDasHorizontalLogo extends StatelessWidget {
         return Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children:
-              Article.values
-                  .map(
-                    (article) => ArticleIcon(
-                      article: article,
-                      width: width,
-                      horizontalTextWidthPercent: 0.8,
-                      height: height,
-                      fontSize: fontSize,
-                      borderRadius: context.customRadii.xs,
-                    ),
-                  )
-                  .toList(),
+          children: Article.values
+              .map(
+                (article) => ArticleIcon(
+                  article: article,
+                  width: width,
+                  horizontalTextWidthPercent: 0.8,
+                  height: height,
+                  fontSize: fontSize,
+                  borderRadius: context.customRadii.xs,
+                ),
+              )
+              .toList(),
         );
       },
     );

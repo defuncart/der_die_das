@@ -8,6 +8,9 @@ class BasicButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: onPressed, child: MouseRegion(cursor: SystemMouseCursors.click, child: child));
+    return GestureDetector(
+      onTap: onPressed,
+      child: MouseRegion(cursor: SystemMouseCursors.click, child: child),
+    );
   }
 }

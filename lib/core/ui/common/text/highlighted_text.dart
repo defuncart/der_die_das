@@ -17,7 +17,12 @@ class HighlightedText extends StatelessWidget {
     text.splitMapJoin(
       RegExp(r'(\<color\>([a-zA-Zäöü\-]*)\<\/color\>)'),
       onMatch: (match) {
-        spans.add(TextSpan(text: match.group(2), style: effectiveTextStyle.copyWith(color: highlightColor)));
+        spans.add(
+          TextSpan(
+            text: match.group(2),
+            style: effectiveTextStyle.copyWith(color: highlightColor),
+          ),
+        );
         return '';
       },
       onNonMatch: (text) {
@@ -26,6 +31,9 @@ class HighlightedText extends StatelessWidget {
       },
     );
 
-    return RichText(textAlign: TextAlign.justify, text: TextSpan(style: textStyle, children: spans));
+    return RichText(
+      textAlign: TextAlign.justify,
+      text: TextSpan(style: textStyle, children: spans),
+    );
   }
 }

@@ -42,12 +42,18 @@ class MyApp extends ConsumerWidget {
 final _router = GoRouter(
   routes: [
     GoRoute(path: LoadingScreen.path, builder: (context, state) => const LoadingScreen()),
-    GoRoute(path: HomeScreen.path, pageBuilder: (context, state) => const NoTransitionPage(child: HomeScreen())),
+    GoRoute(
+      path: HomeScreen.path,
+      pageBuilder: (context, state) => const NoTransitionPage(child: HomeScreen()),
+    ),
     GoRoute(path: NounsScreen.path, builder: (context, state) => const NounsScreen()),
     GoRoute(path: TipsScreen.path, builder: (context, state) => const TipsScreen()),
     GoRoute(path: SettingsScreen.path, builder: (context, state) => const SettingsScreen()),
     GoRoute(path: GameScreen.path, builder: (context, state) => const GameScreen()),
-    GoRoute(path: ResultsScreen.path, builder: (context, state) => ResultsScreen(result: state.extra as GameResult)),
+    GoRoute(
+      path: ResultsScreen.path,
+      builder: (context, state) => ResultsScreen(result: state.extra as GameResult),
+    ),
   ],
 );
 

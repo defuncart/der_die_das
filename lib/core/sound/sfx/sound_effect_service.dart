@@ -20,15 +20,13 @@ class SFXService implements ISFXService {
 
   @override
   Future<void> init() async {
-    _players =
-        SFXEffect.values
-            .map(
-              (effect) =>
-                  AudioPlayer()
-                    ..setSource(AssetSource(effect.assetPath))
-                    ..setReleaseMode(ReleaseMode.stop),
-            )
-            .toList();
+    _players = SFXEffect.values
+        .map(
+          (effect) => AudioPlayer()
+            ..setSource(AssetSource(effect.assetPath))
+            ..setReleaseMode(ReleaseMode.stop),
+        )
+        .toList();
   }
 
   @override

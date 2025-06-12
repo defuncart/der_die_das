@@ -63,8 +63,9 @@ class NounDatabase extends _$NounDatabase implements INounDatabase {
     final attempts = Value(noun.attempts + 1);
     final timesCorrect = answeredCorrectly ? Value(noun.timesCorrect + 1) : const Value<int>.absent();
 
-    (update(nouns)
-      ..where((noun) => noun.key.equals(key))).write(NounsCompanion(attempts: attempts, timesCorrect: timesCorrect));
+    (update(
+      nouns,
+    )..where((noun) => noun.key.equals(key))).write(NounsCompanion(attempts: attempts, timesCorrect: timesCorrect));
   }
 
   Future<Noun> _getNoun(String key) => (select(nouns)..where((noun) => noun.key.equals(key))).getSingle();

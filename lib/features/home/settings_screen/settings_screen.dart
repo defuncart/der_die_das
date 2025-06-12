@@ -331,13 +331,12 @@ class _DataPrivacyDialog extends StatelessWidget {
             MaterialLocalizations.of(context).viewLicensesButtonLabel,
             style: TextStyle(color: context.colorScheme.primary),
           ),
-          onPressed:
-              () => showLicensePage(
-                context: context,
-                applicationIcon: const AppIcon(size: 96),
-                applicationName: '',
-                applicationLegalese: '© 2023 defuncart',
-              ),
+          onPressed: () => showLicensePage(
+            context: context,
+            applicationIcon: const AppIcon(size: 96),
+            applicationName: '',
+            applicationLegalese: '© 2023 defuncart',
+          ),
         ),
         BasicButton(
           child: Text(
@@ -362,18 +361,17 @@ class _TextWithLink extends StatelessWidget {
   Widget build(BuildContext context) {
     final start = text.indexOf('<a>');
     final end = text.indexOf('</a>');
-    final components =
-        start != -1 && end != -1 && end > start
-            ? [
-              TextSpan(text: text.substring(0, start)),
-              _ClickableTextSpan(
-                text: text.substring(start, end).replaceAll('<a>', ''),
-                style: TextStyle(color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.bold),
-                url: url,
-              ),
-              TextSpan(text: text.substring(end).replaceAll('</a>', '')),
-            ]
-            : [TextSpan(text: text)];
+    final components = start != -1 && end != -1 && end > start
+        ? [
+            TextSpan(text: text.substring(0, start)),
+            _ClickableTextSpan(
+              text: text.substring(start, end).replaceAll('<a>', ''),
+              style: TextStyle(color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.bold),
+              url: url,
+            ),
+            TextSpan(text: text.substring(end).replaceAll('</a>', '')),
+          ]
+        : [TextSpan(text: text)];
 
     return RichText(
       textAlign: TextAlign.justify,
@@ -390,10 +388,9 @@ class _ClickableTextSpan extends TextSpan {
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(
         Uri.parse(url),
-        mode:
-            defaultTargetPlatform == TargetPlatform.android
-                ? LaunchMode.externalApplication
-                : LaunchMode.platformDefault,
+        mode: defaultTargetPlatform == TargetPlatform.android
+            ? LaunchMode.externalApplication
+            : LaunchMode.platformDefault,
       );
     }
   }

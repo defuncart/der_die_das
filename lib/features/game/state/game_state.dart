@@ -104,16 +104,15 @@ class GameStateController extends _$GameStateController {
 }
 
 // TODO convert to unions
-typedef GameState =
-    ({
-      double progress,
-      String withoutArticle,
-      String? ambiguousLabel,
-      Tip? tip,
-      AnsweredCorrectly? answeredCorrectly,
-      AnsweredIncorrectly? answeredIncorrectly,
-      GameResult? result,
-    });
+typedef GameState = ({
+  double progress,
+  String withoutArticle,
+  String? ambiguousLabel,
+  Tip? tip,
+  AnsweredCorrectly? answeredCorrectly,
+  AnsweredIncorrectly? answeredIncorrectly,
+  GameResult? result,
+});
 
 typedef AnsweredCorrectly = ({Iterable<Article> articles});
 

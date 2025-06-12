@@ -14,7 +14,10 @@ void main() {
 
   generateGooglePlayFeatureGraphic(
     locales: AppLocalizations.supportedLocales,
-    onBuildGraphic: (locale) => Theme(data: appTheme, child: GooglePlayFeatureGraphics(text: languageLabels[locale]!)),
+    onBuildGraphic: (locale) => Theme(
+      data: appTheme,
+      child: GooglePlayFeatureGraphics(text: languageLabels[locale]!),
+    ),
   );
 }
 

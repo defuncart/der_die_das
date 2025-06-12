@@ -40,13 +40,12 @@ Future<List<Noun>> _convertLevel(Level level, startId) async {
         components[_NounIndex.articleIndices].split('|').map((article) => Article.values[int.parse(article)]).toList(),
       ),
       ambiguousExample: components[_NounIndex.ambiguousExample].notEmptyOrNull,
-      tip:
-          components[_NounIndex.tipId] != '-1'
-              ? Tip(
-                id: int.parse(components[_NounIndex.tipId]),
-                isException: components[_NounIndex.tipIsException] == '1',
-              )
-              : null,
+      tip: components[_NounIndex.tipId] != '-1'
+          ? Tip(
+              id: int.parse(components[_NounIndex.tipId]),
+              isException: components[_NounIndex.tipIsException] == '1',
+            )
+          : null,
       attempts: 0,
       timesCorrect: 0,
     );

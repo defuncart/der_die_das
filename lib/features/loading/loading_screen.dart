@@ -32,43 +32,44 @@ class _LoadingScreenState extends ConsumerState<LoadingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-              mainAxisSize: MainAxisSize.min,
-              spacing: context.customSpacings.s.mainAxisExtent,
-              children: [
-                Row(
+        child:
+            Column(
                   mainAxisSize: MainAxisSize.min,
                   spacing: context.customSpacings.s.mainAxisExtent,
                   children: [
-                    const _Square(color: _DFAColors.pink).animate().fadeIn(duration: _segmentDuration),
-                    const _Square(
-                      color: _DFAColors.blue,
-                    ).animate(delay: _segmentDuration).fadeIn(duration: _segmentDuration),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: context.customSpacings.s.mainAxisExtent,
+                      children: [
+                        const _Square(color: _DFAColors.pink).animate().fadeIn(duration: _segmentDuration),
+                        const _Square(
+                          color: _DFAColors.blue,
+                        ).animate(delay: _segmentDuration).fadeIn(duration: _segmentDuration),
+                      ],
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: context.customSpacings.s.mainAxisExtent,
+                      children: [
+                        const _Square(
+                          color: _DFAColors.green,
+                        ).animate(delay: _segmentDuration * 3).fadeIn(duration: _segmentDuration),
+                        const _Square(
+                          color: _DFAColors.yellow,
+                        ).animate(delay: _segmentDuration * 2).fadeIn(duration: _segmentDuration),
+                      ],
+                    ),
                   ],
+                )
+                .animate(delay: _segmentDuration * 4)
+                .fadeOut(duration: _fadeOutDuration)
+                .listen(
+                  callback: (value) {
+                    if (value == 1) {
+                      context.pushReplacement(HomeScreen.path);
+                    }
+                  },
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  spacing: context.customSpacings.s.mainAxisExtent,
-                  children: [
-                    const _Square(
-                      color: _DFAColors.green,
-                    ).animate(delay: _segmentDuration * 3).fadeIn(duration: _segmentDuration),
-                    const _Square(
-                      color: _DFAColors.yellow,
-                    ).animate(delay: _segmentDuration * 2).fadeIn(duration: _segmentDuration),
-                  ],
-                ),
-              ],
-            )
-            .animate(delay: _segmentDuration * 4)
-            .fadeOut(duration: _fadeOutDuration)
-            .listen(
-              callback: (value) {
-                if (value == 1) {
-                  context.pushReplacement(HomeScreen.path);
-                }
-              },
-            ),
       ),
     );
   }

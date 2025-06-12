@@ -171,10 +171,14 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
     return Noun(
       id: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       key: attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}key'])!,
-      withoutArticle:
-          attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}without_article'])!,
-      withoutArticleNormalized:
-          attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}without_article_normalized'])!,
+      withoutArticle: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}without_article'],
+      )!,
+      withoutArticleNormalized: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}without_article_normalized'],
+      )!,
       articles: $NounsTable.$converterarticles.fromSql(
         attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}articles'])!,
       ),
@@ -326,8 +330,9 @@ class Noun extends DataClass implements Insertable<Noun> {
       id: data.id.present ? data.id.value : this.id,
       key: data.key.present ? data.key.value : this.key,
       withoutArticle: data.withoutArticle.present ? data.withoutArticle.value : this.withoutArticle,
-      withoutArticleNormalized:
-          data.withoutArticleNormalized.present ? data.withoutArticleNormalized.value : this.withoutArticleNormalized,
+      withoutArticleNormalized: data.withoutArticleNormalized.present
+          ? data.withoutArticleNormalized.value
+          : this.withoutArticleNormalized,
       articles: data.articles.present ? data.articles.value : this.articles,
       level: data.level.present ? data.level.value : this.level,
       ambiguousExample: data.ambiguousExample.present ? data.ambiguousExample.value : this.ambiguousExample,

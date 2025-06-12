@@ -16,14 +16,13 @@ class AnswersLayoutButton extends StatelessWidget {
     return SettingsButton(
       isSelected: isSelected,
       onTap: onTap,
-      childBuilder:
-          (size) => SizedBox(
-            width: size,
-            height: size,
-            child: Center(
-              child: Icon(answersLayout.icon, size: size * 0.8, color: context.customColorScheme.defaultButton),
-            ),
-          ),
+      childBuilder: (size) => SizedBox(
+        width: size,
+        height: size,
+        child: Center(
+          child: Icon(answersLayout.icon, size: size * 0.8, color: context.customColorScheme.defaultButton),
+        ),
+      ),
     );
   }
 }

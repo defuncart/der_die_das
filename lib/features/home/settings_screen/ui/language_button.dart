@@ -18,21 +18,19 @@ class LanguageButton extends StatelessWidget {
     return SettingsButton(
       isSelected: isSelected,
       onTap: onTap,
-      childBuilder:
-          (size) => ClipRRect(
-            borderRadius: context.customRadii.xs,
-            child:
-                language == Language.en
-                    ? SvgPicture.asset('assets/images/settings/en.svg', width: size, height: size)
-                    : CustomPaint(
-                      painter: switch (language) {
-                        Language.de => const DELangPainter(),
-                        Language.en => null,
-                        Language.pl => const PLLangPainter(),
-                      },
-                      size: Size(size, size),
-                    ),
-          ),
+      childBuilder: (size) => ClipRRect(
+        borderRadius: context.customRadii.xs,
+        child: language == Language.en
+            ? SvgPicture.asset('assets/images/settings/en.svg', width: size, height: size)
+            : CustomPaint(
+                painter: switch (language) {
+                  Language.de => const DELangPainter(),
+                  Language.en => null,
+                  Language.pl => const PLLangPainter(),
+                },
+                size: Size(size, size),
+              ),
+      ),
     );
   }
 }

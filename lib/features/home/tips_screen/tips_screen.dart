@@ -56,26 +56,25 @@ class _TipsScreenState extends State<TipsScreen> {
           physics: const BouncingScrollPhysics(),
           itemCount: tips.length,
           separatorBuilder: (context, _) => context.customSpacings.s,
-          itemBuilder:
-              (context, index) => Container(
-                margin: context.customPaddings.sHorizontal,
-                decoration: BoxDecoration(
-                  borderRadius: context.customRadii.xs,
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                ),
-                child: ListTile(
-                  title: Padding(
-                    padding: context.customPaddings.xsVertical,
-                    child: Column(
-                      spacing: context.customSpacings.s.mainAxisExtent,
-                      children: [
-                        HighlightedText(tips[index].description, highlightColor: context.colorScheme.primary),
-                        HighlightedText(tips[index].example, highlightColor: context.colorScheme.primary),
-                      ],
-                    ),
-                  ),
+          itemBuilder: (context, index) => Container(
+            margin: context.customPaddings.sHorizontal,
+            decoration: BoxDecoration(
+              borderRadius: context.customRadii.xs,
+              color: Theme.of(context).scaffoldBackgroundColor,
+            ),
+            child: ListTile(
+              title: Padding(
+                padding: context.customPaddings.xsVertical,
+                child: Column(
+                  spacing: context.customSpacings.s.mainAxisExtent,
+                  children: [
+                    HighlightedText(tips[index].description, highlightColor: context.colorScheme.primary),
+                    HighlightedText(tips[index].example, highlightColor: context.colorScheme.primary),
+                  ],
                 ),
               ),
+            ),
+          ),
         ),
       ),
     );
