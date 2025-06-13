@@ -16,7 +16,13 @@ mixin _$CustomColorSchemeTailorMixin on ThemeExtension<CustomColorScheme> {
   Color get defaultButton;
 
   @override
-  CustomColorScheme copyWith({Color? der, Color? die, Color? das, Color? levelIcon, Color? defaultButton}) {
+  CustomColorScheme copyWith({
+    Color? der,
+    Color? die,
+    Color? das,
+    Color? levelIcon,
+    Color? defaultButton,
+  }) {
     return CustomColorScheme(
       der: der ?? this.der,
       die: die ?? this.die,
@@ -74,8 +80,18 @@ mixin _$CustomRadiiTailorMixin on ThemeExtension<CustomRadii> {
   BorderRadius get l;
 
   @override
-  CustomRadii copyWith({BorderRadius? xs, BorderRadius? s, BorderRadius? m, BorderRadius? l}) {
-    return CustomRadii(xs: xs ?? this.xs, s: s ?? this.s, m: m ?? this.m, l: l ?? this.l);
+  CustomRadii copyWith({
+    BorderRadius? xs,
+    BorderRadius? s,
+    BorderRadius? m,
+    BorderRadius? l,
+  }) {
+    return CustomRadii(
+      xs: xs ?? this.xs,
+      s: s ?? this.s,
+      m: m ?? this.m,
+      l: l ?? this.l,
+    );
   }
 
   @override
@@ -123,8 +139,18 @@ mixin _$CustomSpacingsTailorMixin on ThemeExtension<CustomSpacings> {
   Gap get l;
 
   @override
-  CustomSpacings copyWith({Gap? xs, Gap? s, Gap? m, Gap? l}) {
-    return CustomSpacings(xs: xs ?? this.xs, s: s ?? this.s, m: m ?? this.m, l: l ?? this.l);
+  CustomSpacings copyWith({
+    Gap? xs,
+    Gap? s,
+    Gap? m,
+    Gap? l,
+  }) {
+    return CustomSpacings(
+      xs: xs ?? this.xs,
+      s: s ?? this.s,
+      m: m ?? this.m,
+      l: l ?? this.l,
+    );
   }
 
   @override

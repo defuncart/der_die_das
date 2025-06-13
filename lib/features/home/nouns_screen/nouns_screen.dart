@@ -37,7 +37,11 @@ class _NounsScreenState extends ConsumerState<NounsScreen> {
       ..addListener(() async {
         final searchTerm = _searchTerm;
         if (searchTerm.isNotEmpty) {
-          await ref.read(filterNounsProvider(searchTerm).future).then((value) => setState(() => _results = value));
+          await ref
+              .read(filterNounsProvider(searchTerm).future)
+              .then(
+                (value) => setState(() => _results = value),
+              );
         } else {
           setState(() => _results = <Noun>[]);
         }
@@ -61,12 +65,16 @@ class _NounsScreenState extends ConsumerState<NounsScreen> {
   Future<void> _init() async {
     await ref
         .read(nounsForCurrentLevelProvider.future)
-        .then((value) => setState(() => _allNounsForCurrentLevel = value));
+        .then(
+          (value) => setState(() => _allNounsForCurrentLevel = value),
+        );
   }
 
   @override
   Widget build(BuildContext context) {
-    final hintColor = context.customColorScheme.defaultButton.withValues(alpha: 0.5);
+    final hintColor = context.customColorScheme.defaultButton.withValues(
+      alpha: 0.5,
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -82,7 +90,9 @@ class _NounsScreenState extends ConsumerState<NounsScreen> {
                     icon: Icon(
                       Icons.close,
                       size: 20,
-                      color: context.customColorScheme.defaultButton.withValues(alpha: 0.5),
+                      color: context.customColorScheme.defaultButton.withValues(
+                        alpha: 0.5,
+                      ),
                     ),
                     onPressed: () => _controller.clear(),
                     splashColor: Colors.transparent,
@@ -91,16 +101,24 @@ class _NounsScreenState extends ConsumerState<NounsScreen> {
                   )
                 : null,
           ),
-          style: TextStyle(color: context.customColorScheme.defaultButton),
+          style: TextStyle(
+            color: context.customColorScheme.defaultButton,
+          ),
         ),
       ),
       body: _showAllNounsForCurrentLevel
           ? _allNounsForCurrentLevel.isNotEmpty
-                ? _NounResultList(results: _allNounsForCurrentLevel)
+                ? _NounResultList(
+                    results: _allNounsForCurrentLevel,
+                  )
                 : const SizedBox.shrink()
           : _results.isNotEmpty
-          ? _NounResultList(results: _results)
-          : Center(child: Text(context.l10n.nounsNoResultsFound)),
+          ? _NounResultList(
+              results: _results,
+            )
+          : Center(
+              child: Text(context.l10n.nounsNoResultsFound),
+            ),
     );
   }
 }
@@ -118,7 +136,9 @@ class _NounResultList extends StatelessWidget {
     return ListView.builder(
       physics: const BouncingScrollPhysics(),
       itemCount: results.length,
-      itemBuilder: (context, index) => _NounTile(noun: results[index]),
+      itemBuilder: (context, index) => _NounTile(
+        noun: results[index],
+      ),
     );
   }
 }

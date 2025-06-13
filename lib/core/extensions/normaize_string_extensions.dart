@@ -1,5 +1,10 @@
 extension NormalizeStringExtensions on String {
-  static const _normalizePairs = {'ä': 'a', 'ö': 'o', 'ü': 'u', 'ß': 'ss'};
+  static const _normalizePairs = {
+    'ä': 'a',
+    'ö': 'o',
+    'ü': 'u',
+    'ß': 'ss',
+  };
 
   String get normalized {
     var str = toLowerCase();

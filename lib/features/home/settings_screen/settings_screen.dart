@@ -31,7 +31,10 @@ class SettingsScreen extends StatelessWidget {
     final textStyle = context.textTheme.titleMedium;
 
     return Scaffold(
-      appBar: AppBar(leading: const BasicMaterialCloseButton(), title: Text(context.l10n.settingsLabel)),
+      appBar: AppBar(
+        leading: const BasicMaterialCloseButton(),
+        title: Text(context.l10n.settingsLabel),
+      ),
       body: Padding(
         padding: context.customPaddings.s,
         child: DefaultTextStyle(
@@ -260,7 +263,10 @@ class _Slider extends StatelessWidget {
 }
 
 class _SettingsRow extends StatelessWidget {
-  const _SettingsRow({required this.label, required this.items});
+  const _SettingsRow({
+    required this.label,
+    required this.items,
+  });
 
   final String label;
   final Iterable<Widget> items;
@@ -272,7 +278,11 @@ class _SettingsRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(label),
-        Row(mainAxisSize: MainAxisSize.min, spacing: context.customSpacings.s.mainAxisExtent, children: items.toList()),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          spacing: context.customSpacings.s.mainAxisExtent,
+          children: items.toList(),
+        ),
       ],
     );
   }
@@ -286,11 +296,16 @@ class _DataPrivacyButton extends StatelessWidget {
     return BasicButton(
       onPressed: () => _DataPrivacyDialog.show(context),
       child: Container(
-        decoration: BoxDecoration(borderRadius: context.customRadii.xs, color: context.customColorScheme.defaultButton),
+        decoration: BoxDecoration(
+          borderRadius: context.customRadii.xs,
+          color: context.customColorScheme.defaultButton,
+        ),
         padding: context.customPaddings.m,
         child: Text(
           context.l10n.settingsDataPrivacyLabel,
-          style: context.textTheme.labelLarge?.copyWith(color: Theme.of(context).scaffoldBackgroundColor),
+          style: context.textTheme.labelLarge?.copyWith(
+            color: Theme.of(context).scaffoldBackgroundColor,
+          ),
         ),
       ),
     );
@@ -300,13 +315,17 @@ class _DataPrivacyButton extends StatelessWidget {
 class _DataPrivacyDialog extends StatelessWidget {
   const _DataPrivacyDialog();
 
-  static void show(BuildContext context) =>
-      showDialog(context: context, builder: (context) => const _DataPrivacyDialog());
+  static void show(BuildContext context) => showDialog(
+    context: context,
+    builder: (context) => const _DataPrivacyDialog(),
+  );
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: context.customRadii.s),
+      shape: RoundedRectangleBorder(
+        borderRadius: context.customRadii.s,
+      ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       surfaceTintColor: Colors.transparent,
       title: Text(context.l10n.settingsDataPrivacyAlertTitle),
@@ -329,7 +348,9 @@ class _DataPrivacyDialog extends StatelessWidget {
         BasicButton(
           child: Text(
             MaterialLocalizations.of(context).viewLicensesButtonLabel,
-            style: TextStyle(color: context.colorScheme.primary),
+            style: TextStyle(
+              color: context.colorScheme.primary,
+            ),
           ),
           onPressed: () => showLicensePage(
             context: context,
@@ -341,7 +362,9 @@ class _DataPrivacyDialog extends StatelessWidget {
         BasicButton(
           child: Text(
             MaterialLocalizations.of(context).closeButtonLabel,
-            style: TextStyle(color: context.colorScheme.primary),
+            style: TextStyle(
+              color: context.colorScheme.primary,
+            ),
           ),
           onPressed: () => context.pop(),
         ),
@@ -352,7 +375,10 @@ class _DataPrivacyDialog extends StatelessWidget {
 }
 
 class _TextWithLink extends StatelessWidget {
-  const _TextWithLink({required this.text, required this.url});
+  const _TextWithLink({
+    required this.text,
+    required this.url,
+  });
 
   final String text;
   final String url;
@@ -366,23 +392,36 @@ class _TextWithLink extends StatelessWidget {
             TextSpan(text: text.substring(0, start)),
             _ClickableTextSpan(
               text: text.substring(start, end).replaceAll('<a>', ''),
-              style: TextStyle(color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+                fontWeight: FontWeight.bold,
+              ),
               url: url,
             ),
             TextSpan(text: text.substring(end).replaceAll('</a>', '')),
           ]
-        : [TextSpan(text: text)];
+        : [
+            TextSpan(text: text),
+          ];
 
     return RichText(
       textAlign: TextAlign.justify,
-      text: TextSpan(style: context.textTheme.bodyMedium, children: components),
+      text: TextSpan(
+        style: context.textTheme.bodyMedium,
+        children: components,
+      ),
     );
   }
 }
 
 class _ClickableTextSpan extends TextSpan {
-  _ClickableTextSpan({required String super.text, super.style, required String url})
-    : super(recognizer: TapGestureRecognizer()..onTap = () async => await _openUrl(url));
+  _ClickableTextSpan({
+    required String super.text,
+    super.style,
+    required String url,
+  }) : super(
+         recognizer: TapGestureRecognizer()..onTap = () async => await _openUrl(url),
+       );
 
   static Future<void> _openUrl(String url) async {
     if (await canLaunchUrl(Uri.parse(url))) {

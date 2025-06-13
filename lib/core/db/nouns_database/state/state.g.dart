@@ -6,7 +6,7 @@ part of 'state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$nounDatabaseHash() => r'a8dfe8baf5f55bdeb8a6d729091a76e8bb2da3b4';
+String _$nounDatabaseHash() => r'bf844d6dcffda32949ac7c9bf47655e2f0cb3059';
 
 /// See also [nounDatabase].
 @ProviderFor(nounDatabase)

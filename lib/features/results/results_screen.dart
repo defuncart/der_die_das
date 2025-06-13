@@ -13,14 +13,19 @@ import 'package:go_router/go_router.dart';
 class ResultsScreen extends StatelessWidget {
   static const path = '/results';
 
-  const ResultsScreen({super.key, required this.result});
+  const ResultsScreen({
+    super.key,
+    required this.result,
+  });
 
   final GameResult result;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: const BasicMaterialCloseButton()),
+      appBar: AppBar(
+        leading: const BasicMaterialCloseButton(),
+      ),
       body: Padding(
         padding: context.customPaddings.s,
         child: Column(
@@ -32,7 +37,10 @@ class ResultsScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 spacing: context.customSpacings.m.mainAxisExtent,
                 children: [
-                  const Text('🏆', style: TextStyle(fontSize: 32)),
+                  const Text(
+                    '🏆',
+                    style: TextStyle(fontSize: 32),
+                  ),
                   Text(
                     context.l10n.resultsScoreLabel(result.correct, result.total),
                     style: context.textTheme.headlineMedium,
@@ -45,7 +53,9 @@ class ResultsScreen extends StatelessWidget {
               Center(
                 child: Text(
                   context.l10n.resultsMistakesLabel,
-                  style: context.textTheme.bodyLarge?.copyWith(decoration: TextDecoration.underline),
+                  style: context.textTheme.bodyLarge?.copyWith(
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               ),
               context.customSpacings.s,
@@ -55,7 +65,11 @@ class ResultsScreen extends StatelessWidget {
                   padding: context.customPaddings.sHorizontal,
                   children: [
                     for (final noun in result.incorrectlyAnswered)
-                      _Mistake(label: noun.withArticle, noun: noun.withoutArticle, tip: noun.tip),
+                      _Mistake(
+                        label: noun.withArticle,
+                        noun: noun.withoutArticle,
+                        tip: noun.tip,
+                      ),
                     context.customSpacings.s,
                   ].intersperse(context.customSpacings.m),
                 ),
@@ -65,9 +79,7 @@ class ResultsScreen extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: HorizontalButton(
-                onPressed: () {
-                  context.pushReplacement(GameScreen.path);
-                },
+                onPressed: () => context.pushReplacement(GameScreen.path),
                 text: context.l10n.resultsContinueLabel,
               ),
             ),
@@ -79,7 +91,11 @@ class ResultsScreen extends StatelessWidget {
 }
 
 class _Mistake extends StatelessWidget {
-  const _Mistake({required this.label, required this.noun, required this.tip});
+  const _Mistake({
+    required this.label,
+    required this.noun,
+    required this.tip,
+  });
 
   final String label;
   final String noun;
@@ -91,8 +107,16 @@ class _Mistake extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       spacing: context.customSpacings.s.mainAxisExtent,
       children: [
-        Text(label, style: context.textTheme.headlineLarge),
-        if (tip != null) TipCard(tip: tip!, noun: noun, showIcon: true),
+        Text(
+          label,
+          style: context.textTheme.headlineLarge,
+        ),
+        if (tip != null)
+          TipCard(
+            tip: tip!,
+            noun: noun,
+            showIcon: true,
+          ),
       ],
     );
   }

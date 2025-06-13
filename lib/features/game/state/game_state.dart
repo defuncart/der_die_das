@@ -57,8 +57,17 @@ class GameStateController extends _$GameStateController {
         result: null,
       ));
     }
-    ref.read(nounDatabaseProvider).updateProgress(key: _currentNoun.key, answeredCorrectly: answeredCorrectly);
-    ref.read(sfxControllerProvider(effect: answeredCorrectly ? SFXEffect.answerCorrect : SFXEffect.answerIncorrect));
+    ref
+        .read(nounDatabaseProvider)
+        .updateProgress(
+          key: _currentNoun.key,
+          answeredCorrectly: answeredCorrectly,
+        );
+    ref.read(
+      sfxControllerProvider(
+        effect: answeredCorrectly ? SFXEffect.answerCorrect : SFXEffect.answerIncorrect,
+      ),
+    );
     Future.delayed(const Duration(milliseconds: 500)).then((_) {
       ref.read(speakControllerProvider(text: _currentNoun.speak));
       if (answeredCorrectly) {

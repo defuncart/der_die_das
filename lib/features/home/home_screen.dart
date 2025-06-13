@@ -71,7 +71,12 @@ class HomeScreen extends StatelessWidget {
 }
 
 class _SquareButton extends StatelessWidget {
-  const _SquareButton({required this.size, required this.color, required this.icon, required this.path});
+  const _SquareButton({
+    required this.size,
+    required this.color,
+    required this.icon,
+    required this.path,
+  });
 
   final double size;
   final Color color;
@@ -85,7 +90,11 @@ class _SquareButton extends StatelessWidget {
       child: RoundedSquare(
         size: size,
         color: color,
-        child: Icon(icon, size: size * 0.6, color: Theme.of(context).scaffoldBackgroundColor),
+        child: Icon(
+          icon,
+          size: size * 0.6,
+          color: Theme.of(context).scaffoldBackgroundColor,
+        ),
       ),
     );
   }

@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BasicMaterialCloseButton extends StatelessWidget {
-  const BasicMaterialCloseButton({super.key});
+  const BasicMaterialCloseButton({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return BasicMaterialIconButton(onPressed: () => context.pop(), icon: Icons.close);
+    return BasicMaterialIconButton(
+      onPressed: () => context.pop(),
+      icon: Icons.close,
+    );
   }
 }

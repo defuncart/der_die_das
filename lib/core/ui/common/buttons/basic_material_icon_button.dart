@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class BasicMaterialIconButton extends StatelessWidget {
-  const BasicMaterialIconButton({super.key, required this.icon, required this.onPressed});
+  const BasicMaterialIconButton({
+    super.key,
+    required this.icon,
+    required this.onPressed,
+  });
 
   final IconData icon;
   final VoidCallback onPressed;

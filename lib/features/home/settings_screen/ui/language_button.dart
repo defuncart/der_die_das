@@ -7,7 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LanguageButton extends StatelessWidget {
-  const LanguageButton({super.key, required this.language, required this.isSelected, required this.onTap});
+  const LanguageButton({
+    super.key,
+    required this.language,
+    required this.isSelected,
+    required this.onTap,
+  });
 
   final Language language;
   final bool isSelected;
@@ -21,7 +26,11 @@ class LanguageButton extends StatelessWidget {
       childBuilder: (size) => ClipRRect(
         borderRadius: context.customRadii.xs,
         child: language == Language.en
-            ? SvgPicture.asset('assets/images/settings/en.svg', width: size, height: size)
+            ? SvgPicture.asset(
+                'assets/images/settings/en.svg',
+                width: size,
+                height: size,
+              )
             : CustomPaint(
                 painter: switch (language) {
                   Language.de => const DELangPainter(),

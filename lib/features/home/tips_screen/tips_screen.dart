@@ -68,8 +68,14 @@ class _TipsScreenState extends State<TipsScreen> {
                 child: Column(
                   spacing: context.customSpacings.s.mainAxisExtent,
                   children: [
-                    HighlightedText(tips[index].description, highlightColor: context.colorScheme.primary),
-                    HighlightedText(tips[index].example, highlightColor: context.colorScheme.primary),
+                    HighlightedText(
+                      tips[index].description,
+                      highlightColor: context.colorScheme.primary,
+                    ),
+                    HighlightedText(
+                      tips[index].example,
+                      highlightColor: context.colorScheme.primary,
+                    ),
                   ],
                 ),
               ),

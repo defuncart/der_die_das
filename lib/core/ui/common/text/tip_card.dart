@@ -7,7 +7,13 @@ import 'package:der_die_das/core/ui/common/text/highlighted_text.dart';
 import 'package:flutter/material.dart';
 
 class TipCard extends StatelessWidget {
-  const TipCard({super.key, required this.tip, required this.noun, this.showIcon = false, this.onClose});
+  const TipCard({
+    super.key,
+    required this.tip,
+    required this.noun,
+    this.showIcon = false,
+    this.onClose,
+  });
 
   final Tip tip;
   final String noun;
@@ -26,10 +32,15 @@ class TipCard extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-          constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width - 64),
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.sizeOf(context).width - 64,
+          ),
           decoration: BoxDecoration(
             borderRadius: context.customRadii.xs,
-            border: Border.all(color: context.colorScheme.primary, width: 4),
+            border: Border.all(
+              color: context.colorScheme.primary,
+              width: 4,
+            ),
             color: Theme.of(context).scaffoldBackgroundColor,
           ),
           padding: context.customPaddings.m,
@@ -40,14 +51,26 @@ class TipCard extends StatelessWidget {
               Row(
                 spacing: context.customSpacings.s.mainAxisExtent,
                 children: [
-                  if (showIcon) Icon(Icons.lightbulb_outline, color: context.colorScheme.primary),
+                  if (showIcon)
+                    Icon(
+                      Icons.lightbulb_outline,
+                      color: context.colorScheme.primary,
+                    ),
                   Expanded(
-                    child: HighlightedText(text, highlightColor: context.colorScheme.primary, textStyle: textStyle),
+                    child: HighlightedText(
+                      text,
+                      highlightColor: context.colorScheme.primary,
+                      textStyle: textStyle,
+                    ),
                   ),
                 ],
               ),
               if (tip.isException && !showIcon)
-                HighlightedText(exceptionText!, textStyle: textStyle, highlightColor: context.colorScheme.primary),
+                HighlightedText(
+                  exceptionText!,
+                  textStyle: textStyle,
+                  highlightColor: context.colorScheme.primary,
+                ),
             ],
           ),
         ),

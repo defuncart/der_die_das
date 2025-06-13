@@ -30,7 +30,9 @@ class GameScreen extends ConsumerWidget {
       data: (data) {
         if (data.value.result != null) {
           // ignore: use_build_context_synchronously
-          Future.microtask(() => context.pushReplacement(ResultsScreen.path, extra: data.value.result));
+          Future.microtask(
+            () => context.pushReplacement(ResultsScreen.path, extra: data.value.result),
+          );
           return const Scaffold();
         }
         return _GameScreen(state: data.value);
@@ -68,7 +70,10 @@ class _GameScreen extends ConsumerWidget {
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
                     width: boxConstraints.maxWidth * state.progress,
-                    decoration: BoxDecoration(color: context.colorScheme.primary, borderRadius: context.customRadii.s),
+                    decoration: BoxDecoration(
+                      color: context.colorScheme.primary,
+                      borderRadius: context.customRadii.s,
+                    ),
                   ),
                 ],
               ),
@@ -77,13 +82,23 @@ class _GameScreen extends ConsumerWidget {
         ),
         actions: [
           if (showTipsButton && state.tip != null)
-            _HintButton(tip: state.tip!, noun: state.withoutArticle)
+            _HintButton(
+              tip: state.tip!,
+              noun: state.withoutArticle,
+            )
           else
-            const SizedBox(width: kMinInteractiveDimension),
+            const SizedBox(
+              width: kMinInteractiveDimension,
+            ),
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.only(top: 8, left: 8, right: 8, bottom: MediaQuery.paddingOf(context).bottom == 0 ? 8 : 0),
+        padding: EdgeInsets.only(
+          top: 8,
+          left: 8,
+          right: 8,
+          bottom: MediaQuery.paddingOf(context).bottom == 0 ? 8 : 0,
+        ),
         child: LayoutBuilder(
           builder: (context, constraints) {
             final buttonsHeight = constraints.maxHeight * (0.55 + 0.175) + context.customSpacings.s.mainAxisExtent;
@@ -117,7 +132,11 @@ class _GameScreen extends ConsumerWidget {
                           maxLines: 1,
                         ),
                         if (state.ambiguousLabel != null)
-                          AutoSizeText(state.ambiguousLabel!, style: TextStyle(fontSize: fontSize * 0.25), maxLines: 1),
+                          AutoSizeText(
+                            state.ambiguousLabel!,
+                            style: TextStyle(fontSize: fontSize * 0.25),
+                            maxLines: 1,
+                          ),
                       ],
                     ),
                   ),
@@ -144,7 +163,11 @@ class _GameScreen extends ConsumerWidget {
                                     ),
                                   ),
                                   if (state.tip != null)
-                                    TipCard(tip: state.tip!, noun: state.withoutArticle, showIcon: true),
+                                    TipCard(
+                                      tip: state.tip!,
+                                      noun: state.withoutArticle,
+                                      showIcon: true,
+                                    ),
                                 ],
                               ),
                             ),

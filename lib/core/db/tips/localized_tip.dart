@@ -1,7 +1,9 @@
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:flutter/material.dart';
 
-Iterable<LocalizedTip> getAllTips({required BuildContext context}) => [
+Iterable<LocalizedTip> getAllTips({
+  required BuildContext context,
+}) => [
   100,
   101,
   102,
@@ -33,41 +35,134 @@ Iterable<LocalizedTip> getAllTips({required BuildContext context}) => [
   402,
 ].map((index) => getTip(context: context, index: index));
 
-LocalizedTip getTip({required BuildContext context, required int index}) => switch (index) {
-  100 => LocalizedTip._(description: context.l10n.tip100, example: _TipExamples.tip100),
-  101 => LocalizedTip._(description: context.l10n.tip101, example: _TipExamples.tip101),
-  102 => LocalizedTip._(description: context.l10n.tip102, example: _TipExamples.tip102),
-  107 => LocalizedTip._(description: context.l10n.tip107, example: _TipExamples.tip107),
-  112 => LocalizedTip._(description: context.l10n.tip112, example: _TipExamples.tip112),
-  113 => LocalizedTip._(description: context.l10n.tip113, example: _TipExamples.tip113),
-  114 => LocalizedTip._(description: context.l10n.tip114, example: _TipExamples.tip114),
-  200 => LocalizedTip._(description: context.l10n.tip200, example: _TipExamples.tip200),
-  202 => LocalizedTip._(description: context.l10n.tip202, example: _TipExamples.tip202),
-  203 => LocalizedTip._(description: context.l10n.tip203, example: _TipExamples.tip203),
-  204 => LocalizedTip._(description: context.l10n.tip204, example: _TipExamples.tip204),
-  205 => LocalizedTip._(description: context.l10n.tip205, example: _TipExamples.tip205),
-  206 => LocalizedTip._(description: context.l10n.tip206, example: _TipExamples.tip206),
-  211 => LocalizedTip._(description: context.l10n.tip211, example: _TipExamples.tip211),
-  213 => LocalizedTip._(description: context.l10n.tip213, example: _TipExamples.tip213),
-  214 => LocalizedTip._(description: context.l10n.tip214, example: _TipExamples.tip214),
-  215 => LocalizedTip._(description: context.l10n.tip215, example: _TipExamples.tip215),
-  216 => LocalizedTip._(description: context.l10n.tip216, example: _TipExamples.tip216),
-  217 => LocalizedTip._(description: context.l10n.tip217, example: _TipExamples.tip217),
-  218 => LocalizedTip._(description: context.l10n.tip218, example: _TipExamples.tip218),
-  300 => LocalizedTip._(description: context.l10n.tip300, example: _TipExamples.tip300),
-  301 => LocalizedTip._(description: context.l10n.tip301, example: _TipExamples.tip301),
-  305 => LocalizedTip._(description: context.l10n.tip305, example: _TipExamples.tip305),
-  306 => LocalizedTip._(description: context.l10n.tip306, example: _TipExamples.tip306),
-  307 => LocalizedTip._(description: context.l10n.tip307, example: _TipExamples.tip307),
-  308 => LocalizedTip._(description: context.l10n.tip308, example: _TipExamples.tip308),
-  309 => LocalizedTip._(description: context.l10n.tip309, example: _TipExamples.tip309),
-  400 => LocalizedTip._(description: context.l10n.tip400, example: _TipExamples.tip400),
-  402 => LocalizedTip._(description: context.l10n.tip402, example: _TipExamples.tip402),
+LocalizedTip getTip({
+  required BuildContext context,
+  required int index,
+}) => switch (index) {
+  100 => LocalizedTip._(
+    description: context.l10n.tip100,
+    example: _TipExamples.tip100,
+  ),
+  101 => LocalizedTip._(
+    description: context.l10n.tip101,
+    example: _TipExamples.tip101,
+  ),
+  102 => LocalizedTip._(
+    description: context.l10n.tip102,
+    example: _TipExamples.tip102,
+  ),
+  107 => LocalizedTip._(
+    description: context.l10n.tip107,
+    example: _TipExamples.tip107,
+  ),
+  112 => LocalizedTip._(
+    description: context.l10n.tip112,
+    example: _TipExamples.tip112,
+  ),
+  113 => LocalizedTip._(
+    description: context.l10n.tip113,
+    example: _TipExamples.tip113,
+  ),
+  114 => LocalizedTip._(
+    description: context.l10n.tip114,
+    example: _TipExamples.tip114,
+  ),
+  200 => LocalizedTip._(
+    description: context.l10n.tip200,
+    example: _TipExamples.tip200,
+  ),
+  202 => LocalizedTip._(
+    description: context.l10n.tip202,
+    example: _TipExamples.tip202,
+  ),
+  203 => LocalizedTip._(
+    description: context.l10n.tip203,
+    example: _TipExamples.tip203,
+  ),
+  204 => LocalizedTip._(
+    description: context.l10n.tip204,
+    example: _TipExamples.tip204,
+  ),
+  205 => LocalizedTip._(
+    description: context.l10n.tip205,
+    example: _TipExamples.tip205,
+  ),
+  206 => LocalizedTip._(
+    description: context.l10n.tip206,
+    example: _TipExamples.tip206,
+  ),
+  211 => LocalizedTip._(
+    description: context.l10n.tip211,
+    example: _TipExamples.tip211,
+  ),
+  213 => LocalizedTip._(
+    description: context.l10n.tip213,
+    example: _TipExamples.tip213,
+  ),
+  214 => LocalizedTip._(
+    description: context.l10n.tip214,
+    example: _TipExamples.tip214,
+  ),
+  215 => LocalizedTip._(
+    description: context.l10n.tip215,
+    example: _TipExamples.tip215,
+  ),
+  216 => LocalizedTip._(
+    description: context.l10n.tip216,
+    example: _TipExamples.tip216,
+  ),
+  217 => LocalizedTip._(
+    description: context.l10n.tip217,
+    example: _TipExamples.tip217,
+  ),
+  218 => LocalizedTip._(
+    description: context.l10n.tip218,
+    example: _TipExamples.tip218,
+  ),
+  300 => LocalizedTip._(
+    description: context.l10n.tip300,
+    example: _TipExamples.tip300,
+  ),
+  301 => LocalizedTip._(
+    description: context.l10n.tip301,
+    example: _TipExamples.tip301,
+  ),
+  305 => LocalizedTip._(
+    description: context.l10n.tip305,
+    example: _TipExamples.tip305,
+  ),
+  306 => LocalizedTip._(
+    description: context.l10n.tip306,
+    example: _TipExamples.tip306,
+  ),
+  307 => LocalizedTip._(
+    description: context.l10n.tip307,
+    example: _TipExamples.tip307,
+  ),
+  308 => LocalizedTip._(
+    description: context.l10n.tip308,
+    example: _TipExamples.tip308,
+  ),
+  309 => LocalizedTip._(
+    description: context.l10n.tip309,
+    example: _TipExamples.tip309,
+  ),
+  400 => LocalizedTip._(
+    description: context.l10n.tip400,
+    example: _TipExamples.tip400,
+  ),
+  402 => LocalizedTip._(
+    description: context.l10n.tip402,
+    example: _TipExamples.tip402,
+  ),
   _ => throw Exception(),
 };
 
 class LocalizedTip {
-  const LocalizedTip._({required this.description, required this.example});
+  const LocalizedTip._({
+    required this.description,
+    required this.example,
+  });
 
   final String description;
   final String example;

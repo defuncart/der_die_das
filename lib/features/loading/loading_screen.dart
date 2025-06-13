@@ -26,7 +26,12 @@ class _LoadingScreenState extends ConsumerState<LoadingScreen> {
     _init();
   }
 
-  Future<void> _init() => Future.wait([ref.read(ttsProvider).init(), ref.read(sfxProvider).init()]);
+  Future<void> _init() => Future.wait(
+    [
+      ref.read(ttsProvider).init(),
+      ref.read(sfxProvider).init(),
+    ],
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +89,11 @@ class _Square extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: color, width: _size, height: _size);
+    return Container(
+      color: color,
+      width: _size,
+      height: _size,
+    );
   }
 }
 

@@ -4,7 +4,12 @@ part of 'theme.dart';
 
 @TailorMixin(themeGetter: ThemeGetter.onBuildContext)
 class CustomRadii extends ThemeExtension<CustomRadii> with _$CustomRadiiTailorMixin {
-  const CustomRadii({required this.xs, required this.s, required this.m, required this.l});
+  const CustomRadii({
+    required this.xs,
+    required this.s,
+    required this.m,
+    required this.l,
+  });
 
   final BorderRadius xs;
   final BorderRadius s;

@@ -6,7 +6,7 @@ part of 'sound_settings_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$speakControllerHash() => r'9010823037a266b9d9fbef5eb4742edb8adc881a';
+String _$speakControllerHash() => r'bd1d3d2e33d53c850b4ba422d84bd280a353b6a6';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -39,13 +39,21 @@ class SpeakControllerFamily extends Family<AsyncValue<void>> {
   const SpeakControllerFamily();
 
   /// See also [speakController].
-  SpeakControllerProvider call({required String text}) {
-    return SpeakControllerProvider(text: text);
+  SpeakControllerProvider call({
+    required String text,
+  }) {
+    return SpeakControllerProvider(
+      text: text,
+    );
   }
 
   @override
-  SpeakControllerProvider getProviderOverride(covariant SpeakControllerProvider provider) {
-    return call(text: provider.text);
+  SpeakControllerProvider getProviderOverride(
+    covariant SpeakControllerProvider provider,
+  ) {
+    return call(
+      text: provider.text,
+    );
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -65,16 +73,20 @@ class SpeakControllerFamily extends Family<AsyncValue<void>> {
 /// See also [speakController].
 class SpeakControllerProvider extends AutoDisposeFutureProvider<void> {
   /// See also [speakController].
-  SpeakControllerProvider({required String text})
-    : this._internal(
-        (ref) => speakController(ref as SpeakControllerRef, text: text),
-        from: speakControllerProvider,
-        name: r'speakControllerProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$speakControllerHash,
-        dependencies: SpeakControllerFamily._dependencies,
-        allTransitiveDependencies: SpeakControllerFamily._allTransitiveDependencies,
-        text: text,
-      );
+  SpeakControllerProvider({
+    required String text,
+  }) : this._internal(
+         (ref) => speakController(
+           ref as SpeakControllerRef,
+           text: text,
+         ),
+         from: speakControllerProvider,
+         name: r'speakControllerProvider',
+         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$speakControllerHash,
+         dependencies: SpeakControllerFamily._dependencies,
+         allTransitiveDependencies: SpeakControllerFamily._allTransitiveDependencies,
+         text: text,
+       );
 
   SpeakControllerProvider._internal(
     super._createNotifier, {
@@ -89,7 +101,9 @@ class SpeakControllerProvider extends AutoDisposeFutureProvider<void> {
   final String text;
 
   @override
-  Override overrideWith(FutureOr<void> Function(SpeakControllerRef provider) create) {
+  Override overrideWith(
+    FutureOr<void> Function(SpeakControllerRef provider) create,
+  ) {
     return ProviderOverride(
       origin: this,
       override: SpeakControllerProvider._internal(
@@ -137,7 +151,7 @@ class _SpeakControllerProviderElement extends AutoDisposeFutureProviderElement<v
   String get text => (origin as SpeakControllerProvider).text;
 }
 
-String _$sfxControllerHash() => r'a45d38e0a337d1256405fd3a85b54fe3a698289c';
+String _$sfxControllerHash() => r'1104ea951ef9f7b433986e17af26dded2a6c98ff';
 
 /// See also [sfxController].
 @ProviderFor(sfxController)
@@ -149,13 +163,21 @@ class SfxControllerFamily extends Family<AsyncValue<void>> {
   const SfxControllerFamily();
 
   /// See also [sfxController].
-  SfxControllerProvider call({required SFXEffect effect}) {
-    return SfxControllerProvider(effect: effect);
+  SfxControllerProvider call({
+    required SFXEffect effect,
+  }) {
+    return SfxControllerProvider(
+      effect: effect,
+    );
   }
 
   @override
-  SfxControllerProvider getProviderOverride(covariant SfxControllerProvider provider) {
-    return call(effect: provider.effect);
+  SfxControllerProvider getProviderOverride(
+    covariant SfxControllerProvider provider,
+  ) {
+    return call(
+      effect: provider.effect,
+    );
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -175,16 +197,20 @@ class SfxControllerFamily extends Family<AsyncValue<void>> {
 /// See also [sfxController].
 class SfxControllerProvider extends AutoDisposeFutureProvider<void> {
   /// See also [sfxController].
-  SfxControllerProvider({required SFXEffect effect})
-    : this._internal(
-        (ref) => sfxController(ref as SfxControllerRef, effect: effect),
-        from: sfxControllerProvider,
-        name: r'sfxControllerProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$sfxControllerHash,
-        dependencies: SfxControllerFamily._dependencies,
-        allTransitiveDependencies: SfxControllerFamily._allTransitiveDependencies,
-        effect: effect,
-      );
+  SfxControllerProvider({
+    required SFXEffect effect,
+  }) : this._internal(
+         (ref) => sfxController(
+           ref as SfxControllerRef,
+           effect: effect,
+         ),
+         from: sfxControllerProvider,
+         name: r'sfxControllerProvider',
+         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$sfxControllerHash,
+         dependencies: SfxControllerFamily._dependencies,
+         allTransitiveDependencies: SfxControllerFamily._allTransitiveDependencies,
+         effect: effect,
+       );
 
   SfxControllerProvider._internal(
     super._createNotifier, {
@@ -199,7 +225,9 @@ class SfxControllerProvider extends AutoDisposeFutureProvider<void> {
   final SFXEffect effect;
 
   @override
-  Override overrideWith(FutureOr<void> Function(SfxControllerRef provider) create) {
+  Override overrideWith(
+    FutureOr<void> Function(SfxControllerRef provider) create,
+  ) {
     return ProviderOverride(
       origin: this,
       override: SfxControllerProvider._internal(

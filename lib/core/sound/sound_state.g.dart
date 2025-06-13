@@ -6,7 +6,7 @@ part of 'sound_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$ttsHash() => r'83a72b13ac7f800c9ccc6a539e11bcc22042a13a';
+String _$ttsHash() => r'c0bbf69f3a9a363ecf9b4251ae44bcc7a3bcd5c8';
 
 /// See also [tts].
 @ProviderFor(tts)
@@ -21,7 +21,7 @@ final ttsProvider = Provider<ITextToSpeechService>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef TtsRef = ProviderRef<ITextToSpeechService>;
-String _$sfxHash() => r'd6b4cfece655fe8cc72a61f9d08a12a246f14a8c';
+String _$sfxHash() => r'25c6793da9da41d7958b39fe18d5fca980e2483f';
 
 /// See also [sfx].
 @ProviderFor(sfx)
