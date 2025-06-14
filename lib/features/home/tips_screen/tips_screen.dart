@@ -55,7 +55,7 @@ class _TipsScreenState extends State<TipsScreen> {
         body: ListView.separated(
           physics: const BouncingScrollPhysics(),
           itemCount: tips.length,
-          separatorBuilder: (context, _) => context.customSpacings.s,
+          separatorBuilder: (context, _) => context.customSpacings.s.toWidget(),
           itemBuilder: (context, index) => Container(
             margin: context.customPaddings.sHorizontal,
             decoration: BoxDecoration(
@@ -66,7 +66,7 @@ class _TipsScreenState extends State<TipsScreen> {
               title: Padding(
                 padding: context.customPaddings.xsVertical,
                 child: Column(
-                  spacing: context.customSpacings.s.mainAxisExtent,
+                  spacing: context.customSpacings.s,
                   children: [
                     HighlightedText(
                       tips[index].description,

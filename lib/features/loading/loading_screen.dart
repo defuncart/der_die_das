@@ -40,11 +40,11 @@ class _LoadingScreenState extends ConsumerState<LoadingScreen> {
         child:
             Column(
                   mainAxisSize: MainAxisSize.min,
-                  spacing: context.customSpacings.s.mainAxisExtent,
+                  spacing: context.customSpacings.s,
                   children: [
                     Row(
                       mainAxisSize: MainAxisSize.min,
-                      spacing: context.customSpacings.s.mainAxisExtent,
+                      spacing: context.customSpacings.s,
                       children: [
                         const _Square(color: _DFAColors.pink).animate().fadeIn(duration: _segmentDuration),
                         const _Square(
@@ -54,7 +54,7 @@ class _LoadingScreenState extends ConsumerState<LoadingScreen> {
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.min,
-                      spacing: context.customSpacings.s.mainAxisExtent,
+                      spacing: context.customSpacings.s,
                       children: [
                         const _Square(
                           color: _DFAColors.green,

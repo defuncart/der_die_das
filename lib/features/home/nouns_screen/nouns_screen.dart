@@ -155,7 +155,7 @@ class _NounTile extends ConsumerWidget {
       title: Row(
         children: [
           Flexible(child: Text(noun.withArticle)),
-          context.customSpacings.s,
+          context.customSpacings.s.toWidget(),
           LevelIcon(level: noun.level, size: 24),
         ],
       ),

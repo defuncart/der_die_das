@@ -133,17 +133,17 @@ extension CustomRadiiBuildContext on BuildContext {
 }
 
 mixin _$CustomSpacingsTailorMixin on ThemeExtension<CustomSpacings> {
-  Gap get xs;
-  Gap get s;
-  Gap get m;
-  Gap get l;
+  double get xs;
+  double get s;
+  double get m;
+  double get l;
 
   @override
   CustomSpacings copyWith({
-    Gap? xs,
-    Gap? s,
-    Gap? m,
-    Gap? l,
+    double? xs,
+    double? s,
+    double? m,
+    double? l,
   }) {
     return CustomSpacings(
       xs: xs ?? this.xs,

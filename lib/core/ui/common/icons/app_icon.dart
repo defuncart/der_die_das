@@ -64,7 +64,7 @@ class AppIcon extends StatelessWidget with ArticleContent {
               width: size * 0.6,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                spacing: hasSpacer ? context.customSpacings.s.mainAxisExtent : 0,
+                spacing: hasSpacer ? context.customSpacings.s : 0,
                 children: [
                   DefaultTextStyle(
                     style: textStyle.copyWith(color: context.customColorScheme.der),

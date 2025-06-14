@@ -40,7 +40,7 @@ class SettingsScreen extends StatelessWidget {
         child: DefaultTextStyle(
           style: textStyle!,
           child: Column(
-            spacing: context.customSpacings.m.mainAxisExtent,
+            spacing: context.customSpacings.m,
             children: const [
               _LanguageRow(),
               _LevelRow(),
@@ -246,7 +246,7 @@ class _Slider extends StatelessWidget {
         overlayShape: SliderComponentShape.noOverlay,
       ),
       child: SizedBox(
-        width: kMinInteractiveDimension * 3 + context.customSpacings.s.mainAxisExtent * 2,
+        width: kMinInteractiveDimension * 3 + context.customSpacings.s * 2,
         height: kMinInteractiveDimension,
         child: Slider(
           value: value,
@@ -280,7 +280,7 @@ class _SettingsRow extends StatelessWidget {
         Text(label),
         Row(
           mainAxisSize: MainAxisSize.min,
-          spacing: context.customSpacings.s.mainAxisExtent,
+          spacing: context.customSpacings.s,
           children: items.toList(),
         ),
       ],
@@ -331,7 +331,7 @@ class _DataPrivacyDialog extends StatelessWidget {
       title: Text(context.l10n.settingsDataPrivacyAlertTitle),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: context.customSpacings.m.mainAxisExtent,
+        spacing: context.customSpacings.m,
         children: [
           _TextWithLink(
             text: context.l10n.settingsDataPrivacyAlertContent1,

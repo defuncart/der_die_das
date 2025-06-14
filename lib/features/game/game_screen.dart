@@ -29,8 +29,8 @@ class GameScreen extends ConsumerWidget {
     return state.maybeMap(
       data: (data) {
         if (data.value.result != null) {
-          // ignore: use_build_context_synchronously
           Future.microtask(
+            // ignore: use_build_context_synchronously
             () => context.pushReplacement(ResultsScreen.path, extra: data.value.result),
           );
           return const Scaffold();
@@ -101,7 +101,7 @@ class _GameScreen extends ConsumerWidget {
         ),
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final buttonsHeight = constraints.maxHeight * (0.55 + 0.175) + context.customSpacings.s.mainAxisExtent;
+            final buttonsHeight = constraints.maxHeight * (0.55 + 0.175) + context.customSpacings.s;
             final verticalWidth = constraints.maxWidth * 0.325;
             final verticalHeight = constraints.maxHeight * 0.55;
             final horizontalWidth = constraints.maxWidth;
@@ -145,13 +145,13 @@ class _GameScreen extends ConsumerWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        spacing: context.customSpacings.m.mainAxisExtent,
+                        spacing: context.customSpacings.m,
                         children: [
                           Expanded(
                             child: Center(
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
-                                spacing: context.customSpacings.l.mainAxisExtent,
+                                spacing: context.customSpacings.l,
                                 children: [
                                   ...state.answeredIncorrectly!.articles.map(
                                     (article) => ArticleIcon(
@@ -293,7 +293,7 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       mainAxisSize: MainAxisSize.max,
-      spacing: context.customSpacings.s.mainAxisExtent,
+      spacing: context.customSpacings.s,
       children: [
         Row(
           mainAxisSize: MainAxisSize.max,

@@ -5,16 +5,20 @@ part of 'theme.dart';
 @TailorMixin(themeGetter: ThemeGetter.onBuildContext)
 class CustomSpacings extends ThemeExtension<CustomSpacings> with _$CustomSpacingsTailorMixin {
   const CustomSpacings({
-    this.xs = const Gap(_Spacings.xs),
-    this.s = const Gap(_Spacings.xs),
-    this.m = const Gap(_Spacings.xs),
-    this.l = const Gap(_Spacings.xs),
+    this.xs = _Spacings.xs,
+    this.s = _Spacings.xs,
+    this.m = _Spacings.xs,
+    this.l = _Spacings.xs,
   });
 
-  final Gap xs;
-  final Gap s;
-  final Gap m;
-  final Gap l;
+  final double xs;
+  final double s;
+  final double m;
+  final double l;
+}
+
+extension CustomSpacingsExtensions on double {
+  Widget toWidget() => Gap(this);
 }
 
 @TailorMixin(themeGetter: ThemeGetter.onBuildContext)

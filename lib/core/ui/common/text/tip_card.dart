@@ -46,10 +46,10 @@ class TipCard extends StatelessWidget {
           padding: context.customPaddings.m,
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            spacing: context.customSpacings.s.mainAxisExtent,
+            spacing: context.customSpacings.s,
             children: [
               Row(
-                spacing: context.customSpacings.s.mainAxisExtent,
+                spacing: context.customSpacings.s,
                 children: [
                   if (showIcon)
                     Icon(
