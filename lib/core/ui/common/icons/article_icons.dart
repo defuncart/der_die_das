@@ -1,10 +1,8 @@
 import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
-import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/icons/article_content.dart';
 import 'package:der_die_das/core/ui/common/rounded_rectangle.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 class ArticleIcon extends StatelessWidget with ArticleContent {
   const ArticleIcon({
@@ -30,26 +28,30 @@ class ArticleIcon extends StatelessWidget with ArticleContent {
     final child = SizedBox(
       width: width * horizontalTextWidthPercent,
       child: switch (article) {
-        Article.der => isHorizontal
-            ? derHorizontal
-            : Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text('D'),
-                  const Text('E'),
-                  const Text('R'),
-                ].intersperse(Gap(fontSize * 0.025)),
-              ),
-        Article.die => isHorizontal
-            ? dieHorizontal
-            : Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text('D'),
-                  const Text('I'),
-                  const Text('E'),
-                ].intersperse(Gap(fontSize * 0.05)),
-              ),
+        Article.der =>
+          isHorizontal
+              ? derHorizontal
+              : Column(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: fontSize * 0.025,
+                  children: const [
+                    Text('D'),
+                    Text('E'),
+                    Text('R'),
+                  ],
+                ),
+        Article.die =>
+          isHorizontal
+              ? dieHorizontal
+              : Column(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: fontSize * 0.05,
+                  children: const [
+                    Text('D'),
+                    Text('I'),
+                    Text('E'),
+                  ],
+                ),
         Article.das => dasHorizontal,
       },
     );
@@ -78,9 +80,7 @@ class ArticleIcon extends StatelessWidget with ArticleContent {
           fontFamily: AppFonts.lovelo,
           height: textHeight,
         ),
-        child: Center(
-          child: child,
-        ),
+        child: Center(child: child),
       ),
     );
   }

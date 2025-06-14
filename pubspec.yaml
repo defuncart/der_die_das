@@ -4,8 +4,8 @@ publish_to: 'none'
 version: 0.2.0+1
 
 environment:
-  sdk: ">=3.2.0 <4.0.0"
-  flutter: ">=3.16.0 <4.0.0"
+  sdk: ^3.8.0
+  flutter: ^3.32.0
 
 dependencies:
   flutter:
@@ -33,7 +33,7 @@ dependencies:
   flutter_animate:
   flutter_tts:
   audioplayers:
-  hive: ^2.2.3
+  hive_ce:
 
 dev_dependencies:
   flutter_test:
@@ -54,7 +54,7 @@ dev_dependencies:
   app_store_screenshots:
     git:
       url: https://github.com/defuncart/app_store_screenshots
-      ref: d65dcd87d4bcf920b367db1c8809da0c3331b5ee
+      ref: main
 
 flutter:
   uses-material-design: true
@@ -88,3 +88,7 @@ flutter_launcher_icons:
   image_path: "assets_dev/app_icons/app_icon.png"
   adaptive_icon_background: "#ECF0F1"
   adaptive_icon_foreground: "assets_dev/app_icons/android_icon_foreground.png"
+  adaptive_icon_monochrome: "assets_dev/app_icons/android_icon_foreground.png"
+  macos:
+    generate: true
+    image_path: "assets_dev/app_icons/app_icon_macos.png"

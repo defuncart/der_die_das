@@ -1,5 +1,4 @@
 import 'package:der_die_das/core/db/tips/localized_tip.dart';
-import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_material_close_button.dart';
@@ -56,7 +55,7 @@ class _TipsScreenState extends State<TipsScreen> {
         body: ListView.separated(
           physics: const BouncingScrollPhysics(),
           itemCount: tips.length,
-          separatorBuilder: (context, _) => context.customSpacings.s,
+          separatorBuilder: (context, _) => context.customSpacings.s.toWidget(),
           itemBuilder: (context, index) => Container(
             margin: context.customPaddings.sHorizontal,
             decoration: BoxDecoration(
@@ -67,6 +66,7 @@ class _TipsScreenState extends State<TipsScreen> {
               title: Padding(
                 padding: context.customPaddings.xsVertical,
                 child: Column(
+                  spacing: context.customSpacings.s,
                   children: [
                     HighlightedText(
                       tips[index].description,
@@ -76,7 +76,7 @@ class _TipsScreenState extends State<TipsScreen> {
                       tips[index].example,
                       highlightColor: context.colorScheme.primary,
                     ),
-                  ].intersperse(context.customSpacings.s),
+                  ],
                 ),
               ),
             ),

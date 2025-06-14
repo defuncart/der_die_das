@@ -24,10 +24,11 @@ class NounDatabase extends _$NounDatabase implements INounDatabase {
 
   @override
   Future<List<Noun>> getNouns({required int count, required Level level}) async {
-    final levelNouns = await (select(nouns)
-          ..where((noun) => noun.level.equals(level.index))
-          ..orderBy([(n) => OrderingTerm.asc(n.attempts)]))
-        .get();
+    final levelNouns =
+        await (select(nouns)
+              ..where((noun) => noun.level.equals(level.index))
+              ..orderBy([(n) => OrderingTerm.asc(n.attempts)]))
+            .get();
     levelNouns.shuffle();
     return levelNouns.take(count).toList();
   }
@@ -62,12 +63,9 @@ class NounDatabase extends _$NounDatabase implements INounDatabase {
     final attempts = Value(noun.attempts + 1);
     final timesCorrect = answeredCorrectly ? Value(noun.timesCorrect + 1) : const Value<int>.absent();
 
-    (update(nouns)..where((noun) => noun.key.equals(key))).write(
-      NounsCompanion(
-        attempts: attempts,
-        timesCorrect: timesCorrect,
-      ),
-    );
+    (update(
+      nouns,
+    )..where((noun) => noun.key.equals(key))).write(NounsCompanion(attempts: attempts, timesCorrect: timesCorrect));
   }
 
   Future<Noun> _getNoun(String key) => (select(nouns)..where((noun) => noun.key.equals(key))).getSingle();

@@ -6,22 +6,12 @@ import '../../../test_utils.dart';
 
 void main() {
   testWidgets('getAllTips', (tester) async {
-    await tester.pumpWidget(
-      wrapWithMaterialAppLocalizationDelegates(
-        const SizedBox.shrink(),
-      ),
-    );
+    await tester.pumpWidget(wrapWithMaterialAppLocalizationDelegates(const SizedBox.shrink()));
 
     final BuildContext context = tester.element(find.byType(SizedBox));
 
-    expect(
-      () => getAllTips(context: context),
-      returnsNormally,
-    );
+    expect(() => getAllTips(context: context), returnsNormally);
 
-    expect(
-      getAllTips(context: context).toList(),
-      hasLength(29),
-    );
+    expect(getAllTips(context: context).toList(), hasLength(29));
   });
 }

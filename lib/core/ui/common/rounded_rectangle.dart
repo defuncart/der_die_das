@@ -28,9 +28,7 @@ class RoundedRectangle extends StatelessWidget {
         borderRadius: effectiveBorderRadius,
         color: color,
       ),
-      child: Center(
-        child: child,
-      ),
+      child: Center(child: child),
     );
   }
 }

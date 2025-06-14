@@ -14,9 +14,7 @@ class BasicMaterialIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: onPressed,
-      icon: Icon(
-        icon,
-      ),
+      icon: Icon(icon),
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       hoverColor: Colors.transparent,

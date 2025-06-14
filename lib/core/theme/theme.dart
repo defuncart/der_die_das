@@ -22,34 +22,22 @@ final appTheme = ThemeData(
     primary: _AppColors.purple,
     secondary: _AppColors.purple,
     tertiary: _AppColors.purple,
+    surface: _AppColors.white,
   ),
   fontFamily: AppFonts.lato,
-  textTheme: const TextTheme(
-    bodyMedium: TextStyle(
-      color: _AppColors.gray,
-    ),
-    titleSmall: TextStyle(
-      color: _AppColors.black,
-    ),
-    titleMedium: TextStyle(
-      color: _AppColors.black,
-    ),
-    titleLarge: TextStyle(
-      color: _AppColors.black,
-    ),
-    headlineSmall: TextStyle(
-      color: _AppColors.black,
-    ),
-    headlineMedium: TextStyle(
-      color: _AppColors.black,
-    ),
-    headlineLarge: TextStyle(
-      color: _AppColors.black,
-    ),
-  ).apply(
-    bodyColor: _AppColors.gray,
-    displayColor: _AppColors.black,
-  ),
+  textTheme:
+      const TextTheme(
+        bodyMedium: TextStyle(color: _AppColors.gray),
+        titleSmall: TextStyle(color: _AppColors.black),
+        titleMedium: TextStyle(color: _AppColors.black),
+        titleLarge: TextStyle(color: _AppColors.black),
+        headlineSmall: TextStyle(color: _AppColors.black),
+        headlineMedium: TextStyle(color: _AppColors.black),
+        headlineLarge: TextStyle(color: _AppColors.black),
+      ).apply(
+        bodyColor: _AppColors.gray,
+        displayColor: _AppColors.black,
+      ),
   listTileTheme: const ListTileThemeData(
     textColor: _AppColors.black,
   ),
@@ -70,10 +58,10 @@ final appTheme = ThemeData(
   ),
   platform: TargetPlatform.android,
   extensions: [
-    CustomColorScheme.light,
-    CustomRadii.light,
-    CustomSpacings.light,
-    CustomPaddings.light,
+    const CustomColorScheme(),
+    CustomRadii.standard(),
+    const CustomSpacings(),
+    const CustomPaddings(),
   ],
 );
 

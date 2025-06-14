@@ -38,7 +38,7 @@ class AnswersLayoutButton extends StatelessWidget {
 
 extension on AnswersLayout {
   IconData get icon => switch (this) {
-        AnswersLayout.standard => CustomIcons.answers_layout_standard,
-        AnswersLayout.horizontal => CustomIcons.answers_layout_horizontal,
-      };
+    AnswersLayout.standard => CustomIcons.answers_layout_standard,
+    AnswersLayout.horizontal => CustomIcons.answers_layout_horizontal,
+  };
 }

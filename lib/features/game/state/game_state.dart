@@ -25,10 +25,9 @@ class GameStateController extends _$GameStateController {
   @override
   Future<GameState> build() async {
     _numberQuestions = ref.read(numberQuestionsControllerProvider).value;
-    _nouns = await ref.read(nounDatabaseProvider).getNouns(
-          count: _numberQuestions,
-          level: ref.read(levelControllerProvider),
-        );
+    _nouns = await ref
+        .read(nounDatabaseProvider)
+        .getNouns(count: _numberQuestions, level: ref.read(levelControllerProvider));
 
     return _gameState;
   }
@@ -42,7 +41,7 @@ class GameStateController extends _$GameStateController {
         withoutArticle: _currentNoun.withoutArticle,
         ambiguousLabel: _currentNoun.ambiguousExample,
         tip: _currentNoun.tip,
-        answeredCorrectly: (articles: _currentNoun.articles,),
+        answeredCorrectly: (articles: _currentNoun.articles),
         answeredIncorrectly: null,
         result: null,
       ));
@@ -54,17 +53,21 @@ class GameStateController extends _$GameStateController {
         ambiguousLabel: _currentNoun.ambiguousExample,
         tip: _currentNoun.tip,
         answeredCorrectly: null,
-        answeredIncorrectly: (articles: _currentNoun.articles,),
+        answeredIncorrectly: (articles: _currentNoun.articles),
         result: null,
       ));
     }
-    ref.read(nounDatabaseProvider).updateProgress(
+    ref
+        .read(nounDatabaseProvider)
+        .updateProgress(
           key: _currentNoun.key,
           answeredCorrectly: answeredCorrectly,
         );
-    ref.read(sfxControllerProvider(
-      effect: answeredCorrectly ? SFXEffect.answerCorrect : SFXEffect.answerIncorrect,
-    ));
+    ref.read(
+      sfxControllerProvider(
+        effect: answeredCorrectly ? SFXEffect.answerCorrect : SFXEffect.answerIncorrect,
+      ),
+    );
     Future.delayed(const Duration(milliseconds: 500)).then((_) {
       ref.read(speakControllerProvider(text: _currentNoun.speak));
       if (answeredCorrectly) {
@@ -86,29 +89,27 @@ class GameStateController extends _$GameStateController {
         ambiguousLabel: _currentNoun.ambiguousExample,
         tip: _currentNoun.tip,
         answeredCorrectly: null,
-        answeredIncorrectly: (articles: _currentNoun.articles,),
+        answeredIncorrectly: (articles: _currentNoun.articles),
         result: (
           correct: _correct,
           total: _numberQuestions,
-          incorrectlyAnswered: _incorrectlyAnswered.map((noun) => (
-                withArticle: noun.withArticle,
-                withoutArticle: noun.withoutArticle,
-                tip: noun.tip,
-              )),
+          incorrectlyAnswered: _incorrectlyAnswered.map(
+            (noun) => (withArticle: noun.withArticle, withoutArticle: noun.withoutArticle, tip: noun.tip),
+          ),
         ),
       ));
     }
   }
 
   GameState get _gameState => (
-        progress: _progress,
-        withoutArticle: _currentNoun.withoutArticle,
-        ambiguousLabel: _currentNoun.ambiguousExample,
-        tip: _currentNoun.tip,
-        answeredCorrectly: null,
-        answeredIncorrectly: null,
-        result: null,
-      );
+    progress: _progress,
+    withoutArticle: _currentNoun.withoutArticle,
+    ambiguousLabel: _currentNoun.ambiguousExample,
+    tip: _currentNoun.tip,
+    answeredCorrectly: null,
+    answeredIncorrectly: null,
+    result: null,
+  );
 }
 
 // TODO convert to unions
@@ -122,10 +123,6 @@ typedef GameState = ({
   GameResult? result,
 });
 
-typedef AnsweredCorrectly = ({
-  Iterable<Article> articles,
-});
+typedef AnsweredCorrectly = ({Iterable<Article> articles});
 
-typedef AnsweredIncorrectly = ({
-  Iterable<Article> articles,
-});
+typedef AnsweredIncorrectly = ({Iterable<Article> articles});

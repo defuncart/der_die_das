@@ -5,25 +5,23 @@ import 'package:flutter/material.dart';
 
 void main() {
   generateAppIcon(
-    onBuildIcon: () => Theme(
+    onBuildIcon: (size) => Theme(
       data: appTheme,
-      child: const AppIcon(
-        border: AppIconBorder.none,
-        size: 512,
-      ),
+      child: AppIcon(border: AppIconBorder.none, size: size),
     ),
   );
 
   generateAppIconAndroidForeground(
-    padding: const EdgeInsets.all(80),
-    onBuildIcon: () => Theme(
+    onBuildIcon: (size) => Theme(
       data: appTheme,
-      child: const AppIcon(
-        border: AppIconBorder.none,
-        size: 512 - 80 * 2,
-        hasTransparentBackground: true,
-        hasSpacer: false,
-      ),
+      child: AppIcon(border: AppIconBorder.none, size: size, hasTransparentBackground: true, hasSpacer: false),
+    ),
+  );
+
+  generateAppIconMacOS(
+    onBuildIcon: (size) => Theme(
+      data: appTheme,
+      child: AppIcon(border: AppIconBorder.none, size: size),
     ),
   );
 }

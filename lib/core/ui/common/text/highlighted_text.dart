@@ -19,21 +19,27 @@ class HighlightedText extends StatelessWidget {
     final effectiveTextStyle = textStyle ?? DefaultTextStyle.of(context).style;
 
     final spans = <TextSpan>[];
-    text.splitMapJoin(RegExp(r'(\<color\>([a-zA-Zäöü\-]*)\<\/color\>)'), onMatch: (match) {
-      spans.add(TextSpan(
-        text: match.group(2),
-        style: effectiveTextStyle.copyWith(
-          color: highlightColor,
-        ),
-      ));
-      return '';
-    }, onNonMatch: (text) {
-      spans.add(TextSpan(
-        text: text,
-        style: effectiveTextStyle,
-      ));
-      return '';
-    });
+    text.splitMapJoin(
+      RegExp(r'(\<color\>([a-zA-Zäöü\-]*)\<\/color\>)'),
+      onMatch: (match) {
+        spans.add(
+          TextSpan(
+            text: match.group(2),
+            style: effectiveTextStyle.copyWith(color: highlightColor),
+          ),
+        );
+        return '';
+      },
+      onNonMatch: (text) {
+        spans.add(
+          TextSpan(
+            text: text,
+            style: effectiveTextStyle,
+          ),
+        );
+        return '';
+      },
+    );
 
     return RichText(
       textAlign: TextAlign.justify,

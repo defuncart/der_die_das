@@ -1,6 +1,5 @@
 import 'package:der_die_das/core/db/nouns_database/models/tip.dart';
 import 'package:der_die_das/core/db/tips/localized_tip.dart';
-import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
@@ -23,10 +22,7 @@ class TipCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tipText = getTip(
-      context: context,
-      index: tip.id,
-    ).description;
+    final tipText = getTip(context: context, index: tip.id).description;
     final exceptionText = tip.isException ? context.l10n.tipException(noun) : null;
     final text = showIcon && exceptionText != null ? '$tipText $exceptionText' : tipText;
     final textStyle = showIcon ? context.textTheme.bodyLarge : context.textTheme.headlineMedium;
@@ -50,8 +46,10 @@ class TipCard extends StatelessWidget {
           padding: context.customPaddings.m,
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            spacing: context.customSpacings.s,
             children: [
               Row(
+                spacing: context.customSpacings.s,
                 children: [
                   if (showIcon)
                     Icon(
@@ -65,7 +63,7 @@ class TipCard extends StatelessWidget {
                       textStyle: textStyle,
                     ),
                   ),
-                ].intersperse(context.customSpacings.s),
+                ],
               ),
               if (tip.isException && !showIcon)
                 HighlightedText(
@@ -73,7 +71,7 @@ class TipCard extends StatelessWidget {
                   textStyle: textStyle,
                   highlightColor: context.colorScheme.primary,
                 ),
-            ].intersperse(context.customSpacings.s),
+            ],
           ),
         ),
         if (onClose != null)

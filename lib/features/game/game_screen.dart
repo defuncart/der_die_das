@@ -3,7 +3,6 @@ import 'package:der_die_das/core/db/nouns_database/enums/article.dart';
 import 'package:der_die_das/core/db/nouns_database/models/tip.dart';
 import 'package:der_die_das/core/db/settings/enums/answers_layout.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
-import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/buttons/article_button.dart';
@@ -31,10 +30,8 @@ class GameScreen extends ConsumerWidget {
       data: (data) {
         if (data.value.result != null) {
           Future.microtask(
-            () => context.pushReplacement(
-              ResultsScreen.path,
-              extra: data.value.result,
-            ),
+            // ignore: use_build_context_synchronously
+            () => context.pushReplacement(ResultsScreen.path, extra: data.value.result),
           );
           return const Scaffold();
         }
@@ -46,9 +43,7 @@ class GameScreen extends ConsumerWidget {
 }
 
 class _GameScreen extends ConsumerWidget {
-  const _GameScreen({
-    required this.state,
-  });
+  const _GameScreen({required this.state});
 
   final GameState state;
 
@@ -68,7 +63,7 @@ class _GameScreen extends ConsumerWidget {
                   Container(
                     width: boxConstraints.maxWidth,
                     decoration: BoxDecoration(
-                      color: context.colorScheme.primary.withOpacity(0.25),
+                      color: context.colorScheme.primary.withValues(alpha: 0.25),
                       borderRadius: context.customRadii.s,
                     ),
                   ),
@@ -94,7 +89,7 @@ class _GameScreen extends ConsumerWidget {
           else
             const SizedBox(
               width: kMinInteractiveDimension,
-            )
+            ),
         ],
       ),
       body: Padding(
@@ -104,116 +99,119 @@ class _GameScreen extends ConsumerWidget {
           right: 8,
           bottom: MediaQuery.paddingOf(context).bottom == 0 ? 8 : 0,
         ),
-        child: LayoutBuilder(builder: (context, constraints) {
-          final buttonsHeight = constraints.maxHeight * (0.55 + 0.175) + context.customSpacings.s.mainAxisExtent;
-          final verticalWidth = constraints.maxWidth * 0.325;
-          final verticalHeight = constraints.maxHeight * 0.55;
-          final horizontalWidth = constraints.maxWidth;
-          final horizontalHeight = constraints.maxHeight * 0.175;
-          final fontSize = horizontalHeight * 0.75;
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final buttonsHeight = constraints.maxHeight * (0.55 + 0.175) + context.customSpacings.s;
+            final verticalWidth = constraints.maxWidth * 0.325;
+            final verticalHeight = constraints.maxHeight * 0.55;
+            final horizontalWidth = constraints.maxWidth;
+            final horizontalHeight = constraints.maxHeight * 0.175;
+            final fontSize = horizontalHeight * 0.75;
 
-          return SizedBox(
-            width: constraints.maxWidth,
-            height: constraints.maxHeight,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment:
-                  state.answeredIncorrectly != null ? MainAxisAlignment.start : MainAxisAlignment.spaceBetween,
-              children: [
-                Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AutoSizeText(
-                        state.withoutArticle,
-                        style: TextStyle(
-                          fontSize: fontSize,
-                          fontWeight: FontWeight.bold,
-                          color: context.customColorScheme.defaultButton,
-                        ),
-                        maxLines: 1,
-                      ),
-                      if (state.ambiguousLabel != null)
+            return SizedBox(
+              width: constraints.maxWidth,
+              height: constraints.maxHeight,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: state.answeredIncorrectly != null
+                    ? MainAxisAlignment.start
+                    : MainAxisAlignment.spaceBetween,
+                children: [
+                  Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
                         AutoSizeText(
-                          state.ambiguousLabel!,
+                          state.withoutArticle,
                           style: TextStyle(
-                            fontSize: fontSize * 0.25,
+                            fontSize: fontSize,
+                            fontWeight: FontWeight.bold,
+                            color: context.customColorScheme.defaultButton,
                           ),
                           maxLines: 1,
                         ),
-                    ],
+                        if (state.ambiguousLabel != null)
+                          AutoSizeText(
+                            state.ambiguousLabel!,
+                            style: TextStyle(fontSize: fontSize * 0.25),
+                            maxLines: 1,
+                          ),
+                      ],
+                    ),
                   ),
-                ),
-                if (state.answeredIncorrectly != null)
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                ...state.answeredIncorrectly!.articles.map(
-                                  (article) => ArticleIcon(
-                                    article: article,
-                                    width: horizontalWidth,
-                                    horizontalTextWidthPercent: 0.6,
-                                    height: horizontalHeight,
-                                    fontSize: fontSize,
+                  if (state.answeredIncorrectly != null)
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        spacing: context.customSpacings.m,
+                        children: [
+                          Expanded(
+                            child: Center(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                spacing: context.customSpacings.l,
+                                children: [
+                                  ...state.answeredIncorrectly!.articles.map(
+                                    (article) => ArticleIcon(
+                                      article: article,
+                                      width: horizontalWidth,
+                                      horizontalTextWidthPercent: 0.6,
+                                      height: horizontalHeight,
+                                      fontSize: fontSize,
+                                    ),
                                   ),
-                                ),
-                                if (state.tip != null)
-                                  TipCard(
-                                    tip: state.tip!,
-                                    noun: state.withoutArticle,
-                                    showIcon: true,
-                                  ),
-                              ].intersperse(context.customSpacings.l),
+                                  if (state.tip != null)
+                                    TipCard(
+                                      tip: state.tip!,
+                                      noun: state.withoutArticle,
+                                      showIcon: true,
+                                    ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: HorizontalButton(
-                            onPressed: ref.read(gameStateControllerProvider.notifier).onContinue,
-                            text: context.l10n.gameContinueLabel,
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: HorizontalButton(
+                              onPressed: ref.read(gameStateControllerProvider.notifier).onContinue,
+                              text: context.l10n.gameContinueLabel,
+                            ),
                           ),
-                        ),
-                      ].intersperse(context.customSpacings.m),
+                        ],
+                      ),
+                    )
+                  else if (state.answeredCorrectly != null)
+                    SizedBox(
+                      width: constraints.maxWidth,
+                      height: buttonsHeight,
+                      child: _Articles.subset(
+                        articles: state.answeredCorrectly!.articles.toList(),
+                        verticalWidth: verticalWidth,
+                        verticalHeight: verticalHeight,
+                        horizontalWidth: horizontalWidth,
+                        horizontalHeight: horizontalHeight,
+                        fontSize: fontSize,
+                      ),
+                    )
+                  else
+                    SizedBox(
+                      width: constraints.maxWidth,
+                      height: buttonsHeight,
+                      child: _Articles.interactive(
+                        verticalWidth: verticalWidth,
+                        verticalHeight: verticalHeight,
+                        horizontalWidth: horizontalWidth,
+                        horizontalHeight: horizontalHeight,
+                        fontSize: fontSize,
+                      ),
                     ),
-                  )
-                else if (state.answeredCorrectly != null)
-                  SizedBox(
-                    width: constraints.maxWidth,
-                    height: buttonsHeight,
-                    child: _Articles.subset(
-                      articles: state.answeredCorrectly!.articles.toList(),
-                      verticalWidth: verticalWidth,
-                      verticalHeight: verticalHeight,
-                      horizontalWidth: horizontalWidth,
-                      horizontalHeight: horizontalHeight,
-                      fontSize: fontSize,
-                    ),
-                  )
-                else
-                  SizedBox(
-                    width: constraints.maxWidth,
-                    height: buttonsHeight,
-                    child: _Articles.interactive(
-                      verticalWidth: verticalWidth,
-                      verticalHeight: verticalHeight,
-                      horizontalWidth: horizontalWidth,
-                      horizontalHeight: horizontalHeight,
-                      fontSize: fontSize,
-                    ),
-                  ),
-              ],
-            ),
-          );
-        }),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -226,8 +224,8 @@ class _Articles extends ConsumerWidget {
     required this.horizontalWidth,
     required this.horizontalHeight,
     required this.fontSize,
-  })  : _articles = null,
-        _interactive = true;
+  }) : _articles = null,
+       _interactive = true;
 
   const _Articles.subset({
     required List<Article> articles,
@@ -236,8 +234,8 @@ class _Articles extends ConsumerWidget {
     required this.horizontalWidth,
     required this.horizontalHeight,
     required this.fontSize,
-  })  : _articles = articles,
-        _interactive = false;
+  }) : _articles = articles,
+       _interactive = false;
 
   final List<Article>? _articles;
   final bool _interactive;
@@ -253,21 +251,21 @@ class _Articles extends ConsumerWidget {
 
     return switch (state) {
       AnswersLayout.standard => _ArticlesLayoutStandard(
-          articles: _articles,
-          interactive: _interactive,
-          verticalWidth: verticalWidth,
-          verticalHeight: verticalHeight,
-          horizontalWidth: horizontalWidth,
-          horizontalHeight: horizontalHeight,
-          fontSize: fontSize,
-        ),
+        articles: _articles,
+        interactive: _interactive,
+        verticalWidth: verticalWidth,
+        verticalHeight: verticalHeight,
+        horizontalWidth: horizontalWidth,
+        horizontalHeight: horizontalHeight,
+        fontSize: fontSize,
+      ),
       AnswersLayout.horizontal => _ArticlesLayoutHorizontal(
-          articles: _articles,
-          interactive: _interactive,
-          width: horizontalWidth,
-          height: horizontalHeight,
-          fontSize: fontSize,
-        ),
+        articles: _articles,
+        interactive: _interactive,
+        width: horizontalWidth,
+        height: horizontalHeight,
+        fontSize: fontSize,
+      ),
     };
   }
 }
@@ -295,6 +293,7 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       mainAxisSize: MainAxisSize.max,
+      spacing: context.customSpacings.s,
       children: [
         Row(
           mainAxisSize: MainAxisSize.max,
@@ -307,14 +306,12 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
                 horizontalTextWidthPercent: 0.6,
                 height: verticalHeight,
                 fontSize: fontSize,
-                onPressed:
-                    interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.der) : null,
+                onPressed: interactive
+                    ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.der)
+                    : null,
               )
             else
-              SizedBox(
-                width: verticalWidth,
-                height: verticalHeight,
-              ),
+              SizedBox(width: verticalWidth, height: verticalHeight),
             if (interactive || articles?.contains(Article.die) == true)
               ArticleButton(
                 article: Article.die,
@@ -322,14 +319,12 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
                 width: verticalWidth,
                 height: verticalHeight,
                 fontSize: fontSize,
-                onPressed:
-                    interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.die) : null,
+                onPressed: interactive
+                    ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.die)
+                    : null,
               )
             else
-              SizedBox(
-                width: verticalWidth,
-                height: verticalHeight,
-              ),
+              SizedBox(width: verticalWidth, height: verticalHeight),
           ],
         ),
         if (interactive || articles?.contains(Article.das) == true)
@@ -342,11 +337,8 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
             onPressed: interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.das) : null,
           )
         else
-          SizedBox(
-            width: horizontalWidth,
-            height: horizontalHeight,
-          ),
-      ].intersperse(context.customSpacings.s),
+          SizedBox(width: horizontalWidth, height: horizontalHeight),
+      ],
     );
   }
 }
@@ -380,13 +372,11 @@ class _ArticlesLayoutHorizontal extends ConsumerWidget {
                     horizontalTextWidthPercent: 0.6,
                     height: height,
                     fontSize: fontSize,
-                    onPressed:
-                        interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(article) : null,
+                    onPressed: interactive
+                        ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(article)
+                        : null,
                   )
-                : SizedBox(
-                    width: width,
-                    height: height,
-                  ),
+                : SizedBox(width: width, height: height),
           )
           .toList(),
     );
@@ -394,10 +384,7 @@ class _ArticlesLayoutHorizontal extends ConsumerWidget {
 }
 
 class _HintButton extends StatefulWidget {
-  const _HintButton({
-    required this.tip,
-    required this.noun,
-  });
+  const _HintButton({required this.tip, required this.noun});
 
   final Tip tip;
   final String noun;
@@ -423,24 +410,15 @@ class __HintButtonState extends State<_HintButton> {
                 size: MediaQuery.sizeOf(context),
                 child: GestureDetector(
                   onTap: _tooltipController.toggle,
-                  child: ColoredBox(
-                    color: Colors.black.withOpacity(0.35),
-                  ),
+                  child: ColoredBox(color: Colors.black.withValues(alpha: 0.35)),
                 ),
               ),
-              TipCard(
-                tip: widget.tip,
-                noun: widget.noun,
-                onClose: _tooltipController.toggle,
-              ),
+              TipCard(tip: widget.tip, noun: widget.noun, onClose: _tooltipController.toggle),
             ],
           ),
         );
       },
-      child: BasicMaterialIconButton(
-        onPressed: _tooltipController.toggle,
-        icon: Icons.lightbulb_outline,
-      ),
+      child: BasicMaterialIconButton(onPressed: _tooltipController.toggle, icon: Icons.lightbulb_outline),
     );
   }
 }

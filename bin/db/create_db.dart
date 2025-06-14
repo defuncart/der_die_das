@@ -44,6 +44,6 @@ LazyDatabase _openConnection() {
 
 extension on NounDatabase {
   Future<void> addNouns(List<Noun> multipleNouns) => batch((batch) {
-        batch.insertAll(nouns, multipleNouns);
-      });
+    batch.insertAll(nouns, multipleNouns);
+  });
 }

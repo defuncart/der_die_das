@@ -6,7 +6,7 @@ part of 'sound_settings_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$speakControllerHash() => r'9010823037a266b9d9fbef5eb4742edb8adc881a';
+String _$speakControllerHash() => r'bd1d3d2e33d53c850b4ba422d84bd280a353b6a6';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -76,17 +76,17 @@ class SpeakControllerProvider extends AutoDisposeFutureProvider<void> {
   SpeakControllerProvider({
     required String text,
   }) : this._internal(
-          (ref) => speakController(
-            ref as SpeakControllerRef,
-            text: text,
-          ),
-          from: speakControllerProvider,
-          name: r'speakControllerProvider',
-          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$speakControllerHash,
-          dependencies: SpeakControllerFamily._dependencies,
-          allTransitiveDependencies: SpeakControllerFamily._allTransitiveDependencies,
-          text: text,
-        );
+         (ref) => speakController(
+           ref as SpeakControllerRef,
+           text: text,
+         ),
+         from: speakControllerProvider,
+         name: r'speakControllerProvider',
+         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$speakControllerHash,
+         dependencies: SpeakControllerFamily._dependencies,
+         allTransitiveDependencies: SpeakControllerFamily._allTransitiveDependencies,
+         text: text,
+       );
 
   SpeakControllerProvider._internal(
     super._createNotifier, {
@@ -137,6 +137,8 @@ class SpeakControllerProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin SpeakControllerRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `text` of this provider.
   String get text;
@@ -149,7 +151,7 @@ class _SpeakControllerProviderElement extends AutoDisposeFutureProviderElement<v
   String get text => (origin as SpeakControllerProvider).text;
 }
 
-String _$sfxControllerHash() => r'a45d38e0a337d1256405fd3a85b54fe3a698289c';
+String _$sfxControllerHash() => r'1104ea951ef9f7b433986e17af26dded2a6c98ff';
 
 /// See also [sfxController].
 @ProviderFor(sfxController)
@@ -198,17 +200,17 @@ class SfxControllerProvider extends AutoDisposeFutureProvider<void> {
   SfxControllerProvider({
     required SFXEffect effect,
   }) : this._internal(
-          (ref) => sfxController(
-            ref as SfxControllerRef,
-            effect: effect,
-          ),
-          from: sfxControllerProvider,
-          name: r'sfxControllerProvider',
-          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$sfxControllerHash,
-          dependencies: SfxControllerFamily._dependencies,
-          allTransitiveDependencies: SfxControllerFamily._allTransitiveDependencies,
-          effect: effect,
-        );
+         (ref) => sfxController(
+           ref as SfxControllerRef,
+           effect: effect,
+         ),
+         from: sfxControllerProvider,
+         name: r'sfxControllerProvider',
+         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$sfxControllerHash,
+         dependencies: SfxControllerFamily._dependencies,
+         allTransitiveDependencies: SfxControllerFamily._allTransitiveDependencies,
+         effect: effect,
+       );
 
   SfxControllerProvider._internal(
     super._createNotifier, {
@@ -259,6 +261,8 @@ class SfxControllerProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin SfxControllerRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `effect` of this provider.
   SFXEffect get effect;
@@ -270,5 +274,6 @@ class _SfxControllerProviderElement extends AutoDisposeFutureProviderElement<voi
   @override
   SFXEffect get effect => (origin as SfxControllerProvider).effect;
 }
+
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

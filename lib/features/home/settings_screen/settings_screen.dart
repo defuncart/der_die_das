@@ -4,7 +4,6 @@ import 'package:der_die_das/core/db/settings/enums/language.dart';
 import 'package:der_die_das/core/db/settings/enums/number_questions.dart';
 import 'package:der_die_das/core/db/settings/enums/speech_rate.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
-import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/l10n/l10n_extension.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/buttons/basic_button.dart';
@@ -41,6 +40,7 @@ class SettingsScreen extends StatelessWidget {
         child: DefaultTextStyle(
           style: textStyle!,
           child: Column(
+            spacing: context.customSpacings.m,
             children: const [
               _LanguageRow(),
               _LevelRow(),
@@ -50,10 +50,8 @@ class SettingsScreen extends StatelessWidget {
               _SpeechRateRow(),
               _VoiceRow(),
               _SoundRow(),
-              Center(
-                child: _DataPrivacyButton(),
-              )
-            ].intersperse(context.customSpacings.m),
+              Center(child: _DataPrivacyButton()),
+            ],
           ),
         ),
       ),
@@ -244,11 +242,11 @@ class _Slider extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliderTheme(
       data: Theme.of(context).sliderTheme.copyWith(
-            inactiveTickMarkColor: Theme.of(context).scaffoldBackgroundColor,
-            overlayShape: SliderComponentShape.noOverlay,
-          ),
+        inactiveTickMarkColor: Theme.of(context).scaffoldBackgroundColor,
+        overlayShape: SliderComponentShape.noOverlay,
+      ),
       child: SizedBox(
-        width: kMinInteractiveDimension * 3 + context.customSpacings.s.mainAxisExtent * 2,
+        width: kMinInteractiveDimension * 3 + context.customSpacings.s * 2,
         height: kMinInteractiveDimension,
         child: Slider(
           value: value,
@@ -257,7 +255,7 @@ class _Slider extends StatelessWidget {
           divisions: divisions,
           label: onGenerateLabel != null ? onGenerateLabel!(value) : value.toString(),
           onChanged: onChanged,
-          inactiveColor: context.colorScheme.primary.withOpacity(0.6),
+          inactiveColor: context.colorScheme.primary.withValues(alpha: 0.6),
         ),
       ),
     );
@@ -279,12 +277,11 @@ class _SettingsRow extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          label,
-        ),
+        Text(label),
         Row(
           mainAxisSize: MainAxisSize.min,
-          children: items.toList().intersperse(context.customSpacings.s),
+          spacing: context.customSpacings.s,
+          children: items.toList(),
         ),
       ],
     );
@@ -319,9 +316,9 @@ class _DataPrivacyDialog extends StatelessWidget {
   const _DataPrivacyDialog();
 
   static void show(BuildContext context) => showDialog(
-        context: context,
-        builder: (context) => const _DataPrivacyDialog(),
-      );
+    context: context,
+    builder: (context) => const _DataPrivacyDialog(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -334,6 +331,7 @@ class _DataPrivacyDialog extends StatelessWidget {
       title: Text(context.l10n.settingsDataPrivacyAlertTitle),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: context.customSpacings.m,
         children: [
           _TextWithLink(
             text: context.l10n.settingsDataPrivacyAlertContent1,
@@ -344,7 +342,7 @@ class _DataPrivacyDialog extends StatelessWidget {
             text: context.l10n.settingsDataPrivacyAlertContent3,
             url: 'https://github.com/defuncart/der_die_das/',
           ),
-        ].intersperse(context.customSpacings.m),
+        ],
       ),
       actions: <Widget>[
         BasicButton(
@@ -356,9 +354,7 @@ class _DataPrivacyDialog extends StatelessWidget {
           ),
           onPressed: () => showLicensePage(
             context: context,
-            applicationIcon: const AppIcon(
-              size: 96,
-            ),
+            applicationIcon: const AppIcon(size: 96),
             applicationName: '',
             applicationLegalese: '© 2023 defuncart',
           ),
@@ -393,9 +389,7 @@ class _TextWithLink extends StatelessWidget {
     final end = text.indexOf('</a>');
     final components = start != -1 && end != -1 && end > start
         ? [
-            TextSpan(
-              text: text.substring(0, start),
-            ),
+            TextSpan(text: text.substring(0, start)),
             _ClickableTextSpan(
               text: text.substring(start, end).replaceAll('<a>', ''),
               style: TextStyle(
@@ -404,9 +398,7 @@ class _TextWithLink extends StatelessWidget {
               ),
               url: url,
             ),
-            TextSpan(
-              text: text.substring(end).replaceAll('</a>', ''),
-            ),
+            TextSpan(text: text.substring(end).replaceAll('</a>', '')),
           ]
         : [
             TextSpan(text: text),
@@ -428,8 +420,8 @@ class _ClickableTextSpan extends TextSpan {
     super.style,
     required String url,
   }) : super(
-          recognizer: TapGestureRecognizer()..onTap = () async => await _openUrl(url),
-        );
+         recognizer: TapGestureRecognizer()..onTap = () async => await _openUrl(url),
+       );
 
   static Future<void> _openUrl(String url) async {
     if (await canLaunchUrl(Uri.parse(url))) {

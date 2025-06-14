@@ -37,7 +37,11 @@ class _NounsScreenState extends ConsumerState<NounsScreen> {
       ..addListener(() async {
         final searchTerm = _searchTerm;
         if (searchTerm.isNotEmpty) {
-          await ref.read(filterNounsProvider(searchTerm).future).then((value) => setState(() => _results = value));
+          await ref
+              .read(filterNounsProvider(searchTerm).future)
+              .then(
+                (value) => setState(() => _results = value),
+              );
         } else {
           setState(() => _results = <Noun>[]);
         }
@@ -61,12 +65,16 @@ class _NounsScreenState extends ConsumerState<NounsScreen> {
   Future<void> _init() async {
     await ref
         .read(nounsForCurrentLevelProvider.future)
-        .then((value) => setState(() => _allNounsForCurrentLevel = value));
+        .then(
+          (value) => setState(() => _allNounsForCurrentLevel = value),
+        );
   }
 
   @override
   Widget build(BuildContext context) {
-    final hintColor = context.customColorScheme.defaultButton.withOpacity(0.5);
+    final hintColor = context.customColorScheme.defaultButton.withValues(
+      alpha: 0.5,
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -76,15 +84,15 @@ class _NounsScreenState extends ConsumerState<NounsScreen> {
           focusNode: _focusNode,
           decoration: InputDecoration(
             hintText: context.l10n.nounsSearchFieldHint,
-            hintStyle: TextStyle(
-              color: hintColor,
-            ),
+            hintStyle: TextStyle(color: hintColor),
             suffixIcon: _showClearButton
                 ? IconButton(
                     icon: Icon(
                       Icons.close,
                       size: 20,
-                      color: context.customColorScheme.defaultButton.withOpacity(0.5),
+                      color: context.customColorScheme.defaultButton.withValues(
+                        alpha: 0.5,
+                      ),
                     ),
                     onPressed: () => _controller.clear(),
                     splashColor: Colors.transparent,
@@ -100,25 +108,23 @@ class _NounsScreenState extends ConsumerState<NounsScreen> {
       ),
       body: _showAllNounsForCurrentLevel
           ? _allNounsForCurrentLevel.isNotEmpty
-              ? _NounResultList(
-                  results: _allNounsForCurrentLevel,
-                )
-              : const SizedBox.shrink()
+                ? _NounResultList(
+                    results: _allNounsForCurrentLevel,
+                  )
+                : const SizedBox.shrink()
           : _results.isNotEmpty
-              ? _NounResultList(
-                  results: _results,
-                )
-              : Center(
-                  child: Text(context.l10n.nounsNoResultsFound),
-                ),
+          ? _NounResultList(
+              results: _results,
+            )
+          : Center(
+              child: Text(context.l10n.nounsNoResultsFound),
+            ),
     );
   }
 }
 
 class _NounResultList extends StatelessWidget {
-  const _NounResultList({
-    required this.results,
-  });
+  const _NounResultList({required this.results});
 
   final List<Noun> results;
 
@@ -138,9 +144,7 @@ class _NounResultList extends StatelessWidget {
 }
 
 class _NounTile extends ConsumerWidget {
-  const _NounTile({
-    required this.noun,
-  });
+  const _NounTile({required this.noun});
 
   final Noun noun;
 
@@ -150,14 +154,9 @@ class _NounTile extends ConsumerWidget {
       contentPadding: context.customPaddings.s,
       title: Row(
         children: [
-          Flexible(
-            child: Text(noun.withArticle),
-          ),
-          context.customSpacings.s,
-          LevelIcon(
-            level: noun.level,
-            size: 24,
-          ),
+          Flexible(child: Text(noun.withArticle)),
+          context.customSpacings.s.toWidget(),
+          LevelIcon(level: noun.level, size: 24),
         ],
       ),
       trailing: BasicButton(

@@ -1,5 +1,5 @@
+import 'package:der_die_das/core/l10n/generated/localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/localizations.dart';
 
 extension L10nExtension on BuildContext {
   AppLocalizations get l10n => AppLocalizations.of(this)!;

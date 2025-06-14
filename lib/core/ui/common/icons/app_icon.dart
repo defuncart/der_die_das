@@ -1,4 +1,3 @@
-import 'package:der_die_das/core/extensions/list_widget_extensions.dart';
 import 'package:der_die_das/core/theme/theme.dart';
 import 'package:der_die_das/core/ui/common/icons/article_content.dart';
 import 'package:flutter/material.dart';
@@ -40,9 +39,9 @@ class AppIcon extends StatelessWidget with ArticleContent {
         border: switch (border) {
           AppIconBorder.none => null,
           _ => Border.all(
-              width: size * 0.0175,
-              color: context.textTheme.headlineLarge!.color!,
-            ),
+            width: size * 0.0175,
+            color: context.textTheme.headlineLarge!.color!,
+          ),
         },
         borderRadius: switch (border) {
           AppIconBorder.iOS => BorderRadius.circular(size * 0.2237),
@@ -65,28 +64,21 @@ class AppIcon extends StatelessWidget with ArticleContent {
               width: size * 0.6,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                spacing: hasSpacer ? context.customSpacings.s : 0,
                 children: [
                   DefaultTextStyle(
-                    style: textStyle.copyWith(
-                      color: context.customColorScheme.der,
-                    ),
+                    style: textStyle.copyWith(color: context.customColorScheme.der),
                     child: derHorizontal,
                   ),
                   DefaultTextStyle(
-                    style: textStyle.copyWith(
-                      color: context.customColorScheme.die,
-                    ),
+                    style: textStyle.copyWith(color: context.customColorScheme.die),
                     child: dieHorizontal,
                   ),
                   DefaultTextStyle(
-                    style: textStyle.copyWith(
-                      color: context.customColorScheme.das,
-                    ),
+                    style: textStyle.copyWith(color: context.customColorScheme.das),
                     child: dasHorizontal,
                   ),
-                ].intersperse(
-                  hasSpacer ? context.customSpacings.s : const SizedBox.shrink(),
-                ),
+                ],
               ),
             ),
           ),
@@ -112,16 +104,16 @@ class _IconClipper extends StatelessWidget {
     return switch (border) {
       AppIconBorder.none => child,
       AppIconBorder.iOS => ClipRRect(
-          borderRadius: BorderRadius.circular(size * 0.2237),
-          child: child,
-        ),
+        borderRadius: BorderRadius.circular(size * 0.2237),
+        child: child,
+      ),
       AppIconBorder.androidRoundRect => ClipRRect(
-          borderRadius: BorderRadius.circular(size * 0.0833),
-          child: child,
-        ),
+        borderRadius: BorderRadius.circular(size * 0.0833),
+        child: child,
+      ),
       AppIconBorder.round => ClipOval(
-          child: child,
-        ),
+        child: child,
+      ),
     };
   }
 }

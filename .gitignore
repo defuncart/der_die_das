@@ -5,9 +5,11 @@
 *.swp
 .DS_Store
 .atom/
+.build/
 .buildlog/
 .history
 .svn/
+.swiftpm/
 migrate_working_dir/
 
 # IntelliJ related
@@ -51,6 +53,12 @@ assets_dev/screenshots
 
 # local assets
 assets/db
+
+# generated assets
+lib/core/l10n/generated
+
+# debug target
+macos/
 
 # FVM Version Cache
 .fvm/

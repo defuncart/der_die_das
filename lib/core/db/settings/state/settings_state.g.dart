@@ -6,7 +6,7 @@ part of 'settings_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$settingsServiceHash() => r'4bccfb676ebd858ab40a19467757914c93e0fea6';
+String _$settingsServiceHash() => r'e658fddec33f128bd59e68bf761072afcc522e70';
 
 /// See also [settingsService].
 @ProviderFor(settingsService)
@@ -18,6 +18,8 @@ final settingsServiceProvider = AutoDisposeProvider<ISettingsService>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef SettingsServiceRef = AutoDisposeProviderRef<ISettingsService>;
 String _$languageControllerHash() => r'37e7c37e357451e282efe63f7f5de3c6863876da';
 
@@ -124,4 +126,4 @@ final soundLevelControllerProvider = NotifierProvider<SoundLevelController, doub
 
 typedef _$SoundLevelController = Notifier<double>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

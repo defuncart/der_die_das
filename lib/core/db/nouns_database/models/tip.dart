@@ -8,9 +8,9 @@ class Tip {
   final bool isException;
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'isException': isException,
-      };
+    'id': id,
+    'isException': isException,
+  };
 
   factory Tip.fromJson(Map<String, dynamic> map) {
     return Tip(

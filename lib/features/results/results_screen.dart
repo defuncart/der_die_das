@@ -31,10 +31,11 @@ class ResultsScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            context.customSpacings.m,
+            context.customSpacings.m.toWidget(),
             Center(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
+                spacing: context.customSpacings.m,
                 children: [
                   const Text(
                     '🏆',
@@ -44,10 +45,10 @@ class ResultsScreen extends StatelessWidget {
                     context.l10n.resultsScoreLabel(result.correct, result.total),
                     style: context.textTheme.headlineMedium,
                   ),
-                ].intersperse(context.customSpacings.m),
+                ],
               ),
             ),
-            context.customSpacings.l,
+            context.customSpacings.l.toWidget(),
             if (result.incorrectlyAnswered.isNotEmpty) ...[
               Center(
                 child: Text(
@@ -57,7 +58,7 @@ class ResultsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              context.customSpacings.s,
+              context.customSpacings.s.toWidget(),
               Expanded(
                 child: ListView(
                   shrinkWrap: true,
@@ -69,8 +70,8 @@ class ResultsScreen extends StatelessWidget {
                         noun: noun.withoutArticle,
                         tip: noun.tip,
                       ),
-                    context.customSpacings.s,
-                  ].intersperse(context.customSpacings.m),
+                    context.customSpacings.s.toWidget(),
+                  ].intersperse(context.customSpacings.m.toWidget()),
                 ),
               ),
             ] else
@@ -78,9 +79,7 @@ class ResultsScreen extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: HorizontalButton(
-                onPressed: () {
-                  context.pushReplacement(GameScreen.path);
-                },
+                onPressed: () => context.pushReplacement(GameScreen.path),
                 text: context.l10n.resultsContinueLabel,
               ),
             ),
@@ -106,6 +105,7 @@ class _Mistake extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      spacing: context.customSpacings.s,
       children: [
         Text(
           label,
@@ -117,7 +117,7 @@ class _Mistake extends StatelessWidget {
             noun: noun,
             showIcon: true,
           ),
-      ].intersperse(context.customSpacings.s),
+      ],
     );
   }
 }

@@ -11,9 +11,7 @@ abstract class ITextToSpeechService {
 }
 
 class TextToSpeechService implements ITextToSpeechService {
-  TextToSpeechService({
-    FlutterTts? tts,
-  }) : _tts = tts ?? FlutterTts();
+  TextToSpeechService({FlutterTts? tts}) : _tts = tts ?? FlutterTts();
 
   final FlutterTts _tts;
   late final bool _isSupported;
@@ -58,9 +56,9 @@ class TextToSpeechService implements ITextToSpeechService {
   /// https://github.com/dlutton/flutter_tts/issues/109
   @visibleForTesting
   double get normalizedPlatformSpeechRate => switch (defaultTargetPlatform) {
-        TargetPlatform.android => 0.8,
-        TargetPlatform.iOS => 0.6,
-        TargetPlatform.macOS => 0.395,
-        _ => 1,
-      };
+    TargetPlatform.android => 0.8,
+    TargetPlatform.iOS => 0.6,
+    TargetPlatform.macOS => 0.395,
+    _ => 1,
+  };
 }
