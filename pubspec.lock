@@ -28,11 +28,9 @@ packages:
   app_store_screenshots:
     dependency: "direct dev"
     description:
-      path: "."
-      ref: main
-      resolved-ref: d993f6eec053375b8e1594cdde7f4dd2b81a65af
-      url: "https://github.com/defuncart/app_store_screenshots"
-    source: git
+      path: "/Users/defuncart/Desktop/Developer/defuncart/app_store_screenshots"
+      relative: false
+    source: path
     version: "0.0.1"
   arb_generator:
     dependency: "direct dev"

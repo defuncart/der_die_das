@@ -11,7 +11,14 @@ void main() {
     ),
   );
 
-  generateAppIconAndroidForeground(
+  generateAppIconForeground(
+    onBuildIcon: (size) => Theme(
+      data: appTheme,
+      child: AppIcon(border: AppIconBorder.none, size: size, hasTransparentBackground: true, hasSpacer: false),
+    ),
+  );
+
+  generateAppIconForegroundTint(
     onBuildIcon: (size) => Theme(
       data: appTheme,
       child: AppIcon(border: AppIconBorder.none, size: size, hasTransparentBackground: true, hasSpacer: false),

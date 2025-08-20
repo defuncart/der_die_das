@@ -52,9 +52,10 @@ dev_dependencies:
   icon_font_generator:
   mocktail:
   app_store_screenshots:
-    git:
-      url: https://github.com/defuncart/app_store_screenshots
-      ref: main
+    # git:
+      # url: https://github.com/defuncart/app_store_screenshots
+      # ref: main
+    path: /Users/defuncart/Desktop/Developer/defuncart/app_store_screenshots
 
 flutter:
   uses-material-design: true
@@ -83,12 +84,15 @@ arb_generator:
     base_index: 1
 
 flutter_launcher_icons:
-  android: "ic_launcher"
-  ios: true
   image_path: "assets_dev/app_icons/app_icon.png"
+  android: "ic_launcher"
   adaptive_icon_background: "#ECF0F1"
-  adaptive_icon_foreground: "assets_dev/app_icons/android_icon_foreground.png"
-  adaptive_icon_monochrome: "assets_dev/app_icons/android_icon_foreground.png"
+  adaptive_icon_foreground: "assets_dev/app_icons/icon_foreground.png"
+  adaptive_icon_monochrome: "assets_dev/app_icons/icon_foreground.png"
+  ios: true
+  image_path_ios_dark_transparent: "assets_dev/app_icons/icon_foreground_tint.png"
+  image_path_ios_tinted_grayscale: "assets_dev/app_icons/icon_foreground_tint.png"
+  desaturate_tinted_to_grayscale_ios: true
   macos:
     generate: true
     image_path: "assets_dev/app_icons/app_icon_macos.png"
