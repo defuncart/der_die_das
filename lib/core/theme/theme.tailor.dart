@@ -1,6 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element, unnecessary_cast
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'theme.dart';
 
@@ -33,7 +34,10 @@ mixin _$CustomColorSchemeTailorMixin on ThemeExtension<CustomColorScheme> {
   }
 
   @override
-  CustomColorScheme lerp(covariant ThemeExtension<CustomColorScheme>? other, double t) {
+  CustomColorScheme lerp(
+    covariant ThemeExtension<CustomColorScheme>? other,
+    double t,
+  ) {
     if (other is! CustomColorScheme) return this as CustomColorScheme;
     return CustomColorScheme(
       der: Color.lerp(der, other.der, t)!,
@@ -53,7 +57,10 @@ mixin _$CustomColorSchemeTailorMixin on ThemeExtension<CustomColorScheme> {
             const DeepCollectionEquality().equals(die, other.die) &&
             const DeepCollectionEquality().equals(das, other.das) &&
             const DeepCollectionEquality().equals(levelIcon, other.levelIcon) &&
-            const DeepCollectionEquality().equals(defaultButton, other.defaultButton));
+            const DeepCollectionEquality().equals(
+              defaultButton,
+              other.defaultButton,
+            ));
   }
 
   @override
@@ -139,12 +146,7 @@ mixin _$CustomSpacingsTailorMixin on ThemeExtension<CustomSpacings> {
   double get l;
 
   @override
-  CustomSpacings copyWith({
-    double? xs,
-    double? s,
-    double? m,
-    double? l,
-  }) {
+  CustomSpacings copyWith({double? xs, double? s, double? m, double? l}) {
     return CustomSpacings(
       xs: xs ?? this.xs,
       s: s ?? this.s,
@@ -154,7 +156,10 @@ mixin _$CustomSpacingsTailorMixin on ThemeExtension<CustomSpacings> {
   }
 
   @override
-  CustomSpacings lerp(covariant ThemeExtension<CustomSpacings>? other, double t) {
+  CustomSpacings lerp(
+    covariant ThemeExtension<CustomSpacings>? other,
+    double t,
+  ) {
     if (other is! CustomSpacings) return this as CustomSpacings;
     return CustomSpacings(
       xs: t < 0.5 ? xs : other.xs,
@@ -237,7 +242,10 @@ mixin _$CustomPaddingsTailorMixin on ThemeExtension<CustomPaddings> {
   }
 
   @override
-  CustomPaddings lerp(covariant ThemeExtension<CustomPaddings>? other, double t) {
+  CustomPaddings lerp(
+    covariant ThemeExtension<CustomPaddings>? other,
+    double t,
+  ) {
     if (other is! CustomPaddings) return this as CustomPaddings;
     return CustomPaddings(
       xs: t < 0.5 ? xs : other.xs,
@@ -261,16 +269,31 @@ mixin _$CustomPaddingsTailorMixin on ThemeExtension<CustomPaddings> {
         (other.runtimeType == runtimeType &&
             other is CustomPaddings &&
             const DeepCollectionEquality().equals(xs, other.xs) &&
-            const DeepCollectionEquality().equals(xsHorizontal, other.xsHorizontal) &&
-            const DeepCollectionEquality().equals(xsVertical, other.xsVertical) &&
+            const DeepCollectionEquality().equals(
+              xsHorizontal,
+              other.xsHorizontal,
+            ) &&
+            const DeepCollectionEquality().equals(
+              xsVertical,
+              other.xsVertical,
+            ) &&
             const DeepCollectionEquality().equals(s, other.s) &&
-            const DeepCollectionEquality().equals(sHorizontal, other.sHorizontal) &&
+            const DeepCollectionEquality().equals(
+              sHorizontal,
+              other.sHorizontal,
+            ) &&
             const DeepCollectionEquality().equals(sVertical, other.sVertical) &&
             const DeepCollectionEquality().equals(m, other.m) &&
-            const DeepCollectionEquality().equals(mHorizontal, other.mHorizontal) &&
+            const DeepCollectionEquality().equals(
+              mHorizontal,
+              other.mHorizontal,
+            ) &&
             const DeepCollectionEquality().equals(mVertical, other.mVertical) &&
             const DeepCollectionEquality().equals(l, other.l) &&
-            const DeepCollectionEquality().equals(lHorizontal, other.lHorizontal) &&
+            const DeepCollectionEquality().equals(
+              lHorizontal,
+              other.lHorizontal,
+            ) &&
             const DeepCollectionEquality().equals(lVertical, other.lVertical));
   }
 

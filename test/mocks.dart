@@ -8,11 +8,10 @@ import 'package:der_die_das/features/game/state/game_state.dart';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 class MockSettingsService extends Mock implements ISettingsService {}
 
-class FakeGameStateController extends AutoDisposeAsyncNotifier<GameState> implements GameStateController {
+class FakeGameStateController extends GameStateController {
   FakeGameStateController({required GameState state}) : _state = state;
 
   final GameState _state;

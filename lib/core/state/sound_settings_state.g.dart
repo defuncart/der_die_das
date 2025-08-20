@@ -6,273 +6,134 @@ part of 'sound_settings_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$speakControllerHash() => r'bd1d3d2e33d53c850b4ba422d84bd280a353b6a6';
-
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-/// See also [speakController].
 @ProviderFor(speakController)
-const speakControllerProvider = SpeakControllerFamily();
+const speakControllerProvider = SpeakControllerFamily._();
 
-/// See also [speakController].
-class SpeakControllerFamily extends Family<AsyncValue<void>> {
-  /// See also [speakController].
-  const SpeakControllerFamily();
-
-  /// See also [speakController].
-  SpeakControllerProvider call({
-    required String text,
-  }) {
-    return SpeakControllerProvider(
-      text: text,
-    );
-  }
-
-  @override
-  SpeakControllerProvider getProviderOverride(
-    covariant SpeakControllerProvider provider,
-  ) {
-    return call(
-      text: provider.text,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'speakControllerProvider';
-}
-
-/// See also [speakController].
-class SpeakControllerProvider extends AutoDisposeFutureProvider<void> {
-  /// See also [speakController].
-  SpeakControllerProvider({
-    required String text,
-  }) : this._internal(
-         (ref) => speakController(
-           ref as SpeakControllerRef,
-           text: text,
-         ),
-         from: speakControllerProvider,
+final class SpeakControllerProvider extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+    with $FutureModifier<void>, $FutureProvider<void> {
+  const SpeakControllerProvider._({
+    required SpeakControllerFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
          name: r'speakControllerProvider',
-         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$speakControllerHash,
-         dependencies: SpeakControllerFamily._dependencies,
-         allTransitiveDependencies: SpeakControllerFamily._allTransitiveDependencies,
-         text: text,
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
        );
 
-  SpeakControllerProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.text,
-  }) : super.internal();
-
-  final String text;
+  @override
+  String debugGetCreateSourceHash() => _$speakControllerHash();
 
   @override
-  Override overrideWith(
-    FutureOr<void> Function(SpeakControllerRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: SpeakControllerProvider._internal(
-        (ref) => create(ref as SpeakControllerRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        text: text,
-      ),
-    );
+  String toString() {
+    return r'speakControllerProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  AutoDisposeFutureProviderElement<void> createElement() {
-    return _SpeakControllerProviderElement(this);
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<void> create(Ref ref) {
+    final argument = this.argument as String;
+    return speakController(ref, text: argument);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is SpeakControllerProvider && other.text == text;
+    return other is SpeakControllerProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, text.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin SpeakControllerRef on AutoDisposeFutureProviderRef<void> {
-  /// The parameter `text` of this provider.
-  String get text;
-}
+String _$speakControllerHash() => r'bd1d3d2e33d53c850b4ba422d84bd280a353b6a6';
 
-class _SpeakControllerProviderElement extends AutoDisposeFutureProviderElement<void> with SpeakControllerRef {
-  _SpeakControllerProviderElement(super.provider);
+final class SpeakControllerFamily extends $Family with $FunctionalFamilyOverride<FutureOr<void>, String> {
+  const SpeakControllerFamily._()
+    : super(
+        retry: null,
+        name: r'speakControllerProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  SpeakControllerProvider call({required String text}) => SpeakControllerProvider._(argument: text, from: this);
 
   @override
-  String get text => (origin as SpeakControllerProvider).text;
+  String toString() => r'speakControllerProvider';
+}
+
+@ProviderFor(sfxController)
+const sfxControllerProvider = SfxControllerFamily._();
+
+final class SfxControllerProvider extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+    with $FutureModifier<void>, $FutureProvider<void> {
+  const SfxControllerProvider._({
+    required SfxControllerFamily super.from,
+    required SFXEffect super.argument,
+  }) : super(
+         retry: null,
+         name: r'sfxControllerProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$sfxControllerHash();
+
+  @override
+  String toString() {
+    return r'sfxControllerProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<void> create(Ref ref) {
+    final argument = this.argument as SFXEffect;
+    return sfxController(ref, effect: argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is SfxControllerProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
 String _$sfxControllerHash() => r'1104ea951ef9f7b433986e17af26dded2a6c98ff';
 
-/// See also [sfxController].
-@ProviderFor(sfxController)
-const sfxControllerProvider = SfxControllerFamily();
-
-/// See also [sfxController].
-class SfxControllerFamily extends Family<AsyncValue<void>> {
-  /// See also [sfxController].
-  const SfxControllerFamily();
-
-  /// See also [sfxController].
-  SfxControllerProvider call({
-    required SFXEffect effect,
-  }) {
-    return SfxControllerProvider(
-      effect: effect,
-    );
-  }
-
-  @override
-  SfxControllerProvider getProviderOverride(
-    covariant SfxControllerProvider provider,
-  ) {
-    return call(
-      effect: provider.effect,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'sfxControllerProvider';
-}
-
-/// See also [sfxController].
-class SfxControllerProvider extends AutoDisposeFutureProvider<void> {
-  /// See also [sfxController].
-  SfxControllerProvider({
-    required SFXEffect effect,
-  }) : this._internal(
-         (ref) => sfxController(
-           ref as SfxControllerRef,
-           effect: effect,
-         ),
-         from: sfxControllerProvider,
-         name: r'sfxControllerProvider',
-         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$sfxControllerHash,
-         dependencies: SfxControllerFamily._dependencies,
-         allTransitiveDependencies: SfxControllerFamily._allTransitiveDependencies,
-         effect: effect,
-       );
-
-  SfxControllerProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.effect,
-  }) : super.internal();
-
-  final SFXEffect effect;
-
-  @override
-  Override overrideWith(
-    FutureOr<void> Function(SfxControllerRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: SfxControllerProvider._internal(
-        (ref) => create(ref as SfxControllerRef),
-        from: from,
-        name: null,
+final class SfxControllerFamily extends $Family with $FunctionalFamilyOverride<FutureOr<void>, SFXEffect> {
+  const SfxControllerFamily._()
+    : super(
+        retry: null,
+        name: r'sfxControllerProvider',
         dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        effect: effect,
-      ),
-    );
-  }
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  SfxControllerProvider call({required SFXEffect effect}) => SfxControllerProvider._(argument: effect, from: this);
 
   @override
-  AutoDisposeFutureProviderElement<void> createElement() {
-    return _SfxControllerProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is SfxControllerProvider && other.effect == effect;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, effect.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin SfxControllerRef on AutoDisposeFutureProviderRef<void> {
-  /// The parameter `effect` of this provider.
-  SFXEffect get effect;
-}
-
-class _SfxControllerProviderElement extends AutoDisposeFutureProviderElement<void> with SfxControllerRef {
-  _SfxControllerProviderElement(super.provider);
-
-  @override
-  SFXEffect get effect => (origin as SfxControllerProvider).effect;
+  String toString() => r'sfxControllerProvider';
 }
 
 // ignore_for_file: type=lint

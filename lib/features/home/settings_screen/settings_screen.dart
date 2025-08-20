@@ -356,7 +356,7 @@ class _DataPrivacyDialog extends StatelessWidget {
             context: context,
             applicationIcon: const AppIcon(size: 96),
             applicationName: '',
-            applicationLegalese: '© 2023 defuncart',
+            applicationLegalese: '© 2025 defuncart',
           ),
         ),
         BasicButton(

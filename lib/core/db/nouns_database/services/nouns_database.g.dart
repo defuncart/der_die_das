@@ -17,7 +17,9 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
     hasAutoIncrement: true,
     type: DriftSqlType.int,
     requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'),
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
   );
   static const VerificationMeta _keyMeta = const VerificationMeta('key');
   @override
@@ -28,7 +30,9 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _withoutArticleMeta = const VerificationMeta('withoutArticle');
+  static const VerificationMeta _withoutArticleMeta = const VerificationMeta(
+    'withoutArticle',
+  );
   @override
   late final GeneratedColumn<String> withoutArticle = GeneratedColumn<String>(
     'without_article',
@@ -62,7 +66,9 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
     type: DriftSqlType.int,
     requiredDuringInsert: true,
   ).withConverter<Level>($NounsTable.$converterlevel);
-  static const VerificationMeta _ambiguousExampleMeta = const VerificationMeta('ambiguousExample');
+  static const VerificationMeta _ambiguousExampleMeta = const VerificationMeta(
+    'ambiguousExample',
+  );
   @override
   late final GeneratedColumn<String> ambiguousExample = GeneratedColumn<String>(
     'ambiguous_example',
@@ -79,7 +85,9 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   ).withConverter<Tip?>($NounsTable.$convertertipn);
-  static const VerificationMeta _attemptsMeta = const VerificationMeta('attempts');
+  static const VerificationMeta _attemptsMeta = const VerificationMeta(
+    'attempts',
+  );
   @override
   late final GeneratedColumn<int> attempts = GeneratedColumn<int>(
     'attempts',
@@ -89,7 +97,9 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
     requiredDuringInsert: false,
     defaultValue: const Constant(0),
   );
-  static const VerificationMeta _timesCorrectMeta = const VerificationMeta('timesCorrect');
+  static const VerificationMeta _timesCorrectMeta = const VerificationMeta(
+    'timesCorrect',
+  );
   @override
   late final GeneratedColumn<int> timesCorrect = GeneratedColumn<int>(
     'times_correct',
@@ -118,21 +128,30 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
   String get actualTableName => $name;
   static const String $name = 'nouns';
   @override
-  VerificationContext validateIntegrity(Insertable<Noun> instance, {bool isInserting = false}) {
+  VerificationContext validateIntegrity(
+    Insertable<Noun> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
     if (data.containsKey('key')) {
-      context.handle(_keyMeta, key.isAcceptableOrUnknown(data['key']!, _keyMeta));
+      context.handle(
+        _keyMeta,
+        key.isAcceptableOrUnknown(data['key']!, _keyMeta),
+      );
     } else if (isInserting) {
       context.missing(_keyMeta);
     }
     if (data.containsKey('without_article')) {
       context.handle(
         _withoutArticleMeta,
-        withoutArticle.isAcceptableOrUnknown(data['without_article']!, _withoutArticleMeta),
+        withoutArticle.isAcceptableOrUnknown(
+          data['without_article']!,
+          _withoutArticleMeta,
+        ),
       );
     } else if (isInserting) {
       context.missing(_withoutArticleMeta);
@@ -151,14 +170,26 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
     if (data.containsKey('ambiguous_example')) {
       context.handle(
         _ambiguousExampleMeta,
-        ambiguousExample.isAcceptableOrUnknown(data['ambiguous_example']!, _ambiguousExampleMeta),
+        ambiguousExample.isAcceptableOrUnknown(
+          data['ambiguous_example']!,
+          _ambiguousExampleMeta,
+        ),
       );
     }
     if (data.containsKey('attempts')) {
-      context.handle(_attemptsMeta, attempts.isAcceptableOrUnknown(data['attempts']!, _attemptsMeta));
+      context.handle(
+        _attemptsMeta,
+        attempts.isAcceptableOrUnknown(data['attempts']!, _attemptsMeta),
+      );
     }
     if (data.containsKey('times_correct')) {
-      context.handle(_timesCorrectMeta, timesCorrect.isAcceptableOrUnknown(data['times_correct']!, _timesCorrectMeta));
+      context.handle(
+        _timesCorrectMeta,
+        timesCorrect.isAcceptableOrUnknown(
+          data['times_correct']!,
+          _timesCorrectMeta,
+        ),
+      );
     }
     return context;
   }
@@ -169,8 +200,14 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
   Noun map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Noun(
-      id: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      key: attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}key'])!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      key: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}key'],
+      )!,
       withoutArticle: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}without_article'],
@@ -180,20 +217,35 @@ class $NounsTable extends Nouns with TableInfo<$NounsTable, Noun> {
         data['${effectivePrefix}without_article_normalized'],
       )!,
       articles: $NounsTable.$converterarticles.fromSql(
-        attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}articles'])!,
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}articles'],
+        )!,
       ),
       level: $NounsTable.$converterlevel.fromSql(
-        attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}level'])!,
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.int,
+          data['${effectivePrefix}level'],
+        )!,
       ),
       ambiguousExample: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}ambiguous_example'],
       ),
       tip: $NounsTable.$convertertipn.fromSql(
-        attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}tip']),
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}tip'],
+        ),
       ),
-      attempts: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}attempts'])!,
-      timesCorrect: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}times_correct'])!,
+      attempts: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}attempts'],
+      )!,
+      timesCorrect: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}times_correct'],
+      )!,
     );
   }
 
@@ -237,9 +289,13 @@ class Noun extends DataClass implements Insertable<Noun> {
     map['id'] = Variable<int>(id);
     map['key'] = Variable<String>(key);
     map['without_article'] = Variable<String>(withoutArticle);
-    map['without_article_normalized'] = Variable<String>(withoutArticleNormalized);
+    map['without_article_normalized'] = Variable<String>(
+      withoutArticleNormalized,
+    );
     {
-      map['articles'] = Variable<String>($NounsTable.$converterarticles.toSql(articles));
+      map['articles'] = Variable<String>(
+        $NounsTable.$converterarticles.toSql(articles),
+      );
     }
     {
       map['level'] = Variable<int>($NounsTable.$converterlevel.toSql(level));
@@ -270,15 +326,22 @@ class Noun extends DataClass implements Insertable<Noun> {
     );
   }
 
-  factory Noun.fromJson(Map<String, dynamic> json, {ValueSerializer? serializer}) {
+  factory Noun.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return Noun(
       id: serializer.fromJson<int>(json['id']),
       key: serializer.fromJson<String>(json['key']),
       withoutArticle: serializer.fromJson<String>(json['withoutArticle']),
-      withoutArticleNormalized: serializer.fromJson<String>(json['withoutArticleNormalized']),
+      withoutArticleNormalized: serializer.fromJson<String>(
+        json['withoutArticleNormalized'],
+      ),
       articles: serializer.fromJson<EqualList<Article>>(json['articles']),
-      level: $NounsTable.$converterlevel.fromJson(serializer.fromJson<int>(json['level'])),
+      level: $NounsTable.$converterlevel.fromJson(
+        serializer.fromJson<int>(json['level']),
+      ),
       ambiguousExample: serializer.fromJson<String?>(json['ambiguousExample']),
       tip: serializer.fromJson<Tip?>(json['tip']),
       attempts: serializer.fromJson<int>(json['attempts']),
@@ -292,9 +355,13 @@ class Noun extends DataClass implements Insertable<Noun> {
       'id': serializer.toJson<int>(id),
       'key': serializer.toJson<String>(key),
       'withoutArticle': serializer.toJson<String>(withoutArticle),
-      'withoutArticleNormalized': serializer.toJson<String>(withoutArticleNormalized),
+      'withoutArticleNormalized': serializer.toJson<String>(
+        withoutArticleNormalized,
+      ),
       'articles': serializer.toJson<EqualList<Article>>(articles),
-      'level': serializer.toJson<int>($NounsTable.$converterlevel.toJson(level)),
+      'level': serializer.toJson<int>(
+        $NounsTable.$converterlevel.toJson(level),
+      ),
       'ambiguousExample': serializer.toJson<String?>(ambiguousExample),
       'tip': serializer.toJson<Tip?>(tip),
       'attempts': serializer.toJson<int>(attempts),
@@ -492,19 +559,27 @@ class NounsCompanion extends UpdateCompanion<Noun> {
       map['without_article'] = Variable<String>(withoutArticle.value);
     }
     if (withoutArticleNormalized.present) {
-      map['without_article_normalized'] = Variable<String>(withoutArticleNormalized.value);
+      map['without_article_normalized'] = Variable<String>(
+        withoutArticleNormalized.value,
+      );
     }
     if (articles.present) {
-      map['articles'] = Variable<String>($NounsTable.$converterarticles.toSql(articles.value));
+      map['articles'] = Variable<String>(
+        $NounsTable.$converterarticles.toSql(articles.value),
+      );
     }
     if (level.present) {
-      map['level'] = Variable<int>($NounsTable.$converterlevel.toSql(level.value));
+      map['level'] = Variable<int>(
+        $NounsTable.$converterlevel.toSql(level.value),
+      );
     }
     if (ambiguousExample.present) {
       map['ambiguous_example'] = Variable<String>(ambiguousExample.value);
     }
     if (tip.present) {
-      map['tip'] = Variable<String>($NounsTable.$convertertipn.toSql(tip.value));
+      map['tip'] = Variable<String>(
+        $NounsTable.$convertertipn.toSql(tip.value),
+      );
     }
     if (attempts.present) {
       map['attempts'] = Variable<int>(attempts.value);
@@ -578,33 +653,55 @@ class $$NounsTableFilterComposer extends Composer<_$NounDatabase, $NounsTable> {
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  ColumnFilters<int> get id => $composableBuilder(column: $table.id, builder: (column) => ColumnFilters(column));
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ColumnFilters<String> get key => $composableBuilder(column: $table.key, builder: (column) => ColumnFilters(column));
+  ColumnFilters<String> get key => $composableBuilder(
+    column: $table.key,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ColumnFilters<String> get withoutArticle =>
-      $composableBuilder(column: $table.withoutArticle, builder: (column) => ColumnFilters(column));
+  ColumnFilters<String> get withoutArticle => $composableBuilder(
+    column: $table.withoutArticle,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ColumnFilters<String> get withoutArticleNormalized =>
-      $composableBuilder(column: $table.withoutArticleNormalized, builder: (column) => ColumnFilters(column));
+  ColumnFilters<String> get withoutArticleNormalized => $composableBuilder(
+    column: $table.withoutArticleNormalized,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ColumnWithTypeConverterFilters<EqualList<Article>, EqualList<Article>, String> get articles =>
-      $composableBuilder(column: $table.articles, builder: (column) => ColumnWithTypeConverterFilters(column));
+  ColumnWithTypeConverterFilters<EqualList<Article>, EqualList<Article>, String> get articles => $composableBuilder(
+    column: $table.articles,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
 
-  ColumnWithTypeConverterFilters<Level, Level, int> get level =>
-      $composableBuilder(column: $table.level, builder: (column) => ColumnWithTypeConverterFilters(column));
+  ColumnWithTypeConverterFilters<Level, Level, int> get level => $composableBuilder(
+    column: $table.level,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
 
-  ColumnFilters<String> get ambiguousExample =>
-      $composableBuilder(column: $table.ambiguousExample, builder: (column) => ColumnFilters(column));
+  ColumnFilters<String> get ambiguousExample => $composableBuilder(
+    column: $table.ambiguousExample,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ColumnWithTypeConverterFilters<Tip?, Tip, String> get tip =>
-      $composableBuilder(column: $table.tip, builder: (column) => ColumnWithTypeConverterFilters(column));
+  ColumnWithTypeConverterFilters<Tip?, Tip, String> get tip => $composableBuilder(
+    column: $table.tip,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
 
-  ColumnFilters<int> get attempts =>
-      $composableBuilder(column: $table.attempts, builder: (column) => ColumnFilters(column));
+  ColumnFilters<int> get attempts => $composableBuilder(
+    column: $table.attempts,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ColumnFilters<int> get timesCorrect =>
-      $composableBuilder(column: $table.timesCorrect, builder: (column) => ColumnFilters(column));
+  ColumnFilters<int> get timesCorrect => $composableBuilder(
+    column: $table.timesCorrect,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$NounsTableOrderingComposer extends Composer<_$NounDatabase, $NounsTable> {
@@ -615,34 +712,55 @@ class $$NounsTableOrderingComposer extends Composer<_$NounDatabase, $NounsTable>
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  ColumnOrderings<int> get id => $composableBuilder(column: $table.id, builder: (column) => ColumnOrderings(column));
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get key =>
-      $composableBuilder(column: $table.key, builder: (column) => ColumnOrderings(column));
+  ColumnOrderings<String> get key => $composableBuilder(
+    column: $table.key,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get withoutArticle =>
-      $composableBuilder(column: $table.withoutArticle, builder: (column) => ColumnOrderings(column));
+  ColumnOrderings<String> get withoutArticle => $composableBuilder(
+    column: $table.withoutArticle,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get withoutArticleNormalized =>
-      $composableBuilder(column: $table.withoutArticleNormalized, builder: (column) => ColumnOrderings(column));
+  ColumnOrderings<String> get withoutArticleNormalized => $composableBuilder(
+    column: $table.withoutArticleNormalized,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get articles =>
-      $composableBuilder(column: $table.articles, builder: (column) => ColumnOrderings(column));
+  ColumnOrderings<String> get articles => $composableBuilder(
+    column: $table.articles,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<int> get level =>
-      $composableBuilder(column: $table.level, builder: (column) => ColumnOrderings(column));
+  ColumnOrderings<int> get level => $composableBuilder(
+    column: $table.level,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get ambiguousExample =>
-      $composableBuilder(column: $table.ambiguousExample, builder: (column) => ColumnOrderings(column));
+  ColumnOrderings<String> get ambiguousExample => $composableBuilder(
+    column: $table.ambiguousExample,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get tip =>
-      $composableBuilder(column: $table.tip, builder: (column) => ColumnOrderings(column));
+  ColumnOrderings<String> get tip => $composableBuilder(
+    column: $table.tip,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<int> get attempts =>
-      $composableBuilder(column: $table.attempts, builder: (column) => ColumnOrderings(column));
+  ColumnOrderings<int> get attempts => $composableBuilder(
+    column: $table.attempts,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<int> get timesCorrect =>
-      $composableBuilder(column: $table.timesCorrect, builder: (column) => ColumnOrderings(column));
+  ColumnOrderings<int> get timesCorrect => $composableBuilder(
+    column: $table.timesCorrect,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$NounsTableAnnotationComposer extends Composer<_$NounDatabase, $NounsTable> {
@@ -657,11 +775,15 @@ class $$NounsTableAnnotationComposer extends Composer<_$NounDatabase, $NounsTabl
 
   GeneratedColumn<String> get key => $composableBuilder(column: $table.key, builder: (column) => column);
 
-  GeneratedColumn<String> get withoutArticle =>
-      $composableBuilder(column: $table.withoutArticle, builder: (column) => column);
+  GeneratedColumn<String> get withoutArticle => $composableBuilder(
+    column: $table.withoutArticle,
+    builder: (column) => column,
+  );
 
-  GeneratedColumn<String> get withoutArticleNormalized =>
-      $composableBuilder(column: $table.withoutArticleNormalized, builder: (column) => column);
+  GeneratedColumn<String> get withoutArticleNormalized => $composableBuilder(
+    column: $table.withoutArticleNormalized,
+    builder: (column) => column,
+  );
 
   GeneratedColumnWithTypeConverter<EqualList<Article>, String> get articles =>
       $composableBuilder(column: $table.articles, builder: (column) => column);
@@ -669,15 +791,20 @@ class $$NounsTableAnnotationComposer extends Composer<_$NounDatabase, $NounsTabl
   GeneratedColumnWithTypeConverter<Level, int> get level =>
       $composableBuilder(column: $table.level, builder: (column) => column);
 
-  GeneratedColumn<String> get ambiguousExample =>
-      $composableBuilder(column: $table.ambiguousExample, builder: (column) => column);
+  GeneratedColumn<String> get ambiguousExample => $composableBuilder(
+    column: $table.ambiguousExample,
+    builder: (column) => column,
+  );
 
   GeneratedColumnWithTypeConverter<Tip?, String> get tip =>
       $composableBuilder(column: $table.tip, builder: (column) => column);
 
   GeneratedColumn<int> get attempts => $composableBuilder(column: $table.attempts, builder: (column) => column);
 
-  GeneratedColumn<int> get timesCorrect => $composableBuilder(column: $table.timesCorrect, builder: (column) => column);
+  GeneratedColumn<int> get timesCorrect => $composableBuilder(
+    column: $table.timesCorrect,
+    builder: (column) => column,
+  );
 }
 
 class $$NounsTableTableManager
