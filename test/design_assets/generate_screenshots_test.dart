@@ -34,7 +34,7 @@ void main() {
       when(() => mockSettingsService.answersLayout).thenReturn(AnswersLayout.standard);
     },
     config: ScreenshotsConfig(
-      devices: [DeviceType.androidPhonePortrait, DeviceType.iOSPhone55Portrait, DeviceType.iOSPhone67Portrait],
+      devices: [DeviceType.androidPhonePortrait, DeviceType.iOSPhone55Portrait, DeviceType.iOSPhone69Portrait],
       locales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       background: ScreenshotBackground.solid(color: appTheme.colorScheme.primary),

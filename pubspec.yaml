@@ -4,8 +4,8 @@ publish_to: 'none'
 version: 0.2.0+1
 
 environment:
-  sdk: ^3.8.0
-  flutter: ^3.32.0
+  sdk: ^3.9.0
+  flutter: ^3.35.0
 
 dependencies:
   flutter:
@@ -52,10 +52,9 @@ dev_dependencies:
   icon_font_generator:
   mocktail:
   app_store_screenshots:
-    # git:
-      # url: https://github.com/defuncart/app_store_screenshots
-      # ref: main
-    path: /Users/defuncart/Desktop/Developer/defuncart/app_store_screenshots
+    git:
+      url: https://github.com/defuncart/app_store_screenshots
+      ref: main
 
 flutter:
   uses-material-design: true
