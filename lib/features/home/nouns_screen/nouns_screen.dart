@@ -38,7 +38,7 @@ class _NounsScreenState extends ConsumerState<NounsScreen> {
         final searchTerm = _searchTerm;
         if (searchTerm.isNotEmpty) {
           await ref
-              .read(filterNounsProvider(searchTerm: searchTerm).future)
+              .read(filterNounsProvider(searchTerm).future)
               .then(
                 (value) => setState(() => _results = value),
               );

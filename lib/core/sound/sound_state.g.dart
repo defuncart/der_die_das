@@ -6,6 +6,9 @@ part of 'sound_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
 @ProviderFor(tts)
 const ttsProvider = TtsProvider._();
 
@@ -84,6 +87,3 @@ final class SfxProvider extends $FunctionalProvider<ISFXService, ISFXService, IS
 }
 
 String _$sfxHash() => r'25c6793da9da41d7958b39fe18d5fca980e2483f';
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

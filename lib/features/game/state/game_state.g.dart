@@ -6,10 +6,14 @@ part of 'game_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
 @ProviderFor(GameStateController)
 const gameStateControllerProvider = GameStateControllerProvider._();
 
-final class GameStateControllerProvider extends $AsyncNotifierProvider<GameStateController, GameState> {
+final class GameStateControllerProvider
+    extends $AsyncNotifierProvider<GameStateController, GameState> {
   const GameStateControllerProvider._()
     : super(
         from: null,
@@ -29,7 +33,8 @@ final class GameStateControllerProvider extends $AsyncNotifierProvider<GameState
   GameStateController create() => GameStateController();
 }
 
-String _$gameStateControllerHash() => r'465753f1a5630c2bff03d9e00e0562b2332579ff';
+String _$gameStateControllerHash() =>
+    r'465753f1a5630c2bff03d9e00e0562b2332579ff';
 
 abstract class _$GameStateController extends $AsyncNotifier<GameState> {
   FutureOr<GameState> build();
@@ -49,6 +54,3 @@ abstract class _$GameStateController extends $AsyncNotifier<GameState> {
     element.handleValue(ref, created);
   }
 }
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

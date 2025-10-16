@@ -1,20 +1,34 @@
 import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart';
 import 'package:der_die_das/core/db/nouns_database/state/state.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-part 'nouns_state.g.dart';
+// As Noun is a generated class, riverpod v3 generator has type issues
 
-@riverpod
-Future<List<Noun>> filterNouns(
-  Ref ref, {
-  required String searchTerm,
-}) => ref
-    .read(nounDatabaseProvider)
-    .filterNouns(
-      text: searchTerm,
-    );
+// part 'nouns_state.g.dart';
 
-@riverpod
-Future<List<Noun>> nounsForCurrentLevel(Ref ref) async =>
-    ref.read(nounDatabaseProvider).filterNouns(level: ref.read(levelControllerProvider));
+// @riverpod
+// Future<List<Noun>> filterNouns(
+//   Ref ref, {
+//   required String searchTerm,
+// }) => ref
+//     .read(nounDatabaseProvider)
+//     .filterNouns(
+//       text: searchTerm,
+//     );
+
+final filterNounsProvider = FutureProvider.family<List<Noun>, String>(
+  (ref, searchTerm) => ref
+      .read(nounDatabaseProvider)
+      .filterNouns(
+        text: searchTerm,
+      ),
+);
+
+// @riverpod
+// Future<List<Noun>> nounsForCurrentLevel(Ref ref) async =>
+//     ref.read(nounDatabaseProvider).filterNouns(level: ref.read(levelControllerProvider));
+
+final nounsForCurrentLevelProvider = FutureProvider<List<Noun>>(
+  (ref) => ref.read(nounDatabaseProvider).filterNouns(level: ref.read(levelControllerProvider)),
+);

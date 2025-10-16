@@ -34,18 +34,27 @@ void main() {
       when(() => mockSettingsService.answersLayout).thenReturn(AnswersLayout.standard);
     },
     config: ScreenshotsConfig(
-      devices: [DeviceType.androidPhonePortrait, DeviceType.iOSPhone55Portrait, DeviceType.iOSPhone69Portrait],
+      devices: [DeviceType.androidPhonePortrait, DeviceType.iOSPhone69Portrait],
       locales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
-      background: ScreenshotBackground.solid(color: appTheme.colorScheme.primary),
+      background: ScreenshotBackground.solid(
+        color: appTheme.colorScheme.primary,
+      ),
       theme: appTheme,
       foregroundOptions: const ScreenshotForegroundOptions.top(
-        textStyle: TextStyle(fontFamily: 'Lato', fontSize: 96, color: Colors.white),
+        textStyle: TextStyle(
+          fontFamily: 'Lato',
+          fontSize: 96,
+          color: Colors.white,
+        ),
       ),
     ),
     screens: [
       ScreenshotScenario(
-        onBuildScreen: () => const Padding(padding: EdgeInsets.only(bottom: 16), child: GameScreen()),
+        onBuildScreen: () => const Padding(
+          padding: EdgeInsets.only(bottom: 16),
+          child: GameScreen(),
+        ),
         wrapper: (child) => ProviderScope(
           key: UniqueKey(),
           overrides: [
@@ -74,7 +83,10 @@ void main() {
         },
       ),
       ScreenshotScenario(
-        onBuildScreen: () => const Padding(padding: EdgeInsets.only(bottom: 16), child: GameScreen()),
+        onBuildScreen: () => const Padding(
+          padding: EdgeInsets.only(bottom: 16),
+          child: GameScreen(),
+        ),
         wrapper: (child) => ProviderScope(
           key: UniqueKey(),
           overrides: [
