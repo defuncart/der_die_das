@@ -28,7 +28,6 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        ndkVersion = "27.0.12077973" // audioplayers_android, flutter_tts, path_provider_android, sqlite3_flutter_libs, url_launcher_android
     }
 
     buildTypes {
