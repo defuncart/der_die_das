@@ -92,125 +92,127 @@ class _GameScreen extends ConsumerWidget {
             ),
         ],
       ),
-      body: Padding(
-        padding: EdgeInsets.only(
-          top: 8,
-          left: 8,
-          right: 8,
-          bottom: MediaQuery.paddingOf(context).bottom == 0 ? 8 : 0,
-        ),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final buttonsHeight = constraints.maxHeight * (0.55 + 0.175) + context.customSpacings.s;
-            final verticalWidth = constraints.maxWidth * 0.325;
-            final verticalHeight = constraints.maxHeight * 0.55;
-            final horizontalWidth = constraints.maxWidth;
-            final horizontalHeight = constraints.maxHeight * 0.175;
-            final fontSize = horizontalHeight * 0.75;
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 8,
+            left: 8,
+            right: 8,
+            bottom: MediaQuery.paddingOf(context).bottom == 0 ? 8 : 0,
+          ),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final buttonsHeight = constraints.maxHeight * (0.55 + 0.175) + context.customSpacings.s;
+              final verticalWidth = constraints.maxWidth * 0.325;
+              final verticalHeight = constraints.maxHeight * 0.55;
+              final horizontalWidth = constraints.maxWidth;
+              final horizontalHeight = constraints.maxHeight * 0.175;
+              final fontSize = horizontalHeight * 0.75;
 
-            return SizedBox(
-              width: constraints.maxWidth,
-              height: constraints.maxHeight,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: state.answeredIncorrectly != null
-                    ? MainAxisAlignment.start
-                    : MainAxisAlignment.spaceBetween,
-                children: [
-                  Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AutoSizeText(
-                          state.withoutArticle,
-                          style: TextStyle(
-                            fontSize: fontSize,
-                            fontWeight: FontWeight.bold,
-                            color: context.customColorScheme.defaultButton,
-                          ),
-                          maxLines: 1,
-                        ),
-                        if (state.ambiguousLabel != null)
+              return SizedBox(
+                width: constraints.maxWidth,
+                height: constraints.maxHeight,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: state.answeredIncorrectly != null
+                      ? MainAxisAlignment.start
+                      : MainAxisAlignment.spaceBetween,
+                  children: [
+                    Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
                           AutoSizeText(
-                            state.ambiguousLabel!,
-                            style: TextStyle(fontSize: fontSize * 0.25),
+                            state.withoutArticle,
+                            style: TextStyle(
+                              fontSize: fontSize,
+                              fontWeight: FontWeight.bold,
+                              color: context.customColorScheme.defaultButton,
+                            ),
                             maxLines: 1,
                           ),
-                      ],
-                    ),
-                  ),
-                  if (state.answeredIncorrectly != null)
-                    Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        spacing: context.customSpacings.m,
-                        children: [
-                          Expanded(
-                            child: Center(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                spacing: context.customSpacings.l,
-                                children: [
-                                  ...state.answeredIncorrectly!.articles.map(
-                                    (article) => ArticleIcon(
-                                      article: article,
-                                      width: horizontalWidth,
-                                      horizontalTextWidthPercent: 0.6,
-                                      height: horizontalHeight,
-                                      fontSize: fontSize,
-                                    ),
-                                  ),
-                                  if (state.tip != null)
-                                    TipCard(
-                                      tip: state.tip!,
-                                      noun: state.withoutArticle,
-                                      showIcon: true,
-                                    ),
-                                ],
-                              ),
+                          if (state.ambiguousLabel != null)
+                            AutoSizeText(
+                              state.ambiguousLabel!,
+                              style: TextStyle(fontSize: fontSize * 0.25),
+                              maxLines: 1,
                             ),
-                          ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: HorizontalButton(
-                              onPressed: ref.read(gameStateControllerProvider.notifier).onContinue,
-                              text: context.l10n.gameContinueLabel,
-                            ),
-                          ),
                         ],
                       ),
-                    )
-                  else if (state.answeredCorrectly != null)
-                    SizedBox(
-                      width: constraints.maxWidth,
-                      height: buttonsHeight,
-                      child: _Articles.subset(
-                        articles: state.answeredCorrectly!.articles.toList(),
-                        verticalWidth: verticalWidth,
-                        verticalHeight: verticalHeight,
-                        horizontalWidth: horizontalWidth,
-                        horizontalHeight: horizontalHeight,
-                        fontSize: fontSize,
-                      ),
-                    )
-                  else
-                    SizedBox(
-                      width: constraints.maxWidth,
-                      height: buttonsHeight,
-                      child: _Articles.interactive(
-                        verticalWidth: verticalWidth,
-                        verticalHeight: verticalHeight,
-                        horizontalWidth: horizontalWidth,
-                        horizontalHeight: horizontalHeight,
-                        fontSize: fontSize,
-                      ),
                     ),
-                ],
-              ),
-            );
-          },
+                    if (state.answeredIncorrectly != null)
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          spacing: context.customSpacings.m,
+                          children: [
+                            Expanded(
+                              child: Center(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  spacing: context.customSpacings.l,
+                                  children: [
+                                    ...state.answeredIncorrectly!.articles.map(
+                                      (article) => ArticleIcon(
+                                        article: article,
+                                        width: horizontalWidth,
+                                        horizontalTextWidthPercent: 0.6,
+                                        height: horizontalHeight,
+                                        fontSize: fontSize,
+                                      ),
+                                    ),
+                                    if (state.tip != null)
+                                      TipCard(
+                                        tip: state.tip!,
+                                        noun: state.withoutArticle,
+                                        showIcon: true,
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: HorizontalButton(
+                                onPressed: ref.read(gameStateControllerProvider.notifier).onContinue,
+                                text: context.l10n.gameContinueLabel,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    else if (state.answeredCorrectly != null)
+                      SizedBox(
+                        width: constraints.maxWidth,
+                        height: buttonsHeight,
+                        child: _Articles.subset(
+                          articles: state.answeredCorrectly!.articles.toList(),
+                          verticalWidth: verticalWidth,
+                          verticalHeight: verticalHeight,
+                          horizontalWidth: horizontalWidth,
+                          horizontalHeight: horizontalHeight,
+                          fontSize: fontSize,
+                        ),
+                      )
+                    else
+                      SizedBox(
+                        width: constraints.maxWidth,
+                        height: buttonsHeight,
+                        child: _Articles.interactive(
+                          verticalWidth: verticalWidth,
+                          verticalHeight: verticalHeight,
+                          horizontalWidth: horizontalWidth,
+                          horizontalHeight: horizontalHeight,
+                          fontSize: fontSize,
+                        ),
+                      ),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
