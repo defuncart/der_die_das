@@ -10,12 +10,11 @@ part of 'sound_settings_state.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(speakController)
-const speakControllerProvider = SpeakControllerFamily._();
+final speakControllerProvider = SpeakControllerFamily._();
 
-final class SpeakControllerProvider
-    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+final class SpeakControllerProvider extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const SpeakControllerProvider._({
+  SpeakControllerProvider._({
     required SpeakControllerFamily super.from,
     required String super.argument,
   }) : super(
@@ -38,8 +37,7 @@ final class SpeakControllerProvider
 
   @$internal
   @override
-  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<void> create(Ref ref) {
@@ -60,9 +58,8 @@ final class SpeakControllerProvider
 
 String _$speakControllerHash() => r'bd1d3d2e33d53c850b4ba422d84bd280a353b6a6';
 
-final class SpeakControllerFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<void>, String> {
-  const SpeakControllerFamily._()
+final class SpeakControllerFamily extends $Family with $FunctionalFamilyOverride<FutureOr<void>, String> {
+  SpeakControllerFamily._()
     : super(
         retry: null,
         name: r'speakControllerProvider',
@@ -71,20 +68,18 @@ final class SpeakControllerFamily extends $Family
         isAutoDispose: true,
       );
 
-  SpeakControllerProvider call({required String text}) =>
-      SpeakControllerProvider._(argument: text, from: this);
+  SpeakControllerProvider call({required String text}) => SpeakControllerProvider._(argument: text, from: this);
 
   @override
   String toString() => r'speakControllerProvider';
 }
 
 @ProviderFor(sfxController)
-const sfxControllerProvider = SfxControllerFamily._();
+final sfxControllerProvider = SfxControllerFamily._();
 
-final class SfxControllerProvider
-    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+final class SfxControllerProvider extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const SfxControllerProvider._({
+  SfxControllerProvider._({
     required SfxControllerFamily super.from,
     required SFXEffect super.argument,
   }) : super(
@@ -107,8 +102,7 @@ final class SfxControllerProvider
 
   @$internal
   @override
-  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<void> create(Ref ref) {
@@ -129,9 +123,8 @@ final class SfxControllerProvider
 
 String _$sfxControllerHash() => r'1104ea951ef9f7b433986e17af26dded2a6c98ff';
 
-final class SfxControllerFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<void>, SFXEffect> {
-  const SfxControllerFamily._()
+final class SfxControllerFamily extends $Family with $FunctionalFamilyOverride<FutureOr<void>, SFXEffect> {
+  SfxControllerFamily._()
     : super(
         retry: null,
         name: r'sfxControllerProvider',
@@ -140,8 +133,7 @@ final class SfxControllerFamily extends $Family
         isAutoDispose: true,
       );
 
-  SfxControllerProvider call({required SFXEffect effect}) =>
-      SfxControllerProvider._(argument: effect, from: this);
+  SfxControllerProvider call({required SFXEffect effect}) => SfxControllerProvider._(argument: effect, from: this);
 
   @override
   String toString() => r'sfxControllerProvider';

@@ -10,11 +10,10 @@ part of 'game_state.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(GameStateController)
-const gameStateControllerProvider = GameStateControllerProvider._();
+final gameStateControllerProvider = GameStateControllerProvider._();
 
-final class GameStateControllerProvider
-    extends $AsyncNotifierProvider<GameStateController, GameState> {
-  const GameStateControllerProvider._()
+final class GameStateControllerProvider extends $AsyncNotifierProvider<GameStateController, GameState> {
+  GameStateControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -33,15 +32,13 @@ final class GameStateControllerProvider
   GameStateController create() => GameStateController();
 }
 
-String _$gameStateControllerHash() =>
-    r'465753f1a5630c2bff03d9e00e0562b2332579ff';
+String _$gameStateControllerHash() => r'465753f1a5630c2bff03d9e00e0562b2332579ff';
 
 abstract class _$GameStateController extends $AsyncNotifier<GameState> {
   FutureOr<GameState> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<AsyncValue<GameState>, GameState>;
     final element =
         ref.element
@@ -51,6 +48,6 @@ abstract class _$GameStateController extends $AsyncNotifier<GameState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

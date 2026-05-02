@@ -10,17 +10,11 @@ part of 'settings_state.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(settingsService)
-const settingsServiceProvider = SettingsServiceProvider._();
+final settingsServiceProvider = SettingsServiceProvider._();
 
-final class SettingsServiceProvider
-    extends
-        $FunctionalProvider<
-          ISettingsService,
-          ISettingsService,
-          ISettingsService
-        >
+final class SettingsServiceProvider extends $FunctionalProvider<ISettingsService, ISettingsService, ISettingsService>
     with $Provider<ISettingsService> {
-  const SettingsServiceProvider._()
+  SettingsServiceProvider._()
     : super(
         from: null,
         argument: null,
@@ -36,8 +30,7 @@ final class SettingsServiceProvider
 
   @$internal
   @override
-  $ProviderElement<ISettingsService> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
+  $ProviderElement<ISettingsService> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
   @override
   ISettingsService create(Ref ref) {
@@ -56,11 +49,10 @@ final class SettingsServiceProvider
 String _$settingsServiceHash() => r'01ab474a43eacb1538372b02c9d1856f9f556b16';
 
 @ProviderFor(LanguageController)
-const languageControllerProvider = LanguageControllerProvider._();
+final languageControllerProvider = LanguageControllerProvider._();
 
-final class LanguageControllerProvider
-    extends $NotifierProvider<LanguageController, Language> {
-  const LanguageControllerProvider._()
+final class LanguageControllerProvider extends $NotifierProvider<LanguageController, Language> {
+  LanguageControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -87,34 +79,24 @@ final class LanguageControllerProvider
   }
 }
 
-String _$languageControllerHash() =>
-    r'37e7c37e357451e282efe63f7f5de3c6863876da';
+String _$languageControllerHash() => r'37e7c37e357451e282efe63f7f5de3c6863876da';
 
 abstract class _$LanguageController extends $Notifier<Language> {
   Language build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<Language, Language>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<Language, Language>,
-              Language,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+    final element = ref.element as $ClassProviderElement<AnyNotifier<Language, Language>, Language, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(LevelController)
-const levelControllerProvider = LevelControllerProvider._();
+final levelControllerProvider = LevelControllerProvider._();
 
-final class LevelControllerProvider
-    extends $NotifierProvider<LevelController, Level> {
-  const LevelControllerProvider._()
+final class LevelControllerProvider extends $NotifierProvider<LevelController, Level> {
+  LevelControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -148,26 +130,17 @@ abstract class _$LevelController extends $Notifier<Level> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<Level, Level>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<Level, Level>,
-              Level,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+    final element = ref.element as $ClassProviderElement<AnyNotifier<Level, Level>, Level, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(NumberQuestionsController)
-const numberQuestionsControllerProvider = NumberQuestionsControllerProvider._();
+final numberQuestionsControllerProvider = NumberQuestionsControllerProvider._();
 
-final class NumberQuestionsControllerProvider
-    extends $NotifierProvider<NumberQuestionsController, NumberQuestions> {
-  const NumberQuestionsControllerProvider._()
+final class NumberQuestionsControllerProvider extends $NotifierProvider<NumberQuestionsController, NumberQuestions> {
+  NumberQuestionsControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -194,34 +167,26 @@ final class NumberQuestionsControllerProvider
   }
 }
 
-String _$numberQuestionsControllerHash() =>
-    r'eaa1d1a747a1a5932316443c4bc16f9ec5d500f9';
+String _$numberQuestionsControllerHash() => r'eaa1d1a747a1a5932316443c4bc16f9ec5d500f9';
 
 abstract class _$NumberQuestionsController extends $Notifier<NumberQuestions> {
   NumberQuestions build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<NumberQuestions, NumberQuestions>;
     final element =
         ref.element
-            as $ClassProviderElement<
-              AnyNotifier<NumberQuestions, NumberQuestions>,
-              NumberQuestions,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+            as $ClassProviderElement<AnyNotifier<NumberQuestions, NumberQuestions>, NumberQuestions, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(ShowTipsController)
-const showTipsControllerProvider = ShowTipsControllerProvider._();
+final showTipsControllerProvider = ShowTipsControllerProvider._();
 
-final class ShowTipsControllerProvider
-    extends $NotifierProvider<ShowTipsController, bool> {
-  const ShowTipsControllerProvider._()
+final class ShowTipsControllerProvider extends $NotifierProvider<ShowTipsController, bool> {
+  ShowTipsControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -248,34 +213,24 @@ final class ShowTipsControllerProvider
   }
 }
 
-String _$showTipsControllerHash() =>
-    r'3d76b7f7b9e7ba9c0b1a57025b3f4d9959272a70';
+String _$showTipsControllerHash() => r'3d76b7f7b9e7ba9c0b1a57025b3f4d9959272a70';
 
 abstract class _$ShowTipsController extends $Notifier<bool> {
   bool build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<bool, bool>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<bool, bool>,
-              bool,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+    final element = ref.element as $ClassProviderElement<AnyNotifier<bool, bool>, bool, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(AnswersLayoutController)
-const answersLayoutControllerProvider = AnswersLayoutControllerProvider._();
+final answersLayoutControllerProvider = AnswersLayoutControllerProvider._();
 
-final class AnswersLayoutControllerProvider
-    extends $NotifierProvider<AnswersLayoutController, AnswersLayout> {
-  const AnswersLayoutControllerProvider._()
+final class AnswersLayoutControllerProvider extends $NotifierProvider<AnswersLayoutController, AnswersLayout> {
+  AnswersLayoutControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -302,34 +257,26 @@ final class AnswersLayoutControllerProvider
   }
 }
 
-String _$answersLayoutControllerHash() =>
-    r'8a3d79574ab00f97e1f27c741c4b4cd5ed1324a4';
+String _$answersLayoutControllerHash() => r'8a3d79574ab00f97e1f27c741c4b4cd5ed1324a4';
 
 abstract class _$AnswersLayoutController extends $Notifier<AnswersLayout> {
   AnswersLayout build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<AnswersLayout, AnswersLayout>;
     final element =
         ref.element
-            as $ClassProviderElement<
-              AnyNotifier<AnswersLayout, AnswersLayout>,
-              AnswersLayout,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+            as $ClassProviderElement<AnyNotifier<AnswersLayout, AnswersLayout>, AnswersLayout, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(SpeechRateController)
-const speechRateControllerProvider = SpeechRateControllerProvider._();
+final speechRateControllerProvider = SpeechRateControllerProvider._();
 
-final class SpeechRateControllerProvider
-    extends $NotifierProvider<SpeechRateController, SpeechRate> {
-  const SpeechRateControllerProvider._()
+final class SpeechRateControllerProvider extends $NotifierProvider<SpeechRateController, SpeechRate> {
+  SpeechRateControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -356,34 +303,25 @@ final class SpeechRateControllerProvider
   }
 }
 
-String _$speechRateControllerHash() =>
-    r'c5c7e6f49b81bfcf80b061d4e1b964b0d01a90de';
+String _$speechRateControllerHash() => r'c5c7e6f49b81bfcf80b061d4e1b964b0d01a90de';
 
 abstract class _$SpeechRateController extends $Notifier<SpeechRate> {
   SpeechRate build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<SpeechRate, SpeechRate>;
     final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<SpeechRate, SpeechRate>,
-              SpeechRate,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+        ref.element as $ClassProviderElement<AnyNotifier<SpeechRate, SpeechRate>, SpeechRate, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(VoiceLevelController)
-const voiceLevelControllerProvider = VoiceLevelControllerProvider._();
+final voiceLevelControllerProvider = VoiceLevelControllerProvider._();
 
-final class VoiceLevelControllerProvider
-    extends $NotifierProvider<VoiceLevelController, double> {
-  const VoiceLevelControllerProvider._()
+final class VoiceLevelControllerProvider extends $NotifierProvider<VoiceLevelController, double> {
+  VoiceLevelControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -410,34 +348,24 @@ final class VoiceLevelControllerProvider
   }
 }
 
-String _$voiceLevelControllerHash() =>
-    r'bb78262b8a6c66d48b9d19249794dd1df337b28c';
+String _$voiceLevelControllerHash() => r'bb78262b8a6c66d48b9d19249794dd1df337b28c';
 
 abstract class _$VoiceLevelController extends $Notifier<double> {
   double build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<double, double>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<double, double>,
-              double,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+    final element = ref.element as $ClassProviderElement<AnyNotifier<double, double>, double, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(SoundLevelController)
-const soundLevelControllerProvider = SoundLevelControllerProvider._();
+final soundLevelControllerProvider = SoundLevelControllerProvider._();
 
-final class SoundLevelControllerProvider
-    extends $NotifierProvider<SoundLevelController, double> {
-  const SoundLevelControllerProvider._()
+final class SoundLevelControllerProvider extends $NotifierProvider<SoundLevelController, double> {
+  SoundLevelControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -464,24 +392,15 @@ final class SoundLevelControllerProvider
   }
 }
 
-String _$soundLevelControllerHash() =>
-    r'8553eff632a82464c51edbfd9052cabd071d1f7e';
+String _$soundLevelControllerHash() => r'8553eff632a82464c51edbfd9052cabd071d1f7e';
 
 abstract class _$SoundLevelController extends $Notifier<double> {
   double build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<double, double>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<double, double>,
-              double,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+    final element = ref.element as $ClassProviderElement<AnyNotifier<double, double>, double, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }

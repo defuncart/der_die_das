@@ -10,11 +10,11 @@ part of 'state.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(nounDatabase)
-const nounDatabaseProvider = NounDatabaseProvider._();
+final nounDatabaseProvider = NounDatabaseProvider._();
 
 final class NounDatabaseProvider extends $FunctionalProvider<INounDatabase, INounDatabase, INounDatabase>
     with $Provider<INounDatabase> {
-  const NounDatabaseProvider._()
+  NounDatabaseProvider._()
     : super(
         from: null,
         argument: null,

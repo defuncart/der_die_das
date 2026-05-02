@@ -10,11 +10,11 @@ part of 'sound_state.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(tts)
-const ttsProvider = TtsProvider._();
+final ttsProvider = TtsProvider._();
 
 final class TtsProvider extends $FunctionalProvider<ITextToSpeechService, ITextToSpeechService, ITextToSpeechService>
     with $Provider<ITextToSpeechService> {
-  const TtsProvider._()
+  TtsProvider._()
     : super(
         from: null,
         argument: null,
@@ -51,10 +51,10 @@ final class TtsProvider extends $FunctionalProvider<ITextToSpeechService, ITextT
 String _$ttsHash() => r'c0bbf69f3a9a363ecf9b4251ae44bcc7a3bcd5c8';
 
 @ProviderFor(sfx)
-const sfxProvider = SfxProvider._();
+final sfxProvider = SfxProvider._();
 
 final class SfxProvider extends $FunctionalProvider<ISFXService, ISFXService, ISFXService> with $Provider<ISFXService> {
-  const SfxProvider._()
+  SfxProvider._()
     : super(
         from: null,
         argument: null,
