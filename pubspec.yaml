@@ -19,7 +19,7 @@ dependencies:
   settings_ui:
   auto_size_text:
   drift:
-  sqlite3_flutter_libs:
+  drift_flutter:
   path_provider:
   path:
   archive:
