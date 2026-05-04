@@ -6,6 +6,7 @@ import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart'
 import 'package:der_die_das/core/db/nouns_database/state/state.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/models/game_result.dart';
+import 'package:der_die_das/core/sound/sound_state.dart';
 import 'package:der_die_das/core/state/sound_settings_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -61,11 +62,7 @@ class GameStateNotifier extends _$GameStateNotifier {
           key: _currentNoun.key,
           answeredCorrectly: answeredCorrectly,
         );
-    ref.read(
-      sfxProvider(
-        effect: answeredCorrectly ? SFXEffect.answerCorrect : SFXEffect.answerIncorrect,
-      ),
-    );
+    _playSFX(answeredCorrectly);
     Future.delayed(const Duration(milliseconds: 500)).then((_) {
       ref.read(speakProvider(text: _currentNoun.speak));
       if (answeredCorrectly) {
@@ -74,6 +71,13 @@ class GameStateNotifier extends _$GameStateNotifier {
         });
       }
     });
+  }
+
+  Future<void> _playSFX(bool answeredCorrectly) async {
+    await ref.read(sfxServiceProvider).setVolume(ref.read(soundLevelProvider));
+    await ref
+        .read(sfxServiceProvider)
+        .playEffect(answeredCorrectly ? SFXEffect.answerCorrect : SFXEffect.answerIncorrect);
   }
 
   void onContinue() {

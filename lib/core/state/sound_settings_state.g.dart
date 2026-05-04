@@ -56,7 +56,7 @@ final class SpeakNotifierProvider extends $FunctionalProvider<AsyncValue<void>, 
   }
 }
 
-String _$speakNotifierHash() => r'd91b7567698d80988cc7c0c0e6db773be80e0185';
+String _$speakNotifierHash() => r'8d12c5ffb9b0fe496a64da250ec43404b9da7bae';
 
 final class SpeakNotifierFamily extends $Family with $FunctionalFamilyOverride<FutureOr<void>, String> {
   SpeakNotifierFamily._()
@@ -72,69 +72,4 @@ final class SpeakNotifierFamily extends $Family with $FunctionalFamilyOverride<F
 
   @override
   String toString() => r'speakProvider';
-}
-
-@ProviderFor(sfxNotifier)
-final sfxProvider = SfxNotifierFamily._();
-
-final class SfxNotifierProvider extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
-    with $FutureModifier<void>, $FutureProvider<void> {
-  SfxNotifierProvider._({
-    required SfxNotifierFamily super.from,
-    required SFXEffect super.argument,
-  }) : super(
-         retry: null,
-         name: r'sfxProvider',
-         isAutoDispose: true,
-         dependencies: null,
-         $allTransitiveDependencies: null,
-       );
-
-  @override
-  String debugGetCreateSourceHash() => _$sfxNotifierHash();
-
-  @override
-  String toString() {
-    return r'sfxProvider'
-        ''
-        '($argument)';
-  }
-
-  @$internal
-  @override
-  $FutureProviderElement<void> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<void> create(Ref ref) {
-    final argument = this.argument as SFXEffect;
-    return sfxNotifier(ref, effect: argument);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is SfxNotifierProvider && other.argument == argument;
-  }
-
-  @override
-  int get hashCode {
-    return argument.hashCode;
-  }
-}
-
-String _$sfxNotifierHash() => r'b43ac687d79d927930515823ed3ed87f66acc1c1';
-
-final class SfxNotifierFamily extends $Family with $FunctionalFamilyOverride<FutureOr<void>, SFXEffect> {
-  SfxNotifierFamily._()
-    : super(
-        retry: null,
-        name: r'sfxProvider',
-        dependencies: null,
-        $allTransitiveDependencies: null,
-        isAutoDispose: true,
-      );
-
-  SfxNotifierProvider call({required SFXEffect effect}) => SfxNotifierProvider._(argument: effect, from: this);
-
-  @override
-  String toString() => r'sfxProvider';
 }
