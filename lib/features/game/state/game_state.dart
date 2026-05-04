@@ -64,7 +64,7 @@ class GameStateNotifier extends _$GameStateNotifier {
         );
     _playSFX(answeredCorrectly);
     Future.delayed(const Duration(milliseconds: 500)).then((_) {
-      ref.read(speakProvider(text: _currentNoun.speak));
+      ref.speak(_currentNoun.speak);
       if (answeredCorrectly) {
         Future.delayed(const Duration(seconds: 1)).then((_) {
           onContinue();
