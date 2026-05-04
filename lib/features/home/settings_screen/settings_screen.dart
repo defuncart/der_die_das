@@ -64,7 +64,7 @@ class _LanguageRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(languageControllerProvider);
+    final state = ref.watch(languageProvider);
 
     return _SettingsRow(
       label: context.l10n.settingsLanguageLabel,
@@ -72,7 +72,7 @@ class _LanguageRow extends ConsumerWidget {
         (language) => LanguageButton(
           language: language,
           isSelected: language == state,
-          onTap: () => ref.read(languageControllerProvider.notifier).set(language),
+          onTap: () => ref.read(languageProvider.notifier).set(language),
         ),
       ),
     );
@@ -84,7 +84,7 @@ class _LevelRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(levelControllerProvider);
+    final state = ref.watch(levelProvider);
 
     return _SettingsRow(
       label: context.l10n.settingsLevelLabel,
@@ -92,7 +92,7 @@ class _LevelRow extends ConsumerWidget {
         (level) => LevelButton(
           level: level,
           isSelected: level == state,
-          onTap: () => ref.read(levelControllerProvider.notifier).set(level),
+          onTap: () => ref.read(levelProvider.notifier).set(level),
         ),
       ),
     );
@@ -104,7 +104,7 @@ class _NumberQuestionsRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(numberQuestionsControllerProvider);
+    final state = ref.watch(numberQuestionsProvider);
 
     return _SettingsRow(
       label: context.l10n.settingsNumberQuestionsLabel,
@@ -112,7 +112,7 @@ class _NumberQuestionsRow extends ConsumerWidget {
         (numberQuestions) => NumberQuestionsButton(
           numberQuestions: numberQuestions,
           isSelected: numberQuestions == state,
-          onTap: () => ref.read(numberQuestionsControllerProvider.notifier).set(numberQuestions),
+          onTap: () => ref.read(numberQuestionsProvider.notifier).set(numberQuestions),
         ),
       ),
     );
@@ -124,7 +124,7 @@ class _ShowTipsRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(showTipsControllerProvider);
+    final state = ref.watch(showTipsProvider);
 
     return _SettingsRow(
       label: context.l10n.settingsShowTipsLabel,
@@ -132,7 +132,7 @@ class _ShowTipsRow extends ConsumerWidget {
         (value) => TipsButton(
           value: value,
           isSelected: state == value,
-          onTap: () => ref.read(showTipsControllerProvider.notifier).set(value),
+          onTap: () => ref.read(showTipsProvider.notifier).set(value),
         ),
       ),
     );
@@ -144,7 +144,7 @@ class _AnswersLayoutRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(answersLayoutControllerProvider);
+    final state = ref.watch(answersLayoutProvider);
 
     return _SettingsRow(
       label: context.l10n.settingsAnswersLayoutLabel,
@@ -152,7 +152,7 @@ class _AnswersLayoutRow extends ConsumerWidget {
         (answersLayout) => AnswersLayoutButton(
           answersLayout: answersLayout,
           isSelected: answersLayout == state,
-          onTap: () => ref.read(answersLayoutControllerProvider.notifier).set(answersLayout),
+          onTap: () => ref.read(answersLayoutProvider.notifier).set(answersLayout),
         ),
       ),
     );
@@ -164,7 +164,7 @@ class _SpeechRateRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(speechRateControllerProvider).value;
+    final state = ref.watch(speechRateProvider).value;
 
     return _SettingsRow(
       label: context.l10n.settingsSpeechRateLabel,
@@ -174,7 +174,7 @@ class _SpeechRateRow extends ConsumerWidget {
           min: SpeechRate.values.first.value,
           max: SpeechRate.values.last.value,
           divisions: SpeechRate.values.length - 1,
-          onChanged: (value) => ref.read(speechRateControllerProvider.notifier).set(value.asTextToSpeechRate),
+          onChanged: (value) => ref.read(speechRateProvider.notifier).set(value.asTextToSpeechRate),
         ),
       ],
     );
@@ -186,14 +186,14 @@ class _VoiceRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(voiceLevelControllerProvider);
+    final state = ref.watch(voiceLevelProvider);
 
     return _SettingsRow(
       label: context.l10n.settingsVoiceLabel,
       items: [
         _Slider(
           value: state,
-          onChanged: ref.read(voiceLevelControllerProvider.notifier).set,
+          onChanged: ref.read(voiceLevelProvider.notifier).set,
           onGenerateLabel: (value) => (value * 100).ceil().toString(),
         ),
       ],
@@ -206,14 +206,14 @@ class _SoundRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(soundLevelControllerProvider);
+    final state = ref.watch(soundLevelProvider);
 
     return _SettingsRow(
       label: context.l10n.settingsSoundLabel,
       items: [
         _Slider(
           value: state,
-          onChanged: ref.read(soundLevelControllerProvider.notifier).set,
+          onChanged: ref.read(soundLevelProvider.notifier).set,
           onGenerateLabel: (value) => (value * 100).ceil().toString(),
         ),
       ],

@@ -11,8 +11,8 @@ import 'package:mocktail/mocktail.dart';
 
 class MockSettingsService extends Mock implements ISettingsService {}
 
-class FakeGameStateController extends GameStateController {
-  FakeGameStateController({required GameState state}) : _state = state;
+class FakeGameStateNotifier extends GameStateNotifier {
+  FakeGameStateNotifier({required GameState state}) : _state = state;
 
   final GameState _state;
 

@@ -12,7 +12,7 @@ part 'settings_state.g.dart';
 ISettingsService settingsService(Ref ref) => SettingsService();
 
 @Riverpod(keepAlive: true)
-class LanguageController extends _$LanguageController {
+class LanguageNotifier extends _$LanguageNotifier {
   @override
   Language build() => ref.read(settingsServiceProvider).language;
 
@@ -23,7 +23,7 @@ class LanguageController extends _$LanguageController {
 }
 
 @Riverpod(keepAlive: true)
-class LevelController extends _$LevelController {
+class LevelNotifier extends _$LevelNotifier {
   @override
   Level build() => ref.read(settingsServiceProvider).level;
 
@@ -34,7 +34,7 @@ class LevelController extends _$LevelController {
 }
 
 @Riverpod(keepAlive: true)
-class NumberQuestionsController extends _$NumberQuestionsController {
+class NumberQuestionsNotifier extends _$NumberQuestionsNotifier {
   @override
   NumberQuestions build() => ref.read(settingsServiceProvider).numberQuestions;
 
@@ -45,7 +45,7 @@ class NumberQuestionsController extends _$NumberQuestionsController {
 }
 
 @Riverpod(keepAlive: true)
-class ShowTipsController extends _$ShowTipsController {
+class ShowTipsNotifier extends _$ShowTipsNotifier {
   @override
   bool build() => ref.read(settingsServiceProvider).showTips;
 
@@ -56,7 +56,7 @@ class ShowTipsController extends _$ShowTipsController {
 }
 
 @Riverpod(keepAlive: true)
-class AnswersLayoutController extends _$AnswersLayoutController {
+class AnswersLayoutNotifier extends _$AnswersLayoutNotifier {
   @override
   AnswersLayout build() => ref.read(settingsServiceProvider).answersLayout;
 
@@ -67,7 +67,7 @@ class AnswersLayoutController extends _$AnswersLayoutController {
 }
 
 @Riverpod(keepAlive: true)
-class SpeechRateController extends _$SpeechRateController {
+class SpeechRateNotifier extends _$SpeechRateNotifier {
   @override
   SpeechRate build() => ref.read(settingsServiceProvider).speechRate;
 
@@ -78,7 +78,7 @@ class SpeechRateController extends _$SpeechRateController {
 }
 
 @Riverpod(keepAlive: true)
-class VoiceLevelController extends _$VoiceLevelController {
+class VoiceLevelNotifier extends _$VoiceLevelNotifier {
   @override
   double build() => ref.read(settingsServiceProvider).voiceLevel;
 
@@ -91,7 +91,7 @@ class VoiceLevelController extends _$VoiceLevelController {
 }
 
 @Riverpod(keepAlive: true)
-class SoundLevelController extends _$SoundLevelController {
+class SoundLevelNotifier extends _$SoundLevelNotifier {
   @override
   double build() => ref.read(settingsServiceProvider).soundLevel;
 

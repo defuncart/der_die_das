@@ -2,7 +2,8 @@ import 'package:audioplayers/audioplayers.dart';
 
 enum SFXEffect {
   answerCorrect,
-  answerIncorrect;
+  answerIncorrect
+  ;
 
   String get assetPath => 'sfx/$name.wav';
 }

@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'sound_state.g.dart';
 
 @Riverpod(keepAlive: true)
-ITextToSpeechService tts(Ref ref) => TextToSpeechService();
+ITextToSpeechService ttsService(Ref ref) => TextToSpeechService();
 
 @Riverpod(keepAlive: true)
-ISFXService sfx(Ref ref) => SFXService();
+ISFXService sfxService(Ref ref) => SFXService();

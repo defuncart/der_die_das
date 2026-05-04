@@ -48,27 +48,27 @@ final class SettingsServiceProvider extends $FunctionalProvider<ISettingsService
 
 String _$settingsServiceHash() => r'01ab474a43eacb1538372b02c9d1856f9f556b16';
 
-@ProviderFor(LanguageController)
-final languageControllerProvider = LanguageControllerProvider._();
+@ProviderFor(LanguageNotifier)
+final languageProvider = LanguageNotifierProvider._();
 
-final class LanguageControllerProvider extends $NotifierProvider<LanguageController, Language> {
-  LanguageControllerProvider._()
+final class LanguageNotifierProvider extends $NotifierProvider<LanguageNotifier, Language> {
+  LanguageNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'languageControllerProvider',
+        name: r'languageProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$languageControllerHash();
+  String debugGetCreateSourceHash() => _$languageNotifierHash();
 
   @$internal
   @override
-  LanguageController create() => LanguageController();
+  LanguageNotifier create() => LanguageNotifier();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(Language value) {
@@ -79,9 +79,9 @@ final class LanguageControllerProvider extends $NotifierProvider<LanguageControl
   }
 }
 
-String _$languageControllerHash() => r'37e7c37e357451e282efe63f7f5de3c6863876da';
+String _$languageNotifierHash() => r'73200652d8241606853c192949fe258122bcf9b9';
 
-abstract class _$LanguageController extends $Notifier<Language> {
+abstract class _$LanguageNotifier extends $Notifier<Language> {
   Language build();
   @$mustCallSuper
   @override
@@ -92,27 +92,27 @@ abstract class _$LanguageController extends $Notifier<Language> {
   }
 }
 
-@ProviderFor(LevelController)
-final levelControllerProvider = LevelControllerProvider._();
+@ProviderFor(LevelNotifier)
+final levelProvider = LevelNotifierProvider._();
 
-final class LevelControllerProvider extends $NotifierProvider<LevelController, Level> {
-  LevelControllerProvider._()
+final class LevelNotifierProvider extends $NotifierProvider<LevelNotifier, Level> {
+  LevelNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'levelControllerProvider',
+        name: r'levelProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$levelControllerHash();
+  String debugGetCreateSourceHash() => _$levelNotifierHash();
 
   @$internal
   @override
-  LevelController create() => LevelController();
+  LevelNotifier create() => LevelNotifier();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(Level value) {
@@ -123,9 +123,9 @@ final class LevelControllerProvider extends $NotifierProvider<LevelController, L
   }
 }
 
-String _$levelControllerHash() => r'794ebb6f66527f81e4513c3d265d32c8da0f43f4';
+String _$levelNotifierHash() => r'2ef85747edbc008729c3226ca4e91a8ad46909e5';
 
-abstract class _$LevelController extends $Notifier<Level> {
+abstract class _$LevelNotifier extends $Notifier<Level> {
   Level build();
   @$mustCallSuper
   @override
@@ -136,27 +136,27 @@ abstract class _$LevelController extends $Notifier<Level> {
   }
 }
 
-@ProviderFor(NumberQuestionsController)
-final numberQuestionsControllerProvider = NumberQuestionsControllerProvider._();
+@ProviderFor(NumberQuestionsNotifier)
+final numberQuestionsProvider = NumberQuestionsNotifierProvider._();
 
-final class NumberQuestionsControllerProvider extends $NotifierProvider<NumberQuestionsController, NumberQuestions> {
-  NumberQuestionsControllerProvider._()
+final class NumberQuestionsNotifierProvider extends $NotifierProvider<NumberQuestionsNotifier, NumberQuestions> {
+  NumberQuestionsNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'numberQuestionsControllerProvider',
+        name: r'numberQuestionsProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$numberQuestionsControllerHash();
+  String debugGetCreateSourceHash() => _$numberQuestionsNotifierHash();
 
   @$internal
   @override
-  NumberQuestionsController create() => NumberQuestionsController();
+  NumberQuestionsNotifier create() => NumberQuestionsNotifier();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(NumberQuestions value) {
@@ -167,9 +167,9 @@ final class NumberQuestionsControllerProvider extends $NotifierProvider<NumberQu
   }
 }
 
-String _$numberQuestionsControllerHash() => r'eaa1d1a747a1a5932316443c4bc16f9ec5d500f9';
+String _$numberQuestionsNotifierHash() => r'c79c540c6cd9a16b521c5abb02185344d6a823be';
 
-abstract class _$NumberQuestionsController extends $Notifier<NumberQuestions> {
+abstract class _$NumberQuestionsNotifier extends $Notifier<NumberQuestions> {
   NumberQuestions build();
   @$mustCallSuper
   @override
@@ -182,27 +182,27 @@ abstract class _$NumberQuestionsController extends $Notifier<NumberQuestions> {
   }
 }
 
-@ProviderFor(ShowTipsController)
-final showTipsControllerProvider = ShowTipsControllerProvider._();
+@ProviderFor(ShowTipsNotifier)
+final showTipsProvider = ShowTipsNotifierProvider._();
 
-final class ShowTipsControllerProvider extends $NotifierProvider<ShowTipsController, bool> {
-  ShowTipsControllerProvider._()
+final class ShowTipsNotifierProvider extends $NotifierProvider<ShowTipsNotifier, bool> {
+  ShowTipsNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'showTipsControllerProvider',
+        name: r'showTipsProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$showTipsControllerHash();
+  String debugGetCreateSourceHash() => _$showTipsNotifierHash();
 
   @$internal
   @override
-  ShowTipsController create() => ShowTipsController();
+  ShowTipsNotifier create() => ShowTipsNotifier();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(bool value) {
@@ -213,9 +213,9 @@ final class ShowTipsControllerProvider extends $NotifierProvider<ShowTipsControl
   }
 }
 
-String _$showTipsControllerHash() => r'3d76b7f7b9e7ba9c0b1a57025b3f4d9959272a70';
+String _$showTipsNotifierHash() => r'f89f95f491e14f4c5c25af8f101c83b6e30b8fe6';
 
-abstract class _$ShowTipsController extends $Notifier<bool> {
+abstract class _$ShowTipsNotifier extends $Notifier<bool> {
   bool build();
   @$mustCallSuper
   @override
@@ -226,27 +226,27 @@ abstract class _$ShowTipsController extends $Notifier<bool> {
   }
 }
 
-@ProviderFor(AnswersLayoutController)
-final answersLayoutControllerProvider = AnswersLayoutControllerProvider._();
+@ProviderFor(AnswersLayoutNotifier)
+final answersLayoutProvider = AnswersLayoutNotifierProvider._();
 
-final class AnswersLayoutControllerProvider extends $NotifierProvider<AnswersLayoutController, AnswersLayout> {
-  AnswersLayoutControllerProvider._()
+final class AnswersLayoutNotifierProvider extends $NotifierProvider<AnswersLayoutNotifier, AnswersLayout> {
+  AnswersLayoutNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'answersLayoutControllerProvider',
+        name: r'answersLayoutProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$answersLayoutControllerHash();
+  String debugGetCreateSourceHash() => _$answersLayoutNotifierHash();
 
   @$internal
   @override
-  AnswersLayoutController create() => AnswersLayoutController();
+  AnswersLayoutNotifier create() => AnswersLayoutNotifier();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(AnswersLayout value) {
@@ -257,9 +257,9 @@ final class AnswersLayoutControllerProvider extends $NotifierProvider<AnswersLay
   }
 }
 
-String _$answersLayoutControllerHash() => r'8a3d79574ab00f97e1f27c741c4b4cd5ed1324a4';
+String _$answersLayoutNotifierHash() => r'c8dd9742332b5ecfd0e26047969c333a711dc8b0';
 
-abstract class _$AnswersLayoutController extends $Notifier<AnswersLayout> {
+abstract class _$AnswersLayoutNotifier extends $Notifier<AnswersLayout> {
   AnswersLayout build();
   @$mustCallSuper
   @override
@@ -272,27 +272,27 @@ abstract class _$AnswersLayoutController extends $Notifier<AnswersLayout> {
   }
 }
 
-@ProviderFor(SpeechRateController)
-final speechRateControllerProvider = SpeechRateControllerProvider._();
+@ProviderFor(SpeechRateNotifier)
+final speechRateProvider = SpeechRateNotifierProvider._();
 
-final class SpeechRateControllerProvider extends $NotifierProvider<SpeechRateController, SpeechRate> {
-  SpeechRateControllerProvider._()
+final class SpeechRateNotifierProvider extends $NotifierProvider<SpeechRateNotifier, SpeechRate> {
+  SpeechRateNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'speechRateControllerProvider',
+        name: r'speechRateProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$speechRateControllerHash();
+  String debugGetCreateSourceHash() => _$speechRateNotifierHash();
 
   @$internal
   @override
-  SpeechRateController create() => SpeechRateController();
+  SpeechRateNotifier create() => SpeechRateNotifier();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(SpeechRate value) {
@@ -303,9 +303,9 @@ final class SpeechRateControllerProvider extends $NotifierProvider<SpeechRateCon
   }
 }
 
-String _$speechRateControllerHash() => r'c5c7e6f49b81bfcf80b061d4e1b964b0d01a90de';
+String _$speechRateNotifierHash() => r'74fc3387a8dbd86383c6c03fa9298cc44e6394e6';
 
-abstract class _$SpeechRateController extends $Notifier<SpeechRate> {
+abstract class _$SpeechRateNotifier extends $Notifier<SpeechRate> {
   SpeechRate build();
   @$mustCallSuper
   @override
@@ -317,27 +317,27 @@ abstract class _$SpeechRateController extends $Notifier<SpeechRate> {
   }
 }
 
-@ProviderFor(VoiceLevelController)
-final voiceLevelControllerProvider = VoiceLevelControllerProvider._();
+@ProviderFor(VoiceLevelNotifier)
+final voiceLevelProvider = VoiceLevelNotifierProvider._();
 
-final class VoiceLevelControllerProvider extends $NotifierProvider<VoiceLevelController, double> {
-  VoiceLevelControllerProvider._()
+final class VoiceLevelNotifierProvider extends $NotifierProvider<VoiceLevelNotifier, double> {
+  VoiceLevelNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'voiceLevelControllerProvider',
+        name: r'voiceLevelProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$voiceLevelControllerHash();
+  String debugGetCreateSourceHash() => _$voiceLevelNotifierHash();
 
   @$internal
   @override
-  VoiceLevelController create() => VoiceLevelController();
+  VoiceLevelNotifier create() => VoiceLevelNotifier();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(double value) {
@@ -348,9 +348,9 @@ final class VoiceLevelControllerProvider extends $NotifierProvider<VoiceLevelCon
   }
 }
 
-String _$voiceLevelControllerHash() => r'bb78262b8a6c66d48b9d19249794dd1df337b28c';
+String _$voiceLevelNotifierHash() => r'59709d8ce784c1a4cf330d567636253b43dc1d7f';
 
-abstract class _$VoiceLevelController extends $Notifier<double> {
+abstract class _$VoiceLevelNotifier extends $Notifier<double> {
   double build();
   @$mustCallSuper
   @override
@@ -361,27 +361,27 @@ abstract class _$VoiceLevelController extends $Notifier<double> {
   }
 }
 
-@ProviderFor(SoundLevelController)
-final soundLevelControllerProvider = SoundLevelControllerProvider._();
+@ProviderFor(SoundLevelNotifier)
+final soundLevelProvider = SoundLevelNotifierProvider._();
 
-final class SoundLevelControllerProvider extends $NotifierProvider<SoundLevelController, double> {
-  SoundLevelControllerProvider._()
+final class SoundLevelNotifierProvider extends $NotifierProvider<SoundLevelNotifier, double> {
+  SoundLevelNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'soundLevelControllerProvider',
+        name: r'soundLevelProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$soundLevelControllerHash();
+  String debugGetCreateSourceHash() => _$soundLevelNotifierHash();
 
   @$internal
   @override
-  SoundLevelController create() => SoundLevelController();
+  SoundLevelNotifier create() => SoundLevelNotifier();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(double value) {
@@ -392,9 +392,9 @@ final class SoundLevelControllerProvider extends $NotifierProvider<SoundLevelCon
   }
 }
 
-String _$soundLevelControllerHash() => r'8553eff632a82464c51edbfd9052cabd071d1f7e';
+String _$soundLevelNotifierHash() => r'8294bf8b170dc88cc459aec164edc2677b2879c0';
 
-abstract class _$SoundLevelController extends $Notifier<double> {
+abstract class _$SoundLevelNotifier extends $Notifier<double> {
   double build();
   @$mustCallSuper
   @override

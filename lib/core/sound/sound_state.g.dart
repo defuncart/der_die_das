@@ -9,24 +9,25 @@ part of 'sound_state.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(tts)
-final ttsProvider = TtsProvider._();
+@ProviderFor(ttsService)
+final ttsServiceProvider = TtsServiceProvider._();
 
-final class TtsProvider extends $FunctionalProvider<ITextToSpeechService, ITextToSpeechService, ITextToSpeechService>
+final class TtsServiceProvider
+    extends $FunctionalProvider<ITextToSpeechService, ITextToSpeechService, ITextToSpeechService>
     with $Provider<ITextToSpeechService> {
-  TtsProvider._()
+  TtsServiceProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'ttsProvider',
+        name: r'ttsServiceProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$ttsHash();
+  String debugGetCreateSourceHash() => _$ttsServiceHash();
 
   @$internal
   @override
@@ -36,7 +37,7 @@ final class TtsProvider extends $FunctionalProvider<ITextToSpeechService, ITextT
 
   @override
   ITextToSpeechService create(Ref ref) {
-    return tts(ref);
+    return ttsService(ref);
   }
 
   /// {@macro riverpod.override_with_value}
@@ -48,25 +49,26 @@ final class TtsProvider extends $FunctionalProvider<ITextToSpeechService, ITextT
   }
 }
 
-String _$ttsHash() => r'c0bbf69f3a9a363ecf9b4251ae44bcc7a3bcd5c8';
+String _$ttsServiceHash() => r'd5a61117828c2f47557c5004342ad11cd1fbc240';
 
-@ProviderFor(sfx)
-final sfxProvider = SfxProvider._();
+@ProviderFor(sfxService)
+final sfxServiceProvider = SfxServiceProvider._();
 
-final class SfxProvider extends $FunctionalProvider<ISFXService, ISFXService, ISFXService> with $Provider<ISFXService> {
-  SfxProvider._()
+final class SfxServiceProvider extends $FunctionalProvider<ISFXService, ISFXService, ISFXService>
+    with $Provider<ISFXService> {
+  SfxServiceProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'sfxProvider',
+        name: r'sfxServiceProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$sfxHash();
+  String debugGetCreateSourceHash() => _$sfxServiceHash();
 
   @$internal
   @override
@@ -74,7 +76,7 @@ final class SfxProvider extends $FunctionalProvider<ISFXService, ISFXService, IS
 
   @override
   ISFXService create(Ref ref) {
-    return sfx(ref);
+    return sfxService(ref);
   }
 
   /// {@macro riverpod.override_with_value}
@@ -86,4 +88,4 @@ final class SfxProvider extends $FunctionalProvider<ISFXService, ISFXService, IS
   }
 }
 
-String _$sfxHash() => r'25c6793da9da41d7958b39fe18d5fca980e2483f';
+String _$sfxServiceHash() => r'ffc049955b628190508d02cd149b4af1e9849670';

@@ -21,7 +21,7 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final locale = ref.watch(languageControllerProvider).toLocale();
+    final locale = ref.watch(languageProvider).toLocale();
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: appTheme.appBarTheme.systemOverlayStyle!,

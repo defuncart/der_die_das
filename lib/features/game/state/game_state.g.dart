@@ -9,32 +9,32 @@ part of 'game_state.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(GameStateController)
-final gameStateControllerProvider = GameStateControllerProvider._();
+@ProviderFor(GameStateNotifier)
+final gameStateProvider = GameStateNotifierProvider._();
 
-final class GameStateControllerProvider extends $AsyncNotifierProvider<GameStateController, GameState> {
-  GameStateControllerProvider._()
+final class GameStateNotifierProvider extends $AsyncNotifierProvider<GameStateNotifier, GameState> {
+  GameStateNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'gameStateControllerProvider',
+        name: r'gameStateProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$gameStateControllerHash();
+  String debugGetCreateSourceHash() => _$gameStateNotifierHash();
 
   @$internal
   @override
-  GameStateController create() => GameStateController();
+  GameStateNotifier create() => GameStateNotifier();
 }
 
-String _$gameStateControllerHash() => r'465753f1a5630c2bff03d9e00e0562b2332579ff';
+String _$gameStateNotifierHash() => r'f63091e59af80ed36a525dce98ef0a971c6d30aa';
 
-abstract class _$GameStateController extends $AsyncNotifier<GameState> {
+abstract class _$GameStateNotifier extends $AsyncNotifier<GameState> {
   FutureOr<GameState> build();
   @$mustCallSuper
   @override

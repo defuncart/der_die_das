@@ -24,7 +24,7 @@ class GameScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(gameStateControllerProvider);
+    final state = ref.watch(gameStateProvider);
 
     return state.maybeMap(
       data: (data) {
@@ -49,7 +49,7 @@ class _GameScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final showTipsButton = ref.watch(showTipsControllerProvider);
+    final showTipsButton = ref.watch(showTipsProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -176,7 +176,7 @@ class _GameScreen extends ConsumerWidget {
                             Align(
                               alignment: Alignment.bottomCenter,
                               child: HorizontalButton(
-                                onPressed: ref.read(gameStateControllerProvider.notifier).onContinue,
+                                onPressed: ref.read(gameStateProvider.notifier).onContinue,
                                 text: context.l10n.gameContinueLabel,
                               ),
                             ),
@@ -249,7 +249,7 @@ class _Articles extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(answersLayoutControllerProvider);
+    final state = ref.watch(answersLayoutProvider);
 
     return switch (state) {
       AnswersLayout.standard => _ArticlesLayoutStandard(
@@ -308,9 +308,7 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
                 horizontalTextWidthPercent: 0.6,
                 height: verticalHeight,
                 fontSize: fontSize,
-                onPressed: interactive
-                    ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.der)
-                    : null,
+                onPressed: interactive ? () => ref.read(gameStateProvider.notifier).onAnswer(Article.der) : null,
               )
             else
               SizedBox(width: verticalWidth, height: verticalHeight),
@@ -321,9 +319,7 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
                 width: verticalWidth,
                 height: verticalHeight,
                 fontSize: fontSize,
-                onPressed: interactive
-                    ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.die)
-                    : null,
+                onPressed: interactive ? () => ref.read(gameStateProvider.notifier).onAnswer(Article.die) : null,
               )
             else
               SizedBox(width: verticalWidth, height: verticalHeight),
@@ -336,7 +332,7 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
             horizontalTextWidthPercent: 0.6,
             height: horizontalHeight,
             fontSize: fontSize,
-            onPressed: interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.das) : null,
+            onPressed: interactive ? () => ref.read(gameStateProvider.notifier).onAnswer(Article.das) : null,
           )
         else
           SizedBox(width: horizontalWidth, height: horizontalHeight),
@@ -374,9 +370,7 @@ class _ArticlesLayoutHorizontal extends ConsumerWidget {
                     horizontalTextWidthPercent: 0.6,
                     height: height,
                     fontSize: fontSize,
-                    onPressed: interactive
-                        ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(article)
-                        : null,
+                    onPressed: interactive ? () => ref.read(gameStateProvider.notifier).onAnswer(article) : null,
                   )
                 : SizedBox(width: width, height: height),
           )
@@ -396,12 +390,12 @@ class _HintButton extends StatefulWidget {
 }
 
 class __HintButtonState extends State<_HintButton> {
-  final OverlayPortalController _tooltipController = OverlayPortalController();
+  final _tooltipNotifier = OverlayPortalController();
 
   @override
   Widget build(BuildContext context) {
     return OverlayPortal(
-      controller: _tooltipController,
+      controller: _tooltipNotifier,
       overlayChildBuilder: (context) {
         return SizedBox.fromSize(
           size: MediaQuery.sizeOf(context),
@@ -411,16 +405,16 @@ class __HintButtonState extends State<_HintButton> {
               SizedBox.fromSize(
                 size: MediaQuery.sizeOf(context),
                 child: GestureDetector(
-                  onTap: _tooltipController.toggle,
+                  onTap: _tooltipNotifier.toggle,
                   child: ColoredBox(color: Colors.black.withValues(alpha: 0.35)),
                 ),
               ),
-              TipCard(tip: widget.tip, noun: widget.noun, onClose: _tooltipController.toggle),
+              TipCard(tip: widget.tip, noun: widget.noun, onClose: _tooltipNotifier.toggle),
             ],
           ),
         );
       },
-      child: BasicMaterialIconButton(onPressed: _tooltipController.toggle, icon: Icons.lightbulb_outline),
+      child: BasicMaterialIconButton(onPressed: _tooltipNotifier.toggle, icon: Icons.lightbulb_outline),
     );
   }
 }

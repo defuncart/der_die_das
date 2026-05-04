@@ -160,7 +160,7 @@ class _NounTile extends ConsumerWidget {
         ],
       ),
       trailing: BasicButton(
-        onPressed: () => ref.read(speakControllerProvider(text: noun.speak)),
+        onPressed: () => ref.read(speakProvider(text: noun.speak)),
         child: RoundedSquare(
           size: kMinInteractiveDimension,
           color: context.customColorScheme.defaultButton,

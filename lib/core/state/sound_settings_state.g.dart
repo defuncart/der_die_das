@@ -9,28 +9,28 @@ part of 'sound_settings_state.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(speakController)
-final speakControllerProvider = SpeakControllerFamily._();
+@ProviderFor(speakNotifier)
+final speakProvider = SpeakNotifierFamily._();
 
-final class SpeakControllerProvider extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+final class SpeakNotifierProvider extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  SpeakControllerProvider._({
-    required SpeakControllerFamily super.from,
+  SpeakNotifierProvider._({
+    required SpeakNotifierFamily super.from,
     required String super.argument,
   }) : super(
          retry: null,
-         name: r'speakControllerProvider',
+         name: r'speakProvider',
          isAutoDispose: true,
          dependencies: null,
          $allTransitiveDependencies: null,
        );
 
   @override
-  String debugGetCreateSourceHash() => _$speakControllerHash();
+  String debugGetCreateSourceHash() => _$speakNotifierHash();
 
   @override
   String toString() {
-    return r'speakControllerProvider'
+    return r'speakProvider'
         ''
         '($argument)';
   }
@@ -42,12 +42,12 @@ final class SpeakControllerProvider extends $FunctionalProvider<AsyncValue<void>
   @override
   FutureOr<void> create(Ref ref) {
     final argument = this.argument as String;
-    return speakController(ref, text: argument);
+    return speakNotifier(ref, text: argument);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is SpeakControllerProvider && other.argument == argument;
+    return other is SpeakNotifierProvider && other.argument == argument;
   }
 
   @override
@@ -56,46 +56,46 @@ final class SpeakControllerProvider extends $FunctionalProvider<AsyncValue<void>
   }
 }
 
-String _$speakControllerHash() => r'bd1d3d2e33d53c850b4ba422d84bd280a353b6a6';
+String _$speakNotifierHash() => r'd91b7567698d80988cc7c0c0e6db773be80e0185';
 
-final class SpeakControllerFamily extends $Family with $FunctionalFamilyOverride<FutureOr<void>, String> {
-  SpeakControllerFamily._()
+final class SpeakNotifierFamily extends $Family with $FunctionalFamilyOverride<FutureOr<void>, String> {
+  SpeakNotifierFamily._()
     : super(
         retry: null,
-        name: r'speakControllerProvider',
+        name: r'speakProvider',
         dependencies: null,
         $allTransitiveDependencies: null,
         isAutoDispose: true,
       );
 
-  SpeakControllerProvider call({required String text}) => SpeakControllerProvider._(argument: text, from: this);
+  SpeakNotifierProvider call({required String text}) => SpeakNotifierProvider._(argument: text, from: this);
 
   @override
-  String toString() => r'speakControllerProvider';
+  String toString() => r'speakProvider';
 }
 
-@ProviderFor(sfxController)
-final sfxControllerProvider = SfxControllerFamily._();
+@ProviderFor(sfxNotifier)
+final sfxProvider = SfxNotifierFamily._();
 
-final class SfxControllerProvider extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+final class SfxNotifierProvider extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  SfxControllerProvider._({
-    required SfxControllerFamily super.from,
+  SfxNotifierProvider._({
+    required SfxNotifierFamily super.from,
     required SFXEffect super.argument,
   }) : super(
          retry: null,
-         name: r'sfxControllerProvider',
+         name: r'sfxProvider',
          isAutoDispose: true,
          dependencies: null,
          $allTransitiveDependencies: null,
        );
 
   @override
-  String debugGetCreateSourceHash() => _$sfxControllerHash();
+  String debugGetCreateSourceHash() => _$sfxNotifierHash();
 
   @override
   String toString() {
-    return r'sfxControllerProvider'
+    return r'sfxProvider'
         ''
         '($argument)';
   }
@@ -107,12 +107,12 @@ final class SfxControllerProvider extends $FunctionalProvider<AsyncValue<void>, 
   @override
   FutureOr<void> create(Ref ref) {
     final argument = this.argument as SFXEffect;
-    return sfxController(ref, effect: argument);
+    return sfxNotifier(ref, effect: argument);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is SfxControllerProvider && other.argument == argument;
+    return other is SfxNotifierProvider && other.argument == argument;
   }
 
   @override
@@ -121,20 +121,20 @@ final class SfxControllerProvider extends $FunctionalProvider<AsyncValue<void>, 
   }
 }
 
-String _$sfxControllerHash() => r'1104ea951ef9f7b433986e17af26dded2a6c98ff';
+String _$sfxNotifierHash() => r'b43ac687d79d927930515823ed3ed87f66acc1c1';
 
-final class SfxControllerFamily extends $Family with $FunctionalFamilyOverride<FutureOr<void>, SFXEffect> {
-  SfxControllerFamily._()
+final class SfxNotifierFamily extends $Family with $FunctionalFamilyOverride<FutureOr<void>, SFXEffect> {
+  SfxNotifierFamily._()
     : super(
         retry: null,
-        name: r'sfxControllerProvider',
+        name: r'sfxProvider',
         dependencies: null,
         $allTransitiveDependencies: null,
         isAutoDispose: true,
       );
 
-  SfxControllerProvider call({required SFXEffect effect}) => SfxControllerProvider._(argument: effect, from: this);
+  SfxNotifierProvider call({required SFXEffect effect}) => SfxNotifierProvider._(argument: effect, from: this);
 
   @override
-  String toString() => r'sfxControllerProvider';
+  String toString() => r'sfxProvider';
 }

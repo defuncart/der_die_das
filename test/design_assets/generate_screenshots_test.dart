@@ -59,8 +59,8 @@ void main() {
           key: UniqueKey(),
           overrides: [
             settingsServiceProvider.overrideWithValue(mockSettingsService),
-            gameStateControllerProvider.overrideWith(
-              () => FakeGameStateController(
+            gameStateProvider.overrideWith(
+              () => FakeGameStateNotifier(
                 state: (
                   progress: 0.5,
                   withoutArticle: 'Straße',
@@ -91,8 +91,8 @@ void main() {
           key: UniqueKey(),
           overrides: [
             settingsServiceProvider.overrideWithValue(mockSettingsService),
-            gameStateControllerProvider.overrideWith(
-              () => FakeGameStateController(
+            gameStateProvider.overrideWith(
+              () => FakeGameStateNotifier(
                 state: (
                   progress: 0.6,
                   withoutArticle: 'Straße',

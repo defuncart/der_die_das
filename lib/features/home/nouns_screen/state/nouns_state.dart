@@ -27,8 +27,8 @@ final filterNounsProvider = FutureProvider.family<List<Noun>, String>(
 
 // @riverpod
 // Future<List<Noun>> nounsForCurrentLevel(Ref ref) async =>
-//     ref.read(nounDatabaseProvider).filterNouns(level: ref.read(levelControllerProvider));
+//     ref.read(nounDatabaseProvider).filterNouns(level: ref.read(levelNotifierProvider));
 
 final nounsForCurrentLevelProvider = FutureProvider<List<Noun>>(
-  (ref) => ref.read(nounDatabaseProvider).filterNouns(level: ref.read(levelControllerProvider)),
+  (ref) => ref.read(nounDatabaseProvider).filterNouns(level: ref.read(levelProvider)),
 );

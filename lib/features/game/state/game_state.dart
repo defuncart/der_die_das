@@ -12,7 +12,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'game_state.g.dart';
 
 @riverpod
-class GameStateController extends _$GameStateController {
+class GameStateNotifier extends _$GameStateNotifier {
   late final int _numberQuestions;
   late final List<Noun> _nouns;
   var _currentIndex = 0;
@@ -24,10 +24,8 @@ class GameStateController extends _$GameStateController {
 
   @override
   Future<GameState> build() async {
-    _numberQuestions = ref.read(numberQuestionsControllerProvider).value;
-    _nouns = await ref
-        .read(nounDatabaseProvider)
-        .getNouns(count: _numberQuestions, level: ref.read(levelControllerProvider));
+    _numberQuestions = ref.read(numberQuestionsProvider).value;
+    _nouns = await ref.read(nounDatabaseProvider).getNouns(count: _numberQuestions, level: ref.read(levelProvider));
 
     return _gameState;
   }
@@ -64,12 +62,12 @@ class GameStateController extends _$GameStateController {
           answeredCorrectly: answeredCorrectly,
         );
     ref.read(
-      sfxControllerProvider(
+      sfxProvider(
         effect: answeredCorrectly ? SFXEffect.answerCorrect : SFXEffect.answerIncorrect,
       ),
     );
     Future.delayed(const Duration(milliseconds: 500)).then((_) {
-      ref.read(speakControllerProvider(text: _currentNoun.speak));
+      ref.read(speakProvider(text: _currentNoun.speak));
       if (answeredCorrectly) {
         Future.delayed(const Duration(seconds: 1)).then((_) {
           onContinue();

@@ -3,7 +3,8 @@ enum SpeechRate {
   oneHalf(0.5),
   threeQuarters(0.75),
   standard(1.0),
-  oneAndOneQuarter(1.25);
+  oneAndOneQuarter(1.25)
+  ;
 
   const SpeechRate(this.value);
 
