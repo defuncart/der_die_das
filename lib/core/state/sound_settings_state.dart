@@ -1,21 +1,14 @@
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/sound/sound_state.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 export 'package:der_die_das/core/sound/sfx/sound_effect_service.dart' show SFXEffect;
 
-extension SpeakExtensions on Ref {
-  Future<void> speak(String text) async {
-    await read(ttsServiceProvider).setSpeechRate(read(speechRateProvider));
-    await read(ttsServiceProvider).setVolume(read(voiceLevelProvider));
-    await read(ttsServiceProvider).speak(text);
-  }
-}
+part 'sound_settings_state.g.dart';
 
-extension SpeakExtensionsWidgetRef on WidgetRef {
-  Future<void> speak(String text) async {
-    await read(ttsServiceProvider).setSpeechRate(read(speechRateProvider));
-    await read(ttsServiceProvider).setVolume(read(voiceLevelProvider));
-    await read(ttsServiceProvider).speak(text);
-  }
+@riverpod
+Future<void> speakNotifier(Ref ref, {required String text}) async {
+  await ref.read(ttsServiceProvider).setSpeechRate(ref.read(speechRateProvider));
+  await ref.read(ttsServiceProvider).setVolume(ref.read(voiceLevelProvider));
+  await ref.read(ttsServiceProvider).speak(text);
 }
