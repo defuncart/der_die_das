@@ -13,10 +13,6 @@ Der Die Das is a fun German article quiz game in which the player tries to guess
 - Support for nouns which can take multiple articles (i.e. der Deutsche, die Deutsche).
 - Progress and difficult nouns can be viewed from a list overview.
 
-## Roadmap
-
-The application is presently in development and is a re-write of [https://defuncart.com/games/derdiedas/](https://defuncart.com/games/derdiedas/) in Flutter. Once this project has feature parity with the original version, an open beta phase will commence.
-
 ## Credits
 
 Lovelo Black Font is a trademark of Renzler Design, Lato Font is a trademark of Łukasz Dziedzic. Both are used under [SIL Open Font License](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL).
