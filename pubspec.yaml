@@ -4,8 +4,8 @@ publish_to: 'none'
 version: 0.2.0+1
 
 environment:
-  sdk: ^3.11.0
-  flutter: ^3.41.0
+  sdk: ^3.12.0
+  flutter: ^3.44.0
 
 dependencies:
   flutter:
@@ -16,7 +16,6 @@ dependencies:
   intl:
   collection:
   gap:
-  settings_ui:
   auto_size_text:
   drift:
   drift_flutter:
@@ -47,7 +46,6 @@ dev_dependencies:
   riverpod_generator:
   custom_lint:
   riverpod_lint:
-  golden_toolkit:
   flutter_launcher_icons:
   icon_font_generator:
   mocktail:
