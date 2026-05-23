@@ -230,14 +230,13 @@ class _Articles extends ConsumerWidget {
        _interactive = true;
 
   const _Articles.subset({
-    required List<Article> articles,
     required this.verticalWidth,
     required this.verticalHeight,
     required this.horizontalWidth,
     required this.horizontalHeight,
     required this.fontSize,
-  }) : _articles = articles,
-       _interactive = false;
+    this._articles,
+  }) : _interactive = false;
 
   final List<Article>? _articles;
   final bool _interactive;
