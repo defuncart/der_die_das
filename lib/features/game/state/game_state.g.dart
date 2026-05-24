@@ -6,18 +6,48 @@ part of 'game_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$gameStateControllerHash() => r'465753f1a5630c2bff03d9e00e0562b2332579ff';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [GameStateController].
-@ProviderFor(GameStateController)
-final gameStateControllerProvider = AutoDisposeAsyncNotifierProvider<GameStateController, GameState>.internal(
-  GameStateController.new,
-  name: r'gameStateControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$gameStateControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+@ProviderFor(GameStateNotifier)
+final gameStateProvider = GameStateNotifierProvider._();
 
-typedef _$GameStateController = AutoDisposeAsyncNotifier<GameState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class GameStateNotifierProvider extends $AsyncNotifierProvider<GameStateNotifier, GameState> {
+  GameStateNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'gameStateProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$gameStateNotifierHash();
+
+  @$internal
+  @override
+  GameStateNotifier create() => GameStateNotifier();
+}
+
+String _$gameStateNotifierHash() => r'36ee9c8ac96729538dad7db13c19b0ba4eed9c84';
+
+abstract class _$GameStateNotifier extends $AsyncNotifier<GameState> {
+  FutureOr<GameState> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<AsyncValue<GameState>, GameState>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<GameState>, GameState>,
+              AsyncValue<GameState>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}

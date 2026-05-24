@@ -6,124 +6,401 @@ part of 'settings_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$settingsServiceHash() => r'e658fddec33f128bd59e68bf761072afcc522e70';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [settingsService].
 @ProviderFor(settingsService)
-final settingsServiceProvider = AutoDisposeProvider<ISettingsService>.internal(
-  settingsService,
-  name: r'settingsServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$settingsServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final settingsServiceProvider = SettingsServiceProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef SettingsServiceRef = AutoDisposeProviderRef<ISettingsService>;
-String _$languageControllerHash() => r'37e7c37e357451e282efe63f7f5de3c6863876da';
+final class SettingsServiceProvider extends $FunctionalProvider<ISettingsService, ISettingsService, ISettingsService>
+    with $Provider<ISettingsService> {
+  SettingsServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'settingsServiceProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [LanguageController].
-@ProviderFor(LanguageController)
-final languageControllerProvider = NotifierProvider<LanguageController, Language>.internal(
-  LanguageController.new,
-  name: r'languageControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$languageControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+  @override
+  String debugGetCreateSourceHash() => _$settingsServiceHash();
 
-typedef _$LanguageController = Notifier<Language>;
-String _$levelControllerHash() => r'794ebb6f66527f81e4513c3d265d32c8da0f43f4';
+  @$internal
+  @override
+  $ProviderElement<ISettingsService> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
-/// See also [LevelController].
-@ProviderFor(LevelController)
-final levelControllerProvider = NotifierProvider<LevelController, Level>.internal(
-  LevelController.new,
-  name: r'levelControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$levelControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+  @override
+  ISettingsService create(Ref ref) {
+    return settingsService(ref);
+  }
 
-typedef _$LevelController = Notifier<Level>;
-String _$numberQuestionsControllerHash() => r'eaa1d1a747a1a5932316443c4bc16f9ec5d500f9';
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ISettingsService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ISettingsService>(value),
+    );
+  }
+}
 
-/// See also [NumberQuestionsController].
-@ProviderFor(NumberQuestionsController)
-final numberQuestionsControllerProvider = NotifierProvider<NumberQuestionsController, NumberQuestions>.internal(
-  NumberQuestionsController.new,
-  name: r'numberQuestionsControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$numberQuestionsControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+String _$settingsServiceHash() => r'01ab474a43eacb1538372b02c9d1856f9f556b16';
 
-typedef _$NumberQuestionsController = Notifier<NumberQuestions>;
-String _$showTipsControllerHash() => r'3d76b7f7b9e7ba9c0b1a57025b3f4d9959272a70';
+@ProviderFor(LanguageNotifier)
+final languageProvider = LanguageNotifierProvider._();
 
-/// See also [ShowTipsController].
-@ProviderFor(ShowTipsController)
-final showTipsControllerProvider = NotifierProvider<ShowTipsController, bool>.internal(
-  ShowTipsController.new,
-  name: r'showTipsControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$showTipsControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final class LanguageNotifierProvider extends $NotifierProvider<LanguageNotifier, Language> {
+  LanguageNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'languageProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-typedef _$ShowTipsController = Notifier<bool>;
-String _$answersLayoutControllerHash() => r'8a3d79574ab00f97e1f27c741c4b4cd5ed1324a4';
+  @override
+  String debugGetCreateSourceHash() => _$languageNotifierHash();
 
-/// See also [AnswersLayoutController].
-@ProviderFor(AnswersLayoutController)
-final answersLayoutControllerProvider = NotifierProvider<AnswersLayoutController, AnswersLayout>.internal(
-  AnswersLayoutController.new,
-  name: r'answersLayoutControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$answersLayoutControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+  @$internal
+  @override
+  LanguageNotifier create() => LanguageNotifier();
 
-typedef _$AnswersLayoutController = Notifier<AnswersLayout>;
-String _$speechRateControllerHash() => r'c5c7e6f49b81bfcf80b061d4e1b964b0d01a90de';
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Language value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Language>(value),
+    );
+  }
+}
 
-/// See also [SpeechRateController].
-@ProviderFor(SpeechRateController)
-final speechRateControllerProvider = NotifierProvider<SpeechRateController, SpeechRate>.internal(
-  SpeechRateController.new,
-  name: r'speechRateControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$speechRateControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+String _$languageNotifierHash() => r'73200652d8241606853c192949fe258122bcf9b9';
 
-typedef _$SpeechRateController = Notifier<SpeechRate>;
-String _$voiceLevelControllerHash() => r'bb78262b8a6c66d48b9d19249794dd1df337b28c';
+abstract class _$LanguageNotifier extends $Notifier<Language> {
+  Language build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<Language, Language>;
+    final element = ref.element as $ClassProviderElement<AnyNotifier<Language, Language>, Language, Object?, Object?>;
+    element.handleCreate(ref, build);
+  }
+}
 
-/// See also [VoiceLevelController].
-@ProviderFor(VoiceLevelController)
-final voiceLevelControllerProvider = NotifierProvider<VoiceLevelController, double>.internal(
-  VoiceLevelController.new,
-  name: r'voiceLevelControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$voiceLevelControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+@ProviderFor(LevelNotifier)
+final levelProvider = LevelNotifierProvider._();
 
-typedef _$VoiceLevelController = Notifier<double>;
-String _$soundLevelControllerHash() => r'8553eff632a82464c51edbfd9052cabd071d1f7e';
+final class LevelNotifierProvider extends $NotifierProvider<LevelNotifier, Level> {
+  LevelNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'levelProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [SoundLevelController].
-@ProviderFor(SoundLevelController)
-final soundLevelControllerProvider = NotifierProvider<SoundLevelController, double>.internal(
-  SoundLevelController.new,
-  name: r'soundLevelControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$soundLevelControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+  @override
+  String debugGetCreateSourceHash() => _$levelNotifierHash();
 
-typedef _$SoundLevelController = Notifier<double>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+  @$internal
+  @override
+  LevelNotifier create() => LevelNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Level value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Level>(value),
+    );
+  }
+}
+
+String _$levelNotifierHash() => r'2ef85747edbc008729c3226ca4e91a8ad46909e5';
+
+abstract class _$LevelNotifier extends $Notifier<Level> {
+  Level build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<Level, Level>;
+    final element = ref.element as $ClassProviderElement<AnyNotifier<Level, Level>, Level, Object?, Object?>;
+    element.handleCreate(ref, build);
+  }
+}
+
+@ProviderFor(NumberQuestionsNotifier)
+final numberQuestionsProvider = NumberQuestionsNotifierProvider._();
+
+final class NumberQuestionsNotifierProvider extends $NotifierProvider<NumberQuestionsNotifier, NumberQuestions> {
+  NumberQuestionsNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'numberQuestionsProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$numberQuestionsNotifierHash();
+
+  @$internal
+  @override
+  NumberQuestionsNotifier create() => NumberQuestionsNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(NumberQuestions value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<NumberQuestions>(value),
+    );
+  }
+}
+
+String _$numberQuestionsNotifierHash() => r'c79c540c6cd9a16b521c5abb02185344d6a823be';
+
+abstract class _$NumberQuestionsNotifier extends $Notifier<NumberQuestions> {
+  NumberQuestions build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<NumberQuestions, NumberQuestions>;
+    final element =
+        ref.element
+            as $ClassProviderElement<AnyNotifier<NumberQuestions, NumberQuestions>, NumberQuestions, Object?, Object?>;
+    element.handleCreate(ref, build);
+  }
+}
+
+@ProviderFor(ShowTipsNotifier)
+final showTipsProvider = ShowTipsNotifierProvider._();
+
+final class ShowTipsNotifierProvider extends $NotifierProvider<ShowTipsNotifier, bool> {
+  ShowTipsNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'showTipsProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$showTipsNotifierHash();
+
+  @$internal
+  @override
+  ShowTipsNotifier create() => ShowTipsNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(bool value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<bool>(value),
+    );
+  }
+}
+
+String _$showTipsNotifierHash() => r'f89f95f491e14f4c5c25af8f101c83b6e30b8fe6';
+
+abstract class _$ShowTipsNotifier extends $Notifier<bool> {
+  bool build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<bool, bool>;
+    final element = ref.element as $ClassProviderElement<AnyNotifier<bool, bool>, bool, Object?, Object?>;
+    element.handleCreate(ref, build);
+  }
+}
+
+@ProviderFor(AnswersLayoutNotifier)
+final answersLayoutProvider = AnswersLayoutNotifierProvider._();
+
+final class AnswersLayoutNotifierProvider extends $NotifierProvider<AnswersLayoutNotifier, AnswersLayout> {
+  AnswersLayoutNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'answersLayoutProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$answersLayoutNotifierHash();
+
+  @$internal
+  @override
+  AnswersLayoutNotifier create() => AnswersLayoutNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AnswersLayout value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AnswersLayout>(value),
+    );
+  }
+}
+
+String _$answersLayoutNotifierHash() => r'c8dd9742332b5ecfd0e26047969c333a711dc8b0';
+
+abstract class _$AnswersLayoutNotifier extends $Notifier<AnswersLayout> {
+  AnswersLayout build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<AnswersLayout, AnswersLayout>;
+    final element =
+        ref.element
+            as $ClassProviderElement<AnyNotifier<AnswersLayout, AnswersLayout>, AnswersLayout, Object?, Object?>;
+    element.handleCreate(ref, build);
+  }
+}
+
+@ProviderFor(SpeechRateNotifier)
+final speechRateProvider = SpeechRateNotifierProvider._();
+
+final class SpeechRateNotifierProvider extends $NotifierProvider<SpeechRateNotifier, SpeechRate> {
+  SpeechRateNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'speechRateProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$speechRateNotifierHash();
+
+  @$internal
+  @override
+  SpeechRateNotifier create() => SpeechRateNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SpeechRate value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SpeechRate>(value),
+    );
+  }
+}
+
+String _$speechRateNotifierHash() => r'74fc3387a8dbd86383c6c03fa9298cc44e6394e6';
+
+abstract class _$SpeechRateNotifier extends $Notifier<SpeechRate> {
+  SpeechRate build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<SpeechRate, SpeechRate>;
+    final element =
+        ref.element as $ClassProviderElement<AnyNotifier<SpeechRate, SpeechRate>, SpeechRate, Object?, Object?>;
+    element.handleCreate(ref, build);
+  }
+}
+
+@ProviderFor(VoiceLevelNotifier)
+final voiceLevelProvider = VoiceLevelNotifierProvider._();
+
+final class VoiceLevelNotifierProvider extends $NotifierProvider<VoiceLevelNotifier, double> {
+  VoiceLevelNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'voiceLevelProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$voiceLevelNotifierHash();
+
+  @$internal
+  @override
+  VoiceLevelNotifier create() => VoiceLevelNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(double value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<double>(value),
+    );
+  }
+}
+
+String _$voiceLevelNotifierHash() => r'59709d8ce784c1a4cf330d567636253b43dc1d7f';
+
+abstract class _$VoiceLevelNotifier extends $Notifier<double> {
+  double build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<double, double>;
+    final element = ref.element as $ClassProviderElement<AnyNotifier<double, double>, double, Object?, Object?>;
+    element.handleCreate(ref, build);
+  }
+}
+
+@ProviderFor(SoundLevelNotifier)
+final soundLevelProvider = SoundLevelNotifierProvider._();
+
+final class SoundLevelNotifierProvider extends $NotifierProvider<SoundLevelNotifier, double> {
+  SoundLevelNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'soundLevelProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$soundLevelNotifierHash();
+
+  @$internal
+  @override
+  SoundLevelNotifier create() => SoundLevelNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(double value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<double>(value),
+    );
+  }
+}
+
+String _$soundLevelNotifierHash() => r'8294bf8b170dc88cc459aec164edc2677b2879c0';
+
+abstract class _$SoundLevelNotifier extends $Notifier<double> {
+  double build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<double, double>;
+    final element = ref.element as $ClassProviderElement<AnyNotifier<double, double>, double, Object?, Object?>;
+    element.handleCreate(ref, build);
+  }
+}

@@ -6,13 +6,14 @@ import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart'
 import 'package:der_die_das/core/db/nouns_database/state/state.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
 import 'package:der_die_das/core/models/game_result.dart';
+import 'package:der_die_das/core/sound/sound_state.dart';
 import 'package:der_die_das/core/state/sound_settings_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'game_state.g.dart';
 
 @riverpod
-class GameStateController extends _$GameStateController {
+class GameStateNotifier extends _$GameStateNotifier {
   late final int _numberQuestions;
   late final List<Noun> _nouns;
   var _currentIndex = 0;
@@ -24,10 +25,8 @@ class GameStateController extends _$GameStateController {
 
   @override
   Future<GameState> build() async {
-    _numberQuestions = ref.read(numberQuestionsControllerProvider).value;
-    _nouns = await ref
-        .read(nounDatabaseProvider)
-        .getNouns(count: _numberQuestions, level: ref.read(levelControllerProvider));
+    _numberQuestions = ref.read(numberQuestionsProvider).value;
+    _nouns = await ref.read(nounDatabaseProvider).getNouns(count: _numberQuestions, level: ref.read(levelProvider));
 
     return _gameState;
   }
@@ -63,19 +62,23 @@ class GameStateController extends _$GameStateController {
           key: _currentNoun.key,
           answeredCorrectly: answeredCorrectly,
         );
-    ref.read(
-      sfxControllerProvider(
-        effect: answeredCorrectly ? SFXEffect.answerCorrect : SFXEffect.answerIncorrect,
-      ),
-    );
+    _playSFX(answeredCorrectly);
     Future.delayed(const Duration(milliseconds: 500)).then((_) {
-      ref.read(speakControllerProvider(text: _currentNoun.speak));
+      ref.invalidate(speakProvider(text: _currentNoun.speak));
+      ref.read(speakProvider(text: _currentNoun.speak));
       if (answeredCorrectly) {
         Future.delayed(const Duration(seconds: 1)).then((_) {
           onContinue();
         });
       }
     });
+  }
+
+  Future<void> _playSFX(bool answeredCorrectly) async {
+    await ref.read(sfxServiceProvider).setVolume(ref.read(soundLevelProvider));
+    await ref
+        .read(sfxServiceProvider)
+        .playEffect(answeredCorrectly ? SFXEffect.answerCorrect : SFXEffect.answerIncorrect);
   }
 
   void onContinue() {

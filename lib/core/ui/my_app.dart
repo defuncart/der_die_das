@@ -21,7 +21,7 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final locale = ref.watch(languageControllerProvider).toLocale();
+    final locale = ref.watch(languageProvider).toLocale();
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: appTheme.appBarTheme.systemOverlayStyle!,
@@ -43,34 +43,55 @@ final _router = GoRouter(
   routes: [
     GoRoute(
       path: LoadingScreen.path,
-      builder: (context, state) => const LoadingScreen(),
+      // builder: (context, state) => const LoadingScreen(),
+      pageBuilder: (context, state) => const NoTransitionPage(
+        child: LoadingScreen(),
+      ),
     ),
     GoRoute(
       path: HomeScreen.path,
+      // builder: (context, state) => const HomeScreen(),
       pageBuilder: (context, state) => const NoTransitionPage(
         child: HomeScreen(),
       ),
     ),
     GoRoute(
       path: NounsScreen.path,
-      builder: (context, state) => const NounsScreen(),
+      // builder: (context, state) => const NounsScreen(),
+      pageBuilder: (context, state) => const NoTransitionPage(
+        child: NounsScreen(),
+      ),
     ),
     GoRoute(
       path: TipsScreen.path,
-      builder: (context, state) => const TipsScreen(),
+      // builder: (context, state) => const TipsScreen(),
+      pageBuilder: (context, state) => const NoTransitionPage(
+        child: TipsScreen(),
+      ),
     ),
     GoRoute(
       path: SettingsScreen.path,
-      builder: (context, state) => const SettingsScreen(),
+      // builder: (context, state) => const SettingsScreen(),
+      pageBuilder: (context, state) => const NoTransitionPage(
+        child: SettingsScreen(),
+      ),
     ),
     GoRoute(
       path: GameScreen.path,
-      builder: (context, state) => const GameScreen(),
+      // builder: (context, state) => const GameScreen(),
+      pageBuilder: (context, state) => const NoTransitionPage(
+        child: GameScreen(),
+      ),
     ),
     GoRoute(
       path: ResultsScreen.path,
-      builder: (context, state) => ResultsScreen(
-        result: state.extra as GameResult,
+      // builder: (context, state) => ResultsScreen(
+      //   result: state.extra as GameResult,
+      // ),
+      pageBuilder: (context, state) => NoTransitionPage(
+        child: ResultsScreen(
+          result: state.extra as GameResult,
+        ),
       ),
     ),
   ],

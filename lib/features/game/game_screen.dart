@@ -24,7 +24,7 @@ class GameScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(gameStateControllerProvider);
+    final state = ref.watch(gameStateProvider);
 
     return state.maybeMap(
       data: (data) {
@@ -49,7 +49,7 @@ class _GameScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final showTipsButton = ref.watch(showTipsControllerProvider);
+    final showTipsButton = ref.watch(showTipsProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -92,125 +92,127 @@ class _GameScreen extends ConsumerWidget {
             ),
         ],
       ),
-      body: Padding(
-        padding: EdgeInsets.only(
-          top: 8,
-          left: 8,
-          right: 8,
-          bottom: MediaQuery.paddingOf(context).bottom == 0 ? 8 : 0,
-        ),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final buttonsHeight = constraints.maxHeight * (0.55 + 0.175) + context.customSpacings.s;
-            final verticalWidth = constraints.maxWidth * 0.325;
-            final verticalHeight = constraints.maxHeight * 0.55;
-            final horizontalWidth = constraints.maxWidth;
-            final horizontalHeight = constraints.maxHeight * 0.175;
-            final fontSize = horizontalHeight * 0.75;
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 8,
+            left: 8,
+            right: 8,
+            bottom: MediaQuery.paddingOf(context).bottom == 0 ? 8 : 0,
+          ),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final buttonsHeight = constraints.maxHeight * (0.55 + 0.175) + context.customSpacings.s;
+              final verticalWidth = constraints.maxWidth * 0.325;
+              final verticalHeight = constraints.maxHeight * 0.55;
+              final horizontalWidth = constraints.maxWidth;
+              final horizontalHeight = constraints.maxHeight * 0.175;
+              final fontSize = horizontalHeight * 0.75;
 
-            return SizedBox(
-              width: constraints.maxWidth,
-              height: constraints.maxHeight,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: state.answeredIncorrectly != null
-                    ? MainAxisAlignment.start
-                    : MainAxisAlignment.spaceBetween,
-                children: [
-                  Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AutoSizeText(
-                          state.withoutArticle,
-                          style: TextStyle(
-                            fontSize: fontSize,
-                            fontWeight: FontWeight.bold,
-                            color: context.customColorScheme.defaultButton,
-                          ),
-                          maxLines: 1,
-                        ),
-                        if (state.ambiguousLabel != null)
+              return SizedBox(
+                width: constraints.maxWidth,
+                height: constraints.maxHeight,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: state.answeredIncorrectly != null
+                      ? MainAxisAlignment.start
+                      : MainAxisAlignment.spaceBetween,
+                  children: [
+                    Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
                           AutoSizeText(
-                            state.ambiguousLabel!,
-                            style: TextStyle(fontSize: fontSize * 0.25),
+                            state.withoutArticle,
+                            style: TextStyle(
+                              fontSize: fontSize,
+                              fontWeight: FontWeight.bold,
+                              color: context.customColorScheme.defaultButton,
+                            ),
                             maxLines: 1,
                           ),
-                      ],
-                    ),
-                  ),
-                  if (state.answeredIncorrectly != null)
-                    Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        spacing: context.customSpacings.m,
-                        children: [
-                          Expanded(
-                            child: Center(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                spacing: context.customSpacings.l,
-                                children: [
-                                  ...state.answeredIncorrectly!.articles.map(
-                                    (article) => ArticleIcon(
-                                      article: article,
-                                      width: horizontalWidth,
-                                      horizontalTextWidthPercent: 0.6,
-                                      height: horizontalHeight,
-                                      fontSize: fontSize,
-                                    ),
-                                  ),
-                                  if (state.tip != null)
-                                    TipCard(
-                                      tip: state.tip!,
-                                      noun: state.withoutArticle,
-                                      showIcon: true,
-                                    ),
-                                ],
-                              ),
+                          if (state.ambiguousLabel != null)
+                            AutoSizeText(
+                              state.ambiguousLabel!,
+                              style: TextStyle(fontSize: fontSize * 0.25),
+                              maxLines: 1,
                             ),
-                          ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: HorizontalButton(
-                              onPressed: ref.read(gameStateControllerProvider.notifier).onContinue,
-                              text: context.l10n.gameContinueLabel,
-                            ),
-                          ),
                         ],
                       ),
-                    )
-                  else if (state.answeredCorrectly != null)
-                    SizedBox(
-                      width: constraints.maxWidth,
-                      height: buttonsHeight,
-                      child: _Articles.subset(
-                        articles: state.answeredCorrectly!.articles.toList(),
-                        verticalWidth: verticalWidth,
-                        verticalHeight: verticalHeight,
-                        horizontalWidth: horizontalWidth,
-                        horizontalHeight: horizontalHeight,
-                        fontSize: fontSize,
-                      ),
-                    )
-                  else
-                    SizedBox(
-                      width: constraints.maxWidth,
-                      height: buttonsHeight,
-                      child: _Articles.interactive(
-                        verticalWidth: verticalWidth,
-                        verticalHeight: verticalHeight,
-                        horizontalWidth: horizontalWidth,
-                        horizontalHeight: horizontalHeight,
-                        fontSize: fontSize,
-                      ),
                     ),
-                ],
-              ),
-            );
-          },
+                    if (state.answeredIncorrectly != null)
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          spacing: context.customSpacings.m,
+                          children: [
+                            Expanded(
+                              child: Center(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  spacing: context.customSpacings.l,
+                                  children: [
+                                    ...state.answeredIncorrectly!.articles.map(
+                                      (article) => ArticleIcon(
+                                        article: article,
+                                        width: horizontalWidth,
+                                        horizontalTextWidthPercent: 0.6,
+                                        height: horizontalHeight,
+                                        fontSize: fontSize,
+                                      ),
+                                    ),
+                                    if (state.tip != null)
+                                      TipCard(
+                                        tip: state.tip!,
+                                        noun: state.withoutArticle,
+                                        showIcon: true,
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: HorizontalButton(
+                                onPressed: ref.read(gameStateProvider.notifier).onContinue,
+                                text: context.l10n.gameContinueLabel,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    else if (state.answeredCorrectly != null)
+                      SizedBox(
+                        width: constraints.maxWidth,
+                        height: buttonsHeight,
+                        child: _Articles.subset(
+                          articles: state.answeredCorrectly!.articles.toList(),
+                          verticalWidth: verticalWidth,
+                          verticalHeight: verticalHeight,
+                          horizontalWidth: horizontalWidth,
+                          horizontalHeight: horizontalHeight,
+                          fontSize: fontSize,
+                        ),
+                      )
+                    else
+                      SizedBox(
+                        width: constraints.maxWidth,
+                        height: buttonsHeight,
+                        child: _Articles.interactive(
+                          verticalWidth: verticalWidth,
+                          verticalHeight: verticalHeight,
+                          horizontalWidth: horizontalWidth,
+                          horizontalHeight: horizontalHeight,
+                          fontSize: fontSize,
+                        ),
+                      ),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -228,14 +230,13 @@ class _Articles extends ConsumerWidget {
        _interactive = true;
 
   const _Articles.subset({
-    required List<Article> articles,
     required this.verticalWidth,
     required this.verticalHeight,
     required this.horizontalWidth,
     required this.horizontalHeight,
     required this.fontSize,
-  }) : _articles = articles,
-       _interactive = false;
+    this._articles,
+  }) : _interactive = false;
 
   final List<Article>? _articles;
   final bool _interactive;
@@ -247,7 +248,7 @@ class _Articles extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(answersLayoutControllerProvider);
+    final state = ref.watch(answersLayoutProvider);
 
     return switch (state) {
       AnswersLayout.standard => _ArticlesLayoutStandard(
@@ -306,9 +307,7 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
                 horizontalTextWidthPercent: 0.6,
                 height: verticalHeight,
                 fontSize: fontSize,
-                onPressed: interactive
-                    ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.der)
-                    : null,
+                onPressed: interactive ? () => ref.read(gameStateProvider.notifier).onAnswer(Article.der) : null,
               )
             else
               SizedBox(width: verticalWidth, height: verticalHeight),
@@ -319,9 +318,7 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
                 width: verticalWidth,
                 height: verticalHeight,
                 fontSize: fontSize,
-                onPressed: interactive
-                    ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.die)
-                    : null,
+                onPressed: interactive ? () => ref.read(gameStateProvider.notifier).onAnswer(Article.die) : null,
               )
             else
               SizedBox(width: verticalWidth, height: verticalHeight),
@@ -334,7 +331,7 @@ class _ArticlesLayoutStandard extends ConsumerWidget {
             horizontalTextWidthPercent: 0.6,
             height: horizontalHeight,
             fontSize: fontSize,
-            onPressed: interactive ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(Article.das) : null,
+            onPressed: interactive ? () => ref.read(gameStateProvider.notifier).onAnswer(Article.das) : null,
           )
         else
           SizedBox(width: horizontalWidth, height: horizontalHeight),
@@ -372,9 +369,7 @@ class _ArticlesLayoutHorizontal extends ConsumerWidget {
                     horizontalTextWidthPercent: 0.6,
                     height: height,
                     fontSize: fontSize,
-                    onPressed: interactive
-                        ? () => ref.read(gameStateControllerProvider.notifier).onAnswer(article)
-                        : null,
+                    onPressed: interactive ? () => ref.read(gameStateProvider.notifier).onAnswer(article) : null,
                   )
                 : SizedBox(width: width, height: height),
           )
@@ -394,12 +389,12 @@ class _HintButton extends StatefulWidget {
 }
 
 class __HintButtonState extends State<_HintButton> {
-  final OverlayPortalController _tooltipController = OverlayPortalController();
+  final _tooltipNotifier = OverlayPortalController();
 
   @override
   Widget build(BuildContext context) {
     return OverlayPortal(
-      controller: _tooltipController,
+      controller: _tooltipNotifier,
       overlayChildBuilder: (context) {
         return SizedBox.fromSize(
           size: MediaQuery.sizeOf(context),
@@ -409,16 +404,16 @@ class __HintButtonState extends State<_HintButton> {
               SizedBox.fromSize(
                 size: MediaQuery.sizeOf(context),
                 child: GestureDetector(
-                  onTap: _tooltipController.toggle,
+                  onTap: _tooltipNotifier.toggle,
                   child: ColoredBox(color: Colors.black.withValues(alpha: 0.35)),
                 ),
               ),
-              TipCard(tip: widget.tip, noun: widget.noun, onClose: _tooltipController.toggle),
+              TipCard(tip: widget.tip, noun: widget.noun, onClose: _tooltipNotifier.toggle),
             ],
           ),
         );
       },
-      child: BasicMaterialIconButton(onPressed: _tooltipController.toggle, icon: Icons.lightbulb_outline),
+      child: BasicMaterialIconButton(onPressed: _tooltipNotifier.toggle, icon: Icons.lightbulb_outline),
     );
   }
 }

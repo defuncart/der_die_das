@@ -4,8 +4,8 @@ publish_to: 'none'
 version: 0.2.0+1
 
 environment:
-  sdk: ^3.8.0
-  flutter: ^3.32.0
+  sdk: ^3.12.0
+  flutter: ^3.44.0
 
 dependencies:
   flutter:
@@ -16,10 +16,9 @@ dependencies:
   intl:
   collection:
   gap:
-  settings_ui:
   auto_size_text:
   drift:
-  sqlite3_flutter_libs:
+  drift_flutter:
   path_provider:
   path:
   archive:
@@ -47,7 +46,6 @@ dev_dependencies:
   riverpod_generator:
   custom_lint:
   riverpod_lint:
-  golden_toolkit:
   flutter_launcher_icons:
   icon_font_generator:
   mocktail:
@@ -83,12 +81,15 @@ arb_generator:
     base_index: 1
 
 flutter_launcher_icons:
-  android: "ic_launcher"
-  ios: true
   image_path: "assets_dev/app_icons/app_icon.png"
+  android: "ic_launcher"
   adaptive_icon_background: "#ECF0F1"
-  adaptive_icon_foreground: "assets_dev/app_icons/android_icon_foreground.png"
-  adaptive_icon_monochrome: "assets_dev/app_icons/android_icon_foreground.png"
+  adaptive_icon_foreground: "assets_dev/app_icons/icon_foreground.png"
+  adaptive_icon_monochrome: "assets_dev/app_icons/icon_foreground.png"
+  ios: true
+  image_path_ios_dark_transparent: "assets_dev/app_icons/icon_foreground_tint.png"
+  image_path_ios_tinted_grayscale: "assets_dev/app_icons/icon_foreground_tint.png"
+  desaturate_tinted_to_grayscale_ios: true
   macos:
     generate: true
     image_path: "assets_dev/app_icons/app_icon_macos.png"

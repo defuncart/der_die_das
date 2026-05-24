@@ -1,24 +1,34 @@
 import 'package:der_die_das/core/db/nouns_database/services/nouns_database.dart';
 import 'package:der_die_das/core/db/nouns_database/state/state.dart';
 import 'package:der_die_das/core/db/settings/state/settings_state.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+// As Noun is a generated class, riverpod v3 generator has type issues
 
 // part 'nouns_state.g.dart';
 
 // @riverpod
 // Future<List<Noun>> filterNouns(
-//   FilterNounsRef ref, {
+//   Ref ref, {
 //   required String searchTerm,
-// }) =>
-//     ref.read(nounDatabaseProvider).filterNouns(
-//           text: searchTerm,
-//         );
+// }) => ref
+//     .read(nounDatabaseProvider)
+//     .filterNouns(
+//       text: searchTerm,
+//     );
 
-// As Noun is a generated type, riverpod_generator creates provider with InvalidType type
-final filterNounsProvider = FutureProvider.autoDispose.family<List<Noun>, String>((ref, searchTerm) {
-  return ref.read(nounDatabaseProvider).filterNouns(text: searchTerm);
-});
+final filterNounsProvider = FutureProvider.family<List<Noun>, String>(
+  (ref, searchTerm) => ref
+      .read(nounDatabaseProvider)
+      .filterNouns(
+        text: searchTerm,
+      ),
+);
 
-final nounsForCurrentLevelProvider = FutureProvider.autoDispose<List<Noun>>((ref) {
-  return ref.read(nounDatabaseProvider).filterNouns(level: ref.read(levelControllerProvider));
-});
+// @riverpod
+// Future<List<Noun>> nounsForCurrentLevel(Ref ref) async =>
+//     ref.read(nounDatabaseProvider).filterNouns(level: ref.read(levelNotifierProvider));
+
+final nounsForCurrentLevelProvider = FutureProvider<List<Noun>>(
+  (ref) => ref.read(nounDatabaseProvider).filterNouns(level: ref.read(levelProvider)),
+);

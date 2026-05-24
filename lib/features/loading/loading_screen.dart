@@ -28,8 +28,8 @@ class _LoadingScreenState extends ConsumerState<LoadingScreen> {
 
   Future<void> _init() => Future.wait(
     [
-      ref.read(ttsProvider).init(),
-      ref.read(sfxProvider).init(),
+      ref.read(ttsServiceProvider).init(),
+      ref.read(sfxServiceProvider).init(),
     ],
   );
 

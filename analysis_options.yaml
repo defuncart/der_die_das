@@ -6,6 +6,7 @@ analyzer:
     exclude:
         - lib/**.g.dart
         - lib/**.freezed.dart
+        - lib/core/theme/custom_icons.dart
 linter:
   rules:
     prefer_const_constructors: true

@@ -26,64 +26,66 @@ class ResultsScreen extends StatelessWidget {
       appBar: AppBar(
         leading: const BasicMaterialCloseButton(),
       ),
-      body: Padding(
-        padding: context.customPaddings.s,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            context.customSpacings.m.toWidget(),
-            Center(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                spacing: context.customSpacings.m,
-                children: [
-                  const Text(
-                    '🏆',
-                    style: TextStyle(fontSize: 32),
-                  ),
-                  Text(
-                    context.l10n.resultsScoreLabel(result.correct, result.total),
-                    style: context.textTheme.headlineMedium,
-                  ),
-                ],
-              ),
-            ),
-            context.customSpacings.l.toWidget(),
-            if (result.incorrectlyAnswered.isNotEmpty) ...[
+      body: SafeArea(
+        child: Padding(
+          padding: context.customPaddings.s,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              context.customSpacings.m.toWidget(),
               Center(
-                child: Text(
-                  context.l10n.resultsMistakesLabel,
-                  style: context.textTheme.bodyLarge?.copyWith(
-                    decoration: TextDecoration.underline,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: context.customSpacings.m,
+                  children: [
+                    const Text(
+                      '🏆',
+                      style: TextStyle(fontSize: 32),
+                    ),
+                    Text(
+                      context.l10n.resultsScoreLabel(result.correct, result.total),
+                      style: context.textTheme.headlineMedium,
+                    ),
+                  ],
+                ),
+              ),
+              context.customSpacings.l.toWidget(),
+              if (result.incorrectlyAnswered.isNotEmpty) ...[
+                Center(
+                  child: Text(
+                    context.l10n.resultsMistakesLabel,
+                    style: context.textTheme.bodyLarge?.copyWith(
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
-              ),
-              context.customSpacings.s.toWidget(),
-              Expanded(
-                child: ListView(
-                  shrinkWrap: true,
-                  padding: context.customPaddings.sHorizontal,
-                  children: [
-                    for (final noun in result.incorrectlyAnswered)
-                      _Mistake(
-                        label: noun.withArticle,
-                        noun: noun.withoutArticle,
-                        tip: noun.tip,
-                      ),
-                    context.customSpacings.s.toWidget(),
-                  ].intersperse(context.customSpacings.m.toWidget()),
+                context.customSpacings.s.toWidget(),
+                Expanded(
+                  child: ListView(
+                    shrinkWrap: true,
+                    padding: context.customPaddings.sHorizontal,
+                    children: [
+                      for (final noun in result.incorrectlyAnswered)
+                        _Mistake(
+                          label: noun.withArticle,
+                          noun: noun.withoutArticle,
+                          tip: noun.tip,
+                        ),
+                      context.customSpacings.s.toWidget(),
+                    ].intersperse(context.customSpacings.m.toWidget()),
+                  ),
+                ),
+              ] else
+                const Spacer(),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: HorizontalButton(
+                  onPressed: () => context.pushReplacement(GameScreen.path),
+                  text: context.l10n.resultsContinueLabel,
                 ),
               ),
-            ] else
-              const Spacer(),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: HorizontalButton(
-                onPressed: () => context.pushReplacement(GameScreen.path),
-                text: context.l10n.resultsContinueLabel,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

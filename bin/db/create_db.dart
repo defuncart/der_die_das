@@ -22,7 +22,7 @@ void main() async {
 
   final encoder = ZipFileEncoder();
   encoder.create(_outputZipFilepath);
-  encoder.addFile(File(_outputFilepath));
+  await encoder.addFile(File(_outputFilepath));
   encoder.close();
 
   print('Written to $_outputZipFilepath!');
